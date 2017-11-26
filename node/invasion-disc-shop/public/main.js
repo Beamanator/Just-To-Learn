@@ -118,9 +118,18 @@ function Main_setupDiscDetailModal() {
         // put disc data into modal html
         $('.modal-content span.author').text(discData.author);
         $('.modal-content span.category').text(discData.category);
+        $('.modal-content span.disc-type').text(discData.discType);
+
         $('.modal-content span.stock').text(discData.stock);
         $('.modal-content span.title').text(discData.title);
         $('.modal-content span.total-purchased').text(discData.totalPurchased);
+
+        // TODO: Figure out what to do with reservation stuff!
+        // 1) here check if disc is reserved by user
+        // 2) update button text
+        // -> if disc already was reserved, disable button
+        // -> if disc has not been reserved, add click event
+        // 3) if clicked (with event), send data to google spreadsheet
 
         // do this last so html has already been updated
         $modal.css('display', 'block');

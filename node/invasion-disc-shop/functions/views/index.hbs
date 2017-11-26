@@ -130,8 +130,6 @@
                 </div>
 
                 <div class="modal-body">
-                    <p>Note: We do not provide receipts for disc sales!</p>
-
                     <table>
                         {{!-- <th></th> --}}
                         <tr>
@@ -143,6 +141,10 @@
                             <td><span class="category">Category</span></td>
                         </tr>
                         <tr>
+                            <td>Disc type:</td>
+                            <td><span class="disc-type">Type</span></td>
+                        </tr>
+                        <tr>
                             <td>Discs in stock:</td>
                             <td><span class="stock">Stock</span></td>
                         </tr>
@@ -151,6 +153,8 @@
                             <td><span class="total-purchased">Total</span></td>
                         </tr>
                     </table>
+
+                    <p><strong>Note: We do not provide receipts for disc sales!</strong></p>
                 </div>
 
                 {{!-- note: text here is right-justified --}}
@@ -162,7 +166,7 @@
                     {{!-- Add more inputs here (phone number, note about not providing receipts) --}}
                     
                     <div class="modal-footer-reserve">
-                        <button type="button" class="btn btn-default">Begin reservation</button>
+                        <button type="button" class="btn btn-default">Checking reservation...</button>
                     </div>
                 </div>
             </div>

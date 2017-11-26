@@ -21,6 +21,12 @@ div.disc-detail-modal {
     background-color: rgba(125, 126, 55, 0.4); /* Black w/ opacity */
 }
 /* Modal Content */
+.modal-header, .modal-footer {
+    font-family: 'Montserrat', sans-serif;
+}
+.modal-header .close {
+    font-size: 2em;
+}
 .modal-content {
     background-color: #fefefe;
     margin: auto;
@@ -28,11 +34,11 @@ div.disc-detail-modal {
     border: 1px solid #888;
     width: 80%;
 }
-.modal-header, .modal-footer {
-    font-family: 'Montserrat', sans-serif;
+.modal-body table, p {
+    font-family: 'Raleway', sans-serif;
 }
-.modal-header .close {
-    font-size: 2em;
+.modal-body td:first-of-type {
+    padding-right: 10px;
 }
 .modal-footer {
     display: grid;

@@ -1,0 +1,20 @@
+{
+  "name": "30-post-requests",
+  "version": "1.0.0",
+  "description": "post requests tutorial",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express",
+    "test"
+  ],
+  "author": "alex",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.1"
+  }
+}

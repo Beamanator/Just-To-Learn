@@ -1,0 +1,19 @@
+{
+  "name": "27-partial-views",
+  "version": "1.0.0",
+  "description": "partial views tutorial",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express",
+    "test"
+  ],
+  "author": "alex",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.16.1"
+  }
+}

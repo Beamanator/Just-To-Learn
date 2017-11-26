@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Invasion Disc Shop</title>
+        
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+        
+        <!-- My javascript -->
+        <script src="./main.js"></script>
+        
+        <!-- CSS -->
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
+        <link href="./styles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <!-- grid-1 (main grid) -->
+        <div class="grid-1">
+            <!-- grid-1 (header) -->
+            <div class="grid-1-header">
+                <div id="logo">Logo</div>
+                <h1>Invasion Disc Store</h1>
+                <div id="login">Login2</div>
+                <div id="logout">Logout</div>
+            <!-- close 1-header -->
+            </div>
+
+            <!-- grid-1 (navigation) -->
+            <div class="grid-1-nav">
+                <span><a href="">Home</a></span>
+                <span><a href="">Facebook</a></span>
+            <!-- close 1-nav -->
+            </div>
+
+            <!-- grid-1 (filters) && grid-2 (main filters) -->
+            <% include partials/filters.ejs %>
+            <!-- close 1-filters, 2-main -->
+
+            <!-- grid-1 (discs display) && grid-3 (discs display) -->
+            <div class="grid-1-discs grid-3">
+            <% for (disc of discs) { %>
+                <div class="grid-3-disc grid-3_2">
+                    <div class="grid-3_2-discs-stock"><%= disc.stock %></div>
+                    <div class="grid-3_2-discs-purchased"><%= disc.total_purchased %></div>
+                    <div class="grid-3_2-discs-order">+1</div>
+                </div>
+            <% } %>
+            <!-- close 1-discs, 3-main -->
+            </div>
+
+            <!-- grid-1 (footer) -->
+            <div class="grid-1-footer">
+                <p>some footer text</p>
+                <p>Total # discs bought: 104</p>
+                <div id="Facebook">Facebook</div>
+            <!-- close 1-footer -->
+            </div>
+
+        <!-- close 1-main -->
+        </div>
+    </body>
+</html>

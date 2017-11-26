@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                background: skyblue;
+                font-family: verdana;
+                color: white;
+                padding: 30px;
+            }
+            h1 {
+                font-size: 48px;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                text-align: center;
+            }
+            h2 {
+                font-size: 30px;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                text-align: center;
+            }
+            p, li {
+                font-size: 16px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- note: '=' must go right after % symbol -->
+        <h1>Welcome to the profile of <%= person %></h1>
+        <p><strong>Age: <%= data.age %></strong></p>
+        <p><strong>Job: <%= data.job %></strong></p>
+        <h2>Hobbies</h2>
+        <ul>
+            <!-- fyi - ejs code cannot go in comments! -->
+            <% var hobbies = data.hobbies;
+            hobbies.forEach(function(elem, i) { %>
+                <li><%= elem %></li>
+            <% }); %>
+        </ul>
+    </body>
+</html>

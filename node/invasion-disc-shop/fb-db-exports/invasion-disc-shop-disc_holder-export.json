@@ -1,0 +1,318 @@
+{
+  "disc-balloon-man" : {
+    "author" : "unknown",
+    "category" : "doodle",
+    "stock" : 0,
+    "title": "Balloon Man",
+    "total_purchased" : 0
+  },
+  "disc-butterfly" : {
+    "author" : "Dina A",
+    "category" : "doodle",
+    "stock" : 0,
+    "title": "Butterfly",
+    "total_purchased" : 2
+  },
+  "disc-cactus" : {
+    "author" : "unknown",
+    "category" : "doodle",
+    "stock" : 0,
+    "title": "Cactus",
+    "total_purchased" : 0
+  },
+  "disc-campfire" : {
+    "author" : "Andre L",
+    "category" : "doodle",
+    "stock" : 0,
+    "title": "Campfire",
+    "total_purchased" : 1
+  },
+  "disc-chemistry" : {
+    "author" : "unknown",
+    "category" : "doodle",
+    "stock" : 0,
+    "title": "Chemistry",
+    "total_purchased" : 0
+  },
+  "disc-colorful-eye" : {
+    "author" : "unknown",
+    "category" : "doodle",
+    "stock" : 0,
+    "title": "Colorful, Radiant Eye",
+    "total_purchased" : 0
+  },
+  "disc-concentric-color-waves" : {
+    "author" : "unknown",
+    "category" : "doodle",
+    "stock" : 0,
+    "title": "-",
+    "total_purchased" : 0
+  },
+  "disc-custom-bats-mohab" : {
+    "author" : "FDI",
+    "category" : "event",
+    "stock" : 0,
+    "title": "BATs team - Mohab",
+    "total_purchased" : 1
+  },
+  "disc-doodle-factory-caterpillars" : {
+    "author" : "unknown",
+    "category" : "doodle",
+    "stock" : 0,
+    "title": "-",
+    "total_purchased" : 0
+  },
+  "disc-doodle-factory-raspberries" : {
+    "author" : "unknown",
+    "category" : "doodle",
+    "stock" : 1,
+    "title": "-",
+    "total_purchased" : 0
+  },
+  "disc-doodle-factory-red-ninja" : {
+    "author" : "unknown",
+    "category" : "doodle",
+    "stock" : 1,
+    "title": "-",
+    "total_purchased" : 1
+  },
+  "disc-doodle-factory-repeat-1" : {
+    "author" : "unknown",
+    "category" : "doodle",
+    "stock" : 0,
+    "title": "-",
+    "total_purchased" : 0
+  },
+  "disc-doodle-factory-scribble" : {
+    "author" : "unknown",
+    "category" : "doodle",
+    "stock" : 1,
+    "title": "-",
+    "total_purchased" : 0
+  },
+  "disc-doodle-factory-sun-water" : {
+    "author" : "unknown",
+    "category" : "doodle",
+    "stock" : 2,
+    "title": "-",
+    "total_purchased" : 0
+  },
+  "disc-doodle-squiggles" : {
+    "author" : "unknown",
+    "category" : "doodle",
+    "stock" : 0,
+    "title": "-",
+    "total_purchased" : 0
+  },
+  "disc-event-bux1" : {
+    "author" : "FDI",
+    "category" : "event",
+    "stock" : 4,
+    "title": "BUX-1 (Beach Ultimate Pick-10)",
+    "total_purchased" : 0
+  },
+  "disc-event-erupt" : {
+    "author" : "FDI",
+    "category" : "event",
+    "stock" : 2,
+    "title": "E-RUPT (Egypt's Ramadan Ultimate Players Tournament)",
+    "total_purchased" : 0
+  },
+  "disc-event-heat" : {
+    "author" : "FDI",
+    "category" : "event",
+    "stock" : 6,
+    "title": "HEAT (Hat - Egypt's Alexandria Tournament)",
+    "total_purchased" : 0
+  },
+  "disc-geometric" : {
+    "author" : "unknown",
+    "category" : "doodle",
+    "stock" : 0,
+    "title": "-",
+    "total_purchased" : 0
+  },
+  "disc-helmet" : {
+    "author" : "unknown",
+    "category" : "doodle",
+    "stock" : 0,
+    "title": "-",
+    "total_purchased" : 0
+  },
+  "disc-hummingbird" : {
+    "author" : "unknown",
+    "category" : "doodle",
+    "stock" : 0,
+    "title": "-",
+    "total_purchased" : 1
+  },
+  "disc-mashup" : {
+    "author" : "Tarek + Zizi",
+    "category" : "doodle",
+    "stock" : 0,
+    "title": "-",
+    "total_purchased" : 1
+  },
+  "disc-neon-lady" : {
+    "author" : "unknown",
+    "category" : "doodle",
+    "stock" : 0,
+    "title": "-",
+    "total_purchased" : 0
+  },
+  "disc-neon-scribbles" : {
+    "author" : "unknown",
+    "category" : "doodle",
+    "stock" : 0,
+    "title": "-",
+    "total_purchased" : 0
+  },
+  "disc-neon-scribbles-2" : {
+    "author" : "unknown",
+    "category" : "doodle",
+    "stock" : 0,
+    "title": "-",
+    "total_purchased" : 0
+  },
+  "disc-septu-extreme" : {
+    "author" : "Tarek",
+    "category" : "doodle",
+    "stock" : 0,
+    "title": "Septu - Reimagined",
+    "total_purchased" : 0
+  },
+  "disc-simple-boat" : {
+    "author" : "unknown",
+    "category" : "doodle",
+    "stock" : 0,
+    "title": "-",
+    "total_purchased" : 0
+  },
+  "disc-team-sharks" : {
+    "author" : "FDI",
+    "category" : "team",
+    "stock" : 0,
+    "title": "Sharks",
+    "total_purchased" : 0
+  },
+  "disc-up-land" : {
+    "author" : "Seb",
+    "category" : "doodle",
+    "stock" : 0,
+    "title": "-",
+    "total_purchased" : 0
+  },
+  "disc-wasp" : {
+    "author" : "Seb",
+    "category" : "doodle",
+    "stock" : 0,
+    "title": "-",
+    "total_purchased" : 0
+  },
+  "disc-doodle-breaking-bad" : {
+    "author" : "Tarek",
+    "category" : "doodle",
+    "stock" : 0,
+    "title": "Breaking Bad",
+    "total_purchased" : 1
+  },
+  "disc-team-mayhem-custom" : {
+    "author" : "FDI",
+    "category" : "team",
+    "stock" : 0,
+    "title": "Mayhem - Custom",
+    "total_purchased" : 1
+  },
+  "disc-doodle-shisha-basic" : {
+    "author" : "Alex",
+    "category" : "doodle",
+    "stock" : 0,
+    "title": "Discin it with Shisha",
+    "total_purchased" : 0
+  },
+  "disc-doodle-shisha-fdi" : {
+    "author" : "Alex",
+    "category" : "doodle",
+    "stock" : 0,
+    "title": "Discin it with Shisha - FDI",
+    "total_purchased" : 1
+  },
+  "disc-fdi-custom1" : {
+    "author" : "Tarek",
+    "category" : "doodle",
+    "stock" : 0,
+    "title": "FDI - Custom",
+    "total_purchased" : 1
+  },
+  "disc-team-airbenders-basic" : {
+    "author" : "FDI",
+    "category" : "team",
+    "stock" : 0,
+    "title": "Airbenders",
+    "total_purchased" : 1
+  },
+  "disc-event-bux1-black" : {
+    "author" : "FDI",
+    "category" : "event",
+    "stock" : 2,
+    "title": "BUX-1 (Dark version)",
+    "total_purchased" : 1
+  },
+  "disc-team-alex-ultimate" : {
+    "author" : "FDI",
+    "category" : "team",
+    "stock" : 0,
+    "title": "Alexandria Ultimate",
+    "total_purchased" : 3
+  },
+
+  "disc-doodle-dragon" : {
+    "author" : "unknown",
+    "category" : "doodle",
+    "stock" : 0,
+    "title": "-",
+    "total_purchased" : 1
+  },
+  "disc-doodle-girl" : {
+    "author" : "Nada",
+    "category" : "doodle",
+    "stock" : 0,
+    "title": "-",
+    "total_purchased" : 2
+  },
+  "disc-association-eupa" : {
+    "author" : "Nada",
+    "category" : "association",
+    "stock" : 1,
+    "title": "EUPA",
+    "total_purchased" : 4
+  },
+  "disc-doodle-save-the-endzone" : {
+    "author" : "unknown",
+    "category" : "doodle",
+    "stock" : 1,
+    "title": "-",
+    "total_purchased" : 4
+  },
+  "disc-fdi-basic" : {
+    "author" : "FDI",
+    "category" : "association",
+    "stock" : 0,
+    "title": "FDI",
+    "total_purchased" : 4
+  },
+  "disc-doodle-fish-green" : {
+    "author" : "unknown",
+    "category" : "doodle",
+    "stock" : 1,
+    "title": "-",
+    "total_purchased" : 0
+  },
+  "disc-doodle-factory-colorful-clouds" : {
+    "author" : "unknown",
+    "category" : "doodle",
+    "stock" : 1,
+    "title": "-",
+    "total_purchased" : 0
+  }
+}

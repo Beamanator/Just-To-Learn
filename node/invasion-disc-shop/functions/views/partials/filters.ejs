@@ -1,0 +1,10 @@
+<!-- grid-1 (filters) && grid-2 (main filters) -->
+<div class="grid-1-filters grid-2">
+    <div class="grid-2-filter <% if (filters.all) { %>active<% } %>" name="all">All</div>
+    <div class="grid-2-filter <% if (filters.available) { %>active<% } %>" name="available">Available</div>
+    <div class="grid-2-filter <% if (filters.doodle) { %>active<% } %>" name="doodle">Doodles</div>
+    <div class="grid-2-filter <% if (filters.nostock) { %>active<% } %>" name="nostock">Not in Stock</div>
+    <div class="grid-2-filter <% if (filters.team) { %>active<% } %>" name="team">Teams</div>
+    <div class="grid-2-filter <% if (filters.event) { %>active<% } %>" name="event">Event</div>
+<!-- close 1-filters, 2-main -->
+</div>

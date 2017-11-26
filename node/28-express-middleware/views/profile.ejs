@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="/assets/styles.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <!-- include partial view -->
+        <% include partials/nav.ejs %>
+
+        <!-- note: '=' for data - must go right after % symbol -->
+        <h1>Welcome to the profile of <%= person %></h1>
+        <p><strong>Age: <%= data.age %></strong></p>
+        <p><strong>Job: <%= data.job %></strong></p>
+        <h2>Hobbies</h2>
+        <ul>
+            <!-- fyi - ejs code cannot go in comments! -->
+            <% var hobbies = data.hobbies;
+            hobbies.forEach(function(elem, i) { %>
+                <li><%= elem %></li>
+            <% }); %>
+        </ul>
+    </body>
+</html>

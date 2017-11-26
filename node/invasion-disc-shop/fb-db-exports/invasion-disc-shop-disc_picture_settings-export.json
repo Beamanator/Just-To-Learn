@@ -1,0 +1,186 @@
+{
+  "disc-balloon-man" : {
+    "background_color" : "white",
+    "file_type" : "png"
+  },
+  "disc-butterfly" : {
+    "background_color" : "white",
+    "file_type" : "png"
+  },
+  "disc-cactus" : {
+    "background_color" : "white",
+    "file_type" : "png"
+  },
+  "disc-campfire" : {
+    "background_color" : "white",
+    "file_type" : "png"
+  },
+  "disc-chemistry" : {
+    "background_color" : "white",
+    "file_type" : "png"
+  },
+  "disc-colorful-eye" : {
+    "background_color" : "white",
+    "file_type" : "png"
+  },
+  "disc-concentric-color-waves" : {
+    "background_color" : "white",
+    "file_type" : "png"
+  },
+  "disc-custom-bats-mohab" : {
+    "background_color" : "purple",
+    "file_type" : "jpg"
+  },
+  "disc-doodle-factory-caterpillars" : {
+    "background_color" : "white",
+    "file_type" : "png"
+  },
+  "disc-doodle-factory-raspberries" : {
+    "background_color" : "white",
+    "file_type" : "png"
+  },
+  "disc-doodle-factory-red-ninja" : {
+    "background_color" : "white",
+    "file_type" : "png"
+  },
+  "disc-doodle-factory-repeat-1" : {
+    "background_color" : "white",
+    "file_type" : "png"
+  },
+  "disc-doodle-factory-scribble" : {
+    "background_color" : "white",
+    "file_type" : "png"
+  },
+  "disc-doodle-factory-sun-water" : {
+    "background_color" : "white",
+    "file_type" : "png"
+  },
+  "disc-doodle-squiggles" : {
+    "background_color" : "white",
+    "file_type" : "png"
+  },
+  "disc-event-bux1" : {
+    "background_color" : "purple",
+    "file_type" : "jpg"
+  },
+  "disc-event-erupt" : {
+    "background_color" : "purple",
+    "file_type" : "jpg"
+  },
+  "disc-event-heat" : {
+    "background_color" : "purple",
+    "file_type" : "jpg"
+  },
+  "disc-geometric" : {
+    "background_color" : "white",
+    "file_type" : "png"
+  },
+  "disc-helmet" : {
+    "background_color" : "white",
+    "file_type" : "png"
+  },
+  "disc-hummingbird" : {
+    "background_color" : "white",
+    "file_type" : "png"
+  },
+  "disc-mashup" : {
+    "background_color" : "white",
+    "file_type" : "png"
+  },
+  "disc-neon-lady" : {
+    "background_color" : "white",
+    "file_type" : "png"
+  },
+  "disc-neon-scribbles" : {
+    "background_color" : "white",
+    "file_type" : "png"
+  },
+  "disc-neon-scribbles-2" : {
+    "background_color" : "white",
+    "file_type" : "png"
+  },
+  "disc-septu-extreme" : {
+    "background_color" : "white",
+    "file_type" : "png"
+  },
+  "disc-simple-boat" : {
+    "background_color" : "white",
+    "file_type" : "png"
+  },
+  "disc-team-sharks" : {
+    "background_color" : "purple",
+    "file_type" : "jpg"
+  },
+  "disc-undefined" : {
+    "background-color" : "grey",
+    "file_type" : "png"
+  },
+  "disc-up-land" : {
+    "background_color" : "white",
+    "file_type" : "png"
+  },
+  "disc-wasp" : {
+    "background_color" : "white",
+    "file_type" : "png"
+  },
+  "disc-doodle-breaking-bad" : {
+    "background_color" : "white",
+    "file_type" : "JPG"
+  },
+  "disc-team-mayhem-custom" : {
+    "background_color" : "white",
+    "file_type" : "JPG"
+  },
+  "disc-doodle-shisha-basic" : {
+    "background_color" : "white",
+    "file_type" : "png"
+  },
+  "disc-doodle-shisha-fdi" : {
+    "background_color" : "white",
+    "file_type" : "png"
+  },
+  "disc-fdi-custom1" : {
+    "background_color" : "none",
+    "file_type" : "jpg"
+  },
+  "disc-team-airbenders-basic" : {
+    "background_color" : "none",
+    "file_type" : "png"
+  },
+  "disc-event-bux1-black" : {
+    "background_color" : "none",
+    "file_type" : "png"
+  },
+  "disc-team-alex-ultimate" : {
+    "background_color" : "none",
+    "file_type" : "png"
+  },
+  "disc-doodle-dragon" : {
+    "background_color" : "white",
+    "file_type" : "JPG"
+  },
+  "disc-doodle-girl" : {
+    "background_color" : "white",
+    "file_type" : "JPG"
+  },
+  "disc-association-eupa" : {
+    "background_color" : "white",
+    "file_type" : "JPG"
+  },
+  "disc-doodle-save-the-endzone" : {
+    "background_color" : "white",
+    "file_type" : "JPG"
+  },
+  "disc-fdi-basic" : {
+    "background_color" : "white",
+    "file_type" : "JPG"
+  },
+  "disc-doodle-fish-green" : {
+    "background_color" : "none",
+    "file_type" : "png"
+  },
+  "disc-doodle-factory-colorful-clouds" : {
+    "background_color" : "none",
+    "file_type" : "png"
+  }
+}

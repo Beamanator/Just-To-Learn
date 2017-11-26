@@ -1,0 +1,8 @@
+# Dependency directories
+node_modules
+
+# Js file with private data
+private-data.js
+
+# Firebase log
+firebase-debug.log

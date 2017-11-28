@@ -22,10 +22,11 @@ function Main_putDiscImages() {
     // get disc type map from api
     $.ajax({
         method: "GET",
-        url: "/api/disc-picture-settings"
+        // url: "/api/disc-picture-settings"
+        url: "/api/disc-picture-map"
     })
     .then(function(data) {
-        let discSettingsMap = data.disc_settings_map;
+        let discPictureMap = data.disc_pic_map;
     
         // loop through disc divs, setting image urls
         for (let disc of $discs) {
@@ -33,28 +34,22 @@ function Main_putDiscImages() {
             let discType = $(disc).data('discType');
 
             // get file type from file-type map
-            let discSettingsObj = discSettingsMap[discType];
+            let discData = discPictureMap[discType];
 
-            let fileType = discSettingsObj.file_type;
-            let backgroundColor = discSettingsObj.background_color;
+            let backgroundColor = discData.background_color;
+            let imgbbLink = discData.imgbb_link;
 
-            // get image url and throw into background-url css
-            imageRef.child(`${discType}.${fileType}`).getDownloadURL()
-            .then(function(url) {
+            // skip to next part of the loop if link is empty
+            if (!imgbbLink) continue;
 
-                // handle adding css to disc element
-                setDiscCSS( $(disc), {
-                    url: url,
-                    backgroundColor: backgroundColor 
-                });
-                
-            })
-            .catch(function(err) {
-                console.error('imageRef->',err);
+            // set new disc css
+            setDiscCSS( $(disc), {
+                url: imgbbLink,
+                backgroundColor: backgroundColor
             });
         }
     })
-    .catch(function(err) {  console.error('get-api-disc-picture-settings->',err);  });
+    .catch(function(err) {  console.error('get-api-disc-picture-map->',err);  });
 }
 
 /**
@@ -129,7 +124,9 @@ function Main_setupDiscDetailModal() {
         // 2) update button text
         // -> if disc already was reserved, disable button
         // -> if disc has not been reserved, add click event
-        // 3) if clicked (with event), send data to google spreadsheet
+        // 3) if clicked (with event)
+        // -> send data to google spreadsheet
+        // -> send data to firebase db
 
         // do this last so html has already been updated
         $modal.css('display', 'block');

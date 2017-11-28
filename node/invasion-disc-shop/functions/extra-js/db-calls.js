@@ -4,12 +4,12 @@ const functions = {
     /**
      * Function gets discs from store based on a filter
      * 
-     * @param {object} fbApp - single instance of firebase app from node
+     * @param {object} fbDB - single instance of firebase database from node
      * @param {string} filter - code describing what discs to bring back
      * @returns - array of disc objects from fb
      */
-    get_discs_with_filter: function(fbApp, filterObj) {
-        const ref = fbApp.database().ref('disc_holder');
+    get_discs_with_filter: function(fbDB, filterObj) {
+        const ref = fbDB.ref('disc_holder');
         
         return ref.once('value').then(snap => {
             let discs = snap.val();
@@ -40,8 +40,8 @@ const functions = {
             }
         });
     },
-    get_discs: function(fbApp, refLoc='') {
-        const ref = fbApp.database().ref('disc_holder' + refLoc);
+    get_discs: function(fbDB, refLoc='') {
+        const ref = fbDB.ref('disc_holder' + refLoc);
 
         return ref.once('value').then(snap => snap.val());
     },
@@ -49,11 +49,16 @@ const functions = {
     /**
      * Function gets disc-types map from firebase
      * 
-     * @param {object} fbApp - single instance of firebase app from node
+     * @param {object} fbDB - single instance of firebase database from node
      * @returns - promise to disc-type map from fb
      */
-    get_disc_picture_settings: function(fbApp) {
-        const ref = fbApp.database().ref('disc_picture_settings');
+    get_disc_picture_settings: function(fbDB) {
+        const ref = fbDB.ref('disc_picture_settings');
+
+        return ref.once('value').then(snap => snap.val());
+    },
+    get_disc_picture_map: function(fbDB) {
+        const ref = fbDB.ref('disc_picture_map');
 
         return ref.once('value').then(snap => snap.val());
     },
@@ -61,12 +66,12 @@ const functions = {
     /**
      * Function gets data from specific user
      * 
-     * @param {object} fbApp - single instance of firebase app from node
+     * @param {object} fbDB - single instance of firebase app from node
      * @param {string} uid - unique firebase id of user
      * @returns - promise with all data of specific user
      */
-    get_user: function(fbApp, uid) {
-        const usersRef = fbApp.database().ref('user_data_holder');
+    get_user: function(fbDB, uid) {
+        const usersRef = fbDB.ref('user_data_holder');
 
         // if no user found, still follows .then() path, not .catch()
         return usersRef.child(uid).once('value').then(snap => snap.val());
@@ -74,13 +79,13 @@ const functions = {
     /**
      * Function creates a new user in user_data_holder
      * 
-     * @param {object} fbApp - see above
+     * @param {object} fbDB - see above
      * @param {string} uid - see above
      * @param {object} settings - settings object to store to fb
      * @returns - promise with no user data, just basic callback
      */
-    create_user: function(fbApp, uid, settings) {
-        const usersRef = fbApp.database().ref('user_data_holder');
+    create_user: function(fbDB, uid, settings) {
+        const usersRef = fbDB.ref('user_data_holder');
 
         let updateObj = {};
         updateObj[uid] = {
@@ -98,13 +103,13 @@ const functions = {
     /**
      * Function updates last login & login count for specified user
      * 
-     * @param {object} fbApp - see above
+     * @param {object} fbDB - see above
      * @param {string} uid - see above
      * @param {object} settings - see above
      * @returns - see above
      */
-    update_user: function(fbApp, uid, settings) {
-        const usersRef = fbApp.database().ref('user_data_holder');
+    update_user: function(fbDB, uid, settings) {
+        const usersRef = fbDB.ref('user_data_holder');
 
         let updateObj = {};
         updateObj[`${uid}/last_login`] = settings.last_login;

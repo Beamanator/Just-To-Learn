@@ -4,7 +4,7 @@ const router = express.Router();
 const dbCalls = require('../extra-js/db-calls');
 
 router.get('/get-config', function(req, res, next) {
-//     let fbApp = req.app.get('fb-app');
+//     let fbDB = req.app.get('fb-db');
 
 //     res.send(functions.config().firebase);
     res.send({type: 'get'});
@@ -13,7 +13,7 @@ router.get('/get-config', function(req, res, next) {
 // creates / updates user information
 router.post('/login', function(req, res, next) {
     let uid = req.body.uid;
-    let fbApp = req.app.get('fb-app');
+    let fbDB = req.app.get('fb-db');
 
     // create date string in format 'DD-Mon-YYYY' - ex: 24-Nov-2017
     let date = new Date();
@@ -24,11 +24,11 @@ router.post('/login', function(req, res, next) {
     let dateString = `${date.getDate()}-${mArr[date.getMonth()]}-${date.getFullYear()}`;
 
     // get this user's data
-    dbCalls.get_user(fbApp, uid)
+    dbCalls.get_user(fbDB, uid)
     .then(function(user) {
         // if no user found, create one!
         if (!user) {
-            dbCalls.create_user(fbApp, uid, {
+            dbCalls.create_user(fbDB, uid, {
                 last_login: dateString
             })
             .then(function(none) {
@@ -38,7 +38,7 @@ router.post('/login', function(req, res, next) {
 
         // else, user found so update last login & login count
         else {
-            dbCalls.update_user(fbApp, uid, {
+            dbCalls.update_user(fbDB, uid, {
                 last_login: dateString,
                 count_logins: user.count_logins + 1
             })

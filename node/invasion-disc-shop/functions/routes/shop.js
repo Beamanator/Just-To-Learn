@@ -11,10 +11,10 @@ router.get('/', function(req, res, next) {
 
     // get valid filters in an object from query string
     let filterObj = utils.getValidFilterObj(filterString);
-    let fbApp = req.app.get('fb-app');
+    let fbDB = req.app.get('fb-db');
 
     // get discs from dbCalls module
-    dbCalls.get_discs_with_filter(fbApp, filterObj).then(discs => {
+    dbCalls.get_discs_with_filter(fbDB, filterObj).then(discs => {
         res.render('index', {
             filter: filterObj,
             discs: discs

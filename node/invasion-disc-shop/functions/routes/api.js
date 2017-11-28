@@ -11,10 +11,10 @@ router.get('/discs', function(req, res, next){
 
     // get valid filter in an object from query string
     let filterObj = utils.getValidFilterObj(filterString);
-    let fbApp = req.app.get('fb-app');
+    let fbDB = req.app.get('fb-db');
 
     // get discs from dbCall module
-    dbCalls.get_discs_with_filter(fbApp, filterObj).then(discs => {
+    dbCalls.get_discs_with_filter(fbDB, filterObj).then(discs => {
 
         // TODO: filter discs based off filterObj
         sendObj.filter = filterObj;
@@ -24,15 +24,25 @@ router.get('/discs', function(req, res, next){
     })
     .catch(next);
 });
-
 router.get('/disc-picture-settings', function(req, res, next) {
     let sendObj = {};
-    let fbApp = req.app.get('fb-app');
+    let fbDB = req.app.get('fb-db');
 
-    dbCalls.get_disc_picture_settings(fbApp).then(disc_settings_map => {
+    dbCalls.get_disc_picture_settings(fbDB).then(disc_settings_settings => {
         // add map to output object
-        sendObj.disc_settings_map = disc_settings_map;
+        sendObj.disc_settings_settings = disc_settings_settings;
         
+        res.send(sendObj);
+    })
+    .catch(next);
+})
+router.get('/disc-picture-map', function(req, res, next) {
+    let sendObj = {};
+    let fbDB = req.app.get('fb-db');
+
+    dbCalls.get_disc_picture_map(fbDB).then(disc_pic_map => {
+        sendObj.disc_pic_map = disc_pic_map;
+
         res.send(sendObj);
     })
     .catch(next);

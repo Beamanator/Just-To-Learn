@@ -3,6 +3,7 @@ const firebase = require('firebase-admin');
 const bodyParser = require('body-parser');
 const express = require('express');
 
+const dbCalls = require('./extra-js/db-calls');
 const privateData = require('./extra-js/private-data');
 const engines = require('consolidate');
 
@@ -13,20 +14,28 @@ const authRoutes = require('./routes/auth');
 // set up express app
 const app = express();
 
+// set up template engine
 app.engine('hbs', engines.handlebars);
 app.set('views', './views');
 app.set('view engine', 'hbs');
+// app.set('view engine', 'ejs');
 
 // create firebase app - FOR DATABASE ONLY (no auth)
+// Asynchronous callbacks ('.on') haven't worked for me in node.js
 const firebaseApp = firebase.initializeApp(
     functions.config().firebase
 );
 
-// pass firebase app to routes - via request.app.get('fb-app')
-app.set('fb-app', firebaseApp);
+const fbDB = firebase.database();
 
-// set up template engine
-// app.set('view engine', 'ejs');
+// pass firebase database to routes - via request.app.get('fb-db')
+app.set( 'fb-db', fbDB );
+
+// pass firebase disc map to routes - via request.app.get('disc-pic-map')
+dbCalls.get_disc_picture_map( fbDB )
+.then(function(map) {
+    app.set('disc-pic-map', map);
+});
 
 // use body-parser middleware
 // -> adds request body to req.body in routes

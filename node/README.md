@@ -39,6 +39,16 @@
 **Storage**
 1) On Web, in HTML, import the https://www.gstatic.com/firebasejs/4.6.2/firebase.js code and NOTHING ELSE
    - If you import other code, firebase.storage() may not work
+2) getDownloadURL example:
+      ```javascript
+      imageRef.child(`${discType}.${fileType}`).getDownloadURL()
+      .then(function(url) {
+          // do something with url
+      })
+      .catch(function(err) {
+          console.error('imageRef->',err);
+      });
+      ```
    
 **Tips**
 1) Watch out! Firebase hosting will always server a static page over a dynamic route

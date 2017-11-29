@@ -101,9 +101,12 @@ function Main_setupFilters() {
 function Main_setupDiscDetailModal() {
     let $discs = $('div.grid-3-disc'),
         $modal = $('div.disc-detail-modal'),
-        $modalCloseBtn = $('button.close'),
-        $reserveBtn = $('.modal-footer-reserve button'),
+        $modalCloseBtn = $('button.close');
+
+    let $reserveBtn = $('.modal-footer-reserve button'),
         $discNotAvailableMsg = $('.reserve-disc-not-available-warning');
+
+    let $contactDetails = $('.modal-body .contact-details');
 
     // TODO: show / hide more name / phone number contact info boxes
 
@@ -126,11 +129,13 @@ function Main_setupDiscDetailModal() {
             url: `/api/reserved?discType=${discData.discType}&uid=${uid}`
         })
         .then(function(reservedStatus) {
-            // debugger;
             // only a 'not reserved' status should allow the user to reserve discs
             if (reservedStatus.status === 'not reserved') {
                 // hide disc 'not available' warning
                 $discNotAvailableMsg.css('display', 'none');
+
+                // display contact details
+                $contactDetails.css('display', 'block');
 
                 // enable reserve button
                 $reserveBtn.prop('disabled', false);
@@ -160,6 +165,9 @@ function Main_setupDiscDetailModal() {
             else {
                 // unhide disc not available warning
                 $discNotAvailableMsg.css('display', 'block');
+
+                // hide contact details
+                $contactDetails.css('display', 'none');
 
                 // disable reserve button
                 $reserveBtn.prop('disabled', true);

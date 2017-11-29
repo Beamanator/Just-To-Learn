@@ -35,7 +35,7 @@ router.get('/disc-picture-settings', function(req, res, next) {
         res.send(sendObj);
     })
     .catch(next);
-})
+});
 router.get('/disc-picture-map', function(req, res, next) {
     let sendObj = {};
     let fbDB = req.app.get('fb-db');
@@ -46,6 +46,58 @@ router.get('/disc-picture-map', function(req, res, next) {
         res.send(sendObj);
     })
     .catch(next);
+});
+router.get('/reserved', function(req, res, next) {
+    let fbDB = req.app.get('fb-db');
+    
+    let uid = req.query.uid;
+    let discType = req.query.discType;
+
+    // check uid is valid
+    if (!uid) {
+        status = 'error';
+        msg = 'UID Invalid / missing';
+        next({message: {    status: status,     msg: msg    }});
+        return;
+    }
+    // check discType is valid
+    else if (!discType) {
+        status = 'error';
+        msg = 'Disc Type Invalid / missing';
+        next({message: {    status: status,     msg: msg    }});
+        return;
+    }
+
+    dbCalls.get_disc_reserved_holder(fbDB).then(disc_reserved_holder => {
+        let status = '',
+            msg = '';
+
+        let drh = disc_reserved_holder;
+        
+        // check if discType is in drh
+        if (!drh[discType]) {
+            status = 'not reserved';
+            msg = 'Disc Never Reserved Yet';
+        }
+        // check if user has reserved this disc before
+        else if (!drh[discType]['users'][uid]) {
+            status = 'not reserved';
+            msg = 'Disc Never Reserved By User';
+        }
+        // user has already reserved disc
+        // TODO: does it matter if it was reserved > 30 days ago? or something like this?
+        else {
+            status = 'reserved';
+            msg = 'Disc Available To Be Reserved';
+        }
+
+        let returnObj = {
+            status: status,
+            msg: msg
+        };
+
+        res.send(returnObj);
+    });
 })
 
 // add a new disc to the db

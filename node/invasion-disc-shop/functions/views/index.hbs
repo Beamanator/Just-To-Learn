@@ -27,6 +27,7 @@
 
             firebase.initializeApp(config);
         </script>
+        <script src="./utils.js"></script>
         <script src="./auth.js"></script>
         <script src="./main.js" defer></script>
         
@@ -169,8 +170,9 @@
 
                 {{!-- note: text here is right-justified --}}
                 <div class="modal-footer">
-                    <div class="modal-footer-warning">
-                        <span class="reserve-warning">You must sign in to reserve discs!</span>
+                    <div class="modal-footer-message">
+                        <span class="reserve-signin-warning">You must sign in to reserve discs!</span>
+                        <span class="reserve-disc-not-available-warning">Disc already reserved.</span>
                     </div>
 
                     <div class="modal-footer-user-contact">
@@ -179,7 +181,7 @@
                     </div>
                     
                     <div class="modal-footer-reserve">
-                        <button type="button" class="btn btn-default">Checking reservation...</button>
+                        <button type="button" class="btn btn-default">Reserve Disc</button>
                     </div>
                 </div>
             </div>

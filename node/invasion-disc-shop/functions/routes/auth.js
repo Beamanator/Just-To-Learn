@@ -2,6 +2,7 @@ const express = require ('express');
 const router = express.Router();
 
 const dbCalls = require('../extra-js/db-calls');
+const utils = require('../extra-js/utils');
 
 router.get('/get-config', function(req, res, next) {
 //     let fbDB = req.app.get('fb-db');
@@ -15,13 +16,8 @@ router.post('/login', function(req, res, next) {
     let uid = req.body.uid;
     let fbDB = req.app.get('fb-db');
 
-    // create date string in format 'DD-Mon-YYYY' - ex: 24-Nov-2017
-    let date = new Date();
-    var mArr = [
-        "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-    ];
-    let dateString = `${date.getDate()}-${mArr[date.getMonth()]}-${date.getFullYear()}`;
+    // get current date string
+    let dateString = utils.getCurrentDateString();
 
     // get this user's data
     dbCalls.get_user(fbDB, uid)

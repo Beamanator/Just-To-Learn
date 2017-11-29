@@ -63,9 +63,8 @@ div.disc-detail-modal {
 .modal-footer-reserve {
     grid-area: reserve;
 }
-.modal-footer .modal-footer-warning {
+.modal-footer .modal-footer-message {
     grid-area: warning;
-    display: none;
     
     color: red;
 }

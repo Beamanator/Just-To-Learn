@@ -22,7 +22,6 @@ function Main_putDiscImages() {
     // get disc type map from api
     $.ajax({
         method: "GET",
-        // url: "/api/disc-picture-settings"
         url: "/api/disc-picture-map"
     })
     .then(function(data) {
@@ -91,9 +90,7 @@ function Main_setupFilters() {
             Main_putDiscImages();
             Main_setupDiscDetailModal();
         })
-        .catch(function(err) {
-            console.error('err:',err);
-        });
+        .catch(Utils_ThrowError);
     });
 }
 
@@ -104,11 +101,16 @@ function Main_setupFilters() {
 function Main_setupDiscDetailModal() {
     let $discs = $('div.grid-3-disc'),
         $modal = $('div.disc-detail-modal'),
-        $modalCloseBtn = $('button.close');
+        $modalCloseBtn = $('button.close'),
+        $reserveBtn = $('.modal-footer-reserve button'),
+        $discNotAvailableMsg = $('.reserve-disc-not-available-warning');
+
+    // TODO: show / hide more name / phone number contact info boxes
 
     // When the user clicks a disc, open the modal
     $discs.click(function(e_click) {
         let discData = $(this).data();
+        let uid = Auth_getUserID();
 
         // put disc data into modal html
         $('.modal-content span.author').text(discData.author);
@@ -119,17 +121,54 @@ function Main_setupDiscDetailModal() {
         $('.modal-content span.title').text(discData.title);
         $('.modal-content span.total-purchased').text(discData.totalPurchased);
 
-        // TODO: Figure out what to do with reservation stuff!
-        // 1) here check if disc is reserved by user
-        // 2) update button text
-        // -> if disc already was reserved, disable button
-        // -> if disc has not been reserved, add click event
-        // 3) if clicked (with event)
-        // -> send data to google spreadsheet
-        // -> send data to firebase db
+        $.ajax({
+            method: 'GET',
+            url: `/api/reserved?discType=${discData.discType}&uid=${uid}`
+        })
+        .then(function(reservedStatus) {
+            // debugger;
+            // only a 'not reserved' status should allow the user to reserve discs
+            if (reservedStatus.status === 'not reserved') {
+                // hide disc 'not available' warning
+                $discNotAvailableMsg.css('display', 'none');
 
-        // do this last so html has already been updated
-        $modal.css('display', 'block');
+                // enable reserve button
+                $reserveBtn.prop('disabled', false);
+                
+                // When the user clicks on the "Reserve" button (one-time)
+                $reserveBtn.one('click', function(e_click) {
+                    // disable reserve button
+                    $reserveBtn.prop('disabled', true);
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/shop/reserve/' + discData.discType,
+                        data: {
+                            uid: uid
+                        }
+                    })
+                    .then(function(data) {
+                        console.info('msg:', data.msg);
+
+                        // TODO: send data to google spreadsheet
+                    })
+                    .catch(Utils_ThrowError);
+                });
+            }
+            
+            // otherwise (status could be 'error' or 'reserved') -> disable button
+            else {
+                // unhide disc not available warning
+                $discNotAvailableMsg.css('display', 'block');
+
+                // disable reserve button
+                $reserveBtn.prop('disabled', true);
+            }
+
+            // do this last so html has already been updated
+            $modal.css('display', 'block');
+        })
+        .catch(Utils_ThrowError);
     });
 
     // When the user clicks on <span> (x), close the modal

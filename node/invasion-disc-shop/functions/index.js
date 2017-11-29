@@ -69,9 +69,9 @@ app.use(function(err, req, res, next) {
 exports.storeApp = functions.https.onRequest(app);
 // =========== END: firebase hosting =============
 
-// ========= FIXME: LOCAL HOSTING ONLY ===========
-// -> Only use with local hosting!!
+// ========= FIXME: LOCAL NODE SERVER ONLY ===========
+// -> Only use with local node server!!
 // app.use(express.static('../public'));
 // app.listen(4000);
 // console.log('Listening to port 4000');
-// ============ END: local hosting ===============
+// ============ END: local node server ===============

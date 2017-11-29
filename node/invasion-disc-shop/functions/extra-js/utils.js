@@ -41,6 +41,22 @@ const functions = {
         }
 
         return validFilterObj;
+    },
+
+    /**
+     * Function creates and returns a string representing the current day, in
+     * the format: 'DD-Mon-YYYY' - ex: 24-Nov-2017
+     * 
+     * @returns {string} - date string representing today
+     */
+    getCurrentDateString: function() {
+        let date = new Date();
+        var mArr = [
+            "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        ];
+        
+        return `${date.getDate()}-${mArr[date.getMonth()]}-${date.getFullYear()}`;
     }
 };
 

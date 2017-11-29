@@ -14,9 +14,10 @@ $(document).ready(function() {
  * 
  */
 function Auth_getUser() {
-    let user = firebase.auth().currentUser;
-
-    return user;
+    return firebase.auth().currentUser;
+}
+function Auth_getUserID() {
+    return Auth_getUser().uid;
 }
 
 /**
@@ -33,7 +34,7 @@ function Auth_setupStateChangeListener() {
             $out = $('div.user-logout'),
             $welcome = $('div.welcome-message'),
             $reserve = $('.modal-footer button'),
-            $reserveWarning = $('.modal-footer-warning');
+            $reserveSigninWarning = $('.reserve-signin-warning');
 
         // user login:
         if (user) {
@@ -60,7 +61,7 @@ function Auth_setupStateChangeListener() {
 
             // enable disc reserve button
             $reserve.prop('disabled', false);
-            $reserveWarning.css('display', 'none');
+            $reserveSigninWarning.css('display', 'none');
         }
         
         // user logout:
@@ -76,7 +77,7 @@ function Auth_setupStateChangeListener() {
 
             // disable disc reserve button
             $reserve.prop('disabled', true);
-            $reserveWarning.css('display', 'block');
+            $reserveSigninWarning.css('display', 'block');
         }
     });
 }

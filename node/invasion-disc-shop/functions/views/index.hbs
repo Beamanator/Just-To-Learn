@@ -27,17 +27,18 @@
 
             firebase.initializeApp(config);
         </script>
-        <script src="./utils.js"></script>
-        <script src="./auth.js"></script>
-        <script src="./main.js" defer></script>
+        <script src="./js/utils.js"></script>
+        <script src="./js/auth.js"></script>
+        <script src="./js/reserve.js"></script>
+        <script src="./js/main.js" defer></script>
         
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:600" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
 
         <!-- CSS -->
-        <link href="./min/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="./styles.css" rel="stylesheet" type="text/css" />
+        <link href="./css/min/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="./css/styles.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <!-- grid-1 (main grid) -->
@@ -157,14 +158,16 @@
 
                     <br>
                     <p><strong>Note: We do not provide receipts for disc sales!</strong></p>
+                    <hr>
 
                     <div class="contact-details">
-                        <hr>
                         <input class="first-name" type="text" placeholder="First name">
                         <br>
                         <input class="last-name" type="text" placeholder="Last name">
                         <br>
                         <input class="phone-number" type="text" placeholder="Enter phone # here!">
+                        <br>
+                        <button type="button" class="btn btn-default">Update Contact Details</button>
                     </div>
                 </div>
 
@@ -173,6 +176,7 @@
                     <div class="modal-footer-message">
                         <span class="reserve-signin-warning">You must sign in to reserve discs!</span>
                         <span class="reserve-disc-not-available-warning">Disc already reserved.</span>
+                        <span class="contact-details-empty-warning">Fill in full name and phone # to reserve.</span>
                     </div>
 
                     <div class="modal-footer-user-contact">

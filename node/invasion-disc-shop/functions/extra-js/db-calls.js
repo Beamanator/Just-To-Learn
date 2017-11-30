@@ -110,7 +110,7 @@ const functions = {
      * @param {object} settings - see above
      * @returns - see above
      */
-    update_user: function(fbDB, uid, settings) {
+    update_user_login: function(fbDB, uid, settings) {
         const usersRef = fbDB.ref('user_data_holder');
 
         // TODO: if fields are empty, create them
@@ -119,6 +119,17 @@ const functions = {
         let updateObj = {};
         updateObj[`${uid}/last_login`] = settings.last_login;
         updateObj[`${uid}/count_logins`] = settings.count_logins;
+
+        return usersRef.update(updateObj);
+    },
+
+    update_user_contact: function(fbDB, uid, settings) {
+        const usersRef = fbDB.ref('user_data_holder');
+
+        let updateObj = {};
+        updateObj[`${uid}/first_name`] = settings.firstName;
+        updateObj[`${uid}/last_name`] = settings.lastName;
+        updateObj[`${uid}/phone_number`] = settings.phoneNumber;
 
         return usersRef.update(updateObj);
     },

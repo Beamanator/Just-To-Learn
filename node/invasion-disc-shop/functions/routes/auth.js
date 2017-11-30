@@ -34,7 +34,7 @@ router.post('/login', function(req, res, next) {
 
         // else, user found so update last login & login count
         else {
-            dbCalls.update_user(fbDB, uid, {
+            dbCalls.update_user_login(fbDB, uid, {
                 last_login: dateString,
                 count_logins: user.count_logins + 1
             })
@@ -42,6 +42,21 @@ router.post('/login', function(req, res, next) {
                 res.send({msg: 'update successful'});
             }).catch(next);
         }
+    }).catch(next);
+});
+
+// update first / last names and phone number
+router.put('/update-contact', function(req, res, next) {
+    let data = req.body;
+    let fbDB = req.app.get('fb-db');
+
+    let uid = data.uid,
+        updatedInfo = data.updatedInfo;
+
+    // update user contact info in db
+    dbCalls.update_user_contact(fbDB, uid, updatedInfo)
+    .then(function(none) {
+        res.send({msg: 'update succesful'});
     }).catch(next);
 });
 

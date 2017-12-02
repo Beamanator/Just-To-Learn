@@ -4,14 +4,14 @@ const router = express.Router();
 const dbCalls = require('../extra-js/db-calls');
 const utils = require('../extra-js/utils');
 
+// get contact details of user
 router.get('/contact-details/:uid', function(req, res, next) {
     let uid = req.params.uid;
     let fbDB = req.app.get('fb-db');
 
-    console.log('uid:', uid);
-
     dbCalls.get_user(fbDB, uid)
     .then(function(user) {
+        // return only contact details
         let returnObj = {
             firstName: user.first_name,
             lastName: user.last_name,

@@ -4,6 +4,7 @@ $(document).ready(function(){
     Main_PutDiscImages();
     Main_SetupDiscDetailModal();
 
+    Main_SetupContactDetailListeners();
     Main_SetupContactUpdateListener();
     
 });
@@ -146,6 +147,19 @@ function Main_SetupDiscDetailModal() {
 }
 
 /**
+ * Function sets a jQuery blur on contact detail inputs. When data is
+ * changed, update css of button to remind user to save data
+ * 
+ */
+function Main_SetupContactDetailListeners() {
+    let $contactDetailInputs = $('.contact-details input');
+
+    $contactDetailInputs.change(function(e_blur) {
+        Utils_ContactNeedsSaveUpdateCSS();
+    });
+}
+
+/**
  * Function creates click event on button to update contact details of user.
  * Contact details are stored in FB - all are required!
  * 
@@ -157,6 +171,8 @@ function Main_SetupContactUpdateListener() {
 
     // reserve button clicked! try to store new contact data to db
     $updateContact.click(function(e_click) {
+        $thisButton = $(this);
+
         // if fields not filled out, display warning
         if ( !Utils_CheckContactDetailsFilled() ) {
             Reserve_DisplayWarning($contactDetailWarning);
@@ -184,7 +200,10 @@ function Main_SetupContactUpdateListener() {
                 let $msg = $('.contact-update-message'); 
 
                 $msg.css('display', 'flex');
-                $msg.hide(1000);
+                $msg.hide(1500);
+
+                // color border and color back to black
+                Utils_ContactSavedUpdateCSS($thisButton);
             }).catch(Utils_ThrowError);
         }
     });

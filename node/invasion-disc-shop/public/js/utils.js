@@ -38,3 +38,29 @@ function Utils_GetContactDetails() {
 
     return contactObj;
 }
+
+/**
+ * Functions (...NeedsSave and ...Saved) update the css of contact update button.
+ * 
+ * When needs save, color border & text red. When saved, color back to black
+ * 
+ * @param {object} $elem - jQuery element holding contact button
+ */
+function Utils_ContactNeedsSaveUpdateCSS($elem) {
+    if (!$elem || $elem.length === 0)
+        $elem = $('.contact-update-button button');
+
+    $elem.css({
+        'color': 'red',
+        'border-color': 'red'
+    });
+}
+function Utils_ContactSavedUpdateCSS($elem) {
+    if (!$elem || $elem.length === 0)
+        $elem = $('.contact-update-button button');
+
+    $elem.css({
+        'color': 'black',
+        'border-color': 'black'
+    });
+}

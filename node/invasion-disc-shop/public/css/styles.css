@@ -109,6 +109,7 @@ div.disc-detail-modal {
 
     border-radius: 10px;
 
+    /* jQuery sets display to flex */
     display: none;
     
     justify-content: center;

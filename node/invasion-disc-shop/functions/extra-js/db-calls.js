@@ -94,10 +94,10 @@ const functions = {
             first_login: settings.last_login,
             last_login: settings.last_login,
             count_logins: 1,
-            phone_number: '-',
-            email_address: '-',
-            first_name: '-',
-            last_name: '-'
+            phone_number: '',
+            email_address: '',
+            first_name: '',
+            last_name: ''
         };
 
         return usersRef.update(updateObj);

@@ -68,6 +68,53 @@ div.disc-detail-modal {
     
     color: red;
 }
+/* contact details grid */
+.modal-body .contact-details {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas: "first msg msg"
+                        "last msg msg"
+                        "phone msg msg"
+                        "update msg msg";
+
+    align-items: stretch;
+
+    grid-gap: 10px;
+}
+.contact-details .contact-first-name {
+    grid-area: first;
+}
+.contact-details .contact-first-name input { width: 100%; }
+.contact-details .contact-last-name {
+    grid-area: last;
+}
+.contact-details .contact-last-name input { width: 100%; }
+.contact-details .contact-phone-number {
+    grid-area: phone;
+}
+.contact-details .contact-phone-number input { width: 100%; }
+.contact-details .contact-update-button {
+    grid-area: update;
+}
+.contact-details .contact-update-button button { width: 100%; }
+.contact-details .contact-update-message {
+    grid-area: msg;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3em;
+
+    border-radius: 10px;
+
+    display: none;
+    
+    justify-content: center;
+    align-items: center;
+}
+/* end: contact details grid */
 
 /* end modal style editing! */
 

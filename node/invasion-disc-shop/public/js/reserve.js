@@ -17,7 +17,7 @@ function Reserve_HandleReserve(config) {
     if (reservedStatus.status === 'not reserved') {
 
         // display contact details
-        $contactDetails.css('display', 'block');
+        $contactDetails.css('display', 'grid');
 
         // if any fields are not filled out, don't allow reservation
         if ( Utils_CheckContactDetailsFilled() ) {

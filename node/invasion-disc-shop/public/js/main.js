@@ -174,8 +174,11 @@ function Main_setupContactUpdateListener() {
                 }
             })
             .then(function(data) {
-                // TODO: successfully updated, now display update message to user
-                
+                // successfully updated, now display save message to user
+                let $msg = $('.contact-update-message'); 
+
+                $msg.css('display', 'flex');
+                $msg.hide(1000);
             }).catch(Utils_ThrowError);
         }
     });

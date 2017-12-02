@@ -1,9 +1,10 @@
 $(document).ready(function(){
 
-    Main_setupFilters();
-    Main_putDiscImages();
-    Main_setupDiscDetailModal();
-    Main_setupContactUpdateListener();
+    Main_SetupFilters();
+    Main_PutDiscImages();
+    Main_SetupDiscDetailModal();
+
+    Main_SetupContactUpdateListener();
     
 });
 
@@ -13,7 +14,7 @@ $(document).ready(function(){
  * 
  * @returns - nothing - return only used when exiting early
  */
-function Main_putDiscImages() {
+function Main_PutDiscImages() {
     // get firebase storage ref
     let imageRef = firebase.storage().ref('disc-shop-pics');
 
@@ -59,7 +60,7 @@ function Main_putDiscImages() {
  * 2) if query string has multiple filters, refresh with only the first filter
  * 
  */
-function Main_setupFilters() {
+function Main_SetupFilters() {
     let $gridFilters = $('.grid-2-filter');
 
     // set up listener for filter clicks:
@@ -88,8 +89,8 @@ function Main_setupFilters() {
             $('div.grid-1-discs').html(discHtml);
 
             // html has been added, now get disc images
-            Main_putDiscImages();
-            Main_setupDiscDetailModal();
+            Main_PutDiscImages();
+            Main_SetupDiscDetailModal();
         })
         .catch(Utils_ThrowError);
     });
@@ -99,7 +100,7 @@ function Main_setupFilters() {
  * Function sets up disc click events & modal data
  * 
  */
-function Main_setupDiscDetailModal() {
+function Main_SetupDiscDetailModal() {
     let $discs = $('div.grid-3-disc'),
         $modal = $('div.disc-detail-modal'),
         $modalCloseBtn = $('button.close');
@@ -144,7 +145,12 @@ function Main_setupDiscDetailModal() {
     });
 }
 
-function Main_setupContactUpdateListener() {
+/**
+ * Function creates click event on button to update contact details of user.
+ * Contact details are stored in FB - all are required!
+ * 
+ */
+function Main_SetupContactUpdateListener() {
     // get jQuery elems
     let $updateContact = $('.contact-details button');
     let $contactDetailWarning = $('.contact-details-empty-warning');
@@ -182,6 +188,25 @@ function Main_setupContactUpdateListener() {
             }).catch(Utils_ThrowError);
         }
     });
+}
+
+
+function Main_SetUserContactInfo(uid) {
+    let $firstName = $('.contact-details .first-name'),
+        $lastName = $('.contact-details .last-name'),
+        $phoneNumber = $('.contact-details .phone-number');
+
+    // get contact into from uid
+    $.ajax({
+        method: 'GET',
+        url: '/auth/contact-details/' + uid
+    })
+    .then(function(data) {
+        // store data in jQuery elems
+        $firstName.val( data.firstName );
+        $lastName.val( data.lastName );
+        $phoneNumber.val( data.phoneNumber );
+    }).catch(Utils_ThrowError);
 }
 
 // ======================== internal ============================

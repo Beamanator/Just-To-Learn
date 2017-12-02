@@ -17,7 +17,10 @@ function Auth_getUser() {
     return firebase.auth().currentUser;
 }
 function Auth_getUserID() {
-    return Auth_getUser().uid || '';
+    let user = Auth_getUser();
+
+    if (user) return user.uid;
+    else return '';
 }
 
 /**
@@ -62,6 +65,9 @@ function Auth_setupStateChangeListener() {
             // enable disc reserve button
             $reserve.prop('disabled', false);
             $reserveSigninWarning.css('display', 'none');
+
+            // get user contact info from db, put in modal
+            Main_SetUserContactInfo(uid);
         }
         
         // user logout:

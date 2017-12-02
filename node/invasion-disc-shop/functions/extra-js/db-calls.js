@@ -122,7 +122,14 @@ const functions = {
 
         return usersRef.update(updateObj);
     },
-
+    /**
+     * 
+     * 
+     * @param {any} fbDB 
+     * @param {any} uid 
+     * @param {any} settings 
+     * @returns 
+     */
     update_user_contact: function(fbDB, uid, settings) {
         const usersRef = fbDB.ref('user_data_holder');
 

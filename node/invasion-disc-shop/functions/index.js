@@ -31,12 +31,6 @@ const fbDB = firebase.database();
 // pass firebase database to routes - via request.app.get('fb-db')
 app.set( 'fb-db', fbDB );
 
-// pass firebase disc map to routes - via request.app.get('disc-pic-map')
-dbCalls.get_disc_picture_map( fbDB )
-.then(function(map) {
-    app.set('disc-pic-map', map);
-});
-
 // use body-parser middleware
 // -> adds request body to req.body in routes
 app.use(bodyParser.json());

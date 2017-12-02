@@ -4,11 +4,22 @@ const router = express.Router();
 const dbCalls = require('../extra-js/db-calls');
 const utils = require('../extra-js/utils');
 
-router.get('/get-config', function(req, res, next) {
-//     let fbDB = req.app.get('fb-db');
+router.get('/contact-details/:uid', function(req, res, next) {
+    let uid = req.params.uid;
+    let fbDB = req.app.get('fb-db');
 
-//     res.send(functions.config().firebase);
-    res.send({type: 'get'});
+    console.log('uid:', uid);
+
+    dbCalls.get_user(fbDB, uid)
+    .then(function(user) {
+        let returnObj = {
+            firstName: user.first_name,
+            lastName: user.last_name,
+            phoneNumber: user.phone_number
+        };
+
+        res.send(returnObj);
+    }).catch(next);
 });
 
 // creates / updates user information

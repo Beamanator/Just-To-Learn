@@ -9,17 +9,31 @@ router.get('/contact-details/:uid', function(req, res, next) {
     let uid = req.params.uid;
     let fbDB = req.app.get('fb-db');
 
-    dbCalls.get_user(fbDB, uid)
-    .then(function(user) {
-        // return only contact details
-        let returnObj = {
-            firstName: user.first_name,
-            lastName: user.last_name,
-            phoneNumber: user.phone_number
+    let returnObj = {};
+
+    if (uid) {
+        dbCalls.get_user(fbDB, uid)
+        .then(function(user) {
+            // return only contact details
+            returnObj = {
+                firstName: user.first_name,
+                lastName: user.last_name,
+                phoneNumber: user.phone_number
+            };
+    
+            res.send(returnObj);
+        }).catch(next);
+    }
+
+    else {
+        returnObj = {
+            firstName: '',
+            lastName: '',
+            phoneNumber: ''
         };
 
         res.send(returnObj);
-    }).catch(next);
+    }
 });
 
 // creates / updates user information

@@ -20,7 +20,7 @@ function Reserve_HandleReserve(config) {
         $contactDetails.css('display', 'grid');
 
         // if any fields are not filled out, don't allow reservation
-        if ( Utils_CheckContactDetailsFilled() ) {
+        if ( !Utils_CheckContactDetailsFilled() ) {
             Reserve_DisableReserve($contactDetailsEmptyMsg);
         }
 

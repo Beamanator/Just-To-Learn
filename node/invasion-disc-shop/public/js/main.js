@@ -202,8 +202,11 @@ function Main_SetupContactUpdateListener() {
                 $msg.css('display', 'flex');
                 $msg.hide(1500);
 
-                // color border and color back to black
+                // color button border and color back to black
                 Utils_ContactSavedUpdateCSS($thisButton);
+
+                // re-enable reserve button
+                Reserve_EnableReserve();
             }).catch(Utils_ThrowError);
         }
     });

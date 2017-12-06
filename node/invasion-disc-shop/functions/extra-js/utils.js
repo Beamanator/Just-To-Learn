@@ -14,7 +14,7 @@ const functions = {
      * 
      * @param {string} filterString - string of filters (usually 1 filter) delim by ','
      */
-    getValidFilterObj: function(filterString) {
+    get_valid_filter_obj: function(filterString) {
         let validFilterObj = {};
         
         // default filter to 'all'
@@ -49,7 +49,7 @@ const functions = {
      * 
      * @returns {string} - date string representing today
      */
-    getCurrentDateString: function() {
+    get_current_date_string: function() {
         let date = new Date();
         var mArr = [
             "Jan", "Feb", "Mar", "Apr", "May", "Jun",

@@ -95,7 +95,6 @@ const functions = {
             last_login: settings.last_login,
             count_logins: 1,
             phone_number: '',
-            email_address: '',
             first_name: '',
             last_name: ''
         };
@@ -114,7 +113,7 @@ const functions = {
         const usersRef = fbDB.ref('user_data_holder');
 
         // TODO: if fields are empty, create them
-        // ex: last_name, first_name, phone, email, etc...
+        // ex: last_name, first_name, phone, etc...
 
         let updateObj = {};
         updateObj[`${uid}/last_login`] = settings.last_login;

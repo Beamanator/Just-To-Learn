@@ -40,23 +40,27 @@ function get_reservation_wsheet(doc) {
     return new Promise( (resolve, reject) => {
         doc.getInfo(function(err, info) {
             if (err) reject(err);
+            if (!info) reject('No spreadsheet info returned');
 
-            // get worksheets in spreadsheet from info obj
-            let worksheets = info.worksheets;
+            // no errors... proceed!
+            else {
+                // get worksheets in spreadsheet from info obj
+                let worksheets = info.worksheets;
 
-            // find sheet with desired title
-            for (let sheet of worksheets) {
-                if (sheet.title === reservationSheetTitle) {
-                    resolve(sheet);
-                    break;
+                // find sheet with desired title
+                for (let sheet of worksheets) {
+                    if (sheet.title === reservationSheetTitle) {
+                        resolve(sheet);
+                        break;
+                    }
                 }
+
+                // if we're here, didn't find a sheet with correct title :(
+                let errNotFound = 'Worksheet with title: ' +
+                    `<${reservationSheetTitle}> not found. Check google spreadsheet.`;
+
+                reject(errNotFound);
             }
-
-            // if we're here, didn't find a sheet with correct title :(
-            let errNotFound = 'Worksheet with title: ' +
-                `<${reservationSheetTitle}> not found. Check google spreadsheet.`;
-
-            reject(errNotFound);
         });
     });
 };
@@ -74,6 +78,8 @@ const functions = {
     gsheet_init: function(doc) {
 
         return new Promise( (resolve, reject) => {
+            if (!doc) reject('GoogleSpreadsheet doc undefined');
+
             set_gsheet_auth(doc)
             .then(get_reservation_wsheet)
             .then(resolve) // pass on sheet
@@ -93,6 +99,11 @@ const functions = {
     add_reservation: function(sheet, reserveDetails) {
 
         return new Promise( (resolve, reject) => {
+            if (!sheet) {
+                reject({message: 'SpreadsheetWorksheet undefined'});
+                return;
+            }
+
             // NOTE: as mentioned in docs, keys in row are ALL lowercase
             //  (and spaces are removed)
             sheet.addRow({

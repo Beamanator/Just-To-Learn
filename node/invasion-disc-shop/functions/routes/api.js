@@ -56,14 +56,20 @@ router.get('/reserved', function(req, res, next) {
         return;
     }
 
-    dbCalls.get_disc_reserved_holder(fbDB).then(disc_reserved_holder => {
+    dbCalls.get_disc_reserved_holder(fbDB)
+    .then(disc_reserved_holder => {
         let status = '',
             msg = '';
 
         let drh = disc_reserved_holder;
         
+        // check if drh exists yet
+        if (!drh) {
+            status = 'not reserved';
+            msg = 'Disc Available To Be Reserved';
+        }
         // check if discType is in drh
-        if (!drh[discType]) {
+        else if (!drh[discType]) {
             status = 'not reserved';
             msg = 'Disc Never Reserved Yet';
         }

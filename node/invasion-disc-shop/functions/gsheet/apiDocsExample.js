@@ -97,7 +97,7 @@ function storeToken(token) {
         fs.mkdirSync(TOKEN_DIR);
     } catch (err) {
         if (err.code != 'EEXIST') {
-        throw err;
+            throw err;
         }
     }
 

@@ -156,9 +156,9 @@ const functions = {
 
         let updateObj = {};
         updateObj[`user_data_holder/${uid}/discs-reserved/${discType}`]
-            = utils.getCurrentDateString();
+            = utils.get_current_date_string();
         updateObj[`disc_reserved_holder/${discType}/users/${uid}`]
-            = utils.getCurrentDateString();
+            = utils.get_current_date_string();
 
         // TODO: update reserve details in disc_holder node
 

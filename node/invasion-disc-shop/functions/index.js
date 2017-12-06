@@ -11,6 +11,9 @@ const shopRoutes = require('./routes/shop');
 const apiRoutes = require('./routes/api');
 const authRoutes = require('./routes/auth');
 
+const GoogleSpreadsheet = require('google-spreadsheet');
+const gsheetFns = require('./gsheet/gsheetFns');
+
 // set up express app
 const app = express();
 
@@ -30,6 +33,22 @@ const fbDB = firebase.database();
 
 // pass firebase database to routes - via request.app.get('fb-db')
 app.set( 'fb-db', fbDB );
+
+
+// Google spreadsheet setup
+const ReservationDoc = new GoogleSpreadsheet('1oBbx9vq7rSPlX1OA7HuZlK7ohn3mcIf7E28pmZyqjYE');
+
+// put disc reservation sheet reference in app
+gsheetFns.gsheet_init(ReservationDoc)
+.then(function(sheet) {
+    app.set( 'gsheet-reservation', sheet );
+})
+.catch(function(err) {
+    console.error('gsheet error: ', err);
+});
+
+
+// Other express app setup:
 
 // use body-parser middleware
 // -> adds request body to req.body in routes

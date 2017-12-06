@@ -2,6 +2,7 @@ const express = require ('express');
 const router = express.Router();
 
 const dbCalls = require('../extra-js/db-calls');
+const gsheetFns = require('../gsheet/gsheetFns');
 const utils = require('../extra-js/utils');
 
 // get home page
@@ -10,7 +11,7 @@ router.get('/', function(req, res, next) {
     let filterString = req.query.filtArr;
 
     // get valid filters in an object from query string
-    let filterObj = utils.getValidFilterObj(filterString);
+    let filterObj = utils.get_valid_filter_obj(filterString);
     let fbDB = req.app.get('fb-db');
 
     // get discs from dbCalls module
@@ -24,8 +25,6 @@ router.get('/', function(req, res, next) {
 
 // reserve a disc!
 router.post('/reserve/:discType', function(req, res, next) {
-    let fbDB = req.app.get('fb-db');
-    
     let uid = req.body.uid;
     let discType = req.params.discType;
 
@@ -37,11 +36,28 @@ router.post('/reserve/:discType', function(req, res, next) {
         return;
     }
 
+    // get vars for reservation!
+    let fbDB = req.app.get('fb-db');
+    let gsheet = req.app.get('gsheet-reservation');
+
+    let reservDetails = {
+        timestamp: 'now',
+        firstName: 'alex',
+        lastName: 'beaman',
+        email: 'spamalotmucho@gmail.com',
+        phoneNumber: '123',
+        discType: 'disc-fdi'
+    };
+
     // store disc reserve data in database
-    dbCalls.store_disc_reserve(fbDB, uid, discType).then(function() {
+    dbCalls.store_disc_reserve(fbDB, uid, discType)
+    .then(function() {
+        return gsheetFns.add_reservation(gsheet, reservDetails);
+    })
+    .then(function(msg) {
         res.send({
             type: discType,
-            msg: 'success'
+            msg: msg
         });
     }).catch(next);
 });

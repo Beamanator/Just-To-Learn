@@ -1,4 +1,5 @@
-var privateData = require('../extra-js/private-data');
+const privateData = require('../extra-js/private-data');
+const utils = require('../extra-js/utils');
 
 // api documentation: https://github.com/theoephraim/node-google-spreadsheet
  
@@ -86,21 +87,21 @@ const functions = {
      * contains reservation information (including user & disc details)
      * 
      * @param {SpreadsheetWorksheet} sheet - the 'sheet' (not spreadsheet) with reservations
-     * @param {object} reservDetails - obj with reservation details
+     * @param {object} reserveDetails - obj with reservation details
      * @returns Promise to row being added to spreadsheet
      */
-    add_reservation: function(sheet, reservDetails) {
+    add_reservation: function(sheet, reserveDetails) {
 
         return new Promise( (resolve, reject) => {
             // NOTE: as mentioned in docs, keys in row are ALL lowercase
             //  (and spaces are removed)
             sheet.addRow({
-                timestamp: reservDetails.timestamp,
-                firstname: reservDetails.firstName,
-                lastname: reservDetails.lastName,
-                email: reservDetails.email,
-                phone: reservDetails.phoneNumber,
-                disctype: reservDetails.discType
+                timestamp: utils.get_current_date_string(),
+                firstname: reserveDetails.firstName,
+                lastname: reserveDetails.lastName,
+                email: reserveDetails.email,
+                phone: reserveDetails.phoneNumber,
+                disctype: reserveDetails.discType
             }, function( err, row ) {
                 if (err) reject(err);
 

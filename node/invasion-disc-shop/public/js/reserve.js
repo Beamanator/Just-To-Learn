@@ -1,14 +1,20 @@
+/**
+ * Function is main handler for disc reserve features.
+ * 
+ * Called after /api/reserved?discType=...&uid=... route gets back with 
+ * disc reserved status.
+ * 
+ * @param {object} config - holds reservation config
+ */
 function Reserve_HandleReserve(config) {
     // get data from config
     let reservedStatus = config.reservedStatus;
     let discType = config.discType;
-    let uid = config.uid;
 
     // get jQuery elems
     let $modal = $('div.disc-detail-modal');
 
-    let $reserveBtn = getReserveButton(),
-        $discNotAvailableMsg = $('.reserve-disc-not-available-warning'),
+    let $discNotAvailableMsg = $('.reserve-disc-not-available-warning'),
         $contactDetailsEmptyMsg = $('.contact-details-empty-warning');
 
     let $contactDetails = $('.modal-body .contact-details');
@@ -27,27 +33,7 @@ function Reserve_HandleReserve(config) {
         // fields are filled out, allow reservation
         else {
             Reserve_EnableReserve();
-
-            // When the user clicks on the "Reserve" button (one-time)
-            $reserveBtn.one('click', function(e_click) {
-                // disable reserve button
-                $reserveBtn.prop('disabled', true);
-
-                $.ajax({
-                    type: 'POST',
-                    url: '/shop/reserve/' + discType,
-                    data: {
-                        uid: uid
-                    }
-                })
-                .then(function(data) {
-                    console.info('msg:', data.msg);
-
-                    // TODO: send data to google spreadsheet
-                    // -> maybe in node?
-                })
-                .catch(Utils_ThrowError);
-            });
+            Reserve_AddReserveListener(discType);
         }
     }
     
@@ -58,6 +44,53 @@ function Reserve_HandleReserve(config) {
 
     // do this last so html has already been updated
     $modal.css('display', 'block');
+}
+
+/**
+ * Function adds click listener to "Reserve" button, and sends reservation
+ * details to server
+ * 
+ * @param {string} discType - type of disc being reserved
+ */
+function Reserve_AddReserveListener(discType) {
+    $reserveBtn = getReserveButton();
+
+    // When the user clicks on the "Reserve" button (one-time)
+    $reserveBtn.one('click', function(e_click) {
+        // disable reserve button
+        $reserveBtn.prop('disabled', true);
+
+        // get contact details
+        let contactDetails = Utils_GetContactDetails();
+
+        // get user details
+        let user = Auth_getUser();
+        let uid = user.uid,
+            email = user.email;
+
+        // reserve disc by calling node route!
+        $.ajax({
+            type: 'POST',
+            url: '/shop/reserve/' + discType,
+            data: {
+                uid: uid,
+
+                // details of reservation
+                reserveDetails: {
+                    // timestamp: -> calculated in node
+                    firstName: contactDetails.firstName,
+                    lastName: contactDetails.lastName,
+                    phoneNumber: contactDetails.phoneNumber,
+                    email: email,
+                    discType: discType
+                }
+            }
+        })
+        .then(function(data) {
+            console.info('msg:', data.msg);
+        })
+        .catch(Utils_ThrowError);
+    });
 }
 
 /**

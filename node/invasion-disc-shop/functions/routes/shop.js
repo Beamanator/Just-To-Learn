@@ -26,6 +26,7 @@ router.get('/', function(req, res, next) {
 // reserve a disc!
 router.post('/reserve/:discType', function(req, res, next) {
     let uid = req.body.uid;
+    let reserveDetails = req.body.reserveDetails;
     let discType = req.params.discType;
 
     // throw error if data invalid
@@ -40,19 +41,10 @@ router.post('/reserve/:discType', function(req, res, next) {
     let fbDB = req.app.get('fb-db');
     let gsheet = req.app.get('gsheet-reservation');
 
-    let reservDetails = {
-        timestamp: 'now',
-        firstName: 'alex',
-        lastName: 'beaman',
-        email: 'spamalotmucho@gmail.com',
-        phoneNumber: '123',
-        discType: 'disc-fdi'
-    };
-
     // store disc reserve data in database
     dbCalls.store_disc_reserve(fbDB, uid, discType)
     .then(function() {
-        return gsheetFns.add_reservation(gsheet, reservDetails);
+        return gsheetFns.add_reservation(gsheet, reserveDetails);
     })
     .then(function(msg) {
         res.send({

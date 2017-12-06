@@ -108,6 +108,7 @@ function Main_SetupDiscDetailModal() {
 
     // When the user clicks a disc, open the modal
     $discs.click(function(e_click) {
+        // get data-* properties from html element (dics) that was clicked
         let discData = $(this).data();
         let uid = Auth_getUserID();
 
@@ -127,8 +128,7 @@ function Main_SetupDiscDetailModal() {
         .then(function(reservedStatus) {
             Reserve_HandleReserve({
                 discType: discData.discType,
-                reservedStatus: reservedStatus,
-                uid: uid
+                reservedStatus: reservedStatus
             });
         }).catch(Utils_ThrowError);
     });
@@ -204,6 +204,11 @@ function Main_SetupContactUpdateListener() {
 
                 // color button border and color back to black
                 Utils_ContactSavedUpdateCSS($thisButton);
+
+                // add click event to reserve button (it's un-hidden soon)
+                let discType = $('.modal-body .disc-type')
+                    .text().trim().toLowerCase();
+                Reserve_AddReserveListener(discType);
 
                 // re-enable reserve button
                 Reserve_EnableReserve();

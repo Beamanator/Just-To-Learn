@@ -23,12 +23,25 @@ function getInfoAndWorksheets() {
         doc.getInfo(function(err, info) {
             let titleMsg = `Loaded doc: ${info.title} by ${info.author.email}`;
             
-            sheet = info.worksheets[0];
-            
-            let sheetInfo = `sheet 1: [title=${sheet.title}] [rows=${sheet.rowCount}]x[cols=${sheet.colCount}]`;
-            // console.log('sheet:',sheet);
+            let worksheets = info.worksheets;
 
-            res(titleMsg + '/' + sheetInfo);
+            for (let w of worksheets) {
+                console.log(w.title);
+
+                if (w.title === 'Reservations') {
+                    sheet = w;
+                    break;
+                }
+            }
+
+            if (!sheet) {
+                // throw error
+            } else {
+                let sheetInfo = `sheet 1: [title=${sheet.title}] [rows=${sheet.rowCount}]x[cols=${sheet.colCount}]`;
+                // console.log('sheet:',sheet);
+
+                res(titleMsg + '/' + sheetInfo);
+            }
         });
     });
 };
@@ -46,7 +59,7 @@ function workingWithRows(step) {
         limit: 1
     }, function( err, rows ){
         console.log('Read '+rows.length+' rows');
-        console.log('rows:',rows);
+        // console.log('rows:',rows);
     
         // // the row is an object with keys set by the column headers 
         // rows[0].colname = 'new val';

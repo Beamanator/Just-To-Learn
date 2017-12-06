@@ -42,7 +42,7 @@ router.post('/login', function(req, res, next) {
     let fbDB = req.app.get('fb-db');
 
     // get current date string
-    let dateString = utils.getCurrentDateString();
+    let dateString = utils.get_current_date_string();
 
     // get this user's data
     dbCalls.get_user(fbDB, uid)

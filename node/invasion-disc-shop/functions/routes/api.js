@@ -10,7 +10,7 @@ router.get('/discs', function(req, res, next){
     let filterString = req.query.filtArr;
 
     // get valid filter in an object from query string
-    let filterObj = utils.getValidFilterObj(filterString);
+    let filterObj = utils.get_valid_filter_obj(filterString);
     let fbDB = req.app.get('fb-db');
 
     // get discs from dbCall module
@@ -20,18 +20,6 @@ router.get('/discs', function(req, res, next){
         sendObj.filter = filterObj;
         sendObj.discs = discs;
 
-        res.send(sendObj);
-    })
-    .catch(next);
-});
-router.get('/disc-picture-settings', function(req, res, next) {
-    let sendObj = {};
-    let fbDB = req.app.get('fb-db');
-
-    dbCalls.get_disc_picture_settings(fbDB).then(disc_settings_settings => {
-        // add map to output object
-        sendObj.disc_settings_settings = disc_settings_settings;
-        
         res.send(sendObj);
     })
     .catch(next);

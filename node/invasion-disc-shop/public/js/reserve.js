@@ -45,8 +45,6 @@ function Reserve_HandleReserve(config) {
  * Function adds click listener to "Reserve" button, and sends reservation
  * details to server
  * 
- * TODO: Make some kind of "reserved!" message, & what to do next
- * 
  * @param {string} discType - type of disc being reserved
  */
 function Reserve_AddReserveListener(discType) {
@@ -84,7 +82,8 @@ function Reserve_AddReserveListener(discType) {
             }
         })
         .then(function(data) {
-            console.info('msg:', data.msg);
+            // now show reserve success modal, hide disc detail modal
+            showReserveSuccessModal();
         })
         .catch(Utils_ThrowError);
     });
@@ -104,6 +103,11 @@ function Reserve_DisableReserve($warningElem) {
     getReserveButton().prop('disabled', true);
 }
 
+/**
+ * Function hides all warnings, then displays the passed-in warning IF defined
+ * 
+ * @param {object} $warningElem - see above
+ */
 function Reserve_DisplayWarning($warningElem) {
     // hide all warnings
     getReserveWarningHolder()
@@ -135,4 +139,32 @@ function getReserveButton() {
 }
 function getReserveWarningHolder() {
     return $('.modal-footer-message');
+}
+
+/**
+ * Function shows reserve success modal & hides disc detail modal
+ * 
+ */
+function showReserveSuccessModal() {
+    let $discDetailModal = $('.disc-detail-modal'),
+        $reserveSuccessModal = $('.reserve-success-modal'),
+        $reserveSuccessFooterLinks = $('.reserve-success-modal .reserve-success-footer-link');
+
+    // hide disc detail modal
+    $discDetailModal.css('display', 'none');
+
+    // hide all modal-footer-links, then display one randomly
+    $reserveSuccessFooterLinks.css('display', 'none');
+
+    // display random footer link
+    let $linkToDisplay = $( $reserveSuccessFooterLinks[Utils_GetRandomInRange(0, 3)] );
+
+    if ($linkToDisplay.length === 0) {
+        Utils_ThrowError("Couldn't get reserve success footer link");
+    } else {
+        $linkToDisplay.css('display', 'inline');        
+    }
+    
+    // show reserve success modal
+    $reserveSuccessModal.css('display', 'block');
 }

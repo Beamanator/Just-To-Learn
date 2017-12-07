@@ -103,16 +103,14 @@ function Main_SetupFilters() {
  */
 function Main_SetupDiscDetailModal() {
     let $discs = $('div.grid-3-disc'),
-        $modal = $('div.disc-detail-modal'),
+        $discDetailModal = $('.disc-detail-modal'),
+        $reserveSuccessModal = $('.reserve-success-modal'),
         $modalCloseBtn = $('button.close');
 
     // When the user clicks a disc, open the modal
     $discs.click(function(e_click) {
         // get data-* properties from html element (dics) that was clicked
         let discData = $(this).data();
-
-        // get jquery Modal
-        let $modal = $('div.disc-detail-modal');
 
         // put disc data into modal html
         $('.modal-content span.author').text(discData.author);
@@ -139,26 +137,32 @@ function Main_SetupDiscDetailModal() {
                 });
 
                 // do this last so html has already been updated
-                $modal.css('display', 'block');
+                $discDetailModal.css('display', 'block');
             }).catch(Utils_ThrowError);
         }
 
         // otherwise, just display modal
         else {
-            $modal.css('display', 'block');
+            $discDetailModal.css('display', 'block');
         }
     });
 
     // When the user clicks on <span> (x), close the modal
     $modalCloseBtn.click( function(e_click) {
-        $modal.css('display', 'none');
+        $discDetailModal.css('display', 'none');
+        $reserveSuccessModal.css('display', 'none');
     });
 
-    // If window is clicked and model is shown AND model outside of content is clicked
-    // -> close the modal
+    // If window is clicked and models are shown AND model outside of content is clicked
+    // -> close both modals
+    // note: event.target targets element clicked. When modal content (.modal-content)
+    //      is clicked, modal is not hidden. Only when outside-content element is targeted
     $(window).click(function(e_click) {
-        if ($modal.css('display') !== 'none' && $modal.is(event.target))
-            $modal.css('display', 'none');
+        if ($discDetailModal.css('display') !== 'none' && $discDetailModal.is(event.target))
+            $discDetailModal.css('display', 'none');
+        
+        if ($reserveSuccessModal.css('display') !== 'none' && $reserveSuccessModal.is(event.target))
+            $reserveSuccessModal.css('display', 'none');
     });
 }
 

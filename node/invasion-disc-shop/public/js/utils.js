@@ -64,3 +64,19 @@ function Utils_ContactSavedUpdateCSS($elem) {
         'border-color': 'black'
     });
 }
+
+/**
+ * Function returns a random number in range of params
+ * Note: from is inclusive, to is exclusive
+ * Example: from 0 to 3 returns either: 0, 1, or 2. 
+ * 
+ * @param {number} from - inclusive
+ * @param {number} to - exclusive
+ * @returns - random number or error message
+ */
+function Utils_GetRandomInRange(from, to) {
+    if (typeof(from) !== 'number') return '"from" param invalid';
+    if (typeof(to) !== 'number') return '"to" param invalid';
+
+    return from + Math.floor(Math.random() * to);
+}

@@ -112,7 +112,7 @@ const functions = {
     update_user_login: function(fbDB, uid, settings) {
         const usersRef = fbDB.ref('user_data_holder');
 
-        // TODO: if fields are empty, create them
+        // TODO: maybe - if fields are empty, create them
         // ex: last_name, first_name, phone, etc...
 
         let updateObj = {};
@@ -122,12 +122,12 @@ const functions = {
         return usersRef.update(updateObj);
     },
     /**
+     * Function updates user contact information for specified user
      * 
-     * 
-     * @param {any} fbDB 
-     * @param {any} uid 
-     * @param {any} settings 
-     * @returns 
+     * @param {object} fbDB - see above
+     * @param {string} uid - see above
+     * @param {object} settings - see above
+     * @returns - see above
      */
     update_user_contact: function(fbDB, uid, settings) {
         const usersRef = fbDB.ref('user_data_holder');

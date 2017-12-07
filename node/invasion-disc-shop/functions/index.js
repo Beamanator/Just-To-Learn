@@ -41,7 +41,6 @@ const ReservationDoc = new GoogleSpreadsheet('1oBbx9vq7rSPlX1OA7HuZlK7ohn3mcIf7E
 // put disc reservation sheet reference in app
 gsheetFns.gsheet_init(ReservationDoc)
 .then(function(sheet) {
-    console.log('gsheet:', sheet);
     if (!sheet) console.error('No google sheet found :(');
     else app.set( 'gsheet-reservation', sheet );
 })

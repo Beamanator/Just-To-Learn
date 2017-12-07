@@ -110,7 +110,9 @@ function Main_SetupDiscDetailModal() {
     $discs.click(function(e_click) {
         // get data-* properties from html element (dics) that was clicked
         let discData = $(this).data();
-        let uid = Auth_getUserID();
+
+        // get jquery Modal
+        let $modal = $('div.disc-detail-modal');
 
         // put disc data into modal html
         $('.modal-content span.author').text(discData.author);
@@ -121,16 +123,30 @@ function Main_SetupDiscDetailModal() {
         $('.modal-content span.title').text(discData.title);
         $('.modal-content span.total-purchased').text(discData.totalPurchased);
 
-        $.ajax({
-            method: 'GET',
-            url: `/api/reserved?discType=${discData.discType}&uid=${uid}`
-        })
-        .then(function(reservedStatus) {
-            Reserve_HandleReserve({
-                discType: discData.discType,
-                reservedStatus: reservedStatus
-            });
-        }).catch(Utils_ThrowError);
+        // Get logged-in user
+        let user = Auth_getUser();
+
+        // If user exists, check reserved status of disc
+        if (user) {
+            $.ajax({
+                method: 'GET',
+                url: `/api/reserved?discType=${discData.discType}&uid=${user.uid}`
+            })
+            .then(function(reservedStatus) {
+                Reserve_HandleReserve({
+                    discType: discData.discType,
+                    reservedStatus: reservedStatus
+                });
+
+                // do this last so html has already been updated
+                $modal.css('display', 'block');
+            }).catch(Utils_ThrowError);
+        }
+
+        // otherwise, just display modal
+        else {
+            $modal.css('display', 'block');
+        }
     });
 
     // When the user clicks on <span> (x), close the modal

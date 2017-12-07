@@ -37,7 +37,8 @@ function Auth_setupStateChangeListener() {
             $out = $('div.user-logout'),
             $welcome = $('div.welcome-message'),
             $reserve = $('.modal-footer button'),
-            $reserveSigninWarning = $('.reserve-signin-warning');
+            $reserveSigninWarning = $('.reserve-signin-warning'),
+            $contactDetailGrid = $('.modal-body .contact-details');
 
         // user login:
         if (user) {
@@ -63,8 +64,10 @@ function Auth_setupStateChangeListener() {
             }.`);
 
             // enable disc reserve button
-            $reserve.prop('disabled', false);
-            $reserveSigninWarning.css('display', 'none');
+            Reserve_EnableReserve();
+
+            // display contact detail grid
+            $contactDetailGrid.css('display','grid');
 
             // get user contact info from db, put in modal
             Main_SetUserContactInfo(uid);
@@ -82,8 +85,10 @@ function Auth_setupStateChangeListener() {
             $welcome.text('Please sign in :)');
 
             // disable disc reserve button
-            $reserve.prop('disabled', true);
-            $reserveSigninWarning.css('display', 'block');
+            Reserve_DisableReserve($reserveSigninWarning);
+
+            // hide contact detail grid
+            $contactDetailGrid.css('display','none');
         }
     });
 }

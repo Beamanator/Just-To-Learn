@@ -36,7 +36,7 @@ function Auth_setupStateChangeListener() {
         let $in = $('div.user-login'),
             $out = $('div.user-logout'),
             $welcome = $('div.welcome-message'),
-            $reserve = $('.modal-footer button'),
+            $reserve = $('.modal-footer-reserve button'),
             $reserveSigninWarning = $('.reserve-signin-warning'),
             $contactDetailGrid = $('.modal-body .contact-details');
 

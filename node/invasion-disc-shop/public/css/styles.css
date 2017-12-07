@@ -54,7 +54,7 @@ div.disc-detail-modal {
 .modal-body input:hover {
     border: 2px solid black;
 }
-.modal-footer {
+.modal-footer .modal-footer-reserve-grid {
     display: grid;
 
     grid-template-columns: auto auto;

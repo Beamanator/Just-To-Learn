@@ -119,7 +119,7 @@
         <!-- close 1-main -->
         </div>
 
-        <!-- The Modal -->
+        <!-- Disc Detail / Reserve Modal -->
         <div class="disc-detail-modal">
             <!-- Modal content -->
             <div class="modal-content">
@@ -185,23 +185,27 @@
 
                 {{!-- note: text here is right-justified --}}
                 <div class="modal-footer">
-                    <div class="modal-footer-message">
-                        <span class="reserve-signin-warning">You must sign in to reserve discs!</span>
-                        <span class="reserve-disc-not-available-warning">Disc already reserved.</span>
-                        <span class="contact-details-empty-warning">Fill in full name and phone # to reserve.</span>
-                    </div>
 
-                    <div class="modal-footer-user-contact">
-                        {{!-- Add more inputs here (phone number, note about not providing receipts) --}}
+                    {{!-- container for grid --}}
+                    <div class="modal-footer-reserve-grid">
+                        <div class="modal-footer-message">
+                            <span class="reserve-signin-warning">You must sign in to reserve discs!</span>
+                            <span class="reserve-disc-not-available-warning">Disc already reserved.</span>
+                            <span class="contact-details-empty-warning">Fill in full name and phone # to reserve.</span>
+                        </div>
+
+                        <div class="modal-footer-user-contact">
+                            {{!-- Add more inputs here (phone number, note about not providing receipts) --}}
+                            
+                        </div>
                         
-                    </div>
-                    
-                    <div class="modal-footer-reserve">
-                        <button type="button" class="btn btn-default">Reserve Disc</button>
+                        <div class="modal-footer-reserve">
+                            <button type="button" class="btn btn-default">Reserve Disc</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        <!-- close modal -->
+        <!-- close disc detail / reserve modal -->
         </div>
 
     </body>

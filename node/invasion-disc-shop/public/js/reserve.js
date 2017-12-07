@@ -12,8 +12,6 @@ function Reserve_HandleReserve(config) {
     let discType = config.discType;
 
     // get jQuery elems
-    let $modal = $('div.disc-detail-modal');
-
     let $discNotAvailableMsg = $('.reserve-disc-not-available-warning'),
         $contactDetailsEmptyMsg = $('.contact-details-empty-warning');
 
@@ -25,15 +23,15 @@ function Reserve_HandleReserve(config) {
         // display contact details
         $contactDetails.css('display', 'grid');
 
-        // if any fields are not filled out, don't allow reservation
-        if ( !Utils_CheckContactDetailsFilled() ) {
-            Reserve_DisableReserve($contactDetailsEmptyMsg);
-        }
-
         // fields are filled out, allow reservation
-        else {
+        if ( Utils_CheckContactDetailsFilled() ) {
             Reserve_EnableReserve();
             Reserve_AddReserveListener(discType);
+        }
+
+        // if any fields are not filled out, don't allow reservation & show warning
+        else {
+            Reserve_DisableReserve($contactDetailsEmptyMsg);
         }
     }
     
@@ -41,14 +39,13 @@ function Reserve_HandleReserve(config) {
     else {
         Reserve_DisableReserve($discNotAvailableMsg);
     }
-
-    // do this last so html has already been updated
-    $modal.css('display', 'block');
 }
 
 /**
  * Function adds click listener to "Reserve" button, and sends reservation
  * details to server
+ * 
+ * TODO: Make some kind of "reserved!" message, & what to do next
  * 
  * @param {string} discType - type of disc being reserved
  */

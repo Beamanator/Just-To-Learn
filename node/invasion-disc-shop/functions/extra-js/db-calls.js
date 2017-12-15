@@ -154,7 +154,7 @@ const functions = {
         const usersRef = fbDB.ref('/');
 
         let updateObj = {};
-        updateObj[`user_data_holder/${uid}/discs-reserved/${discType}`]
+        updateObj[`user_data_holder/${uid}/discs_reserved/${discType}`]
             = utils.get_current_date_string();
         updateObj[`disc_reserved_holder/${discType}/users/${uid}`]
             = utils.get_current_date_string();

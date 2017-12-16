@@ -56,12 +56,100 @@ function get_reservation_wsheet(doc) {
                 }
 
                 // if we're here, didn't find a sheet with correct title :(
-                let errNotFound = 'Worksheet with title: ' +
-                    `<${reservationSheetTitle}> not found. Check google spreadsheet.`;
+                let errMsg = `Worksheet with title: <${reservationSheetTitle}>` +
+                    ' not found. Check google spreadsheet.';
 
-                reject(errNotFound);
+                reject(errMsg);
             }
         });
+    });
+};
+
+/**
+ * Function searches given sheet for reservation, based off reservation data and
+ * start / increment data. If reservation is NOT found, recursively keeps trying
+ * the next set of rows until either no rows are returned, or the desired
+ * reservation is found.
+ * 
+ * @param {SpreadsheetWorksheet} sheet - see remove_reservation
+ * @param {number} startRow - row to start searching in spreadsheet
+ * @param {number} increment - number of rows to search at a time
+ * @param {object} reserveData - see remove_reservation
+ * @returns - Promise to found reservation row or error message
+ */
+function search_sheet(sheet, startRow, increment, reserveData) {
+    let uid = reserveData.uid;
+    let discType = reserveData.discType;
+
+    return new Promise( (resolve, reject) => {
+
+        get_rows( sheet, startRow, increment )
+        .then(function(rows) {
+            let reservationRow = undefined;
+            
+            // loop through rows, looking for reservation with:
+            // 1) same uid, 2) same disc type
+            for (let row of rows) {
+                if (row['uid'] === uid && row['disctype'] === discType) {
+                    reservationRow = row;
+                    break;
+                }
+            }
+
+            // if found, resolve and stop the search
+            if (reservationRow) {
+                resolve(reservationRow);
+            }
+
+            // not found, so search through next set of rows (if in range)
+            else {
+                // no more populated rows in sheet, so stop searching
+                // Note: sheet.rowCount returns total rows (>1000),
+                //  not total populated rows in sheet so can't use this
+                if (rows.length === 0) {
+                    let err = 'Reservation not found! ' +
+                        `DiscType<${discType}> uid<${uid}>`;
+
+                    // throw error - a reservation should always be found
+                    reject({message: err});
+                }
+
+                // there are more rows with data, search them!
+                else {
+                    let newStart = startRow + increment;
+
+                    // search sheet again, with adjusted starting row
+                    search_sheet( sheet, newStart, increment, reserveData )
+                    .then(resolve)
+                    .catch(reject);
+                }
+
+            }
+        }).catch(reject);
+        
+    });
+};
+
+/**
+ * Function gets SpreadsheetRows from specified sheet, based on params
+ * 
+ * @param {SpreadsheetWorksheet} sheet - see search_sheet
+ * @param {number} startRow - see search_sheet
+ * @param {number} increment - see search_sheet
+ * @returns - Promise to array of SpreadsheetRow objects
+ */
+function get_rows(sheet, startRow, increment) {
+    return new Promise( (resolve, reject) => {
+
+        // get array of SpreadsheetRow objects
+        sheet.getRows({
+            offset: startRow,
+            limit: increment
+        }, function( err, rows ) {
+            if (err) reject({message: err});
+            else resolve(rows);
+        });
+
     });
 };
 
@@ -78,7 +166,7 @@ const functions = {
     gsheet_init: function(doc) {
 
         return new Promise( (resolve, reject) => {
-            if (!doc) reject('GoogleSpreadsheet doc undefined');
+            if (!doc) reject({message: 'GoogleSpreadsheet doc undefined'});
 
             set_gsheet_auth(doc)
             .then(get_reservation_wsheet)
@@ -112,8 +200,9 @@ const functions = {
                 lastname: reserveDetails.lastName,
                 email: reserveDetails.email,
                 phone: reserveDetails.phoneNumber,
-                disctype: reserveDetails.discType
-            }, function( err, row ) {
+                disctype: reserveDetails.discType,
+                uid: reserveDetails.uid
+            }, function( err, row ) { // row param is SpreadsheetRow object
                 if (err) reject(err);
 
                 else {
@@ -124,6 +213,31 @@ const functions = {
             });
         });
 
+    },
+
+    /**
+     * Function deletes a reservation row from specified spreadsheet
+     * Starts reservation search at the beginning of the sheet.
+     * 
+     * @param {SpreadsheetWorksheet} sheet - Google spreadsheet sheet containing reservation
+     * @param {object} reserveData - container for reservation data
+     * @returns - Promise to reservation deleted or rejected error
+     */
+    remove_reservation: function(sheet, reserveData) {
+        let startRow = 1;
+        let increment = 10;
+
+        return new Promise( (resolve, reject) => {
+
+            search_sheet(sheet, startRow, increment, reserveData)
+            .then(function(row) {
+                // found row, now delete it & pass it back to caller
+                row.del(function() {
+                    resolve(row);
+                });
+            }).catch(reject);
+
+        });
     }
 };
 

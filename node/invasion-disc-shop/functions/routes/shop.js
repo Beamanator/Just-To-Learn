@@ -23,6 +23,24 @@ router.get('/', function(req, res, next) {
     }).catch(next);
 });
 
+// delete a reservation!
+router.put('/remove/:discType', function(req, res, next) {
+    let uid = req.body.uid;
+    let discType = req.params.discType;
+    let gsheet = req.app.get('gsheet-reservation');
+
+    gsheetFns.remove_reservation(gsheet, {
+        uid: uid,
+        discType: discType
+    })
+    .then(function(row) {
+        res.send({
+            message: 'Reservation deleted successfully',
+            row: row
+        });
+    }).catch(next);
+});
+
 // reserve a disc!
 router.post('/reserve/:discType', function(req, res, next) {
     let uid = req.body.uid;
@@ -36,6 +54,9 @@ router.post('/reserve/:discType', function(req, res, next) {
         });
         return;
     }
+
+    // add uid to reserveDetails
+    reserveDetails.uid = uid;
 
     // get vars for reservation!
     let fbDB = req.app.get('fb-db');

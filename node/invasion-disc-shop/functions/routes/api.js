@@ -46,52 +46,50 @@ router.get('/reserved', function(req, res, next) {
         status = 'error';
         msg = 'UID Invalid / missing';
         next({message: {    status: status,     msg: msg    }});
-        return;
     }
     // check discType is valid
     else if (!discType) {
         status = 'error';
         msg = 'Disc Type Invalid / missing';
         next({message: {    status: status,     msg: msg    }});
-        return;
     }
+    // discType and uid are valid, now get data from db
+    else {
+        dbCalls.get_disc_reserved_holder(fbDB)
+        .then(disc_reserved_holder => {
+            let status = '',
+                msg = '';
 
-    dbCalls.get_disc_reserved_holder(fbDB)
-    .then(disc_reserved_holder => {
-        let status = '',
-            msg = '';
+            // check if drh exists yet
+            if (!disc_reserved_holder) {
+                status = 'not reserved';
+                msg = 'Disc Available To Be Reserved';
+            }
+            // check if discType is in drh
+            else if (!disc_reserved_holder[discType]) {
+                status = 'not reserved';
+                msg = 'Disc Never Reserved Yet';
+            }
+            // check if user has reserved this disc before
+            else if (!disc_reserved_holder[discType]['users'][uid]) {
+                status = 'not reserved';
+                msg = 'Disc Never Reserved By User';
+            }
+            // user has already reserved disc b/c data exists at users/uid prop
+            // TODO: add spreadsheet row # somewhere?
+            else {
+                status = 'reserved';
+                msg = 'Disc Available To Be Reserved';
+            }
 
-        let drh = disc_reserved_holder;
-        
-        // check if drh exists yet
-        if (!drh) {
-            status = 'not reserved';
-            msg = 'Disc Available To Be Reserved';
-        }
-        // check if discType is in drh
-        else if (!drh[discType]) {
-            status = 'not reserved';
-            msg = 'Disc Never Reserved Yet';
-        }
-        // check if user has reserved this disc before
-        else if (!drh[discType]['users'][uid]) {
-            status = 'not reserved';
-            msg = 'Disc Never Reserved By User';
-        }
-        // user has already reserved disc
-        // TODO: does it matter if it was reserved > 30 days ago? or something like this?
-        else {
-            status = 'reserved';
-            msg = 'Disc Available To Be Reserved';
-        }
+            let returnObj = {
+                status: status,
+                msg: msg
+            };
 
-        let returnObj = {
-            status: status,
-            msg: msg
-        };
-
-        res.send(returnObj);
-    });
+            res.send(returnObj);
+        });
+    }
 })
 
 // add a new disc to the db

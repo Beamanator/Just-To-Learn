@@ -193,14 +193,14 @@
                             <span class="reserve-disc-not-available-warning">Disc already reserved.</span>
                             <span class="contact-details-empty-warning">Fill in full name and phone # to reserve.</span>
                         </div>
-
-                        <div class="modal-footer-user-contact">
-                            {{!-- Add more inputs here (phone number, note about not providing receipts) --}}
-                            
-                        </div>
                         
                         <div class="modal-footer-reserve">
-                            <button type="button" class="btn btn-default">Reserve Disc</button>
+                            <button type="button" class="btn btn-default action-reserve">
+                                Reserve Disc
+                            </button>
+                            <button type="button" class="btn btn-danger action-cancel-reserve">
+                                Cancel Reservation
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -209,41 +209,48 @@
         </div>
 
         <!-- Reserve Success Modal -->
-        <div class="reserve-success-modal">
+        <div class="reserve-detail-modal">
             <!-- Modal content -->
             <div class="modal-content">
 
                 <div class="modal-header">
                     <button type="button" class="close">&times;</button>
                     <h4 class="modal-title">
-                        Disc Reservation Successful! :D
+                        Disc Reservations Updated! :D
                     </h4>
                 </div>
 
                 <div class="modal-body">
-                    <p><strong>Thank you for using our site to reserve a disc!</strong></p>
+                    <p><strong>Thank you for using our site to reserve discs!</strong></p>
                     <br>
-                    <p>Please wait for the Flying Disc Invasion disc sales team
-                        to reach out to you with more details about pickup time / location
-                        and payment.</p>
+                    <p class="reservation-success">
+                        Please wait for the Flying Disc Invasion disc sales team
+                        to contact you with more details about pickup time / location
+                        and payment.
+                    </p>
+                    <p class="reservation-cancelled">
+                        Disc reservation cancelled successfully. Please
+                        feel free to contact us if you have any questions about
+                        anything we do!
+                    </p>
                 </div>
 
                 {{!-- note: text here is right-justified --}}
                 <div class="modal-footer">
-                    <span class="reserve-success-footer-link">Check us out on: 
+                    <span class="reserve-detail-footer-link">Check us out on: 
                         <a href="https://www.facebook.com/FlyingDiscInvasion" target="_blank">Facebook</a>
                     </span>
 
-                    <span class="reserve-success-footer-link">Check us out on: 
+                    <span class="reserve-detail-footer-link">Check us out on: 
                         <a href="https://www.instagram.com/flying.disc.invasion" target="_blank">Instagram</a>
                     </span>
 
-                    <span class="reserve-success-footer-link">Check us out on: 
+                    <span class="reserve-detail-footer-link">Check us out on: 
                         <a href="https://www.youtube.com/channel/UCAOZsX0dTOWeu0Jb7vcGUtA/playlists" target="_blank">YouTube</a>
                     </span>
                 </div>
             </div>
-        <!-- close reserve success modal -->
+        <!-- close reserve detail modal -->
         </div>
 
     </body>

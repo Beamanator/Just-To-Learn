@@ -232,6 +232,9 @@ const functions = {
             search_sheet(sheet, startRow, increment, reserveData)
             .then(function(row) {
                 // found row, now delete it & pass it back to caller
+                // TODO: also add new row to a 'history' / 'tracker' sheet
+                // so we have a record of the event happening
+                // TODO: remove from database as well!
                 row.del(function() {
                     resolve(row);
                 });

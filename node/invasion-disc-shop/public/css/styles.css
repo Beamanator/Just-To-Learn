@@ -7,7 +7,7 @@ div.hide-div {
 }
 
 /* begin modal style editing! */
-div.disc-detail-modal, div.reserve-success-modal {
+div.disc-detail-modal, div.reserve-detail-modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -62,6 +62,9 @@ div.disc-detail-modal, div.reserve-success-modal {
 }
 .modal-footer-reserve {
     grid-area: reserve;
+}
+.modal-footer-reserve .action-cancel-reserve {
+    display: none;
 }
 .modal-footer .modal-footer-message {
     grid-area: warning;

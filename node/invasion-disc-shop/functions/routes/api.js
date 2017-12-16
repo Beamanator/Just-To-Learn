@@ -36,6 +36,7 @@ router.get('/disc-picture-map', function(req, res, next) {
     .catch(next);
 });
 router.get('/reserved', function(req, res, next) {
+    // TODO: break out logic into separate function in utils (to keep this clean)
     let fbDB = req.app.get('fb-db');
     
     let uid = req.query.uid;
@@ -76,7 +77,6 @@ router.get('/reserved', function(req, res, next) {
                 msg = 'Disc Never Reserved By User';
             }
             // user has already reserved disc b/c data exists at users/uid prop
-            // TODO: add spreadsheet row # somewhere?
             else {
                 status = 'reserved';
                 msg = 'Disc Available To Be Reserved';

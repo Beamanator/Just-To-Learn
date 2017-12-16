@@ -104,7 +104,7 @@ function Main_SetupFilters() {
 function Main_SetupDiscDetailModal() {
     let $discs = $('div.grid-3-disc'),
         $discDetailModal = $('.disc-detail-modal'),
-        $reserveSuccessModal = $('.reserve-success-modal'),
+        $reserveDetailModal = $('.reserve-detail-modal'),
         $modalCloseBtn = $('button.close');
 
     // When the user clicks a disc, open the modal
@@ -150,7 +150,7 @@ function Main_SetupDiscDetailModal() {
     // When the user clicks on <span> (x), close the modal
     $modalCloseBtn.click( function(e_click) {
         $discDetailModal.css('display', 'none');
-        $reserveSuccessModal.css('display', 'none');
+        $reserveDetailModal.css('display', 'none');
     });
 
     // If window is clicked and models are shown AND model outside of content is clicked
@@ -161,8 +161,8 @@ function Main_SetupDiscDetailModal() {
         if ($discDetailModal.css('display') !== 'none' && $discDetailModal.is(event.target))
             $discDetailModal.css('display', 'none');
         
-        if ($reserveSuccessModal.css('display') !== 'none' && $reserveSuccessModal.is(event.target))
-            $reserveSuccessModal.css('display', 'none');
+        if ($reserveDetailModal.css('display') !== 'none' && $reserveDetailModal.is(event.target))
+            $reserveDetailModal.css('display', 'none');
     });
 }
 

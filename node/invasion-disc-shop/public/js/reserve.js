@@ -1,8 +1,8 @@
 /**
  * Function is main handler for disc reserve features.
  * 
- * Called after /api/reserved?discType=...&uid=... route gets back with 
- * disc reserved status.
+ * Called after disc clicked & /api/reserved?discType=...&uid=... route
+ * gets back with disc reserved status.
  * 
  * @param {object} config - holds reservation config
  */
@@ -35,10 +35,52 @@ function Reserve_HandleReserve(config) {
         }
     }
     
-    // otherwise (status could be 'error' or 'reserved') -> disable button
+    // status is 'reserved' -> disable 'reserve' and enable 'delete reservation'
+    else if (reservedStatus.status === 'reserved') {
+        Reserve_DisableReserve($discNotAvailableMsg);
+
+        Reserve_AddCancelReserveListener(discType);
+        Reserve_DisplayCancelReserveButton();
+    }
+
+    // otherwise (status could be 'error') -> disable button
     else {
         Reserve_DisableReserve($discNotAvailableMsg);
     }
+}
+
+function Reserve_AddCancelReserveListener(discType) {
+    // get btn & unbind previously bound click events
+    $cancelReserveBtn = getCancelReserveButton().unbind('click');
+    
+    // When the user clicks on the "Cancel Reservation" button (one-time)
+    $cancelReserveBtn.bind('click', function(e_click) {
+        // unbind click event immediately
+        $(this).unbind('click');
+
+        // disable cancel reserve button immediately
+        Reserve_DisableCancelReserveButton();
+
+        // get user id
+        let user = Auth_getUser();
+        let uid = user.uid;
+
+        // cancel reservation by calling shop route
+        $.ajax({
+            method: 'PUT',
+            url: '/shop/remove/' + discType,
+            data: {
+                uid: uid
+            }
+        }).then(function(data) {
+            // console log returned message
+            console.log(data.message);
+
+            // display success modal!
+            showReserveDetailModal('cancel');
+        })
+        .catch(Utils_ThrowError);
+    });
 }
 
 /**
@@ -48,11 +90,15 @@ function Reserve_HandleReserve(config) {
  * @param {string} discType - type of disc being reserved
  */
 function Reserve_AddReserveListener(discType) {
-    $reserveBtn = getReserveButton();
+    // get btn & unbind previously bound click events
+    $reserveBtn = getReserveButton().unbind('click');
 
     // When the user clicks on the "Reserve" button (one-time)
-    $reserveBtn.one('click', function(e_click) {
-        // disable reserve button
+    $reserveBtn.bind('click', function(e_click) {
+        // unbind click event immediately
+        $(this).unbind('click');
+
+        // disable reserve button immediately
         $reserveBtn.prop('disabled', true);
 
         // get contact details
@@ -83,7 +129,7 @@ function Reserve_AddReserveListener(discType) {
         })
         .then(function(data) {
             // now show reserve success modal, hide disc detail modal
-            showReserveSuccessModal();
+            showReserveDetailModal('success');
         })
         .catch(Utils_ThrowError);
     });
@@ -101,6 +147,13 @@ function Reserve_DisableReserve($warningElem) {
 
     // disable reserve button
     getReserveButton().prop('disabled', true);
+}
+
+function Reserve_DisableCancelReserveButton() {
+    getCancelReserveButton().prop('disabled', true);
+}
+function Reserve_EnableCancelReserveButton() {
+    getCancelReserveButton().prop('disabled', false);
 }
 
 /**
@@ -121,12 +174,37 @@ function Reserve_DisplayWarning($warningElem) {
 }
 
 /**
+ * Functions sets cancel reserve button's display property to 'inline' or 'none'
+ * 
+ */
+function Reserve_DisplayCancelReserveButton() {
+    // get cancel reserve button
+    let $btn = getCancelReserveButton();
+
+    // enable button
+    Reserve_EnableCancelReserveButton();
+
+    // display button!
+    $btn.css('display', 'inline');
+}
+function Reserve_HideCancelReserveButton() {
+    // get cancel reserve button
+    let $btn = getCancelReserveButton();
+
+    // hide button!
+    $btn.css('display', 'none');
+}
+
+/**
  * Function hides all reservation warnings and enables reservation button
  * 
  */
 function Reserve_EnableReserve() {
     // hide all warnings
     Reserve_DisplayWarning();
+
+    // hide cancel-reserve button
+    Reserve_HideCancelReserveButton();
 
     // enable reserve button
     getReserveButton().prop('disabled', false);
@@ -135,36 +213,61 @@ function Reserve_EnableReserve() {
 // =========================== local functions =============================
 
 function getReserveButton() {
-    return $('.modal-footer-reserve button');
+    return $('.modal-footer-reserve .action-reserve');
+}
+function getCancelReserveButton() {
+    return $('.modal-footer-reserve .action-cancel-reserve');
 }
 function getReserveWarningHolder() {
     return $('.modal-footer-message');
 }
 
 /**
- * Function shows reserve success modal & hides disc detail modal
- * 
+ * Function shows reserve detail modal & hides disc detail modal
+ * @param {string} type - type of modal - 'success' or 'cancel'
  */
-function showReserveSuccessModal() {
+function showReserveDetailModal(type) {
     let $discDetailModal = $('.disc-detail-modal'),
-        $reserveSuccessModal = $('.reserve-success-modal'),
-        $reserveSuccessFooterLinks = $('.reserve-success-modal .reserve-success-footer-link');
+        $reserveDetailModal = $('.reserve-detail-modal'),
+        $reserveDetailFooterLinks = $('.reserve-detail-modal .reserve-detail-footer-link');
 
     // hide disc detail modal
     $discDetailModal.css('display', 'none');
 
     // hide all modal-footer-links, then display one randomly
-    $reserveSuccessFooterLinks.css('display', 'none');
+    $reserveDetailFooterLinks.css('display', 'none');
 
     // display random footer link
-    let $linkToDisplay = $( $reserveSuccessFooterLinks[Utils_GetRandomInRange(0, 3)] );
+    let $linkToDisplay = $( $reserveDetailFooterLinks[Utils_GetRandomInRange(0, 3)] );
 
     if ($linkToDisplay.length === 0) {
-        Utils_ThrowError("Couldn't get reserve success footer link");
+        Utils_ThrowError("Couldn't get reserve detail footer link");
     } else {
         $linkToDisplay.css('display', 'inline');        
     }
+
+    // display different <p> tag depending on type
+    let $pSuccess = $reserveDetailModal.find('p.reservation-success'),
+        $pCancel = $reserveDetailModal.find('p.reservation-cancelled');
     
-    // show reserve success modal
-    $reserveSuccessModal.css('display', 'block');
+    // show success <p> tag
+    if (type === 'success') {
+        $pSuccess.css('display', 'inline');
+        $pCancel.css('display', 'none');
+    }
+
+    // show cancel <p> tag
+    else if (type === 'cancel') {
+        $pSuccess.css('display', 'none');
+        $pCancel.css('display', 'inline');
+    }
+
+    // error
+    else {
+        Utils_ThrowError(`Reserve Detail Modal type <${type}> not recognized :(`);
+        return;
+    }
+    
+    // show reserve detail modal
+    $reserveDetailModal.css('display', 'block');
 }

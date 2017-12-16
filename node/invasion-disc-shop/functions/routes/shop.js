@@ -34,9 +34,9 @@ router.put('/remove/:discType', function(req, res, next) {
         discType: discType
     })
     .then(function(row) {
+        // Note: row available to pass on, but not needed now
         res.send({
-            message: 'Reservation deleted successfully',
-            row: row
+            message: 'Reservation deleted successfully'
         });
     }).catch(next);
 });

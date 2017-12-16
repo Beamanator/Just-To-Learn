@@ -27,14 +27,19 @@ router.get('/', function(req, res, next) {
 router.put('/remove/:discType', function(req, res, next) {
     let uid = req.body.uid;
     let discType = req.params.discType;
+
     let gsheetContainer = req.app.get('gsheet-container');
+    let fbDB = req.app.get('fb-db');
 
     gsheetFns.remove_reservation(gsheetContainer, {
         uid: uid,
         discType: discType
     })
     .then(function(row) {
-        // Note: row available to pass on, but not needed now
+        // Next delete reservation data from database
+        return dbCalls.remove_disc_reservation(fbDB, uid, discType);
+    })
+    .then(function() {
         res.send({
             message: 'Reservation deleted successfully'
         });

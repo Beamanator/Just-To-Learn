@@ -304,9 +304,7 @@ const functions = {
             .then(function(data) {
                 let reservationRow = data.reservationRow;
 
-                // next delete row
-                // so we have a record of the event happening
-                // TODO: remove from database as well!
+                // Delete row from reservation sheet
                 reservationRow.del(function(err) {
                     if (err) reject(err);
                     else resolve(reservationRow);

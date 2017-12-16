@@ -194,7 +194,11 @@ function add_action_to_history(historySheet, rowData, action) {
             else {
                 let successMsg = 'History update successful - added row!';
 
-                resolve(successMsg);
+                resolve({
+                    message: successMsg,
+                    reservationRow: rowData,
+                    historyRow: row
+                });
             }
         });
     });
@@ -228,13 +232,13 @@ const functions = {
      * contains reservation information (including user & disc details)
      * Also adds reservation to history sheet
      * 
-     * @param {object} sheetContainer - obj containing SpreadsheetWorksheets
+     * @param {object} gsheetContainer - obj containing SpreadsheetWorksheets
      * @param {object} reserveDetails - obj with reservation details
      * @returns - Promise to row being added to spreadsheet
      */
-    add_reservation: function(sheetContainer, reserveDetails) {
-        let reservationSheet = sheetContainer.reservationSheet;
-        let historySheet = sheetContainer.historySheet;
+    add_reservation: function(gsheetContainer, reserveDetails) {
+        let reservationSheet = gsheetContainer.reservationSheet;
+        let historySheet = gsheetContainer.historySheet;
 
         return new Promise( (resolve, reject) => {
             if (!reservationSheet) {
@@ -259,10 +263,10 @@ const functions = {
                 else {
                     // add row to history as well!
                     add_action_to_history(historySheet, row, 'Disc Reserved')
-                    .then(function(histSuccessMsg) {
-                        let resSuccessMsg = 'Reservation success - added row! ';
+                    .then(function(data) {
+                        let resSuccessMsg = 'Reservation success - added row!/';
                         
-                        resolve(resSuccessMsg + histSuccessMsg);
+                        resolve(resSuccessMsg + data.message);
                     })
                     .catch(reject);
                 }
@@ -281,8 +285,8 @@ const functions = {
      * @returns - Promise to reservation deleted or rejected error
      */
     remove_reservation: function(gsheetContainer, reserveData) {
-        let reservationSheet = sheetContainer.reservationSheet;
-        let historySheet = sheetContainer.historySheet;
+        let reservationSheet = gsheetContainer.reservationSheet;
+        let historySheet = gsheetContainer.historySheet;
 
         let startRow = 1;
         let increment = 10;
@@ -291,14 +295,24 @@ const functions = {
 
             search_sheet(reservationSheet, startRow, increment, reserveData)
             .then(function(row) {
-                // found row, now delete it & pass it back to caller
-                // TODO: also add new row to a 'history' / 'tracker' sheet
+                // found row, now add 'reservation cancelled' action to history
+                let action = 'Reservation Cancelled';
+
+                return add_action_to_history(historySheet, row, action);
+                
+            })
+            .then(function(data) {
+                let reservationRow = data.reservationRow;
+
+                // next delete row
                 // so we have a record of the event happening
                 // TODO: remove from database as well!
-                row.del(function() {
-                    resolve(row);
+                reservationRow.del(function(err) {
+                    if (err) reject(err);
+                    else resolve(reservationRow);
                 });
-            }).catch(reject);
+            })
+            .catch(reject);
 
         });
     }

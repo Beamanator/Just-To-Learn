@@ -27,9 +27,9 @@ router.get('/', function(req, res, next) {
 router.put('/remove/:discType', function(req, res, next) {
     let uid = req.body.uid;
     let discType = req.params.discType;
-    let gsheet = req.app.get('gsheet-reservation');
+    let gsheetContainer = req.app.get('gsheet-container');
 
-    gsheetFns.remove_reservation(gsheet, {
+    gsheetFns.remove_reservation(gsheetContainer, {
         uid: uid,
         discType: discType
     })
@@ -60,12 +60,12 @@ router.post('/reserve/:discType', function(req, res, next) {
 
     // get vars for reservation!
     let fbDB = req.app.get('fb-db');
-    let gsheet = req.app.get('gsheet-reservation');
+    let gsheetContainer = req.app.get('gsheet-container');
 
     // store disc reserve data in database
     dbCalls.store_disc_reserve(fbDB, uid, discType)
     .then(function() {
-        return gsheetFns.add_reservation(gsheet, reserveDetails);
+        return gsheetFns.add_reservation(gsheetContainer, reserveDetails);
     })
     .then(function(msg) {
         res.send({

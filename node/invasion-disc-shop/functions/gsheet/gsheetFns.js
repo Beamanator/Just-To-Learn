@@ -29,13 +29,15 @@ function set_gsheet_auth(doc) {
 };
 
 /**
- * Function gets sheet with title "Reservations" from the GoogleSpreadsheet document
+ * Function gets sheets with titles "Reservations" and "History"
+ * from the GoogleSpreadsheet document param
  * 
  * @param {GoogleSpreadsheet} doc - see above
- * @returns Promise to sheet with reservations
+ * @returns Promise to sheets with reservations & action history
  */
-function get_reservation_wsheet(doc) {
+function get_shop_gsheets(doc) {
     let reservationSheetTitle = 'Reservations';
+    let historySheetTitle = 'History';
 
     return new Promise( (resolve, reject) => {
         doc.getInfo(function(err, info) {
@@ -46,20 +48,36 @@ function get_reservation_wsheet(doc) {
             else {
                 // get worksheets in spreadsheet from info obj
                 let worksheets = info.worksheets;
+                let sheetsObj = {};
 
-                // find sheet with desired title
+                // find sheets with desired titles
                 for (let sheet of worksheets) {
+                    // check for reservation sheet
                     if (sheet.title === reservationSheetTitle) {
-                        resolve(sheet);
-                        break;
+                        sheetsObj.reservationSheet = sheet;
+                    }
+
+                    // check for action history sheet
+                    else if (sheet.title === historySheetTitle) {
+                        sheetsObj.historySheet = sheet;
                     }
                 }
 
-                // if we're here, didn't find a sheet with correct title :(
-                let errMsg = `Worksheet with title: <${reservationSheetTitle}>` +
-                    ' not found. Check google spreadsheet.';
+                // if both sheets found, resolve successfully
+                if (sheetsObj.reservationSheet && sheetsObj.historySheet) {
+                    resolve(sheetsObj);
+                }
 
-                reject(errMsg);
+                // otherwise throw error
+                else {
+                    // if we're here, didn't find sheets with correct titles :(
+                    let errMsg = 'Worksheet: ' +
+                        `<${reservationSheetTitle}-${sheetsObj.reservationSheet}>` +
+                        ` or <${historySheetTitle}-${sheetsObj.historySheet}>` +
+                        ' not found. Check google spreadsheet document.';
+
+                    reject(errMsg);
+                }
             }
         });
     });
@@ -153,6 +171,35 @@ function get_rows(sheet, startRow, increment) {
     });
 };
 
+/**
+ * Function adds action data to the passed-in history spreadsheet
+ * 
+ * @param {SpreadsheetWorksheet} historySheet - sheet where action history goes
+ * @param {object} rowData - row data to be placed in history sheet
+ * @param {string} action - action to be recorded in history
+ * @returns - Promise to successfully adding data or failing
+ */
+function add_action_to_history(historySheet, rowData, action) {
+    return new Promise( (resolve, reject) => {
+        // NOTE: as mentioned in docs, keys in row are ALL lowercase
+        //  (and spaces are removed)
+        historySheet.addRow({
+            timestamp: rowData.timestamp,
+            disctype: rowData.disctype,
+            action: action,
+            uid: rowData.uid
+        }, function( err, row ) { // row param is SpreadsheetRow object
+            if (err) reject(err);
+
+            else {
+                let successMsg = 'History update successful - added row!';
+
+                resolve(successMsg);
+            }
+        });
+    });
+}
+
 // =========================== exposed functions =============================
 
 const functions = {
@@ -169,32 +216,35 @@ const functions = {
             if (!doc) reject({message: 'GoogleSpreadsheet doc undefined'});
 
             set_gsheet_auth(doc)
-            .then(get_reservation_wsheet)
-            .then(resolve) // pass on sheet
+            .then(get_shop_gsheets)
+            .then(resolve) // pass on sheets object
             .catch(reject);
         });
 
     },
 
     /**
-     * Function adds a row to the passed-in Google Spreadsheet 'sheet'. Row 
+     * Function adds a row to the passed-in reservation Google Spreadsheet. Row 
      * contains reservation information (including user & disc details)
+     * Also adds reservation to history sheet
      * 
-     * @param {SpreadsheetWorksheet} sheet - the 'sheet' (not spreadsheet) with reservations
+     * @param {object} sheetContainer - obj containing SpreadsheetWorksheets
      * @param {object} reserveDetails - obj with reservation details
-     * @returns Promise to row being added to spreadsheet
+     * @returns - Promise to row being added to spreadsheet
      */
-    add_reservation: function(sheet, reserveDetails) {
+    add_reservation: function(sheetContainer, reserveDetails) {
+        let reservationSheet = sheetContainer.reservationSheet;
+        let historySheet = sheetContainer.historySheet;
 
         return new Promise( (resolve, reject) => {
-            if (!sheet) {
-                reject({message: 'SpreadsheetWorksheet undefined'});
+            if (!reservationSheet) {
+                reject({message: 'reservation SpreadsheetWorksheet undefined'});
                 return;
             }
 
             // NOTE: as mentioned in docs, keys in row are ALL lowercase
             //  (and spaces are removed)
-            sheet.addRow({
+            reservationSheet.addRow({
                 timestamp: utils.get_current_date_string(),
                 firstname: reserveDetails.firstName,
                 lastname: reserveDetails.lastName,
@@ -205,10 +255,16 @@ const functions = {
             }, function( err, row ) { // row param is SpreadsheetRow object
                 if (err) reject(err);
 
+                // no error! woot!
                 else {
-                    let successMsg = 'Reservation success - added row!';
-
-                    resolve(successMsg);
+                    // add row to history as well!
+                    add_action_to_history(historySheet, row, 'Disc Reserved')
+                    .then(function(histSuccessMsg) {
+                        let resSuccessMsg = 'Reservation success - added row! ';
+                        
+                        resolve(resSuccessMsg + histSuccessMsg);
+                    })
+                    .catch(reject);
                 }
             });
         });
@@ -217,19 +273,23 @@ const functions = {
 
     /**
      * Function deletes a reservation row from specified spreadsheet
-     * Starts reservation search at the beginning of the sheet.
+     * Starts reservation search at the beginning of the reservation sheet.
+     * Also adds row to history sheet
      * 
-     * @param {SpreadsheetWorksheet} sheet - Google spreadsheet sheet containing reservation
+     * @param {object} gsheetContainer - see above
      * @param {object} reserveData - container for reservation data
      * @returns - Promise to reservation deleted or rejected error
      */
-    remove_reservation: function(sheet, reserveData) {
+    remove_reservation: function(gsheetContainer, reserveData) {
+        let reservationSheet = sheetContainer.reservationSheet;
+        let historySheet = sheetContainer.historySheet;
+
         let startRow = 1;
         let increment = 10;
 
         return new Promise( (resolve, reject) => {
 
-            search_sheet(sheet, startRow, increment, reserveData)
+            search_sheet(reservationSheet, startRow, increment, reserveData)
             .then(function(row) {
                 // found row, now delete it & pass it back to caller
                 // TODO: also add new row to a 'history' / 'tracker' sheet

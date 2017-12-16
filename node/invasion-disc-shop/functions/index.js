@@ -38,11 +38,28 @@ app.set( 'fb-db', fbDB );
 // Google spreadsheet setup
 const ReservationDoc = new GoogleSpreadsheet('1oBbx9vq7rSPlX1OA7HuZlK7ohn3mcIf7E28pmZyqjYE');
 
-// put disc reservation sheet reference in app
+// put disc reservation & action history sheets references in app
 gsheetFns.gsheet_init(ReservationDoc)
-.then(function(sheet) {
-    if (!sheet) console.error('No google sheet found :(');
-    else app.set( 'gsheet-reservation', sheet );
+.then(function(sheetsObj) {
+    if (!sheetsObj) console.error('No google sheet found :(');
+
+    else {
+        let reservationSheet = sheetsObj.reservationSheet;
+        let historySheet = sheetsObj.historySheet;
+
+        // make sure both sheets exist
+        if (!reservationSheet || !historySheet) {
+            let errMsg = `reservation sheet <${reservationSheet}> ` + 
+                `or history sheet <${historySheet}> not found`;
+            
+            console.error(errMsg);
+        }
+
+        // phew, they do. set them on the app
+        else {
+            app.set( 'gsheet-container', sheetsObj );
+        }
+    }
 })
 .catch(function(err) {
     console.error('gsheet error: ', err);

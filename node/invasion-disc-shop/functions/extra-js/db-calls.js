@@ -170,13 +170,10 @@ const functions = {
     },
     // Function removes disc reserve details from db
     remove_disc_reservation: function(fbDB, uid, discType) {
-        // Remove data in two locations:
-        // 1) disc_reserved_holder/<disctype>/users/<uid>
-        // 2) user_data_holder/<uid>/discs_reserved/<disctype>
         const dbRef = fbDB.ref('/');
 
         // Note: setting nodes to empty ('') DOES NOT DELETE the node in FB
-        // instead, set the nodes to null
+        // instead, set the nodes to null to delete
         let updateObj = {};
         updateObj[`user_data_holder/${uid}/discs_reserved/${discType}`] = null;
         updateObj[`disc_reserved_holder/${discType}/users/${uid}`] = null;

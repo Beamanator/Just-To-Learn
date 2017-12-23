@@ -1,0 +1,14 @@
+<!-- grid-1 (discs display) && grid-3 (discs display) -->
+<!-- <div class="grid-1-discs grid-3"> -->
+<% for (let discType of Object.keys(discs)) { %>
+    <div class="grid-3-disc grid-3_2"
+        data-author="<%= discs[discType].author %>"
+        data-category="<%= discs[discType].category %>"
+        data-stock="<%= discs[discType].stock %>"
+        data-title="<%= discs[discType].title %>"
+        data-total-purchased="<%= discs[discType].total_purchased %>"
+        data-disc-type="<%= discType %>">
+        <div class="grid-3_2-discs-stock"><%= discs[discType].stock %></div>
+    </div>
+<% } %>
+<!-- </div> -->

@@ -325,6 +325,31 @@ div.disc-detail-modal, div.reserve-detail-modal {
     font-family: 'Montserrat', sans-serif;
 }
 
+/* grid-5 is footer grid */
+.grid-5 {
+    display: grid;
+    width: 100%;
+
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas: "message social";
+}
+.grid-5-message {
+    grid-area: message;
+    justify-self: center;
+}
+.grid-5-social {
+    grid-area: social;
+    justify-self: center;
+}
+.grid-5-social a {
+    margin-left: 10px;
+    color: white;
+}
+.grid-5-social a:hover {
+    color: rgb(170, 170, 170);
+}
+/* end: grid-5 */
+
 /* start of desktop styles */
 @media screen and (max-width: 991px) {
     /* start of large tablet styles */

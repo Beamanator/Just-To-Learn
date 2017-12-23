@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
 
     // get discs from dbCalls module
     dbCalls.get_discs_with_filter(fbDB, filterObj).then(discs => {
-        res.render('index', {
+        res.render('pages/index', {
             filter: filterObj,
             discs: discs
         });

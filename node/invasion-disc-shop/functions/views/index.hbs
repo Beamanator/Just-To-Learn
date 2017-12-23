@@ -13,11 +13,6 @@
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:600" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
-        <script src="https://use.fontawesome.com/d76eb06cda.js"></script>
         
         <!-- My javascript -->
         <script>
@@ -36,6 +31,11 @@
         <script src="./js/auth.js"></script>
         <script src="./js/reserve.js"></script>
         <script src="./js/main.js" defer></script>
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:600" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
+        <script src="./js/fontawesome-all.min.js"></script>
         
         <!-- CSS -->
         <link href="./css/min/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -73,9 +73,9 @@
 
             <!-- grid-1 (navigation) -->
             <div class="grid-1-nav">
-                {{!-- <span class="nav-item"><a href="/shop">Home</a></span> --}}
-                {{!-- <span class="nav-item"><a href="https://www.facebook.com/FlyingDiscInvasion"
-                target="_blank"><i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i></a></span> --}}
+                <span class="nav-item"><a href="/shop">Home</a></span>
+                <span class="nav-item"><a href="/shop">Reservations</a></span>
+                {{!-- <span class="nav-item"><a href="/shop">Profile</a></span> --}}
             <!-- close 1-nav -->
             </div>
 
@@ -114,12 +114,12 @@
                 </div>
 
                 <div class="grid-5-social">
-                    <span class="nav-item"><a href="https://www.facebook.com/FlyingDiscInvasion"
-                    target="_blank"><i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i></a></span>
-                    <span class="nav-item"><a href="https://www.instagram.com/flying.disc.invasion"
-                    target="_blank"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a></span>
-                    <span class="nav-item"><a href="https://www.youtube.com/channel/UCAOZsX0dTOWeu0Jb7vcGUtA/playlists"
-                    target="_blank"><i class="fa fa-youtube-play fa-2x" aria-hidden="true"></i></a></span>
+                    <span class="footer-item"><a href="https://www.facebook.com/FlyingDiscInvasion"
+                    target="_blank"><i class="fab fa-facebook-square fa-2x" aria-hidden="true"></i></a></span>
+                    <span class="footer-item"><a href="https://www.instagram.com/flying.disc.invasion"
+                    target="_blank"><i class="fab fa-instagram fa-2x" aria-hidden="true"></i></a></span>
+                    <span class="footer-item"><a href="https://www.youtube.com/channel/UCAOZsX0dTOWeu0Jb7vcGUtA/playlists"
+                    target="_blank"><i class="fab fa-youtube fa-2x" aria-hidden="true"></i></a></span>
                 </div>
                 
             <!-- close 1-footer -->
@@ -260,6 +260,14 @@
                 </div>
             </div>
         <!-- close reserve detail modal -->
+        </div>
+
+        {{!-- Loading icon popup --}}
+        <div class="loading-container">
+            <div class="loading-popup">
+                <i class="fas fa-spinner fa-pulse" aria-hidden="true"></i>
+                Loading
+            </div>
         </div>
 
     </body>

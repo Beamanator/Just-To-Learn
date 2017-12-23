@@ -1,7 +1,7 @@
 /**
  * Function is main handler for disc reserve features.
  * 
- * Called after disc clicked & /api/reserved?discType=...&uid=... route
+ * Called after disc clicked & /api/reserved-status?discType=...&uid=... route
  * gets back with disc reserved status.
  * 
  * @param {object} config - holds reservation config
@@ -49,7 +49,11 @@ function Reserve_HandleReserve(config) {
     }
 }
 
-
+/**
+ * See other function (Reserve_AddReserveListener) - basically the same thing
+ * 
+ * @param {string} discType - see Reserve_AddReserveListener
+ */
 function Reserve_AddCancelReserveListener(discType) {
     // get btn & unbind previously bound click events
     $cancelReserveBtn = getCancelReserveButton().unbind('click');
@@ -82,6 +86,9 @@ function Reserve_AddCancelReserveListener(discType) {
 
             // console log returned message
             console.log(data.message);
+
+            // update number of reserved discs
+            Utils_UpdateNumReservedDiscs(uid);
 
             // display success modal!
             showReserveDetailModal('cancel');
@@ -140,6 +147,9 @@ function Reserve_AddReserveListener(discType) {
         .then(function(data) {
             // hide loading popup
             Utils_ToggleLoadingIcon(false);
+
+            // update number of reserved discs
+            Utils_UpdateNumReservedDiscs(uid);
 
             // now show reserve success modal, hide disc detail modal
             showReserveDetailModal('success');

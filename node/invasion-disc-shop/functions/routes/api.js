@@ -35,7 +35,34 @@ router.get('/disc-picture-map', function(req, res, next) {
     })
     .catch(next);
 });
-router.get('/reserved', function(req, res, next) {
+router.get('/reserved/number/:uid', function(req, res, next) {
+    // get number of reserved discs by uid 
+    let fbDB = req.app.get('fb-db');
+    let uid = req.params.uid;
+
+    if (uid === undefined) {
+        next({
+            message: 'no uid passed'
+        });
+        return;
+    }
+
+    // get discs reserved by user
+    dbCalls.get_discs_reserved_by_user(fbDB, uid)
+    .then(discs_reserved => {
+        // fb may return null if empty
+        if (!discs_reserved) discs_reserved = {};
+
+        // return the # of discs here!
+        let count = Object.keys(discs_reserved).length;
+
+        res.send({
+            count: count
+        });
+    })
+    .catch(next);
+});
+router.get('/reserved-status', function(req, res, next) {
     // TODO: break out logic into separate function in utils (to keep this clean)
     let fbDB = req.app.get('fb-db');
     

@@ -167,16 +167,14 @@ div.disc-detail-modal, div.reserve-detail-modal {
     padding-bottom: 10px;
     margin-right: 20px;
 }
-.grid-1-nav span {
+.grid-1-nav a.nav-item {
     padding-left: 10px;
     padding-right: 10px;
 
     font-family: 'Montserrat', sans-serif;
     font-size: 18px;
-}
-.grid-1-nav .nav-item a {
+
     text-decoration: none;
-    color: rgb(96, 132, 179);
 }
 .grid-1-filters {
     /* background: #C0C0C0; */
@@ -334,8 +332,8 @@ div.disc-detail-modal, div.reserve-detail-modal {
     display: grid;
     width: 100%;
 
-    grid-template-columns: 2fr 1fr;
-    grid-template-areas: "message social";
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: ". message social";
 }
 .grid-5-message {
     grid-area: message;

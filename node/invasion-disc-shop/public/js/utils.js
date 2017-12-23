@@ -110,3 +110,46 @@ function Utils_ToggleLoadingIcon( showNow ) {
         Utils_ThrowError(`Loading popup should be grid or none, not <${display}>.`);
     }
 }
+
+/**
+ * Function gets number of discs user has reserved, and updates a span in the 
+ * grid-1-nav with that number.
+ * 
+ * @param {string} uid - user id
+ */
+function Utils_UpdateNumReservedDiscs(uid) {
+    let $myReservations = $('.grid-1-nav #my-reservations-count');
+    let text = 'My Reservations ';
+
+    Utils_GetNumReservedDiscs(uid)
+    .then(function(count) {
+        // set count in span text :)
+        $myReservations.text(count);
+    })
+    .catch(Utils_ThrowError);
+}
+
+/**
+ * Function calls api to get number of reserved discs, for specified uid
+ * 
+ * @param {any} uid - see above
+ * @returns 
+ */
+function Utils_GetNumReservedDiscs(uid) {
+    return new Promise( (resolve, reject) => {
+        // call api to get # of reserved discs by uid
+        $.ajax({
+            method: 'GET',
+            url: '/api/reserved/number/' + uid
+        })
+        .then(function(data) {
+            let count = data.count;
+
+            if (count == undefined || count == null) count = 0;
+
+            // do something before returning?
+            resolve(count);
+        })
+        .catch(Utils_ThrowError);
+    });
+}

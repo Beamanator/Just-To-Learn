@@ -179,6 +179,13 @@ const functions = {
         updateObj[`disc_reserved_holder/${discType}/users/${uid}`] = null;
 
         return dbRef.update(updateObj);
+    },
+    // get discs reserved by a user
+    get_discs_reserved_by_user: function(fbDB, uid) {
+        const userRef = fbDB.ref(`user_data_holder/${uid}`);
+
+        return userRef.child('discs_reserved')
+            .once('value').then(snap => snap.val());
     }
 };
 

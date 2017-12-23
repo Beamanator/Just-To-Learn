@@ -52,7 +52,7 @@ function Auth_setupStateChangeListener() {
                 data: {     uid: uid        }
             })
             .then(function(res) { console.info('user login:', res.msg); })
-            .catch(function(err) {      console.error(err);     });
+            .catch(Utils_ThrowError);
 
             // show / hide login / logout buttons
             $in.addClass('hide-div');
@@ -62,6 +62,9 @@ function Auth_setupStateChangeListener() {
             $welcome.text(`Welcome, ${
                 user.displayName.length > 20 ? user.displayName.substr(0,20) + '...' : user.displayName
             }.`);
+
+            // update display - # of discs reserved
+            Utils_UpdateNumReservedDiscs(uid);
 
             // enable disc reserve button
             Reserve_EnableReserve();

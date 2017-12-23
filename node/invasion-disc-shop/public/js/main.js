@@ -1,9 +1,11 @@
 $(document).ready(function(){
 
+    // disc stuff
     Main_SetupFilters();
     Main_PutDiscImages();
     Main_SetupDiscDetailModal();
 
+    // contact detail stuff
     Main_SetupContactDetailListeners();
     Main_SetupContactUpdateListener();
     
@@ -131,7 +133,7 @@ function Main_SetupDiscDetailModal() {
 
             $.ajax({
                 method: 'GET',
-                url: `/api/reserved?discType=${discData.discType}&uid=${user.uid}`
+                url: `/api/reserved-status?discType=${discData.discType}&uid=${user.uid}`
             })
             .then(function(reservedStatus) {
                 Reserve_HandleReserve({

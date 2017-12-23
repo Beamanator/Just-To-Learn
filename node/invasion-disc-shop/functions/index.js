@@ -5,7 +5,7 @@ const express = require('express');
 
 const dbCalls = require('./extra-js/db-calls');
 const privateData = require('./extra-js/private-data');
-const engines = require('consolidate');
+// const engines = require('consolidate');
 
 const shopRoutes = require('./routes/shop');
 const apiRoutes = require('./routes/api');
@@ -18,10 +18,10 @@ const gsheetFns = require('./gsheet/gsheetFns');
 const app = express();
 
 // set up template engine
-app.engine('hbs', engines.handlebars);
-app.set('views', './views');
-app.set('view engine', 'hbs');
-// app.set('view engine', 'ejs');
+// app.engine('hbs', engines.handlebars);
+// app.set('views', './views'); // -> default
+// app.set('view engine', 'hbs');
+app.set('view engine', 'ejs');
 
 // create firebase app - FOR DATABASE ONLY (no auth)
 // Asynchronous callbacks ('.on') haven't worked for me in node.js
@@ -73,7 +73,9 @@ gsheetFns.gsheet_init(ReservationDoc)
 app.use(bodyParser.json());
 
 // redirect from home to '/shop'
-app.get('/', function(req, res) {       res.redirect('/shop');      });
+app.get('/', function(req, res) {  
+    res.redirect('/shop');
+});
 
 // initialize shop routes
 app.use('/shop', shopRoutes);

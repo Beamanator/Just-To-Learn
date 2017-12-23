@@ -3,35 +3,79 @@
     <head>
         <meta charset="utf-8">
         <title>Invasion Disc Shop</title>
+
+        <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
         
+        <!-- Firebase -->
+        <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+
         <!-- jQuery -->
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
         
         <!-- My javascript -->
-        <script src="./main.js"></script>
+        <script>
+            let config = {
+                apiKey: "AIzaSyDMhlHmU11B9DtL07Q-DcWo5CshuWHjGdw",
+                authDomain: "invasion-disc-shop.firebaseapp.com",
+                databaseURL: "https://invasion-disc-shop.firebaseio.com",
+                projectId: "invasion-disc-shop",
+                storageBucket: "gs://invasion-disc-shop.appspot.com/",
+                messagingSenderId: "232594215151"
+            };
+
+            firebase.initializeApp(config);
+        </script>
+        <script src="./js/utils.js"></script>
+        <script src="./js/auth.js"></script>
+        <script src="./js/reserve.js"></script>
+        <script src="./js/main.js" defer></script>
         
-        <!-- CSS -->
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:600" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
-        <link href="./styles.css" rel="stylesheet" type="text/css" />
+        <script src="./js/fontawesome-all.min.js"></script>
+
+        <!-- CSS -->
+        <link href="./css/min/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="./css/styles.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <!-- grid-1 (main grid) -->
         <div class="grid-1">
             <!-- grid-1 (header) -->
-            <div class="grid-1-header">
-                <div id="logo">Logo</div>
-                <h1>Invasion Disc Store</h1>
-                <div id="login">Login2</div>
-                <div id="logout">Logout</div>
+            <div class="grid-1-header grid-4">
+                <div class="grid-4-logo">
+                    <img src="./img/fdi-logo.png" />
+                </div>
+
+                <div class="grid-4-title">
+                    <h1>Invasion Disc Store</h1>
+                </div>
+
+                <div class="grid-4-login">
+                    <div class="user-login">
+                        <button type="button" class="btn btn-info"
+                        onclick="Auth_signIn();">Login</button>
+                    </div>
+                    <div class="user-logout hide-div">
+                        <button type="button" class="btn btn-danger"
+                        onclick="Auth_signOut();">Logout</button>
+                    </div>
+                </div>
             <!-- close 1-header -->
             </div>
 
+            <!-- grid-1 (welcome message) -->
+            <div class="grid-1-welcome welcome-message"></div>
+            <!-- close 1-welcome -->
+
             <!-- grid-1 (navigation) -->
             <div class="grid-1-nav">
-                <span><a href="">Home</a></span>
-                <span><a href="">Facebook</a></span>
+                <span class="nav-item"><a href="/shop">Home</a></span>
+                <span class="nav-item"><a href="/shop">Reservations</a></span>
+                <!-- <span class="nav-item"><a href="/shop">Profile</a></span> -->
             <!-- close 1-nav -->
             </div>
 
@@ -41,25 +85,180 @@
 
             <!-- grid-1 (discs display) && grid-3 (discs display) -->
             <div class="grid-1-discs grid-3">
-            <% for (disc of discs) { %>
-                <div class="grid-3-disc grid-3_2">
-                    <div class="grid-3_2-discs-stock"><%= disc.stock %></div>
-                    <div class="grid-3_2-discs-purchased"><%= disc.total_purchased %></div>
-                    <div class="grid-3_2-discs-order">+1</div>
+            <% for (let discType of Object.keys(discs)) { %>
+                <div class="grid-3-disc grid-3_2"
+                    data-author="<%= discs[discType].author %>"
+                    data-category="<%= discs[discType].category %>"
+                    data-stock="<%= discs[discType].stock %>"
+                    data-title="<%= discs[discType].title %>"
+                    data-total-purchased="<%= discs[discType].total_purchased %>"
+                    data-disc-type="<%= discType %>">
+                    <div class="grid-3_2-discs-stock"><%= discs[discType].stock %></div>
                 </div>
             <% } %>
             <!-- close 1-discs, 3-main -->
             </div>
 
             <!-- grid-1 (footer) -->
-            <div class="grid-1-footer">
-                <p>some footer text</p>
-                <p>Total # discs bought: 104</p>
-                <div id="Facebook">Facebook</div>
-            <!-- close 1-footer -->
-            </div>
+            <div class="grid-1-footer grid-5">
+                <div class="grid-5-message">
+                    Check back later for more updates!
+                </div>
+
+                <div class="grid-5-social">
+                    <span class="footer-item"><a href="https://www.facebook.com/FlyingDiscInvasion"
+                    target="_blank"><i class="fab fa-facebook-square fa-2x" aria-hidden="true"></i></a></span>
+                    <span class="footer-item"><a href="https://www.instagram.com/flying.disc.invasion"
+                    target="_blank"><i class="fab fa-instagram fa-2x" aria-hidden="true"></i></a></span>
+                    <span class="footer-item"><a href="https://www.youtube.com/channel/UCAOZsX0dTOWeu0Jb7vcGUtA/playlists"
+                    target="_blank"><i class="fab fa-youtube fa-2x" aria-hidden="true"></i></a></span>
+                </div>
+                
+            <!-- close 
 
         <!-- close 1-main -->
+        </div>
+
+        <!-- Disc Detail / Reserve Modal -->
+        <div class="disc-detail-modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close">&times;</button>
+                    <h4 class="modal-title">
+                        Disc Details - Title: <span class="title">Title</span>
+                    </h4>
+                </div>
+
+                <div class="modal-body">
+                    <table>
+                        <!-- <th></th> -->
+                        <tr>
+                            <td>Author:</td>
+                            <td><span class="author">Author</span></td>
+                        </tr>
+                        <tr>
+                            <td>Category:</td>
+                            <td><span class="category">Category</span></td>
+                        </tr>
+                        <tr>
+                            <td>Disc type:</td>
+                            <td><span class="disc-type">Type</span></td>
+                        </tr>
+                        <tr>
+                            <td>Discs in stock:</td>
+                            <td><span class="stock">Stock</span></td>
+                        </tr>
+                        <tr>
+                            <td>Total times this disc was purchased:</td>
+                            <td><span class="total-purchased">Total</span></td>
+                        </tr>
+                    </table>
+
+                    <br>
+                    <p><strong>Note: We do not provide receipts for disc sales!</strong></p>
+                    <hr>
+
+                    <div class="contact-details">
+                        <div class="contact-first-name">
+                            <input class="first-name" type="text" placeholder="* First name">
+                        </div>
+
+                        <div class="contact-last-name">
+                            <input class="last-name" type="text" placeholder="* Last name">
+                        </div>
+
+                        <div class="contact-phone-number">
+                            <input class="phone-number" type="text" placeholder="* Enter phone # here!">
+                        </div>
+
+                        <div class="contact-update-button">
+                            <button type="button" class="btn btn-default">Update Contact Details</button>
+                        </div>
+
+                        <div class="contact-update-message">
+                            SAVED
+                        </div>
+                    </div>
+                </div>
+
+                <!-- note: text here is right-justified -->
+                <div class="modal-footer">
+
+                    <!-- container for grid -->
+                    <div class="modal-footer-reserve-grid">
+                        <div class="modal-footer-message">
+                            <span class="reserve-signin-warning">You must sign in to reserve discs!</span>
+                            <span class="reserve-disc-not-available-warning">Disc already reserved.</span>
+                            <span class="contact-details-empty-warning">Fill in full name and phone # to reserve.</span>
+                        </div>
+                        
+                        <div class="modal-footer-reserve">
+                            <button type="button" class="btn btn-default action-reserve">
+                                Reserve Disc
+                            </button>
+                            <button type="button" class="btn btn-danger action-cancel-reserve">
+                                Cancel Reservation
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- close disc detail / reserve modal -->
+        </div>
+
+        <!-- Reserve Success Modal -->
+        <div class="reserve-detail-modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close">&times;</button>
+                    <h4 class="modal-title">
+                        Disc Reservations Updated! :D
+                    </h4>
+                </div>
+
+                <div class="modal-body">
+                    <p><strong>Thank you for using our site to reserve discs!</strong></p>
+                    <br>
+                    <p class="reservation-success">
+                        Please wait for the Flying Disc Invasion disc sales team
+                        to contact you with more details about pickup time / location
+                        and payment.
+                    </p>
+                    <p class="reservation-cancelled">
+                        Disc reservation cancelled successfully. Please
+                        feel free to contact us if you have any questions about
+                        anything we do!
+                    </p>
+                </div>
+
+                <!-- note: text here is right-justified -->
+                <div class="modal-footer">
+                    <span class="reserve-detail-footer-link">Check us out on: 
+                        <a href="https://www.facebook.com/FlyingDiscInvasion" target="_blank">Facebook</a>
+                    </span>
+
+                    <span class="reserve-detail-footer-link">Check us out on: 
+                        <a href="https://www.instagram.com/flying.disc.invasion" target="_blank">Instagram</a>
+                    </span>
+
+                    <span class="reserve-detail-footer-link">Check us out on: 
+                        <a href="https://www.youtube.com/channel/UCAOZsX0dTOWeu0Jb7vcGUtA/playlists" target="_blank">YouTube</a>
+                    </span>
+                </div>
+            </div>
+        <!-- close reserve detail modal -->
+        </div>
+
+        <!-- Loading icon popup -->
+        <div class="loading-container">
+            <div class="loading-popup">
+                <i class="fas fa-spinner fa-pulse" aria-hidden="true"></i>
+                Loading
+            </div>
         </div>
     </body>
 </html>

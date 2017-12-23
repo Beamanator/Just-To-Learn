@@ -126,6 +126,9 @@ function Main_SetupDiscDetailModal() {
 
         // If user exists, check reserved status of disc
         if (user) {
+            // show loading button
+            Utils_ToggleLoadingIcon(true);
+
             $.ajax({
                 method: 'GET',
                 url: `/api/reserved?discType=${discData.discType}&uid=${user.uid}`
@@ -135,6 +138,9 @@ function Main_SetupDiscDetailModal() {
                     discType: discData.discType,
                     reservedStatus: reservedStatus
                 });
+
+                // hide loading button
+                Utils_ToggleLoadingIcon(false);
 
                 // do this last so html has already been updated
                 $discDetailModal.css('display', 'block');
@@ -202,6 +208,9 @@ function Main_SetupContactUpdateListener() {
         else {
             let contactDetails = Utils_GetContactDetails();
 
+            // show loading popup
+            Utils_ToggleLoadingIcon(true);
+
             // update user's contact info
             $.ajax({
                 method: 'PUT',
@@ -229,6 +238,9 @@ function Main_SetupContactUpdateListener() {
                 let discType = $('.modal-body .disc-type')
                     .text().trim().toLowerCase();
                 Reserve_AddReserveListener(discType);
+
+                // hide loading popup
+                Utils_ToggleLoadingIcon(false);
 
                 // re-enable reserve button
                 Reserve_EnableReserve();

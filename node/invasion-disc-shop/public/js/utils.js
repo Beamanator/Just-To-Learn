@@ -5,6 +5,9 @@
  */
 function Utils_ThrowError(message) {
     console.error(message);
+
+    // hide loading popup, just in case
+    Utils_ToggleLoadingIcon(false);
 }
 
 /**
@@ -79,4 +82,31 @@ function Utils_GetRandomInRange(from, to) {
     if (typeof(to) !== 'number') return '"to" param invalid';
 
     return from + Math.floor(Math.random() * to);
+}
+
+/**
+ * Function displays loading container, or hides conatiner - depending on
+ * current status of css 'display' attribute
+ * 
+ * @param {boolean} showNow - true =show elem now. False = hide now.
+ */
+function Utils_ToggleLoadingIcon( showNow ) {
+    let $container = $('.loading-container');
+    let display = $container.css('display');
+
+    // display containr (as grid)
+    if (showNow || display === 'none') {
+        $container.css('display', 'grid');
+    }
+
+    // hide popup if it is displayed
+    else if (showNow === false || display === 'grid') {
+        $container.css('display', 'none');
+    }
+
+    // throw error & hide if display is weird
+    else {
+        $container.css('display', 'none');
+        Utils_ThrowError(`Loading popup should be grid or none, not <${display}>.`);
+    }
 }

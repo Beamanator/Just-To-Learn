@@ -49,12 +49,16 @@ function Reserve_HandleReserve(config) {
     }
 }
 
+
 function Reserve_AddCancelReserveListener(discType) {
     // get btn & unbind previously bound click events
     $cancelReserveBtn = getCancelReserveButton().unbind('click');
     
     // When the user clicks on the "Cancel Reservation" button (one-time)
     $cancelReserveBtn.bind('click', function(e_click) {
+        // show loading popup
+        Utils_ToggleLoadingIcon(true);
+
         // unbind click event immediately
         $(this).unbind('click');
 
@@ -73,6 +77,9 @@ function Reserve_AddCancelReserveListener(discType) {
                 uid: uid
             }
         }).then(function(data) {
+            // hide loading popup
+            Utils_ToggleLoadingIcon(false);
+
             // console log returned message
             console.log(data.message);
 
@@ -95,6 +102,9 @@ function Reserve_AddReserveListener(discType) {
 
     // When the user clicks on the "Reserve" button (one-time)
     $reserveBtn.bind('click', function(e_click) {
+        // show loading popup
+        Utils_ToggleLoadingIcon(true);
+
         // unbind click event immediately
         $(this).unbind('click');
 
@@ -128,6 +138,9 @@ function Reserve_AddReserveListener(discType) {
             }
         })
         .then(function(data) {
+            // hide loading popup
+            Utils_ToggleLoadingIcon(false);
+
             // now show reserve success modal, hide disc detail modal
             showReserveDetailModal('success');
         })

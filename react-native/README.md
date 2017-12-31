@@ -15,6 +15,5 @@ Questions for animation: (ep 6)
     Which element are we moving?
 
 Useful React Native Links:
-1) Udemy? tutorial (episode 1 of 145) - https://www.youtube.com/watch?v=KtTBZ-miauM&index=1&list=PLD6CIfFxZTzJVV0DUbrxU0LuIlZKZcZI4
-2) https://expo.io/
-3) Nice pre-built react native elements (cards, buttons, etc.): https://github.com/react-native-training/react-native-elements
+1) Expo - https://expo.io/
+2) Nice pre-built react native elements (cards, buttons, etc.): https://github.com/react-native-training/react-native-elements

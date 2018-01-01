@@ -5,14 +5,14 @@ import { Card, Button } from 'react-native-elements';
 import Deck from './src/Deck';
 
 const DATA = [
-    { key: 1, text: 'Card #1', uri: 'http://via.placeholder.com/100x100' },
-    { key: 2, text: 'Card #2', uri: 'http://via.placeholder.com/100x100' },
-    { key: 3, text: 'Card #3', uri: 'http://via.placeholder.com/100x100' },
-    { key: 4, text: 'Card #4', uri: 'http://via.placeholder.com/100x100' },
-    { key: 5, text: 'Card #5', uri: 'http://via.placeholder.com/100x100' },
-    { key: 6, text: 'Card #6', uri: 'http://via.placeholder.com/100x100' },
-    { key: 7, text: 'Card #7', uri: 'http://via.placeholder.com/100x100' },
-    { key: 8, text: 'Card #8', uri: 'http://via.placeholder.com/100x100' }
+    { id: 1, text: 'Card #1', uri: 'http://via.placeholder.com/100x100' },
+    { id: 2, text: 'Card #2', uri: 'http://via.placeholder.com/100x100' },
+    { id: 3, text: 'Card #3', uri: 'http://via.placeholder.com/100x100' },
+    { id: 4, text: 'Card #4', uri: 'http://via.placeholder.com/100x100' },
+    { id: 5, text: 'Card #5', uri: 'http://via.placeholder.com/100x100' },
+    { id: 6, text: 'Card #6', uri: 'http://via.placeholder.com/100x100' },
+    { id: 7, text: 'Card #7', uri: 'http://via.placeholder.com/100x100' },
+    { id: 8, text: 'Card #8', uri: 'http://via.placeholder.com/100x100' }
 ];
 
 export default class App extends Component {
@@ -20,6 +20,7 @@ export default class App extends Component {
     renderCard(item) {
         return (
             <Card
+                key={item.id}
                 title={item.text}
                 image={{ uri: item.uri }}
             >

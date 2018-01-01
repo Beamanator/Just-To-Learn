@@ -58,27 +58,17 @@
 
             <!-- grid-1 (navigation) -->
             <div class="grid-1-nav">
-                <!-- <span class="nav-item"><a href="/shop">Home</a></span>
-                <span class="nav-item"><a href="/shop">My Reservations (<span id="my-reservations-count">#</span>)</a></span> -->
-
-                <a class="nav-item" href="/shop">Home</a>
-                <a class="nav-item" href="#" onclick="Utils_Redirect('cart')">
-                    My Reservations (<span id="my-reservations-count">#</span>)
-                </a>
-                <!-- <span class="nav-item"><a href="/shop">Profile</a></span> -->
-            <!-- close 1-nav -->
+                <% include ../partials/main-nav.ejs %>
             </div>
 
             <!-- grid-1 (filters) && grid-2 (main filters) -->
             <div class="grid-1-filters grid-2">
                 <% include ../partials/filters.ejs %>
-            <!-- close 1-filters, 2-main -->
             </div>
 
             <!-- grid-1 (discs display) && grid-3 (discs display) -->
             <div class="grid-1-discs grid-3">
                 <% include ../partials/discs.ejs %>
-            <!-- close 1-discs, 3-main -->
             </div>
 
             <!-- grid-1 (footer) -->

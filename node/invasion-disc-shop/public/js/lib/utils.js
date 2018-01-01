@@ -160,13 +160,19 @@ function Utils_GetNumReservedDiscs(uid) {
  * @param {string} slug - slug of page user needs to be redirected to
  */
 function Utils_Redirect(slug) {
-    // TODO: get current url, block redirects if current page is same future url!
+    let currentPath = Utils_GetPagePath();
+
     switch(slug.toUpperCase()) {
         case 'CART':
             let uid = Auth_GetUserID();
 
-            // if user is logged in, redirect to cart
-            if (uid) {
+            if (currentPath === '/cart') {
+                // don't do anything - already on cart page
+                console.log('already on cart page');
+            }
+
+            // if user is logged in && not currently on cart page, redirect to cart
+            else if (uid) {
                 $(location).attr('href','/cart?uid=' + uid);
             }
 
@@ -180,11 +186,32 @@ function Utils_Redirect(slug) {
             }
             break;
 
+        case 'SHOP':
+            if (currentPath === '/shop') {
+                // don't do anything - already on shop page
+                console.log('already on shop page');
+            }
+
+            // redirect to shop page
+            else {
+                $(location).attr('href', '/shop');
+            }
+            break;
+
         default:
             let err = `Redirect slug unknown: <${slug}>`;
             Utils_ThrowError(err);
             return;
     }
+}
+
+/**
+ * Function gets current page path (using jQuery) and returns it.
+ * 
+ * @returns current page's path [as string]
+ */
+function Utils_GetPagePath() {
+	return $(location).attr('pathname');
 }
 
 /**

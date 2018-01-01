@@ -20,10 +20,15 @@ function Auth_GetUserID() {
 
 /**
  * Function sets up login / logout state change listener
+ * Available config options - see getLoginStateConfigWithDefaults function
+ * 
+ * @param {object} config - props define functionality for login/logout
  * 
  */
-function Auth_SetupStateChangeListener() {
-    // Get the currently signed-in user
+function Auth_SetupStateChangeListener(config) {
+    // setup config with default vals, if not passed in
+    config = getLoginStateConfigWithDefaults(config);
+    
     // The recommended way to get the current user is by setting an observer on the
     //   Auth object:
     firebase.auth().onAuthStateChanged(function(user) {
@@ -38,16 +43,18 @@ function Auth_SetupStateChangeListener() {
         // user login:
         if (user) {
             console.info('sign in');
+            let uid = user.uid;
 
             // store user data to fb database
-            let uid = user.uid;
-            $.ajax({
-                method: "POST",
-                url: "/auth/login",
-                data: {     uid: uid        }
-            })
-            .then(function(res) { console.info('user login:', res.msg); })
-            .catch(Utils_ThrowError);
+            if (config.incrementLoginCount) {
+                $.ajax({
+                    method: "POST",
+                    url: "/auth/login",
+                    data: {     uid: uid        }
+                })
+                .then(function(res) { console.info('user login:', res.msg); })
+                .catch(Utils_ThrowError);
+            }
 
             // show / hide login / logout buttons
             $in.addClass('hide-div');
@@ -61,14 +68,17 @@ function Auth_SetupStateChangeListener() {
             // update display - # of discs reserved
             Utils_UpdateNumReservedDiscs(uid);
 
-            // enable disc reserve button
-            Reserve_EnableReserve();
+            // for page(s) with disc detail modal
+            if (config.hasDiscDetailModal) {
+                // display contact detail grid
+                $contactDetailGrid.css('display','grid');
 
-            // display contact detail grid
-            $contactDetailGrid.css('display','grid');
+                // enable disc reserve button
+                Reserve_EnableReserve();
 
-            // get user contact info from db, put in modal
-            Main_SetUserContactInfo(uid);
+                // get user contact info from db, put in disc-detail modal
+                Main_SetUserContactInfo(uid);
+            }
         }
         
         // user logout:
@@ -85,8 +95,11 @@ function Auth_SetupStateChangeListener() {
             // disable disc reserve button
             Reserve_DisableReserve($reserveSigninWarning);
 
-            // hide contact detail grid
-            $contactDetailGrid.css('display','none');
+            // for page(s) with disc detail modal
+            if (config.hasDiscDetailModal) {    
+                // hide contact detail grid
+                $contactDetailGrid.css('display','none');
+            }
         }
     });
 }
@@ -132,4 +145,33 @@ function Auth_SignIn() {
         // TODO: do something else with errors?
         console.error(error);
     });
+}
+
+// ============================ internal functions =============================
+/**
+ * Available config options
+ * - <key:default> - description
+ * - <incrementLoginCount:false> - increment user login count in db
+ * 
+ * @param {object} config - config for login / logout action
+ * @returns - config key with defaults (if needed)
+ */
+function getLoginStateConfigWithDefaults(config) {
+    let defaults = {
+        incrementLoginCount: false,
+        hasDiscDetailModal: false
+    };
+
+    // loop through defaults, adding defaults to config if needed
+    Object.keys(defaults).forEach(function(key, index) {
+
+        // if key in config undefined, set default
+        if (config[key] === undefined ) {
+            config[key] = defaults[key];
+        }
+
+        // else {} -> config is populated, so use that as priority
+    });
+    
+    return config;
 }

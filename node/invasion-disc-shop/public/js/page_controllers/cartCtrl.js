@@ -8,7 +8,10 @@ $(document).ready(function(){
     // Main_PutDiscImages();
 
     // auth stuff
-    Auth_SetupStateChangeListener();
+    Auth_SetupStateChangeListener({
+        incrementLoginCount: false,
+        hasDiscDetailModal: false
+    });
 
     // contact detail stuff
     

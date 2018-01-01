@@ -56,6 +56,7 @@
 2) If "firebase deploy" is taking a long time to start, close terminal & try again
 3) If files aren't updating quickly using 'serve' or maybe 'deploy', clear cache
    - example: https://stackoverflow.com/questions/34192901/firebase-deploy-not-updating-js-file
+4) Firebase hosting doesn't always use the latest versions of node, so it may be useful to install a node version manager (nvm)
 
 # Useful command line tricks:
 1) To create a basic package.json file for a node app, type 'npm init' and follow prompts

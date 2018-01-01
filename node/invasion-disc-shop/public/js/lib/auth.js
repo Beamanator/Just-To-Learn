@@ -1,11 +1,6 @@
 /**
  * Purpose: handle all Auth functions here :)
  */
-$(document).ready(function() {
-    // initial Auth setup (after page loads)
-    Auth_setupStateChangeListener();
-
-});
 
 // =============== functions called from JS ====================
 
@@ -13,11 +8,11 @@ $(document).ready(function() {
  * Function gets user object from firebase - any time, anywhere.
  * 
  */
-function Auth_getUser() {
+function Auth_GetUser() {
     return firebase.auth().currentUser;
 }
-function Auth_getUserID() {
-    let user = Auth_getUser();
+function Auth_GetUserID() {
+    let user = Auth_GetUser();
 
     if (user) return user.uid;
     else return '';
@@ -27,7 +22,7 @@ function Auth_getUserID() {
  * Function sets up login / logout state change listener
  * 
  */
-function Auth_setupStateChangeListener() {
+function Auth_SetupStateChangeListener() {
     // Get the currently signed-in user
     // The recommended way to get the current user is by setting an observer on the
     //   Auth object:
@@ -102,7 +97,7 @@ function Auth_setupStateChangeListener() {
  * Function signs user out of app
  * 
  */
-function Auth_signOut() {
+function Auth_SignOut() {
     firebase.auth().signOut().then(function() {
         // Sign-out successful. - maybe change view?
     }).catch(function(error) {
@@ -114,7 +109,7 @@ function Auth_signOut() {
  * Function allows user to sign in via popup
  * 
  */
-function Auth_signIn() {
+function Auth_SignIn() {
     let provider = new firebase.auth.GoogleAuthProvider();
 
     // try to sign user in via Google with popup

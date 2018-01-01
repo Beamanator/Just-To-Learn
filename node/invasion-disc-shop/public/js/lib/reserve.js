@@ -70,7 +70,7 @@ function Reserve_AddCancelReserveListener(discType) {
         Reserve_DisableCancelReserveButton();
 
         // get user id
-        let user = Auth_getUser();
+        let user = Auth_GetUser();
         let uid = user.uid;
 
         // cancel reservation by calling shop route
@@ -122,7 +122,7 @@ function Reserve_AddReserveListener(discType) {
         let contactDetails = Utils_GetContactDetails();
 
         // get user details
-        let user = Auth_getUser();
+        let user = Auth_GetUser();
         let uid = user.uid,
             email = user.email;
 

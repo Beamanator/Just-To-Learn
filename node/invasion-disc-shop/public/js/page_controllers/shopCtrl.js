@@ -1,9 +1,15 @@
+/**
+ * Main javascript file for shop page - $(document).ready only fired on shop page
+ */
 $(document).ready(function(){
 
     // disc stuff
     Main_SetupFilters();
     Main_PutDiscImages();
     Main_SetupDiscDetailModal();
+
+    // auth stuff
+    Auth_SetupStateChangeListener();
 
     // contact detail stuff
     Main_SetupContactDetailListeners();
@@ -124,7 +130,7 @@ function Main_SetupDiscDetailModal() {
         $('.modal-content span.total-purchased').text(discData.totalPurchased);
 
         // Get logged-in user
-        let user = Auth_getUser();
+        let user = Auth_GetUser();
 
         // If user exists, check reserved status of disc
         if (user) {
@@ -218,7 +224,7 @@ function Main_SetupContactUpdateListener() {
                 method: 'PUT',
                 url: '/auth/update-contact',
                 data: {
-                    uid: Auth_getUserID(),
+                    uid: Auth_GetUserID(),
                     updatedInfo: {
                         firstName: contactDetails.firstName,
                         lastName: contactDetails.lastName,

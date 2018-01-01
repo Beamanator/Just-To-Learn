@@ -2,10 +2,10 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Invasion Disc Shop</title>
+        <title>Reservations</title>
 
         <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
-        
+
         <!-- Firebase -->
         <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
 
@@ -30,7 +30,7 @@
         <script src="./js/lib/utils.js"></script>
         <script src="./js/lib/auth.js"></script>
         <script src="./js/lib/reserve.js"></script>
-        <script src="./js/page_controllers/shopCtrl.js" defer></script>
+        <script src="./js/page_controllers/cartCtrl.js" defer></script>
         
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:600" rel="stylesheet">
@@ -40,7 +40,7 @@
         <!-- CSS -->
         <link href="./css/min/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="./css/styles.css" rel="stylesheet" type="text/css" />
-        <link href="./css/page_css/shop.css" rel="stylesheet" type="text/css" />
+        <link href="./css/page_css/cart.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <!-- grid-1 (main grid) -->
@@ -54,30 +54,24 @@
             <!-- grid-1 (welcome message) -->
             <div class="grid-1-welcome welcome-message"></div>
             <!-- close 1-welcome -->
-
+            
             <!-- grid-1 (navigation) -->
             <div class="grid-1-nav">
                 <!-- <span class="nav-item"><a href="/shop">Home</a></span>
                 <span class="nav-item"><a href="/shop">My Reservations (<span id="my-reservations-count">#</span>)</a></span> -->
 
                 <a class="nav-item" href="/shop">Home</a>
-                <a class="nav-item" href="/cart">
+                <a class="nav-item" href="/shop">
                     My Reservations (<span id="my-reservations-count">#</span>)
                 </a>
-                <!-- <span class="nav-item"><a href="/shop">Profile</a></span> -->
             <!-- close 1-nav -->
             </div>
 
-            <!-- grid-1 (filters) && grid-2 (main filters) -->
-            <div class="grid-1-filters grid-2">
-                <% include ../partials/filters.ejs %>
-            <!-- close 1-filters, 2-main -->
-            </div>
-
-            <!-- grid-1 (discs display) && grid-3 (discs display) -->
-            <div class="grid-1-discs grid-3">
-                <% include ../partials/discs.ejs %>
-            <!-- close 1-discs, 3-main -->
+            <!-- grid-1 (reservation grid) && grid-6 (individual reservations) -->
+            <div class="grid-1-reservations grid-6">
+                <% include ../partials/disc-reservations.ejs %>
+                <% include ../partials/disc-reservations.ejs %>
+                <% include ../partials/disc-reservations.ejs %>
             </div>
 
             <!-- grid-1 (footer) -->
@@ -87,26 +81,6 @@
             <!-- close footer -->
 
         <!-- close 1-main -->
-        </div>
-
-        <!-- Disc Detail / Reserve Modal -->
-        <div class="disc-detail-modal">
-            <% include ../partials/modals/discDetail.ejs %>
-        <!-- close disc detail / reserve modal -->
-        </div>
-
-        <!-- Reserve Success Modal -->
-        <div class="reserve-detail-modal">
-            <% include ../partials/modals/reserveDetail.ejs %>
-        <!-- close reserve detail modal -->
-        </div>
-
-        <!-- Loading icon popup -->
-        <div class="loading-container">
-            <div class="loading-popup">
-                <i class="fas fa-spinner fa-pulse" aria-hidden="true"></i>
-                Loading
-            </div>
         </div>
     </body>
 </html>

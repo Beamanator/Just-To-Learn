@@ -8,6 +8,7 @@ const privateData = require('./extra-js/private-data');
 // const engines = require('consolidate');
 
 const shopRoutes = require('./routes/shop');
+const cartRoutes = require('./routes/cart');
 const apiRoutes = require('./routes/api');
 const authRoutes = require('./routes/auth');
 
@@ -79,6 +80,9 @@ app.get('/', function(req, res) {
 
 // initialize shop routes
 app.use('/shop', shopRoutes);
+
+// initialize cart routes
+app.use('/cart', cartRoutes);
 
 // initialize authentication routes
 app.use('/auth', authRoutes);

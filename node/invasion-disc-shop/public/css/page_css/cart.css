@@ -1,0 +1,131 @@
+/* grid-1 = main grid layout */
+.grid-1 {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    grid-template-areas:   
+        "header header"
+        "welcome nav"
+        "res res"
+        "footer footer";
+}
+.grid-1-header {
+    /* background: #33a8a5; */
+    background: black;
+    grid-area: header;
+
+    color: white;
+}
+.grid-1-welcome {
+    grid-area: welcome;
+    /* justify-self: left; */
+
+    padding-left: 20px;
+
+    color: white;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+}
+.grid-1-nav {
+    /* background: #C0C0C0; */
+    grid-area: nav;
+    justify-self: right;
+
+    /* border-style: solid; */
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-right: 20px;
+}
+.grid-1-nav a.nav-item {
+    padding-left: 10px;
+    padding-right: 10px;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+
+    text-decoration: none;
+}
+.grid-1-reservations {
+    /* background: #C0C0C0; */
+    grid-area: res;
+}
+.grid-1-footer {
+    /* background-color: #da6f2b; */
+    color: white;
+    grid-area: footer;
+
+    justify-self: center;
+    font-size: 20px;
+    margin-bottom: 40px;
+}
+/* end: grid-1 */
+
+/* grid-6 is disc reservation grid (cart) - vertical */
+.grid-6 {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+}
+.grid-6-reservation {
+    padding: 10px;
+    border-top: solid 2px rgb(194, 181, 65);
+}
+.grid-6-reservation:last-of-type {
+    border-bottom: solid 2px rgb(194, 181, 65);
+}
+/* end: grid-6 */
+
+/* grid-7 is individual disc reservation grid (img, text, etc) - horizontal */
+.grid-7 {
+    width: 100%;
+    color: white;
+
+    display: grid;
+    grid-template-columns: 180px 4fr 1fr 80px;
+    grid-gap: 10px;
+}
+.grid-7-disc-img {
+    margin-left: 20px;
+}
+.grid-7-disc-text {
+    /* overflows aren't working :( */
+    /* overflow: hidden; */
+    /* text-overflow: ellipsis; */
+}
+.grid-7-disc-text .reservation-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2em;
+
+    text-decoration: underline gray;
+}
+.grid-7-num-reserved {
+    display: flex;
+    align-items: center;
+}
+.grid-7-num-reserved select {
+    color: black;
+}
+.grid-7-cancel-reservation {
+    display: flex;
+    align-items: center;
+}
+/* end: grid-7 */
+
+
+/* start of desktop styles */
+@media screen and (min-width: 991px) {
+    /* start of large tablet styles */
+    /* adjust width of reservations */
+    .grid-6 {
+        justify-self: center;
+        width: 991px;
+    }
+}

@@ -94,14 +94,14 @@ function Utils_ToggleLoadingIcon( showNow ) {
     let $container = $('.loading-container');
     let display = $container.css('display');
 
-    // display containr (as grid)
-    if (showNow || display === 'none') {
-        $container.css('display', 'grid');
+    // hide popup if it is displayed
+    if (showNow === false || display === 'grid') {
+        $container.css('display', 'none');
     }
 
-    // hide popup if it is displayed
-    else if (showNow === false || display === 'grid') {
-        $container.css('display', 'none');
+    // display containr (as grid)
+    else if (showNow || display === 'none') {
+        $container.css('display', 'grid');
     }
 
     // throw error & hide if display is weird
@@ -152,4 +152,55 @@ function Utils_GetNumReservedDiscs(uid) {
         })
         .catch(Utils_ThrowError);
     });
+}
+
+/**
+ * Function redirects user to page, based on passed-in slug
+ * 
+ * @param {string} slug - slug of page user needs to be redirected to
+ */
+function Utils_Redirect(slug) {
+    // TODO: get current url, block redirects if current page is same future url!
+    switch(slug.toUpperCase()) {
+        case 'CART':
+            let uid = Auth_GetUserID();
+
+            // if user is logged in, redirect to cart
+            if (uid) {
+                $(location).attr('href','/cart?uid=' + uid);
+            }
+
+            // else, stay here & throw error
+            else {
+                let err = 'You must log in to see your cart.';
+                Utils_ThrowError(err);
+
+                // also update welcome message
+                Utils_UpdateWelcomeMessage(err);
+            }
+            break;
+
+        default:
+            let err = `Redirect slug unknown: <${slug}>`;
+            Utils_ThrowError(err);
+            return;
+    }
+}
+
+/**
+ * Function updates text in welcome message
+ * 
+ * @param {string} message - any message to display in welcome area
+ */
+function Utils_UpdateWelcomeMessage(message) {
+    // throw error if no welcome message passed
+    if (!message) {
+        let err = 'No welcome message passed in.';
+        Utils_ThrowError(err);
+    }
+
+    else {
+        let $welcome = $('div.welcome-message');
+        $welcome.text(message);
+    }
 }

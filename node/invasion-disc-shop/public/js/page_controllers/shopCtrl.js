@@ -11,7 +11,8 @@ $(document).ready(function(){
     // auth stuff
     Auth_SetupStateChangeListener({
         incrementLoginCount: true,
-        hasDiscDetailModal: true
+        hasDiscDetailModal: true,
+        redirectOnLogout: false
     });
 
     // contact detail stuff

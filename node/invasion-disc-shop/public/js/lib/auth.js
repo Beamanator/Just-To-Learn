@@ -35,7 +35,6 @@ function Auth_SetupStateChangeListener(config) {
         // get div references
         let $in = $('div.user-login'),
             $out = $('div.user-logout'),
-            $welcome = $('div.welcome-message'),
             $reserve = $('.modal-footer-reserve button'),
             $reserveSigninWarning = $('.reserve-signin-warning'),
             $contactDetailGrid = $('.modal-body .contact-details');
@@ -61,9 +60,11 @@ function Auth_SetupStateChangeListener(config) {
             $out.removeClass('hide-div');
 
             // add welcome message (up to 25 characters of name)
-            $welcome.text(`Welcome, ${
-                user.displayName.length > 20 ? user.displayName.substr(0,20) + '...' : user.displayName
-            }.`);
+            Utils_UpdateWelcomeMessage(
+                `Welcome, ${user.displayName.length > 20 ?
+                    user.displayName.substr(0,20) + '...' : user.displayName
+                }.`
+            );
 
             // update display - # of discs reserved
             Utils_UpdateNumReservedDiscs(uid);
@@ -85,12 +86,17 @@ function Auth_SetupStateChangeListener(config) {
         else {
             console.info('sign out');
 
+            if (config.redirectOnLogout) {
+                // redirect to shop page
+                $(location).attr('href', '/shop');
+            }
+
             // show / hide login / logout buttons
             $in.removeClass('hide-div');
             $out.addClass('hide-div');
 
             // add welcome message
-            $welcome.text('Please sign in :)');
+            Utils_UpdateWelcomeMessage('Please sign in :)');
 
             // disable disc reserve button
             Reserve_DisableReserve($reserveSigninWarning);
@@ -159,7 +165,8 @@ function Auth_SignIn() {
 function getLoginStateConfigWithDefaults(config) {
     let defaults = {
         incrementLoginCount: false,
-        hasDiscDetailModal: false
+        hasDiscDetailModal: false,
+        redirectOnLogout: false
     };
 
     // loop through defaults, adding defaults to config if needed

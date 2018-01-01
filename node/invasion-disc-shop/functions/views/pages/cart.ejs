@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <title>Reservations</title>
 
-        <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
 
         <!-- Firebase -->
         <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
@@ -27,20 +27,20 @@
 
             firebase.initializeApp(config);
         </script>
-        <script src="./js/lib/utils.js"></script>
-        <script src="./js/lib/auth.js"></script>
-        <script src="./js/lib/reserve.js"></script>
-        <script src="./js/page_controllers/cartCtrl.js" defer></script>
+        <script src="../js/lib/utils.js"></script>
+        <script src="../js/lib/auth.js"></script>
+        <script src="../js/lib/reserve.js"></script>
+        <script src="../js/page_controllers/cartCtrl.js" defer></script>
         
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:600" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
-        <script src="./js/min/fontawesome-all.min.js"></script>
+        <script src="../js/min/fontawesome-all.min.js"></script>
 
         <!-- CSS -->
-        <link href="./css/min/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="./css/styles.css" rel="stylesheet" type="text/css" />
-        <link href="./css/page_css/cart.css" rel="stylesheet" type="text/css" />
+        <link href="../css/min/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="../css/styles.css" rel="stylesheet" type="text/css" />
+        <link href="../css/page_css/cart.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <!-- grid-1 (main grid) -->
@@ -61,7 +61,7 @@
                 <span class="nav-item"><a href="/shop">My Reservations (<span id="my-reservations-count">#</span>)</a></span> -->
 
                 <a class="nav-item" href="/shop">Home</a>
-                <a class="nav-item" href="/shop">
+                <a class="nav-item" href="#" onclick="Utils_Redirect('cart')">
                     My Reservations (<span id="my-reservations-count">#</span>)
                 </a>
             <!-- close 1-nav -->

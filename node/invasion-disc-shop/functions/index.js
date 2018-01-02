@@ -5,7 +5,6 @@ const express = require('express');
 
 const dbCalls = require('./extra-js/db-calls');
 const privateData = require('./extra-js/private-data');
-// const engines = require('consolidate');
 
 const shopRoutes = require('./routes/shop');
 const cartRoutes = require('./routes/cart');
@@ -19,9 +18,7 @@ const gsheetFns = require('./gsheet/gsheetFns');
 const app = express();
 
 // set up template engine
-// app.engine('hbs', engines.handlebars);
 // app.set('views', './views'); // -> default
-// app.set('view engine', 'hbs');
 app.set('view engine', 'ejs');
 
 // create firebase app - FOR DATABASE ONLY (no auth)

@@ -42,7 +42,7 @@ router.post('/login', function(req, res, next) {
     let fbDB = req.app.get('fb-db');
 
     // get current date string
-    let dateString = utils.get_current_date_string();
+    let currentDateString = utils.get_current_date_string();
 
     // get this user's data
     dbCalls.get_user(fbDB, uid)
@@ -50,22 +50,40 @@ router.post('/login', function(req, res, next) {
         // if no user found, create one!
         if (!user) {
             dbCalls.create_user(fbDB, uid, {
-                last_login: dateString
+                last_login: currentDateString
             })
             .then(function(none) {
                 res.send({msg: 'created successfully'});
             }).catch(next);
         }
 
-        // else, user found so update last login & login count
+        // else, user found so update last login & login count IFF different day.!
         else {
-            dbCalls.update_user_login(fbDB, uid, {
-                last_login: dateString,
-                count_logins: user.count_logins + 1
-            })
-            .then(function(none) {
-                res.send({msg: 'update successful'});
-            }).catch(next);
+            let currentDate = new Date(currentDateString);
+            let lastLogin = new Date(user.last_login);
+
+            // if this is first time user logged in on this day, update data
+            if (currentDate.getTime() > lastLogin.getTime()) {
+                dbCalls.update_user_login(fbDB, uid, {
+                    last_login: currentDateString,
+                    count_logins: user.count_logins + 1
+                })
+                .then(function(none) {
+                    res.send({msg: 'update successful'});
+                }).catch(next);
+            }
+
+            // else, user already logged in today
+            else if (currentDate.getTime() === lastLogin.getTime()){
+                res.send({msg: 'no user update required'});
+            }
+
+            // else, this login is BEFORE last login - HOW? No update, just return message
+            else {
+                res.send({
+                    msg: `today [${currentDateString}] < last login [${user.last_login}]??`
+                })
+            }
         }
     }).catch(next);
 });

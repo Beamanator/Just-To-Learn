@@ -67,7 +67,7 @@ function Auth_SetupStateChangeListener(config) {
             );
 
             // update display - # of discs reserved
-            Utils_UpdateNumReservedDiscs(uid);
+            Utils_UpdateNumReservedDiscs();
 
             // for page(s) with disc detail modal
             if (config.hasDiscDetailModal) {
@@ -100,6 +100,9 @@ function Auth_SetupStateChangeListener(config) {
 
             // disable disc reserve button
             Reserve_DisableReserve($reserveSigninWarning);
+
+            // update display - # of discs reserved (0 - not logged in)
+            Utils_UpdateNumReservedDiscs();
 
             // for page(s) with disc detail modal
             if (config.hasDiscDetailModal) {    

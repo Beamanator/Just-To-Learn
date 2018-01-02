@@ -88,7 +88,7 @@ function Reserve_AddCancelReserveListener(discType) {
             console.log(data.message);
 
             // update number of reserved discs
-            Utils_UpdateNumReservedDiscs(uid);
+            Utils_UpdateNumReservedDiscs();
 
             // display success modal!
             showReserveDetailModal('cancel');
@@ -149,7 +149,7 @@ function Reserve_AddReserveListener(discType) {
             Utils_ToggleLoadingIcon(false);
 
             // update number of reserved discs
-            Utils_UpdateNumReservedDiscs(uid);
+            Utils_UpdateNumReservedDiscs();
 
             // now show reserve success modal, hide disc detail modal
             showReserveDetailModal('success');

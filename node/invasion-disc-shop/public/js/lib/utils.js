@@ -115,18 +115,35 @@ function Utils_ToggleLoadingIcon( showNow ) {
  * Function gets number of discs user has reserved, and updates a span in the 
  * grid-1-nav with that number.
  * 
- * @param {string} uid - user id
  */
-function Utils_UpdateNumReservedDiscs(uid) {
+function Utils_UpdateNumReservedDiscs() {
+    let uid = Auth_GetUserID();
+    let $cartPageLink = $('#show-cart-page');
     let $myReservations = $('.grid-1-nav #my-reservations-count');
     let text = 'My Reservations ';
 
-    Utils_GetNumReservedDiscs(uid)
-    .then(function(count) {
-        // set count in span text :)
-        $myReservations.text(count);
-    })
-    .catch(Utils_ThrowError);
+    // if uid exists, user logged in, update count
+    if (uid) {
+        Utils_GetNumReservedDiscs(uid)
+        .then(function(count) {
+            // if count is 0, add disabled-a (anchor) class!
+            if (count === 0) {
+                $cartPageLink.addClass('disabled-a');
+            } else {
+                $cartPageLink.removeClass('disabled-a');
+            }
+
+            // set count in span text :)
+            $myReservations.text(count);
+        })
+        .catch(Utils_ThrowError);
+    }
+
+    // else, user not logged in, update count to 0 & disable link
+    else {
+        $myReservations.text(0);
+        $cartPageLink.addClass('disabled-a');
+    }
 }
 
 /**
@@ -155,20 +172,24 @@ function Utils_GetNumReservedDiscs(uid) {
 }
 
 /**
- * Function redirects user to page, based on passed-in slug
+ * Function redirects user to page, based on passed-in slug.
+ * IFF calling element is disabled, quit early and don't redirect user.
  * 
+ * @param {object} elem - html element that was clicked
  * @param {string} slug - slug of page user needs to be redirected to
  */
-function Utils_Redirect(slug) {
+function Utils_Redirect(elem, slug) {
+    // if elem is disabled [class='disabled-a'], quit early
+    if ($(elem).hasClass('disabled-a')) return;
+    
     let currentPath = Utils_GetPagePath();
+    let uid = Auth_GetUserID();
 
     switch(slug.toUpperCase()) {
         case 'CART':
-            let uid = Auth_GetUserID();
-
             if (currentPath === '/cart') {
                 // don't do anything - already on cart page
-                console.log('already on cart page');
+                console.log('already on cart page.');
             }
 
             // if user is logged in && not currently on cart page, redirect to cart

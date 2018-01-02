@@ -318,6 +318,11 @@ div.disc-detail-modal, div.reserve-detail-modal {
 }
 /* end: loading popup */
 
+/* disabled-a = for disabled anchor tags */
+.disabled-a {       color: #444;    }
+.disabled-a:hover { color: #444;    }
+.disabled-a:visited{color: #444;    }
+
 /* start of desktop styles */
 @media screen and (max-width: 991px) {
     /* start of large tablet styles */

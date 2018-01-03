@@ -43,8 +43,8 @@ const functions = {
             }
         });
     },
-    get_discs: function(fbDB, refLoc='') {
-        const ref = fbDB.ref('disc_holder' + refLoc);
+    get_discs: function(fbDB, discTypeRef='') {
+        const ref = fbDB.ref('disc_holder' + discTypeRef);
 
         return ref.once('value').then(snap => snap.val());
     },
@@ -55,10 +55,11 @@ const functions = {
      * Function gets disc-types map from firebase
      * 
      * @param {object} fbDB - single instance of firebase database from node
+     * @param {string} discTypeRef - reference to specific disc type
      * @returns - promise to disc-type map from fb
      */
-    get_disc_picture_map: function(fbDB) {
-        const ref = fbDB.ref('disc_picture_map');
+    get_disc_picture_map: function(fbDB, discTypeRef='') {
+        const ref = fbDB.ref('disc_picture_map' + discTypeRef);
 
         return ref.once('value').then(snap => snap.val());
     },
@@ -160,6 +161,7 @@ const functions = {
             = utils.get_current_date_string();
 
         // TODO: update reserve details in disc_holder node
+        // -> new node: number_reserved?
 
         return dbRef.update(updateObj);
     },

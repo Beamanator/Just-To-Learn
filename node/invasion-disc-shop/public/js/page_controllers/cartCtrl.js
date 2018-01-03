@@ -4,16 +4,17 @@
  */
 $(document).ready(function(){
 
-    // disc stuff
-    // Main_PutDiscImages();
-
     // auth stuff
     Auth_SetupStateChangeListener({
         incrementLoginCount: false,
         hasDiscDetailModal: false,
         redirectOnLogout: true
     });
-
-    // contact detail stuff
     
+    // add cancel reserve listeners on all discs
+    let $reservations = $('.grid-6-reservation');
+    for (let reservation of $reservations) {
+        // get discType from 'data-disc-type' html attribute
+        Reserve_AddCancelReserveListener(reservation.dataset.discType);
+    }
 });

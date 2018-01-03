@@ -236,6 +236,19 @@ function Utils_GetPagePath() {
 }
 
 /**
+ * Function checks if passed-in slug is the same as the current page's slug
+ * -> not case sensitive
+ * 
+ * @param {string} slug - slug of page (shop, cart, etc)
+ * @returns {boolean} - true / false
+ */
+function Utils_isPage(slug) {
+    return (
+        Utils_GetPagePath().toUpperCase() === slug.toUpperCase()
+    );
+}
+
+/**
  * Function updates text in welcome message
  * 
  * @param {string} message - any message to display in welcome area

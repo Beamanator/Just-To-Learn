@@ -60,6 +60,8 @@ function Reserve_AddCancelReserveListener(discType) {
     
     // When the user clicks on the "Cancel Reservation" button (one-time)
     $cancelReserveBtn.bind('click', function(e_click) {
+        $this = $(this);
+
         // show loading popup
         Utils_ToggleLoadingIcon(true);
 
@@ -67,7 +69,9 @@ function Reserve_AddCancelReserveListener(discType) {
         $(this).unbind('click');
 
         // disable cancel reserve button immediately
-        Reserve_DisableCancelReserveButton();
+        if (Utils_isPage('shop')) {
+            Reserve_DisableCancelReserveButton();
+        }
 
         // get user id
         let user = Auth_GetUser();
@@ -81,17 +85,22 @@ function Reserve_AddCancelReserveListener(discType) {
                 uid: uid
             }
         }).then(function(data) {
-            // hide loading popup
-            Utils_ToggleLoadingIcon(false);
-
             // console log returned message
             console.log(data.message);
 
             // update number of reserved discs
             Utils_UpdateNumReservedDiscs();
 
-            // display success modal!
-            showReserveDetailModal('cancel');
+            if (Utils_isPage('/shop')) {
+                // display success modal!
+                showReserveDetailModal('cancel');
+            } else if (Utils_isPage('/cart')) {
+                // remove reservation from cart
+                removeReservation($this);
+            }
+
+            // hide loading popup
+            Utils_ToggleLoadingIcon(false);
         })
         .catch(Utils_ThrowError);
     });
@@ -159,6 +168,16 @@ function Reserve_AddReserveListener(discType) {
 }
 
 /**
+ * Function removes reservation from cart
+ * 
+ * @param {object} $elem - jQuery reservation element to remove from DOM
+ */
+function removeReservation($elem) {
+    $reservation = $elem.closest('.grid-6-reservation');
+    $reservation.remove();
+}
+
+/**
  * Function displays only passed-in warning to explain why reservation can't happen.
  * - Also disables reserve button
  * 
@@ -173,10 +192,12 @@ function Reserve_DisableReserve($warningElem) {
 }
 
 function Reserve_DisableCancelReserveButton() {
-    getCancelReserveButton().prop('disabled', true);
+    let $cancelReserveBtn = getCancelReserveButton();
+    if ($cancelReserveBtn.length > 0) $cancelReserveBtn.prop('disabled', true);
 }
 function Reserve_EnableCancelReserveButton() {
-    getCancelReserveButton().prop('disabled', false);
+    let $cancelReserveBtn = getCancelReserveButton();
+    if ($cancelReserveBtn.length > 0) $cancelReserveBtn.prop('disabled', false);
 }
 
 /**
@@ -239,7 +260,7 @@ function getReserveButton() {
     return $('.modal-footer-reserve .action-reserve');
 }
 function getCancelReserveButton() {
-    return $('.modal-footer-reserve .action-cancel-reserve');
+    return $('button.action-cancel-reserve');
 }
 function getReserveWarningHolder() {
     return $('.modal-footer-message');

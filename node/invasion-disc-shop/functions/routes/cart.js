@@ -54,26 +54,17 @@ router.get('/', function(req, res, next) {
                 // add properties from discDataArr
                 Object.assign(reservationObj, discBasicDataObj, discUrlDataObj);
 
-                // put reservation object back into arr
-                // -> may not be necessary (may auto update the obj)
-                // reservationDataArr[i] = reservationObj;
+                // NOTE: reservationObj updates INSIDE reservationDataArr, so no need
+                // to store updated obj back in array.
             }
-
-            console.log(reservationDataArr);
 
             // if empty, uid may not be valid OR 
             res.render('pages/cart', {
-                itemsReserved: reservationDataArr,
-                uid: uid
+                itemsReserved: reservationDataArr
             });
         })
         .catch(next);
     }
-
-    // get discs from dbCalls module
-    // dbCalls.get_discs_with_filter(fbDB, filterObj).then(discs => {
-        
-    // }).catch(next);
 });
 
 module.exports = router;

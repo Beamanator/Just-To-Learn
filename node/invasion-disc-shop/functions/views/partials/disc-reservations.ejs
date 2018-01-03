@@ -2,7 +2,8 @@
 <!-- <div class="grid-1-reservations grid-6"> -->
     <% for (let reservation of itemsReserved) { %>
         <div class="grid-6-reservation grid-7"
-            data-disc-type="<%= reservation.discType %>">
+            data-disc-type="<%= reservation.discType %>"
+        >
             <div class="grid-7-disc-img">
                 <img src="<%= reservation.imgbb_link %>" height="150" width="150"
                     style="background-color: white">
@@ -28,7 +29,9 @@
             </div>
 
             <div class="grid-7-cancel-reservation">
-                <button type="button" class="btn btn-danger">X</button>
+                <button type="button" class="btn btn-danger action-cancel-reserve">
+                    X
+                </button>
             </div>
         </div>
     <% } %>

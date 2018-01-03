@@ -145,6 +145,7 @@ const functions = {
 
     /**
      * Function takes care of disc reserving :D
+     * By default, one disc is reserved at first. Can be updated on cart page.
      * 
      * @param {object} fbDB - see above 
      * @param {string} uid - see above
@@ -153,10 +154,11 @@ const functions = {
      */
     store_disc_reserve: function(fbDB, uid, discType) {
         const dbRef = fbDB.ref('/');
+        const defaultReserveAmount = 1;
 
         let updateObj = {};
         updateObj[`user_data_holder/${uid}/discs_reserved/${discType}`]
-            = utils.get_current_date_string();
+            = defaultReserveAmount;
         updateObj[`disc_reserved_holder/${discType}/users/${uid}`]
             = utils.get_current_date_string();
 

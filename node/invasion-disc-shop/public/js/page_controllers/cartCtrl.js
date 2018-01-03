@@ -10,6 +10,8 @@ $(document).ready(function(){
         hasDiscDetailModal: false,
         redirectOnLogout: true
     });
+
+    // TODO: setup dropdown / # reserved change listener
     
     // add cancel reserve listeners on all discs
     let $reservations = $('.grid-6-reservation');

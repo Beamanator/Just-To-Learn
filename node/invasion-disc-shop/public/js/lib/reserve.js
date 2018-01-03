@@ -55,9 +55,15 @@ function Reserve_HandleReserve(config) {
  * @param {string} discType - see Reserve_AddReserveListener
  */
 function Reserve_AddCancelReserveListener(discType) {
+    let $cancelReserveBtn;
+
     // get btn & unbind previously bound click events
-    $cancelReserveBtn = getCancelReserveButton().unbind('click');
-    
+    if (Utils_isPage('/shop')) {
+        $cancelReserveBtn = getCancelReserveButton().unbind('click');
+    } else if (Utils_isPage('/cart')) {
+        $cancelReserveBtn = getCancelReserveButton(discType).unbind('click');
+    }
+
     // When the user clicks on the "Cancel Reservation" button (one-time)
     $cancelReserveBtn.bind('click', function(e_click) {
         $this = $(this);
@@ -259,8 +265,17 @@ function Reserve_EnableReserve() {
 function getReserveButton() {
     return $('.modal-footer-reserve .action-reserve');
 }
-function getCancelReserveButton() {
-    return $('button.action-cancel-reserve');
+function getCancelReserveButton(discType) {
+    let buttonSelector = 'button.action-cancel-reserve';
+    // get button corresponding to discType
+    if (discType) {
+        return $(`div[data-disc-type='${discType}']`).find(buttonSelector);
+    }
+    
+    // no disc type, so get the (hopefully) 1 and only button
+    else {
+        return $(buttonSelector);
+    }
 }
 function getReserveWarningHolder() {
     return $('.modal-footer-message');

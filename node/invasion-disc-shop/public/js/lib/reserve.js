@@ -155,7 +155,8 @@ function Reserve_AddReserveListener(discType) {
                     lastName: contactDetails.lastName,
                     phoneNumber: contactDetails.phoneNumber,
                     email: email,
-                    discType: discType
+                    discType: discType,
+                    numDiscs: 1 // default is 1
                 }
             }
         })

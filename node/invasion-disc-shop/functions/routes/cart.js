@@ -2,7 +2,7 @@ const express = require ('express');
 const router = express.Router();
 
 const dbCalls = require('../extra-js/db-calls');
-// const gsheetFns = require('../gsheet/gsheetFns'); // TODO: update # of discs reserved
+const gsheetFns = require('../gsheet/gsheetFns');
 // const utils = require('../extra-js/utils');
 
 // get shopping cart
@@ -65,6 +65,35 @@ router.get('/', function(req, res, next) {
         })
         .catch(next);
     }
+});
+
+// update number of reservations on 
+router.put('/update-reservation/:discType', function(req, res, next) {
+    let bodyData = req.body;
+
+    let discType = req.params.discType;
+    let uid = bodyData.uid;
+    let numReserved = bodyData.numReserved;
+
+    let gsheetContainer = req.app.get('gsheet-container');
+    let fbDB = req.app.get('fb-db');
+
+    // first, update firebase
+    gsheetFns.update_reservation_number(gsheetContainer, {
+        uid: uid,
+        discType: discType,
+        numReserved: numReserved
+    })
+    .then(function(row) {
+        // next, update reservation data from db
+        return dbCalls.update_disc_reservation_num(fbDB, uid, discType, numReserved)
+    })
+    .then(function() {
+        res.send({
+            message: 'Reservation updated successfully'
+        });
+    })
+    .catch(next);
 });
 
 module.exports = router;

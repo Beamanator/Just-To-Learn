@@ -5,7 +5,6 @@ const utils = require('../extra-js/utils');
  
 // spreadsheet key is the long id in the sheets URL 
 // var doc = new GoogleSpreadsheet('1oBbx9vq7rSPlX1OA7HuZlK7ohn3mcIf7E28pmZyqjYE');
-// var sheet;
 
 // ================= internal functions =========================
 /**
@@ -249,13 +248,14 @@ const functions = {
             // NOTE: as mentioned in docs, keys in row are ALL lowercase
             //  (and spaces are removed)
             reservationSheet.addRow({
-                timestamp: utils.get_current_date_string(),
-                firstname: reserveDetails.firstName,
-                lastname: reserveDetails.lastName,
-                email: reserveDetails.email,
-                phone: reserveDetails.phoneNumber,
-                disctype: reserveDetails.discType,
-                uid: reserveDetails.uid
+                timestamp:  utils.get_current_date_string(),
+                firstname:  reserveDetails.firstName,
+                lastname:   reserveDetails.lastName,
+                email:      reserveDetails.email,
+                phone:      reserveDetails.phoneNumber,
+                disctype:   reserveDetails.discType,
+                uid:        reserveDetails.uid,
+                number:     reserveDetails.numDiscs
             }, function( err, row ) { // row param is SpreadsheetRow object
                 if (err) reject(err);
 
@@ -309,6 +309,39 @@ const functions = {
                     if (err) reject(err);
                     else resolve(reservationRow);
                 });
+            })
+            .catch(reject);
+
+        });
+    },
+
+
+    update_reservation_number: function(gsheetContainer, reserveData) {
+        let reservationSheet = gsheetContainer.reservationSheet;
+        let historySheet = gsheetContainer.historySheet;
+
+        let startRow = 1;
+        let increment = 10;
+        let numReserved = reserveData.numReserved;
+
+        return new Promise( (resolve, reject) => {
+
+            search_sheet(reservationSheet, startRow, increment, reserveData)
+            .then(function(row) {
+                // found row, now add 'reservation updated' action to history
+                let action = 'Reservation Updated';
+
+                return add_action_to_history(historySheet, row, action);
+            })
+            .then(function(data) {
+                let reservationRow = data.reservationRow;
+
+                // update column 'number' with number of reservations
+                reservationRow['number'] = numReserved;
+                reservationRow.save(function(err) {
+                    if (err) reject(err);
+                    else resolve(reservationRow);
+                })
             })
             .catch(reject);
 

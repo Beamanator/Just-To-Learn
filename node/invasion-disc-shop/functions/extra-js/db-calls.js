@@ -162,9 +162,6 @@ const functions = {
         updateObj[`disc_reserved_holder/${discType}/users/${uid}`]
             = utils.get_current_date_string();
 
-        // TODO: update reserve details in disc_holder node
-        // -> new node: number_reserved?
-
         return dbRef.update(updateObj);
     },
     get_disc_reserved_holder: function(fbDB) {
@@ -184,6 +181,17 @@ const functions = {
 
         return dbRef.update(updateObj);
     },
+    // update number of discs reserved by user for specific disc type
+    update_disc_reservation_num: function(fbDB, uid, discType, numReserved) {
+        const dbRef = fbDB.ref('/');
+
+        // set node with updated number of reserved discs
+        let updateObj = {};
+        updateObj[`user_data_holder/${uid}/discs_reserved/${discType}`] = numReserved;
+
+        return dbRef.update(updateObj);
+    },
+
     // get discs reserved by a user
     get_discs_reserved_by_user: function(fbDB, uid) {
         const userRef = fbDB.ref(`user_data_holder/${uid}`);

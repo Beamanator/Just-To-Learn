@@ -27,6 +27,10 @@ $(document).ready(function(){
     }
 });
 
+/**
+ * Function sets change listener on select boxes for # reserved discs
+ * 
+ */
 function Cart_SetupNumReservedChangeListener() {
     let $numReservedDropdown = $('.grid-7-num-reserved .num-reserved');
 

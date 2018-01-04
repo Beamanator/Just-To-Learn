@@ -90,7 +90,6 @@ function Auth_SetupStateChangeListener(config) {
                     let $countElem = $(reservation).find('.num-reserved');
 
                     // get number of reservations per disc, then update display
-                    // -> TODO: maybe also display loading icon for each?
                     $.ajax({
                         method: 'GET',
                         url: `/api/reserved/number/${uid}?discType=${discType}`
@@ -100,6 +99,9 @@ function Auth_SetupStateChangeListener(config) {
 
                         // now update reservation with data!
                         $countElem.val(count);
+
+                        // now enable the element so user can edit data :)
+                        $countElem.attr('disabled', false);
                     })
                     .catch(Utils_ThrowError);
                 }

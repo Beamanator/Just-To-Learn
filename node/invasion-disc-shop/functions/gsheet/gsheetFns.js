@@ -315,7 +315,14 @@ const functions = {
         });
     },
 
-
+    /**
+     * Function updates the number of reserved discs (for specific disc type)
+     * in google sheets.
+     * 
+     * @param {object} gsheetContainer - see above
+     * @param {object} reserveData - see above
+     * @returns - Promise to reservation updated or rejected error
+     */
     update_reservation_number: function(gsheetContainer, reserveData) {
         let reservationSheet = gsheetContainer.reservationSheet;
         let historySheet = gsheetContainer.historySheet;

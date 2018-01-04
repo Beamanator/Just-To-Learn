@@ -80,6 +80,30 @@ function Auth_SetupStateChangeListener(config) {
                 // get user contact info from db, put in disc-detail modal
                 Main_SetUserContactInfo(uid);
             }
+
+            // 
+            if (config.displayDiscReserveCount) {
+                let $reservations = $('.grid-6-reservation');
+                for (let reservation of $reservations) {
+
+                    let discType = reservation.dataset.discType;
+                    let $countElem = $(reservation).find('.num-reserved');
+
+                    // get number of reservations per disc, then update display
+                    // -> TODO: maybe also display loading icon for each?
+                    $.ajax({
+                        method: 'GET',
+                        url: `/api/reserved/number/${uid}?discType=${discType}`
+                    })
+                    .then(function(data) {
+                        let count = data.count;
+
+                        // now update reservation with data!
+                        $countElem.val(count);
+                    })
+                    .catch(Utils_ThrowError);
+                }
+            }
         }
         
         // user logout:
@@ -169,7 +193,9 @@ function getLoginStateConfigWithDefaults(config) {
     let defaults = {
         incrementLoginCount: false,
         hasDiscDetailModal: false,
-        redirectOnLogout: false
+        redirectOnLogout: false,
+
+        displayDiscReserveCount: false
     };
 
     // loop through defaults, adding defaults to config if needed

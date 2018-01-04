@@ -8,7 +8,9 @@ $(document).ready(function(){
     Auth_SetupStateChangeListener({
         incrementLoginCount: false,
         hasDiscDetailModal: false,
-        redirectOnLogout: true
+        redirectOnLogout: true,
+
+        displayDiscReserveCount: true
     });
 
     // setup dropdown / # reserved change listener
@@ -17,16 +19,16 @@ $(document).ready(function(){
     // add cancel reserve listeners on all discs
     let $reservations = $('.grid-6-reservation');
     for (let reservation of $reservations) {
-        // get discType from 'data-disc-type' html attribute
-        Reserve_AddCancelReserveListener(reservation.dataset.discType);
 
-        // TODO: get number of reservations per disc, update display
-        // -> maybe also display loading icon for each?
+        let discType = reservation.dataset.discType;
+
+        // get discType from 'data-disc-type' html attribute
+        Reserve_AddCancelReserveListener(discType);
     }
 });
 
 function Cart_SetupNumReservedChangeListener() {
-    let $numReservedDropdown = $('.grid-7-num-reserved .numReserved');
+    let $numReservedDropdown = $('.grid-7-num-reserved .num-reserved');
 
     // loop through dropdowns, setting up change listeners
     $numReservedDropdown.each((i, elem) => {

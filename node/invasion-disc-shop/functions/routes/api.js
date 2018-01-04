@@ -35,10 +35,11 @@ router.get('/disc-picture-map', function(req, res, next) {
     })
     .catch(next);
 });
-router.get('/reserved/number/:uid', function(req, res, next) {
+router.get('/reserved/number/:uid/', function(req, res, next) {
     // get number of reserved discs by uid 
     let fbDB = req.app.get('fb-db');
     let uid = req.params.uid;
+    let discType = req.query.discType; // optional
 
     if (uid === undefined) {
         next({
@@ -50,17 +51,38 @@ router.get('/reserved/number/:uid', function(req, res, next) {
     // get discs reserved by user
     dbCalls.get_discs_reserved_by_user(fbDB, uid)
     .then(discs_reserved => {
-        // fb may return null if empty
-        if (!discs_reserved) discs_reserved = {};
+        let count;
 
-        // return the # of discs here!
-        let count = Object.keys(discs_reserved).length;
+        // fb may return null if empty
+        if (!discs_reserved) count = 0;
+
+        // if discType is available, count # of discs reserved in that time
+        else if (discType) {
+            count = +discs_reserved[discType];
+            if (!count) count = 0;
+        }
+
+        // return the total # of reserved discs here!
+        else {
+            count = Object.keys(discs_reserved).length;
+        }
 
         res.send({
             count: count
         });
     })
     .catch(next);
+});
+router.get('/reserved/number/:uid/:discType', function(req, res, next) {
+    // get number of reserved discs by discType and uid
+    let fbDB = req.app.get('fb-db');
+    let uid = req.params.uid;
+    let discType = req.params.discType;
+
+    res.send({
+        uid: uid,
+        discType: discType
+    });
 });
 router.get('/reserved-status', function(req, res, next) {
     // TODO: break out logic into separate function in utils (to keep this clean)

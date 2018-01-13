@@ -16,4 +16,4 @@ Discord.js:
 # Useful js tricks:
 
 ES7:
-1) To safely copy an object, use let newObj = {...oldObj} - this way, newObj is not tied to oldObj at all.
+1) To safely copy an object (including arrays), use let newObj = {...oldObj} / [...oldArr] - this way, newObj is not tied to oldObj at all.

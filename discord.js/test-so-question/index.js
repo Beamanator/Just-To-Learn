@@ -8,7 +8,8 @@ client.on('ready', () => {
 
 // set message listener 
 client.on('message', message => {
-    switch(message.content.toUpperCase()) {
+    let command = message.content.toUpperCase();
+    switch(command) {
         case '?PING':
             message.reply('pong');
             break;
@@ -16,8 +17,27 @@ client.on('message', message => {
         case '?TYPE':
             runWordGame(message.channel);
             break;
+
+        case '?T1':
+            runIfRoleIncluded(message);
+            break;
     }
 });
+
+// https://stackoverflow.com/questions/48352002/how-to-create-a-command-that-only-who-have-one-of-the-roles-can-use
+function runIfRoleIncluded(message) {
+    let rolesCollection = message.member.roles;
+    let staffrole = ['383874699941117952', '149622819158884353', '149622998180036608'];
+
+    // only 1 member can send a message, so get role collection's first key (id)
+    let messageRoleId = rolesCollection.firstKey();
+
+    // check if message's role id is in staff role array
+    if (staffrole.includes(messageRoleId)) {
+        // do stuff here
+        // ...
+    }
+}
 
 // function runs word game
 function runWordGame(channel) {

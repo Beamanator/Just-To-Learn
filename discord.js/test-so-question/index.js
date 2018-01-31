@@ -9,20 +9,57 @@ client.on('ready', () => {
 // set message listener 
 client.on('message', message => {
     let command = message.content.toUpperCase();
-    switch(command) {
-        case '?PING':
-            message.reply('pong');
-            break;
 
-        case '?TYPE':
-            runWordGame(message.channel);
-            break;
+    // first \w+ is for the title, 2nd is for description
+    if ( /^\/EMBED \[[\w ]+\]; \[[\w ]+\]$/.test(command) )
+        sendEmbed(message);
 
-        case '?T1':
-            runIfRoleIncluded(message);
-            break;
+    else {
+        switch(command) {
+            case '?PING':
+                message.reply('pong');
+                break;
+
+            case '?TYPE':
+                runWordGame(message.channel);
+                break;
+
+            case '?T1':
+                runIfRoleIncluded(message);
+                break;
+        }
     }
 });
+
+// https://stackoverflow.com/questions/47371294/having-a-bot-send-an-embed-using-a-player-command
+function sendEmbed(message) {
+    let command = message.content;
+    let channel = message.channel;
+    let author = message.author;
+
+    // get title string coordinates in command
+    let titleStart = command.indexOf('[');
+    let titleEnd = command.indexOf(']');
+    let title = command.substr(titleStart + 1, titleEnd - titleStart - 1);
+
+    // get description string coordinates in command
+    // -> (start after +1 so we don't count '[' or ']' twice)
+    let descStart = command.indexOf('[', titleStart + 1);
+    let descEnd = command.indexOf(']', titleEnd + 1);
+    let description = command.substr(descStart + 1, descEnd - descStart - 1);
+
+    // next create rich embed
+    let embed = new Discord.RichEmbed({
+        title: title,
+        description: description
+    });
+
+    // set author based of passed-in message
+    embed.setAuthor(author.username, author.displayAvatarURL);
+
+    // send embed to channel
+    channel.send(embed);
+}
 
 // https://stackoverflow.com/questions/48352002/how-to-create-a-command-that-only-who-have-one-of-the-roles-can-use
 function runIfRoleIncluded(message) {

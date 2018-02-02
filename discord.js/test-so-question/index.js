@@ -27,9 +27,22 @@ client.on('message', message => {
             case '?T1':
                 runIfRoleIncluded(message);
                 break;
+
+            case '?T2':
+                DMme(message.channel);
+                break;
         }
     }
 });
+
+// https://stackoverflow.com/questions/48561487/sending-a-dm-through-a-command-to-a-specific-person-from-a-database-discord-js/48562007?noredirect=1#comment84165634_48562007
+// -> send direct message
+function DMme(channel) {
+    let members = channel.members;
+    let guildMember = members.find('id', '<id number>');
+
+    guildMember.send('test message');
+}
 
 // https://stackoverflow.com/questions/47371294/having-a-bot-send-an-embed-using-a-player-command
 function sendEmbed(message) {

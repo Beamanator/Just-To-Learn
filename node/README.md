@@ -26,14 +26,16 @@
 3) init functions - "firebase init functions"
    - install dependencies with npm
    - then cd into functions and install express
-4) firebase serve --only functions,hosting
+4) firebase login
+   - Attempts to authenticate user on firebase cli (opens web browser to authenticate)
+5) firebase serve --only functions,hosting
    - local emulation of app
-5) firebase deploy
+6) firebase deploy
    - deploy to hosting
-6) firebase deploy --only hosting
+7) firebase deploy --only hosting
    - docs: https://firebase.google.com/docs/cli/
    - deploys only hosting, not database / functions / etc
-7) **npm install firebase-functions@latest --save**
+8) **npm install firebase-functions@latest --save**
    - update local firebase-functions code to latest version (do this often)
    
 **Storage**

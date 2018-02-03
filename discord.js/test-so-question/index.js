@@ -2,6 +2,9 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const auth = require('./auth');
 
+// get admin commands - for SO question
+const adminCmds = require('./adminCmds');
+
 client.on('ready', () => {
     console.log('I am ready!');
 });
@@ -11,9 +14,15 @@ client.on('message', message => {
     let command = message.content.toUpperCase();
 
     // first \w+ is for the title, 2nd is for description
+    // -> command is '/embed [title]; [description]
     if ( /^\/EMBED \[[\w ]+\]; \[[\w ]+\]$/.test(command) )
         sendEmbed(message);
 
+    // execute admin commands
+    else if ( adminCmds.checkAdminCmd(message) )
+        return;
+
+    // execute other commands
     else {
         switch(command) {
             case '?PING':

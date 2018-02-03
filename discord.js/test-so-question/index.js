@@ -47,10 +47,18 @@ client.on('message', message => {
 // https://stackoverflow.com/questions/48561487/sending-a-dm-through-a-command-to-a-specific-person-from-a-database-discord-js/48562007?noredirect=1#comment84165634_48562007
 // -> send direct message
 function DMme(channel) {
-    let members = channel.members;
-    let guildMember = members.find('id', '<id number>');
+    // method 1 - send message to member inside channel
+    // let members = channel.members;
+    // let guildMember = members.find('id', '<id number>');
 
-    guildMember.send('test message');
+    // guildMember.send('test message');
+
+    // method 2 - send message to user!
+    let client = channel.client;
+    let user = client.fetchUser('<id number>')
+    .then(user => {
+        user.send('Test message'); 
+    });
 }
 
 // https://stackoverflow.com/questions/47371294/having-a-bot-send-an-embed-using-a-player-command

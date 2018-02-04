@@ -13,6 +13,9 @@ client.on('ready', () => {
 client.on('message', message => {
     let command = message.content.toUpperCase();
 
+    let cmdName = command.split(' ')[0],
+        cmdArgs = command.substr( command.indexOf(' ') );
+
     // first \w+ is for the title, 2nd is for description
     // -> command is '/embed [title]; [description]
     if ( /^\/EMBED \[[\w ]+\]; \[[\w ]+\]$/.test(command) )
@@ -24,7 +27,7 @@ client.on('message', message => {
 
     // execute other commands
     else {
-        switch(command) {
+        switch(cmdName) {
             case '?PING':
                 message.reply('pong');
                 break;
@@ -40,9 +43,26 @@ client.on('message', message => {
             case '?T2':
                 DMme(message.channel);
                 break;
+
+            case '?T3':
+                logMentionChannels(message);
+                break;
         }
     }
 });
+
+function logMentionChannels(message) {
+    let channels = message.mentions.channels;
+
+    console.log(channels);
+
+    let myChannels = channels.map(channel => new Object({
+        'id': channel.id,
+        'name': channel.name
+    }));
+
+    console.log(myChannels);
+}
 
 // https://stackoverflow.com/questions/48561487/sending-a-dm-through-a-command-to-a-specific-person-from-a-database-discord-js/48562007?noredirect=1#comment84165634_48562007
 // -> send direct message

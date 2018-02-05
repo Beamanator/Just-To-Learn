@@ -5,6 +5,9 @@ const auth = require('./auth');
 // get admin commands - for SO question
 const adminCmds = require('./adminCmds');
 
+// get controller for spam messages
+let spamCtrl = require('./spamCtrl');
+
 client.on('ready', () => {
     console.log('I am ready!');
 });
@@ -15,7 +18,7 @@ client.on('message', message => {
 
     let cmdName = command.split(' ')[0],
         cmdArgs = command.substr( command.indexOf(' ') );
-
+    
     // first \w+ is for the title, 2nd is for description
     // -> command is '/embed [title]; [description]
     if ( /^\/EMBED \[[\w ]+\]; \[[\w ]+\]$/.test(command) )
@@ -36,6 +39,15 @@ client.on('message', message => {
                 runWordGame(message.channel);
                 break;
 
+            // 2 commands together make spamming work :)
+            case '?SPAM':
+                spamCtrl.setChannel(message.channel);
+                spamCtrl.setStatus(true);
+                break;
+            case '?STOP-SPAM':
+                spamCtrl.setStatus(false);
+                break;
+
             case '?T1':
                 runIfRoleIncluded(message);
                 break;
@@ -47,10 +59,67 @@ client.on('message', message => {
             case '?T3':
                 logMentionChannels(message);
                 break;
+
+            case '?T4':
+                playSoundOnJoinVoiceChannel(message);
+                break;
+
+            case '?T5':
+                send2Embeds(message);
+                break;
         }
     }
 });
 
+// https://stackoverflow.com/questions/48614541/sending-multiple-embeds-at-once/48619657#48619657
+function send2Embeds(message) {
+    let channel = message.channel;
+
+    // next create rich embeds
+    let embed1 = new Discord.RichEmbed({
+        title: 'embed1',
+        description: 'description1',
+        author: {
+            name: 'author1'
+        }
+    });
+
+    let embed2 = new Discord.RichEmbed({
+        title: 'embed2',
+        description: 'description2',
+        author: {
+            name: 'author2'
+        }
+    });
+
+    // send embed to channel
+    channel.send(embed1)
+    .then(msg => {
+        channel.send(embed2);
+    });
+}
+
+// not working :(
+function playSoundOnJoinVoiceChannel(message) {
+    let channels = client.channels;
+    
+    let myVoiceChannel = channels.find('id', '396946462782521361');
+    let connection = myVoiceChannel.connection;
+
+    // console.log(myVoiceChannel);
+    // console.log('\n\n\n');
+    // console.log(connection);
+    // console.log(myVoiceChannel.members);
+
+    myVoiceChannel.join()
+    .then(connection => {
+        console.log(connection);
+    })
+    .catch(err => console.log(err));
+
+}
+
+// oops, didn't write down the SO url
 function logMentionChannels(message) {
     let channels = message.mentions.channels;
 

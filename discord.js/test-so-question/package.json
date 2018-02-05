@@ -10,5 +10,14 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "^11.2.1"
+  },
+  "peerDependencies": {
+    "bufferutil": "^3.0.3",
+    "erlpack": "discordapp/erlpack",
+    "node-opus": "^0.2.7",
+    "opusscript": "^0.0.6",
+    "sodium": "^2.0.3",
+    "libsodium-wrappers": "^0.5.4",
+    "uws": "^9.14.0"
   }
 }

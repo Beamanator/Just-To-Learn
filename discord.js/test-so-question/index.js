@@ -67,9 +67,33 @@ client.on('message', message => {
             case '?T5':
                 send2Embeds(message);
                 break;
+
+            case '?T6':
+                getReactions(message);
+                break;
         }
     }
 });
+
+// https://stackoverflow.com/questions/48712349/discord-js-doesnt-see-what-emoji-is-reacted
+function getReactions(message) {
+    const reactionFilter = (reaction, user) => reaction.emoji.name === '✅';
+
+    message.react('✅')
+    .then(mReaction => message.react('❎') )
+    .then(mReaction => {
+        // awaitReactions - await ends after a while, THEN .then is called
+        // message.awaitReactions(reactionFilter)
+        // .then( collected => console.log(collected))
+        // .catch(console.log);
+
+        // createReactionCollector - responds on each react, AND again at the end.
+        const collector = message.createReactionCollector(reactionFilter, { time: 15000 });
+        collector.on('collect', r => console.log(`Collected ${r.emoji.name}`));
+        collector.on('end', collected => console.log(`Collected ${collected.size} items`));
+    })
+    .catch(console.log);
+}
 
 // https://stackoverflow.com/questions/48614541/sending-multiple-embeds-at-once/48619657#48619657
 function send2Embeds(message) {

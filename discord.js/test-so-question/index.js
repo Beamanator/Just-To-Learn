@@ -71,6 +71,15 @@ client.on('message', message => {
             case '?T6':
                 getReactions(message);
                 break;
+
+            // Note: this causes an error. Must send a string-ifyable
+            //   value to .send()
+            // case '?T7':
+            //     let nope = undefined;
+            //     message.channel.send(nope)
+            //     .then(() => message.channel.send('after?'))
+            //     .catch(console.log);
+            //     break;
         }
     }
 });
@@ -79,6 +88,7 @@ client.on('message', message => {
 function getReactions(message) {
     const reactionFilter = (reaction, user) => reaction.emoji.name === '✅';
 
+    // add reaction emoji to message
     message.react('✅')
     .then(mReaction => message.react('❎') )
     .then(mReaction => {

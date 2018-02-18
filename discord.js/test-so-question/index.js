@@ -72,6 +72,10 @@ client.on('message', message => {
                 getReactions(message);
                 break;
 
+            case '?T8':
+                countMessages(message);
+                break;
+
             // Note: this causes an error. Must send a string-ifyable
             //   value to .send()
             // case '?T7':
@@ -83,6 +87,28 @@ client.on('message', message => {
         }
     }
 });
+
+// https://stackoverflow.com/questions/48838978/effectively-getting-count-of-whos-here-on-discord-js
+function countMessages(message) {
+    const filter = m => m.content.startsWith('here');
+
+    // message.channel.sendMessage("Report your accountability!");
+    message.channel.send("Report your accountability!");
+    message.channel.awaitMessages(filter, { 
+        max: 200,
+        time: 30000,
+        errors: ['time'] 
+    })
+    .then(collected => {
+        message.channel.send(`Accountability is ${collected.size} of ${message.guild.members.size}, present or accounted for.`);
+    })
+    // .catch is called on error - time up is included as an error (says so in docs)
+    .catch(collected => {
+        console.log(collected);
+        message.channel.send('Time up!');
+    });
+    // break;
+}
 
 // https://stackoverflow.com/questions/48712349/discord-js-doesnt-see-what-emoji-is-reacted
 function getReactions(message) {

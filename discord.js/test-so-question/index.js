@@ -76,6 +76,13 @@ client.on('message', message => {
                 countMessages(message);
                 break;
 
+            case '?CLOSE-DOWN':
+                closeDownChannel(message);
+                break;
+            case '?RE-OPEN':
+                reopenChannel(message);
+                break;
+
             // Note: this causes an error. Must send a string-ifyable
             //   value to .send()
             // case '?T7':
@@ -88,9 +95,49 @@ client.on('message', message => {
     }
 });
 
+// https://stackoverflow.com/questions/43517117/discord-chat-bot-change-channel-post-permissions?rq=1
+// difficult to test w/ only me as a user of the channel :(
+function closeDownChannel(message) {
+    let channel = message.channel;
+    let roles = message.guild.roles; // collection
+
+    let testRole = roles.find('name', '<name of role>');
+
+    channel.overwritePermissions(
+        testRole,
+        { 'SEND_MESSAGES': false },
+        'closing up shop'
+    )
+    .then(console.log)
+    .catch(console.log);
+}
+function reopenChannel(message) {
+    let testRole = message.guild.roles.find('name', 'test-role');
+
+    message.channel.overwritePermissions(testRole, {
+        'SEND_MESSAGES': true,
+    }, 'reopening!')
+    .then(console.log)
+    .catch(console.log);
+}
+
 // https://stackoverflow.com/questions/48838978/effectively-getting-count-of-whos-here-on-discord-js
 function countMessages(message) {
-    const filter = m => m.content.startsWith('here');
+    // part 1:
+    // const filter = m => m.content.startsWith('here');
+
+
+    let uidHolder = [];
+    // part 2: unique users
+    const filter = m => {
+        let id = m.author.id;
+        if (uidHolder.includes(id) || !m.content.startsWith('here'))
+            return false;
+        else {
+            uidHolder.push(id);
+            return true;
+        }
+    };
 
     // message.channel.sendMessage("Report your accountability!");
     message.channel.send("Report your accountability!");
@@ -105,7 +152,7 @@ function countMessages(message) {
     // .catch is called on error - time up is included as an error (says so in docs)
     .catch(collected => {
         console.log(collected);
-        message.channel.send('Time up!');
+        message.channel.send('Time up! - ' + collected.size);
     });
     // break;
 }

@@ -31,12 +31,21 @@ client.on('message', message => {
     // execute other commands
     else {
         switch(cmdName) {
+            case '?TEST':
+                // runWordGame(message.channel);
+                // runIfRoleIncluded(message);
+                // DMme(message.channel);
+                // logMentionChannels(message);
+                // playSoundOnJoinVoiceChannel(message);
+                // send2Embeds(message);
+                // getReactions(message);
+                // countMessages(message);
+                // sendSmallImg(message.channel);
+                break;
+            
+            
             case '?PING':
                 message.reply('pong');
-                break;
-
-            case '?TYPE':
-                runWordGame(message.channel);
                 break;
 
             // 2 commands together make spamming work :)
@@ -46,34 +55,6 @@ client.on('message', message => {
                 break;
             case '?STOP-SPAM':
                 spamCtrl.setStatus(false);
-                break;
-
-            case '?T1':
-                runIfRoleIncluded(message);
-                break;
-
-            case '?T2':
-                DMme(message.channel);
-                break;
-
-            case '?T3':
-                logMentionChannels(message);
-                break;
-
-            case '?T4':
-                playSoundOnJoinVoiceChannel(message);
-                break;
-
-            case '?T5':
-                send2Embeds(message);
-                break;
-
-            case '?T6':
-                getReactions(message);
-                break;
-
-            case '?T8':
-                countMessages(message);
                 break;
 
             case '?CLOSE-DOWN':
@@ -94,6 +75,12 @@ client.on('message', message => {
         }
     }
 });
+
+// https://stackoverflow.com/questions/48979524/how-do-i-send-a-file-using-a-discord-bot
+function sendSmallImg(channel) {
+    channel.send(new Discord.Attachment('./img/unnamed.jpg', 'pic.jpg') )
+    .catch(console.error);
+}
 
 // https://stackoverflow.com/questions/43517117/discord-chat-bot-change-channel-post-permissions?rq=1
 // difficult to test w/ only me as a user of the channel :(

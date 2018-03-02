@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+    // using JSX
+    // return (
+    //   <div className="App">
+    //     <h1>Hi, I'm a React App!</h1>
+    //   </div>
+    // );
+
+    // using React library (JSX gets compiled into this)
+    // can render normal html element, or another custom component
+    return React.createElement('div',
+      {
+        className: 'App'
+      }, 
+      React.createElement('h1', null,'Hi, I\'m a React App!!!')
     );
   }
 }

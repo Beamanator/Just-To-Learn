@@ -15,6 +15,13 @@ Discord.js:
 2) My Apps (on discordapp.com) - https://discordapp.com/developers/applications/me
 3) Nice "Getting Started" guide - https://anidiots.guide/
 
+React.js:
+1) create-react-app: https://github.com/facebookincubator/create-react-app
+2) Introducing JSX: https://reactjs.org/docs/introducing-jsx.html
+3) Rendering Elements: https://reactjs.org/docs/rendering-elements.html
+4) Components & Props: https://reactjs.org/docs/components-and-props.html
+5) Listenable Events: https://reactjs.org/docs/events.html
+
 # Useful js tricks:
 
 ES7:

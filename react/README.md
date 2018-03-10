@@ -12,6 +12,8 @@
 2) JSX element could only return 1 root element (until recently - version 16)
    - traditionally, it's common to just wrap everything in 1 root element
 3) Custom components should start with upper-case ('Div') to differentiate between custom components and reserved html elements
+4) Can't use `if() {}` statements in JSX, instead use ternary operators `<condition> ? <if true> : <if false>`
+   - Or (recommended), just use `if-statements` before the `render` method.
 
 ### Conventions
 1) New components go in folders with capital starting characters
@@ -20,6 +22,9 @@
    - Arrow functions - passes 'this' keyword from caller - keeps 'this' consistent in Component classes
      - Useful in a button click event handler
 3) Properties passed to your component should be called 'props' to make sure people don't get confused
+4) Update state in an immutable fashion (a.k.a. create a new copy of state, then edit, then save back to state)
+   - example: using `.slice` to directly remove an item from an array - first copy the entire new array like this:
+     - `[...oldArr]` or `oldArr.slice()`
 
 ### Other
 1) Dynamic content (functions, variables, etc) in JSX goes between {}

@@ -41,8 +41,9 @@ client.on('message', message => {
                 // getReactions(message);
                 // countMessages(message);
                 // sendSmallImg(message.channel);
+                // checkMessageType(message);
+                getNumUserReactions(message);
                 break;
-            
             
             case '?PING':
                 message.reply('pong');
@@ -75,6 +76,63 @@ client.on('message', message => {
         }
     }
 });
+
+// https://stackoverflow.com/questions/49206097/how-do-i-get-the-number-of-users-who-reacted-with-a-certain-emoji
+function getNumUserReactions(message) {
+    // 👎 - reactions on message id: 421952287301435403
+    // emojis i worked with: 👌,👎, 
+
+    // method 1 - will work, but users CAN NOT ADD REACTIONS TWICE - so this is overkill!!
+    // message.channel.fetchMessage('421952287301435403')
+    // .then(msg => {
+    //     // have bot add reaction to specific message
+    //     return msg.react('👎');
+    // })
+    // .then(rx => {
+    //     let msg = rx.message;
+
+    //     let downVoteReaction = msg.reactions.filter(rx => rx.emoji.name == '👎').first();
+    //     let users = downVoteReaction.fetchUsers()
+    //     .then(users => {
+    //         // find # of users from collection
+    //     })
+    // })
+    // .catch(console.error);
+
+    // method 2 - This method works - a user cannot add a reaction to a message twice.
+    // HOWEVER as of writing this, if the bot adds a reaction, THEN counts the number of
+    // emojis, the count will always be +1, EVEN if the bot already added that reaction
+    // in the past... See issue: https://github.com/discordjs/discord.js/issues/2389
+    /*
+        It's possibly only reproduced when couting the # of emojis for one type, THEN
+        adding the msg.react('emoji') code and counting again... Not exactly sure why that
+        would make a difference
+    */
+    message.channel.fetchMessage('421952287301435403')
+    .then(msg => {
+        // removed bot reaction -> see github issue above
+        // have bot add reaction to specific message (not necessary for answer)
+    //     return msg.react('👎');
+    // })
+    // .then(rx => {
+    //     let msg = rx.message;
+
+        let downVoteCollection = msg.reactions.filter(rx => rx.emoji.name == '👎');
+
+        console.log(downVoteCollection.first().count);
+    })
+    .catch(console.error);
+}
+
+// https://stackoverflow.com/questions/48512703/using-discord-js-to-check-the-url-of-an-image-in-an-embed
+function checkMessageType(message) {
+    // images can also be sent as attachments. Maybe OP also wants to know that
+    console.log(message.type);
+    console.log(message.embeds); // array
+    console.log(message.attachments);
+    // probably reply with message.attachments.first().url
+    // -> or loop through Collection of attachments
+}
 
 // https://stackoverflow.com/questions/48979524/how-do-i-send-a-file-using-a-discord-bot
 function sendSmallImg(channel) {

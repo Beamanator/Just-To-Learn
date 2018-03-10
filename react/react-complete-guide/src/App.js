@@ -3,68 +3,84 @@ import './App.css';
 import Person from './Person/Person';
 
 class App extends Component {
-  state = {
-    persons: [
-      { name: 'Max', age: 28 },
-      { name: 'Bill', age: 65},
-      { name: 'Steph', age: 33}
-    ]
-  }
+    state = {
+        persons: [
+            { name: 'Max', age: 28 },
+            { name: 'Bill', age: 65},
+            { name: 'Steph', age: 33}
+        ]
+    }
 
-  switchNameHandler = (newName) => {
-    // DON'T USE THIS
-    // this.state.persons[0].name = "WOAH";
+    switchNameHandler = (newName) => {
+        // DON'T USE THIS
+        // this.state.persons[0].name = "WOAH";
     
-    // instead, do this:
-    this.setState({
-      persons: [
-        { name: newName, age: 28 },
-        { name: 'BILLY', age: 65},
-        { name: 'Steph', age: 33}
-      ]
-    }) 
-  }
+        // instead, do this:
+        this.setState({
+            persons: [
+                { name: newName, age: 28 },
+                { name: 'BILLY', age: 65},
+                { name: 'Steph', age: 33}
+            ],
+            otherState: 'other state value',
+            showPersons: false
+        }) 
+    }
 
   nameChangedHandler = (event) => {
-    this.setState({
-      persons: [
-        { name: 'Jim', age: 28 },
-        { name: event.target.value, age: 65},
-        { name: 'Steph', age: 33}
-      ]
-    }) 
-  }
+        this.setState({
+            persons: [
+                { name: 'Jim', age: 28 },
+                { name: event.target.value, age: 65},
+                { name: 'Steph', age: 33}
+            ]
+        }) 
+    }
 
-  render() {
-    // name is up to me
-    const style = {
-      backgroundColor: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    };
+    togglePersonsHandler = () => {
+        const doesShow = this.state.showPersons;
 
-    return (
-      <div className="App">
-        <h1>Hi, I'm a React App!</h1>
-        <p>This is working!</p>
-        <button
-          style={style} 
-          onClick={this.switchNameHandler.bind(this, 'stephAY!')}
-        >Switch Name</button>
-        <Person
-          name={this.state.persons[0].name} age={this.state.persons[0].age}/>
-        <Person 
-          name={this.state.persons[1].name} age={this.state.persons[1].age}
-          click={this.switchNameHandler.bind(this, 'TEST')}
-          changed={this.nameChangedHandler}
-        >Hobbies: Skating</Person>
-        <Person
-          name={this.state.persons[2].name} age={this.state.persons[2].age}/>
-      </div>
-    );
-  }
+        // flips the doesShow flag
+        this.setState({showPersons: !doesShow});
+    }
+
+    render() {
+        // name is up to me
+        const style = {
+            backgroundColor: 'white',
+            font: 'inherit',
+            border: '1px solid blue',
+            padding: '8px',
+            cursor: 'pointer'
+        };
+
+        return (
+            <div className="App">
+                <h1>Hi, I'm a React App!</h1>
+                <p>This is working!</p>
+                <button
+                    style={style} 
+                    onClick={this.togglePersonsHandler}
+                >Switch Name</button>
+                { this.state.showPersons === true ?
+                    <div>
+                        <Person
+                            name={this.state.persons[0].name}
+                            age={this.state.persons[0].age}/>
+                        <Person 
+                            name={this.state.persons[1].name}
+                            age={this.state.persons[1].age}
+                            click={this.switchNameHandler.bind(this, 'TEST')}
+                            changed={this.nameChangedHandler}
+                        >Hobbies: Skating</Person>
+                        <Person
+                            name={this.state.persons[2].name}
+                            age={this.state.persons[2].age}/>
+                    </div> : null
+                }
+            </div>
+        );
+    }
 }
 
 export default App;

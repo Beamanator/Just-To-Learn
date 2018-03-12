@@ -23,8 +23,10 @@
      - Useful in a button click event handler
 3) Properties passed to your component should be called 'props' to make sure people don't get confused
 4) Update state in an immutable fashion (a.k.a. create a new copy of state, then edit, then save back to state)
-   - example: using `.slice` to directly remove an item from an array - first copy the entire new array like this:
-     - `[...oldArr]` or `oldArr.slice()`
+   - Array example: using `.slice` to directly remove an item from an array
+     - instead, first create a new array like this: `[...oldArr]` or `oldArr.slice()`
+   - Object example: updating any property in the state
+     - instead, first create a new object like this: `{...oldObj}` or `Object.assign({}, oldObj)`
 
 ### Other
 1) Dynamic content (functions, variables, etc) in JSX goes between {}

@@ -12,6 +12,18 @@ client.on('ready', () => {
     console.log('I am ready!');
 });
 
+// https://stackoverflow.com/questions/49313287/discord-js-make-presenceupdate-send-a-message
+client.on('presenceUpdate', (oldMember, newMember) => {
+    let guildChannels = newMember.guild.channels;
+
+    guildChannels.find('name', 'no-commands-here')
+        .send('test')
+        .then(msg => {
+            // do something else if you want
+        })
+        .catch(console.error)
+});
+
 // set message listener 
 client.on('message', message => {
     let command = message.content.toUpperCase();

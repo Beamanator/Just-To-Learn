@@ -45,3 +45,4 @@
    - Need to install 3rd party package called [Radium](https://www.npmjs.com/package/radium)
      - Import Radium at the top - `import Radium from 'radium';`
      - Change export - `export default Radium(Component);`
+     - If using `@media` queries or key-frames (?), need to wrap highest level component in `<StyleRoot>` component (import from radium)

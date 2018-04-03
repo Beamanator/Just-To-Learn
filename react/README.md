@@ -24,27 +24,27 @@
      - Useful in a button click event handler
 3) Properties passed to your component should be called 'props' to make sure people don't get confused
 4) Update state in an immutable fashion (a.k.a. create a new copy of state, then edit, then save back to state)
-   - Array example: using `.slice` to directly remove an item from an array
-     - instead, first create a new array like this: `[...oldArr]` or `oldArr.slice()`
-   - Object example: updating any property in the state
-     - instead, first create a new object like this: `{...oldObj}` or `Object.assign({}, oldObj)`
+    - Array example: using `.slice` to directly remove an item from an array
+      - instead, first create a new array like this: `[...oldArr]` or `oldArr.slice()`
+    - Object example: updating any property in the state
+      - instead, first create a new object like this: `{...oldObj}` or `Object.assign({}, oldObj)`
 
 ### CSS Magic
 1) Adding pesudo-selectors / media queries to css
-   - Can be done in standard `.css` file, but what if we want it scoped to a component (in-line styles)?
-   - Can be fixed by installing 3rd party package called [Radium](https://www.npmjs.com/package/radium)
-     - Import Radium at the top - `import Radium from 'radium';`
-     - Change export - `export default Radium(Component);`
-     - If using `@media` queries or key-frames (?), need to wrap highest level component in `<StyleRoot>` component (import from radium)
-   - Can be fixed by enabling css Modules
-     - First unlock extra settings using `npm run eject` -> Make sure to commit all work before doing this!
-     - Next edit `config/webpack.config.dev.js / .prod.js` files, changing the `/\.css$/` module
-     - Add: `modules: true` and `localIdentName: '[name]__[local]__[hash:base64:5]`, or something like that
-     - Now, import classes with `import classes from './ComponentStyles.css`
-     - Add css classes in .js with `className={classes.ClassName}` instead of `className='ClassName'` like before
-     - Useful Links:
-       - [How to Use CSS Modules with Create React App](https://medium.com/nulogy/how-to-use-css-modules-with-create-react-app-9e44bec2b5c2)
-       - [Css Modules on Github](https://github.com/css-modules/css-modules)
+    - Can be done in standard `.css` file, but what if we want it scoped to a component (in-line styles)?
+    - Can be fixed by installing 3rd party package called [Radium](https://www.npmjs.com/package/radium)
+      - Import Radium at the top - `import Radium from 'radium';`
+      - Change export - `export default Radium(Component);`
+      - If using `@media` queries or key-frames (?), need to wrap highest level component in `<StyleRoot>` component (import from radium)
+    - Can be fixed by enabling css Modules
+      - First unlock extra settings using `npm run eject` -> Make sure to commit all work before doing this!
+      - Next edit `config/webpack.config.dev.js / .prod.js` files, changing the `/\.css$/` module
+      - Add: `modules: true` and `localIdentName: '[name]__[local]__[hash:base64:5]`, or something like that
+      - Now, import classes with `import classes from './ComponentStyles.css`
+      - Add css classes in .js with `className={classes.ClassName}` instead of `className='ClassName'` like before
+      - Useful Links:
+        - [How to Use CSS Modules with Create React App](https://medium.com/nulogy/how-to-use-css-modules-with-create-react-app-9e44bec2b5c2)
+        - [Css Modules on Github](https://github.com/css-modules/css-modules)
 
 ### Other
 1) Dynamic content (functions, variables, etc) in JSX goes between {}

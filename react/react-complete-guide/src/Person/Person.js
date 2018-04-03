@@ -6,9 +6,9 @@ import './Person.css';
 const person = (props) => {
     const style = {
         // media query works w/ Radium
-        // '@media (min-width: 500px)': {
-        //     width: '450px'
-        // }
+        '@media (min-width: 500px)': {
+            width: '500px'
+        }
     };
 
     return (

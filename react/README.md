@@ -6,6 +6,7 @@
 ### Running an app
 1) 'cd' into project directory, then run 'npm start'
    - This will spin up local server, and open a new tab with the app running
+   - **Note:** Sometimes this takes a bit, so just wait (up to 45 seconds) 
 
 ### Restrictions of JSX
 1) 'className' instead of 'class' in html
@@ -39,3 +40,8 @@
      - recommended version
    - () => this.<function-name>(data)
      - THIS MAY NOT WORK ALWAYS (maybe only when scaled to large apps)
+5) Adding pesudo-selectors / media queries to css
+   - Can be done in standard `.css` file, but what if we want it scoped to a component (in-line styles)?
+   - Need to install 3rd party package called [Radium](https://www.npmjs.com/package/radium)
+     - Import Radium at the top - `import Radium from 'radium';`
+     - Change export - `export default Radium(Component);`

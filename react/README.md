@@ -29,6 +29,23 @@
    - Object example: updating any property in the state
      - instead, first create a new object like this: `{...oldObj}` or `Object.assign({}, oldObj)`
 
+### CSS Magic
+1) Adding pesudo-selectors / media queries to css
+   - Can be done in standard `.css` file, but what if we want it scoped to a component (in-line styles)?
+   - Can be fixed by installing 3rd party package called [Radium](https://www.npmjs.com/package/radium)
+     - Import Radium at the top - `import Radium from 'radium';`
+     - Change export - `export default Radium(Component);`
+     - If using `@media` queries or key-frames (?), need to wrap highest level component in `<StyleRoot>` component (import from radium)
+   - Can be fixed by enabling css Modules
+     - First unlock extra settings using `npm run eject` -> Make sure to commit all work before doing this!
+     - Next edit `config/webpack.config.dev.js / .prod.js` files, changing the `/\.css$/` module
+     - Add: `modules: true` and `localIdentName: '[name]__[local]__[hash:base64:5]`, or something like that
+     - Now, import classes with `import classes from './ComponentStyles.css`
+     - Add css classes in .js with `className={classes.ClassName}` instead of `className='ClassName'` like before
+     - Useful Links:
+       - [How to Use CSS Modules with Create React App](https://medium.com/nulogy/how-to-use-css-modules-with-create-react-app-9e44bec2b5c2)
+       - [Css Modules on Github](https://github.com/css-modules/css-modules)
+
 ### Other
 1) Dynamic content (functions, variables, etc) in JSX goes between {}
 2) props.children - refers to anything between open & closing tag of custom element / component (ex: <Person>children!</Person>)
@@ -40,9 +57,3 @@
      - recommended version
    - () => this.<function-name>(data)
      - THIS MAY NOT WORK ALWAYS (maybe only when scaled to large apps)
-5) Adding pesudo-selectors / media queries to css
-   - Can be done in standard `.css` file, but what if we want it scoped to a component (in-line styles)?
-   - Need to install 3rd party package called [Radium](https://www.npmjs.com/package/radium)
-     - Import Radium at the top - `import Radium from 'radium';`
-     - Change export - `export default Radium(Component);`
-     - If using `@media` queries or key-frames (?), need to wrap highest level component in `<StyleRoot>` component (import from radium)

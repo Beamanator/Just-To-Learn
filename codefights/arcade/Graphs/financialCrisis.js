@@ -43,7 +43,7 @@
  * @returns 
  */
 function financialCrisis(roadRegister) {
-    // Create output matrix arr from beginning, slowly add
+    // Create output matrix array from beginning, slowly add
     // to it as we loop through roadRegister
     
     // initialize output w/ empty matrices w/ size 

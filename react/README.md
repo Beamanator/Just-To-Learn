@@ -28,16 +28,40 @@
         - instead, first create a new array like this: `[...oldArr]` or `oldArr.slice()`
     - Object example: updating any property in the state
         - instead, first create a new object like this: `{...oldObj}` or `Object.assign({}, oldObj)`
-5) Create as many **Stateless** components as possible (compared to **Stateful** components)
-    - <u>Stateless</u> (a.k.a. functional*) = just a function (`const myComp = (props) => {...}`)
-        - Therefore, they can't manage `state`
-        - Stateless Components should be as clear and narrowly focused as possible (clear responsibility)
-        - Can not access lifecycle hooks
-    - <u>Stateful</u> (a.k.a. *container*) = defined with `class MyComp extends Component {...}` - can manage the application's `state`
-        - Ex: `App.js`
-        - Make Stateful components as lean as possible so they don't get confusing
-        - Can implement lifecycle hooks
-        - props come from `this.props...` here
+
+### Stateful vs Stateless components
+- Create as many **Stateless** components as possible (compared to **Stateful** components)
+- <u>Stateless</u> (a.k.a. functional*) = just a function (`const myComp = (props) => {...}`)
+    - Therefore, they can't manage `state`
+    - Stateless Components should be as clear and narrowly focused as possible (clear responsibility)
+    - Can not access lifecycle hooks
+- <u>Stateful</u> (a.k.a. *container*) = defined with `class MyComp extends Component {...}` - can manage the application's `state`
+    - Ex: `App.js`
+    - Make Stateful components as lean as possible so they don't get confusing
+    - Can implement lifecycle hooks
+    - props come from `this.props...` here
+
+### Component Lifecycles (only available in Stateful components)
+- During *Creation*:
+    - `constructor(props)`
+        - Default ES6 class
+        - Creates component & passes any props to constructer
+        - Must / should call `super(props)`
+        - Good place to initialize state
+        - NEVER cause side-effects here
+            - Ex: reaching out to web server - bad b/c may lead to re-rendering of application / state becoming unpredictable
+    - `componentWillMount()`
+        - Directly come React
+        - Update state or last minute optimizations, but is commonly not used
+    - `render()`
+        - Gives React an idea of how the DOM will look later once it gets edited
+        - Defines what JSX will get rendered for this component
+    - Render Child Components
+        - Executing process above for all child components
+    - `componentDidMount()`
+        - Tells us if this component was successfully mounted
+        - Here we can cause side-effects (reach out to web for data)
+        - DON'T update state here (triggers re-render)
 
 ### CSS Magic
 1) Adding pesudo-selectors / media queries to css

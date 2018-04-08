@@ -47,7 +47,8 @@
         - Default ES6 class
         - Creates component & passes any props to constructer
         - Must / should call `super(props)`
-        - Good place to initialize state
+            - React should show a warning if you don't include this
+        - Good place to initialize state (was necessary in old project setups, but now / with current setup, not necessary)
         - NEVER cause side-effects here
             - Ex: reaching out to web server - bad b/c may lead to re-rendering of application / state becoming unpredictable
     - `componentWillMount()`
@@ -57,7 +58,7 @@
         - Gives React an idea of how the DOM will look later once it gets edited
         - Defines what JSX will get rendered for this component
     - Render Child Components
-        - Executing process above for all child components
+        - Executing process above for all child components (& maybe siblings)
     - `componentDidMount()`
         - Tells us if this component was successfully mounted
         - Here we can cause side-effects (reach out to web for data)

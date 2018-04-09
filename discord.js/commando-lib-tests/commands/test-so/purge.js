@@ -1,7 +1,7 @@
 // https://stackoverflow.com/questions/49712202/discord-bot-how-to-make-new-class-and-new-commands-in-javascript
 const commando = require('discord.js-commando');
 
-module.exports = class DankCommand extends commando.Command {
+module.exports = class PurgeCommand extends commando.Command {
     constructor(client) {
         super(client, {
             name: 'purge',

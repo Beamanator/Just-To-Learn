@@ -62,7 +62,29 @@
     - `componentDidMount()`
         - Tells us if this component was successfully mounted
         - Here we can cause side-effects (reach out to web for data)
-        - DON'T update state here (triggers re-render)
+        - Don't update state here (triggers re-render)
+- During *Update* (triggered by Parent - by changing props):
+    - `componentWillReceiveProps(nextProps)`
+        - Here we can synchronize state with props (or later)
+        - DON'T cause side-effects (web data fetching stuff)
+    - `shouldComponentUpdate(nextProps, nextState)`
+        - props and state which triggered this update
+        - may cancel updating process!
+        - `return true` - update continues
+        - `return false` - updating stops (saves performance - no `render()` but CAN be bad if used in the wrong way)
+        - Don't cause side-effects
+    - `componentWillUpdate(nextProps, nextState)`
+        - Again may sync state to props
+        - Don't cause side-effects
+    - `render()`
+        - Renders JSX with result of updated component
+    - Update Child Component Props
+        - May trigger updates
+    - `componentDidUpdate()`
+        - Cause side-effects
+        - Don't update state (or this will trigger re-render)
+- During *Update* (triggered internally - by changing state):
+    - 
 
 ### CSS Magic
 1) Adding pesudo-selectors / media queries to css

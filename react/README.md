@@ -76,6 +76,7 @@
     - `componentWillUpdate(nextProps, nextState)`
         - Again may sync state to props
         - Don't cause side-effects
+        - If you have a *Stateless* component that receives a lot of props, but the component should only re-render if one (or a few) of those props change, it may be worth it to switch to a *Stateful* component with this lifecycle method implemented.
     - `render()`
         - Renders JSX with result of updated component
     - Update Child Component Props

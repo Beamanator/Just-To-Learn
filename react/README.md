@@ -85,7 +85,8 @@
         - Cause side-effects
         - Don't update state (or this will trigger re-render)
 - During *Update* (triggered internally - by changing state):
-    - 
+    - **Difference:** no `componentWillReceiveProps(...)` method here!
+    - All other methods / events are the same!
 
 ### CSS Magic
 1) Adding pesudo-selectors / media queries to css
@@ -124,3 +125,8 @@
       - recommended version
     - () => this.<function-name>(data)
       - THIS MAY NOT WORK ALWAYS (maybe only when scaled to large apps)
+5) `PureComponent` - imported via `import {PureComponent} from 'react';`
+    - Same as normal, except has `shouldComponentUpdate` lifecycle method build-in.
+        - This build-in method goes through all properties of `props` and `state`, and compare them to their old version and only continue updating if it detects a difference
+    - Only should be used if we know updates might not be required
+    - Not EVERYTHING should be a `PureComponent`

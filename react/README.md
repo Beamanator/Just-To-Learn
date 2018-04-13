@@ -88,6 +88,21 @@
     - **Difference:** no `componentWillReceiveProps(...)` method here!
     - All other methods / events are the same!
 
+### Some new React 16 Features
+1) Before, couldn't have adjacent elements in `render()` function without wrapping them in an element (like a `<div>`)
+    - Now (ex: in `Persons.js`), we can return an array of `<Person>` components (JSX elements).
+        - Note: In doing this, each array item needs to have a `key` property
+    - Can also use a *"Higher Order Component"*
+        
+    - These "fixes" are useful b/c sometimes you don't want to introduce another HTML element, maybe because it will destroy your styling (ex: if using Flex-Box)
+1) Higher Order Components
+    - normal compoents with one extra thing:
+        - Not representational
+        - Wrap other components to add extra functionality
+    - It can just return `props.children` without a wrapping HTML element
+        - Example: `Aux.js` file created in the `hoc` directory
+    - **Note:** With **React 16.2**, you can use a built-in component (called a *fragment*) by using empty JSX tags: `<>` and `</>`
+
 ### CSS Magic
 1) Adding pesudo-selectors / media queries to css
     - Can be done in standard `.css` file, but what if we want it scoped to a component (in-line styles)?
@@ -105,6 +120,15 @@
         - Useful Links:
             - [How to Use CSS Modules with Create React App](https://medium.com/nulogy/how-to-use-css-modules-with-create-react-app-9e44bec2b5c2)
             - [Css Modules on Github](https://github.com/css-modules/css-modules)
+
+### How React Updates the DOM
+1) `render()` is called
+    - Does NOT immediately render the JSX to the real DOM
+    - Why? Accessing the DOM is really *slow*!
+1) Compares Old Virtual DOM to Re-rendered Virtual DOM
+    - These are DOM representations in js
+    - If there ARE differences, it reaches out to the real DOM and only updates the changes needed
+    - If no updates needed, doesn't touch the real DOM.
 
 ### Handling Errors
 1) Recommended debugging tool:

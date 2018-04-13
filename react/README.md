@@ -99,8 +99,12 @@
         - Not representational
         - Wrap other components to add extra functionality
     - It can just return `props.children` without a wrapping HTML element
-        - Example: `Aux.js` file created in the `hoc` directory
-    - **Note:** With **React 16.2**, you can use a built-in component (called a *fragment*) by using empty JSX tags: `<>` and `</>`
+        - Example: `Auxiliary.js` file created in the `hoc` directory
+    - It can just add a simple css class to all elements of a component
+        - Example: `WithClass.js` or `withClass2.js`
+        - Using `withClass2.js`, don't ever edit the `WrappedComponent`!
+        - Can pass props to `WrappedComponent` with spread operator - `{...props}`! or `{...this.props}` for stateful components
+    - **Note:** With **React 16.2**, you can use a built-in component (called a *fragment*) by using empty JSX tags: `<>` and `</>` - this replaces the `Auxiliary.js` file in our class project
 
 ### CSS Magic
 1) Adding pesudo-selectors / media queries to css

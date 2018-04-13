@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 
 import classes from './Person.css';
-import WithClass from '../../../hoc/WithClass';
+// import WithClass from '../../../hoc/WithClass';
+import withClass2 from '../../../hoc/withClass2';
+import Auxiliary from '../../../hoc/Auxiliary';
 
 class Person extends Component {
     constructor(props) {
@@ -20,11 +22,11 @@ class Person extends Component {
     render() {
         console.log('[Person.js] Inside render()');
         return (
-            <WithClass classes={classes.Person}>
+            <Auxiliary>
                 <p onClick={this.props.click} >I'm {this.props.name} and I am {this.props.age} years old!</p>
                 <p>{this.props.children}</p>
                 <input type="text" onChange={this.props.changed} value={this.props.name} />
-            </WithClass>
+            </Auxiliary>
         )
         // this is technically an option with React 16, but won't look
         //  nice b/c styling was set on the wrapping <div> element
@@ -36,4 +38,4 @@ class Person extends Component {
     }
 };
 
-export default Person;
+export default withClass2(Person, classes.Person);

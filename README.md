@@ -22,6 +22,9 @@ React.js:
 4) Components & Props: https://reactjs.org/docs/components-and-props.html
 5) Listenable Events: https://reactjs.org/docs/events.html
 
+Other:
+1) A file with the name `Aux.js` will not be handled well in Windows. Don't do it!
+
 # Useful js tricks:
 
 ES7:

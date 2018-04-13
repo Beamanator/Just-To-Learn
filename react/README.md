@@ -93,7 +93,6 @@
     - Now (ex: in `Persons.js`), we can return an array of `<Person>` components (JSX elements).
         - Note: In doing this, each array item needs to have a `key` property
     - Can also use a *"Higher Order Component"*
-        
     - These "fixes" are useful b/c sometimes you don't want to introduce another HTML element, maybe because it will destroy your styling (ex: if using Flex-Box)
 1) Higher Order Components
     - normal compoents with one extra thing:
@@ -140,17 +139,18 @@
 
 ### Other
 1) Dynamic content (functions, variables, etc) in JSX goes between {}
-2) props.children - refers to anything between open & closing tag of custom element / component (ex: <Person>children!</Person>)
-3) state (reserved word)
+1) `props.children` - refers to anything between open & closing tag of custom element / component (ex: <Person>children!</Person>)
+1) state (reserved word)
     - Only available in components extending Component class
     - Try to only manipulate state in 'container' Components, which are high-level components. The smaller amount of files that change the state, the better
-4) to pass data to event handler, use either of these methods:
-    - this.<function-name>.bind(this, data)
+1) to pass data to event handler, use either of these methods:
+    - `this.<function-name>.bind(this, data)`
       - recommended version
-    - () => this.<function-name>(data)
+    - `() => this.<function-name>(data)`
       - THIS MAY NOT WORK ALWAYS (maybe only when scaled to large apps)
-5) `PureComponent` - imported via `import {PureComponent} from 'react';`
+1) `PureComponent` - imported via `import {PureComponent} from 'react';`
     - Same as normal, except has `shouldComponentUpdate` lifecycle method build-in.
         - This build-in method goes through all properties of `props` and `state`, and compare them to their old version and only continue updating if it detects a difference
     - Only should be used if we know updates might not be required
     - Not EVERYTHING should be a `PureComponent`
+1) Never name a file `Aux.js` in Windows! Won't work well with explorer or git!

@@ -136,10 +136,15 @@
 ### Handling Errors
 1) Recommended debugging tool:
     - [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi/related?hl=en) - Chrome Ext
-2) [Error Boundary](https://reactjs.org/docs/error-boundaries.html) class
+1) [Error Boundary](https://reactjs.org/docs/error-boundaries.html) class
     - handle errors with `componentDidCatch` function
     - only use when there is code that I know may fail - NOT supposed to handle random bugs / errors made by developer - code that may fail at runtime that cannot be prevented
     - only will work properly in production code, not development code
+
+### Comments about 'State'
+1) `this.setState(...)` is asynchronous
+    - If you want to update (mutate) state by accessing the current state inside this function, don't do the simple method because it's possible that `this.state.someProp` is not up to date (if `this.setState...` was called somewhere else very recently)
+        - Better syntax is to use `this.state( (prevState, props) => { return { someProp: prevState.someProp + 1}; })`
 
 ### Other
 1) Dynamic content (functions, variables, etc) in JSX goes between {}
@@ -158,3 +163,13 @@
     - Only should be used if we know updates might not be required
     - Not EVERYTHING should be a `PureComponent`
 1) Never name a file `Aux.js` in Windows! Won't work well with explorer or git!
+
+### Useful npm libraries for React projects:
+1) [radium](https://www.npmjs.com/package/radium)
+    - Scopes styles to 1 specific Component
+1) [prop-types](https://www.npmjs.com/package/prop-types)
+    - Allowes dev to check types of props
+    - `import PropTypes from 'prop-types';`
+    - Obviously, doesn't work in functional components
+    - Very useful to use when working with other people / when others may use your component
+    - npm documentation shows available types

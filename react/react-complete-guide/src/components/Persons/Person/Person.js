@@ -18,6 +18,7 @@ class Person extends Component {
 
     componentDidMount() {
         console.log('[Person.js] Inside componentDidMount()');
+        this.inputElement.focus();
     }
 
     render() {
@@ -26,7 +27,12 @@ class Person extends Component {
             <Auxiliary>
                 <p onClick={this.props.click} >I'm {this.props.name} and I am {this.props.age} years old!</p>
                 <p>{this.props.children}</p>
-                <input type="text" onChange={this.props.changed} value={this.props.name} />
+                <input
+                    ref={(elem) => { this.inputElement = elem }}
+                    type="text"
+                    onChange={this.props.changed}
+                    value={this.props.name}
+                />
             </Auxiliary>
         )
         // this is technically an option with React 16, but won't look

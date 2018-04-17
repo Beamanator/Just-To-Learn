@@ -40,6 +40,12 @@
     - Make Stateful components as lean as possible so they don't get confusing
     - Can implement lifecycle hooks
     - props come from `this.props...` here
+    - `ref` property is available in props
+        - expects a function input like this:
+        - `ref={(elem) => { this.inputElement = elem }}`
+        - => property `this.inputElement` will then be available anywhere in the class
+        - Note: this property is created at the time `render()` is run, as this is where you set this property.
+        - This is helpful for setting `.focus()` on input elements, or media playback - NOT for styling / displaying elements
 
 ### Component Lifecycles (only available in Stateful components)
 - During *Creation*:

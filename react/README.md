@@ -111,6 +111,16 @@
         - Using `withClass2.js`, don't ever edit the `WrappedComponent`!
         - Can pass props to `WrappedComponent` with spread operator - `{...props}`! or `{...this.props}` for stateful components
     - **Note:** With **React 16.2**, you can use a built-in component (called a *fragment*) by using empty JSX tags: `<>` and `</>` - this replaces the `Auxiliary.js` file in our class project
+### Some new React 16.3 Features
+1) `ref` property
+    - before, we had to use a `ref` prop set to a function, setting a variable via `this.variableName = elementWithRef`
+    - Now, in the `constructor()` we can set `this.elementRef = React.createRef();`, then in the element with the `ref` prop, just do `ref={this.elementRef}`, and use `this.elementRef.current` in the `componentDidMount()` lifecycle method, or wherever you plan to use this `ref`.
+1) Forwarded references
+    - React does not forward `ref` props through higher order components (even though we use `{...this.props}`)
+    - `React.forwardRef((props, ref) => {return <someJSX>})`
+    - Purpose = to not have to rename a ref passed to child Components
+        - Ex: passing a `ref` from `Persons.js` to `Person.js`, if we don't use `React.forwardRef(...)` in the higher order component wrapping `Person.js`, we have to pass the reference prop in `Persons.js` as something like `forwardedRef={this.lastPersonRef}`.
+    - This makes `withClass2.js` a bit more complicated looking, but allows us to pass a normal reserved `ref` prop from `Persons.js` to `Person.js` to give us the ability to `focus` an input element.
 
 ### CSS Magic
 1) Adding pesudo-selectors / media queries to css

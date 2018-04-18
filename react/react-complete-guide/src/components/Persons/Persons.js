@@ -9,6 +9,7 @@ class Persons extends PureComponent {
     }
 
     componentWillMount() {
+        // Note: usage of this function is discouraged as of React 16.3
         console.log('[Persons.js] Inside componentWillMount()');
     }
 
@@ -18,7 +19,11 @@ class Persons extends PureComponent {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log('[UPDATE Persons.js] Inside componentWillReceiveProps', nextProps);
+        // Note: usage of this function is discouraged as of React 16.3
+        console.log(
+            '[UPDATE Persons.js] Inside componentWillReceiveProps',
+            nextProps
+        );
     }
 
     // shouldComponentUpdate(nextProps, nextState) {
@@ -33,7 +38,12 @@ class Persons extends PureComponent {
     // }
 
     componentWillUpdate(nextProps, nextState) {
-        console.log('[UPDATE Persons.js] Inside componentWillUpdate', nextProps, nextState);
+        // Note: usage of this function is discouraged as of React 16.3
+        console.log(
+            '[UPDATE Persons.js] Inside componentWillUpdate',
+            nextProps,
+            nextState
+        );
     }
 
     componentDidUpdate() {

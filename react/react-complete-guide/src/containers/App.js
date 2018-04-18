@@ -4,6 +4,9 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 import WithClass from '../hoc/WithClass';
 
+// false = optional initial value
+export const AuthContext = React.createContext(false);
+
 class App extends PureComponent {
     constructor(props) {
         super(props);
@@ -16,11 +19,13 @@ class App extends PureComponent {
             ],
             otherState: 'some other value',
             showPersons: false,
-            toggleClicked: 0
+            toggleClicked: 0,
+            authenticated: false
         }
     }
 
     componentWillMount() {
+        // Note: usage of this function is discouraged as of React 16.3
         console.log('[App.js] Inside componentWillMount()');
     }
 
@@ -39,7 +44,29 @@ class App extends PureComponent {
     // }
 
     componentWillUpdate(nextProps, nextState) {
-        console.log('[UPDATE App.js] Inside componentWillUpdate', nextProps, nextState);
+        // Note: usage of this function is discouraged as of React 16.3
+        console.log(
+            '[UPDATE App.js] Inside componentWillUpdate',
+            nextProps,
+            nextState
+        );
+    }
+
+    static getDerivedStateFromProps(nextProps, prevState) {
+        console.log(
+            '[UPDATE App.js] Inside getDerivedStateFromProps',
+            nextProps,
+            prevState
+        );
+        
+        // return updated state
+        return prevState;
+    }
+
+    getSnapshotBeforeUpdate() {
+        console.log(
+            '[UPDATE App.js] Inside getSnapshotBeforeUpdate'
+        );
     }
 
     componentDidUpdate() {
@@ -101,6 +128,10 @@ class App extends PureComponent {
         });
     }
 
+    loginHandler = () => {
+        this.setState({authenticated: true});
+    }
+
     render() {
         console.log('[App.js] Inside render()');
         let persons = null;
@@ -125,8 +156,11 @@ class App extends PureComponent {
                     showPersons={this.state.showPersons}
                     persons={this.state.persons}
                     clicked={this.togglePersonsHandler}
+                    login={this.loginHandler}
                 />
-                {persons}
+                <AuthContext.Provider value={this.state.authenticated}>
+                    {persons}
+                </AuthContext.Provider>
             </WithClass>
         );
     }

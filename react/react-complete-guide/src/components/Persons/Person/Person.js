@@ -6,6 +6,8 @@ import classes from './Person.css';
 import withClass2 from '../../../hoc/withClass2';
 import Auxiliary from '../../../hoc/Auxiliary';
 
+import { AuthContext } from '../../../containers/App';
+
 class Person extends Component {
     constructor(props) {
         super(props);
@@ -14,6 +16,7 @@ class Person extends Component {
     }
 
     componentWillMount() {
+        // Note: usage of this function is discouraged as of React 16.3
         console.log('[Person.js] Inside componentWillMount()');
     }
 
@@ -32,6 +35,9 @@ class Person extends Component {
         console.log('[Person.js] Inside render()');
         return (
             <Auxiliary>
+                <AuthContext.Consumer>
+                    {auth => auth ? <p>I'm authenticated!</p> : null}
+                </AuthContext.Consumer>
                 <p onClick={this.props.click}>I'm {this.props.name} and I am {this.props.age} years old!</p>
                 <p>{this.props.children}</p>
                 <input

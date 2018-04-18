@@ -47,7 +47,7 @@
         - Note: this property is created at the time `render()` is run, as this is where you set this property.
         - This is helpful for setting `.focus()` on input elements, or media playback - NOT for styling / displaying elements
 
-### Component Lifecycles (only available in Stateful components)
+### [Component Lifecycles](https://reactjs.org/docs/state-and-lifecycle.html) (only available in Stateful components)
 - During *Creation*:
     - `constructor(props)`
         - Default ES6 class
@@ -102,7 +102,7 @@
         - Note: In doing this, each array item needs to have a `key` property
     - Can also use a *"Higher Order Component"*
     - These "fixes" are useful b/c sometimes you don't want to introduce another HTML element, maybe because it will destroy your styling (ex: if using Flex-Box)
-1) Higher Order Components
+1) [Higher Order Components](https://reactjs.org/docs/higher-order-components.html)
     - normal compoents with one extra thing:
         - Not representational
         - Wrap other components to add extra functionality
@@ -114,7 +114,7 @@
         - Can pass props to `WrappedComponent` with spread operator - `{...props}`! or `{...this.props}` for stateful components
     - **Note:** With **React 16.2**, you can use a built-in component (called a *fragment*) by using empty JSX tags: `<>` and `</>` - this replaces the `Auxiliary.js` file in our class project
 ### Some new React 16.3 Features
-1) `ref` property
+1) [`ref` property](https://reactjs.org/docs/refs-and-the-dom.html)
     - before, we had to use a `ref` prop set to a function, setting a variable via `this.variableName = elementWithRef`
     - Now, in the `constructor()` we can set `this.elementRef = React.createRef();`, then in the element with the `ref` prop, just do `ref={this.elementRef}`, and use `this.elementRef.current` in the `componentDidMount()` lifecycle method, or wherever you plan to use this `ref`.
 1) Forwarded references
@@ -211,3 +211,4 @@
     - Obviously, doesn't work in functional components
     - Very useful to use when working with other people / when others may use your component
     - npm documentation shows available types
+    - See also React docs on [Typechecking With PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html)

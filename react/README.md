@@ -58,8 +58,8 @@
         - NEVER cause side-effects here
             - Ex: reaching out to web server - bad b/c may lead to re-rendering of application / state becoming unpredictable
     - `componentWillMount()`
-        - Directly come React
         - Update state or last minute optimizations, but is commonly not used
+        - Usage discouraged as of React 16.3
     - `render()`
         - Gives React an idea of how the DOM will look later once it gets edited
         - Defines what JSX will get rendered for this component
@@ -73,6 +73,7 @@
     - `componentWillReceiveProps(nextProps)`
         - Here we can synchronize state with props (or later)
         - DON'T cause side-effects (web data fetching stuff)
+        - Usage discouraged as of React 16.3
     - `shouldComponentUpdate(nextProps, nextState)`
         - props and state which triggered this update
         - may cancel updating process!
@@ -83,6 +84,7 @@
         - Again may sync state to props
         - Don't cause side-effects
         - If you have a *Stateless* component that receives a lot of props, but the component should only re-render if one (or a few) of those props change, it may be worth it to switch to a *Stateful* component with this lifecycle method implemented.
+        - Usage discouraged as of React 16.3
     - `render()`
         - Renders JSX with result of updated component
     - Update Child Component Props
@@ -121,6 +123,26 @@
     - Purpose = to not have to rename a ref passed to child Components
         - Ex: passing a `ref` from `Persons.js` to `Person.js`, if we don't use `React.forwardRef(...)` in the higher order component wrapping `Person.js`, we have to pass the reference prop in `Persons.js` as something like `forwardedRef={this.lastPersonRef}`.
     - This makes `withClass2.js` a bit more complicated looking, but allows us to pass a normal reserved `ref` prop from `Persons.js` to `Person.js` to give us the ability to `focus` an input element.
+1) Context API (for global props)
+    - Commonly used for: Login authentication, global theming set by user. Not recommomended to use this in ALL cases, just a few.
+    - Set up context with: `export const AuthContext = React.createContext(false);` (`export` makes context available outside of file it's setup in)
+    - Next, set a Provider component wrapping other Components that need this context with: `<AuthContext.Provider>{other components}</...>`
+    - Finally, use the data in the context by doing `<AuthContext.Consumer>{ arg => /* do something with arg here */}</...>` (don't forget to `import` the `AuthContext` context in that file)
+    - Useful so we can pass context around without setting up an ugly chain of props
+1) Updated Lifecycle methods
+    - A few methods are "discouraged" because they're often used incorrectly:
+        - `componentWillMount()`
+        - `componentWillUpdate(...)`
+        - `componentWillReceiveProps(...)`
+    - New hooks:
+        - `static getDerivedStateFromProps(nextProps, prevState)`
+            - Executed whenever props are updated and give you a chance to update your state alongside the prop updates
+            - Often not needed (as state should usually be decoupled from your props), but can be needed
+            - Executed before `render()`
+        - `getSnapshotBeforeUpdate()`
+            - Gets snapshop of the DOM right before it's about to change
+            - Executed before `componentDidUpdate()`
+            - Ex usage: save current scrolling position of user, then in `componentDidUpdate()`, take user back to that scrolled position (see docs)
 
 ### CSS Magic
 1) Adding pesudo-selectors / media queries to css

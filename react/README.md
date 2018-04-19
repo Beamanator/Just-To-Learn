@@ -184,6 +184,25 @@
     - If you want to update (mutate) state by accessing the current state inside this function, don't do the simple method because it's possible that `this.state.someProp` is not up to date (if `this.setState...` was called somewhere else very recently)
         - Better syntax is to use `this.state( (prevState, props) => { return { someProp: prevState.someProp + 1}; })`
 
+### Useful npm libraries for React projects:
+1) [radium](https://www.npmjs.com/package/radium)
+    - Scopes styles to 1 specific Component
+1) [prop-types](https://www.npmjs.com/package/prop-types)
+    - Allowes dev to check types of props
+    - `import PropTypes from 'prop-types';`
+    - Obviously, doesn't work in functional components
+    - Very useful to use when working with other people / when others may use your component
+    - npm documentation shows available types
+    - See also React docs on [Typechecking With PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html)
+
+### Planning a React App
+1) Component Tree / Component Structure
+1) Application State (Data)
+    - Ex: ingredients of a burger app (what needs to render & what user needs to pay in the end)
+1) Components vs Containers
+    - Stateless (functional / dumb) vs Stateful (`class` - manage state)
+- See example app notes in `BurgerBuilderNotes.md`
+
 ### Other
 1) Dynamic content (functions, variables, etc) in JSX goes between {}
 1) `props.children` - refers to anything between open & closing tag of custom element / component (ex: <Person>children!</Person>)
@@ -201,14 +220,3 @@
     - Only should be used if we know updates might not be required
     - Not EVERYTHING should be a `PureComponent`
 1) Never name a file `Aux.js` in Windows! Won't work well with explorer or git!
-
-### Useful npm libraries for React projects:
-1) [radium](https://www.npmjs.com/package/radium)
-    - Scopes styles to 1 specific Component
-1) [prop-types](https://www.npmjs.com/package/prop-types)
-    - Allowes dev to check types of props
-    - `import PropTypes from 'prop-types';`
-    - Obviously, doesn't work in functional components
-    - Very useful to use when working with other people / when others may use your component
-    - npm documentation shows available types
-    - See also React docs on [Typechecking With PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html)

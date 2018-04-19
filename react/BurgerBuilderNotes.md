@@ -50,4 +50,7 @@
         - totalPrice (`10.43`)
         - Where to manage state? `App`? No, probably in `BurgerBuilder` app because these states only affect `BurgerBuilder` page, not the entire `App`. Therefore, `BurgerBuilder` should be Stateful.
     - PureComponent & thinking about `shouldComponentUpdate` methods, we'll think about this later, as we go. Our state is pretty simple, so we probably don't need to worry about these :)
-        
+
+### High-level project steps
+1) Create app (`create-react-app <project name>`)
+1) Enable css modules (`npm run eject` -> after committing everything in github)

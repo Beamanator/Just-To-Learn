@@ -22,7 +22,7 @@
         - Plus / Minus to edit ingredients
         - Checkout button (to buy Burger)
     - Component Tree
-        - App
+        - App (could be implemented as the Layout Component, but we'll make a new Layout component just to have a component solely focusing on the layout - maybe in the future we want to add some state to App, or conditionally change the layout - as examples)
         - Layout Component
             - Toolbar (dynamic - mobile friendly)
                 - Think about DrawerToggle
@@ -54,3 +54,9 @@
 ### High-level project steps
 1) Create app (`create-react-app <project name>`)
 1) Enable css modules (`npm run eject` -> after committing everything in github)
+1) Add some folders to project structure under `src` folder
+    - `components` will hold stateless / functional components
+    - `containers` directory will hold statefull components
+    - `hoc` will hold Higher Order Components
+    - `assets` will be used later
+1) Create shells for `App` & `Layout` components (and `Auxiliary`)

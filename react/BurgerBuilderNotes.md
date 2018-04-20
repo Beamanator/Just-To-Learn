@@ -60,3 +60,5 @@
     - `hoc` will hold Higher Order Components
     - `assets` will be used later
 1) Create shells for `App` & `Layout` components (and `Auxiliary`)
+1) Begin `BurgerBuilder` and minimal styes for `Layout`
+1) Create BurgerIngredient component w/ styling, then create Burger & hook everything up

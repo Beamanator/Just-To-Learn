@@ -5,13 +5,23 @@ import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 import classes from './Burger.css';
 
 const burger = (props) => {
-    const transformedIngredients = Object.keys(props.ingredients)
+    let transformedIngredients = Object.keys(props.ingredients)
         .map(igKey => {
             return [...Array(props.ingredients[igKey])]
                 .map((_, i) =>
                     <BurgerIngredient key={igKey + i} type={igKey} />
                 );
-        });
+        })
+        // flatten array of arrays
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
+        .reduce((accumulator, el) => {
+            return accumulator.concat(el);
+        }, []);
+
+    if (transformedIngredients.length === 0) {
+        transformedIngredients =
+            <p>Please start adding ingredients!</p>;
+    }
 
     return (
         <div className={classes.Burger}>

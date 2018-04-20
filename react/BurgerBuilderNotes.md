@@ -62,3 +62,7 @@
 1) Create shells for `App` & `Layout` components (and `Auxiliary`)
 1) Begin `BurgerBuilder` and minimal styes for `Layout`
 1) Create BurgerIngredient component w/ styling, then create Burger & hook everything up
+1) Make `BurgerIngredient`s dynamic
+1) Calculate ingredient sum dynamically, show warning when there are no ingredients!
+1) Add in burger builder controls (don't let count go < 0, disable 'less' when 0)
+1) Add price

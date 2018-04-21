@@ -67,3 +67,6 @@
 1) Add in burger builder controls (don't let count go < 0, disable 'less' when 0)
 1) Add price, then "order now" button & connect modal / backdrop
 1) work on Toolbar / side drawer / navigation
+1) Turn `Layout` into stateful component b/c it needs to control state for `Toolbar` and `SideDrawer`
+1) Consider using `prop-types` library AND `PureComponent`s.
+    - Ex: in `BurgerBuilder`, `OrderSummary` is updated when props / state change, even if `Modal` is not visible. Can be changed by implementing a lifecycle method in `Modal`.

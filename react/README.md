@@ -220,3 +220,6 @@
     - Only should be used if we know updates might not be required
     - Not EVERYTHING should be a `PureComponent`
 1) Never name a file `Aux.js` in Windows! Won't work well with explorer or git!
+1) When loading images into a component (like a Logo), don't hard-code a directory link like `'../../assets/images/logo.png'` since WebPack will group files & folders together in the production code, and the link will be broken.
+    - Instead, import image into the Component (like another Component), then using that image with `src` like this:
+    - `import logo from '../../assets/images/img.png'`, then later `<img src={logo} />`

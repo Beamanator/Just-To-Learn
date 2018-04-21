@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 import Button from '../../UI/Button/Button';
-import Auxiliary from '../../../hoc/Auxiliary';
+import Auxiliary from '../../../hoc/Auxiliary/Auxiliary';
 
 class OrderSummary extends Component {
     // Note: OrderSummary doesn't need to be a stateful component

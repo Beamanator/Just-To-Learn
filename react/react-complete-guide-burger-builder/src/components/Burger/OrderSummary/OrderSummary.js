@@ -1,39 +1,47 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 import Button from '../../UI/Button/Button';
 import Auxiliary from '../../../hoc/Auxiliary';
 
-const orderSummary = (props) => {
-    const ingredientSummary = Object.keys(props.ingredients)
+class OrderSummary extends Component {
+    // Note: OrderSummary doesn't need to be a stateful component
+    // -> can remove lifecycle methods
+    componentWillUpdate() {
+        console.log('[OrderSummary] WillUpdate');
+    }
+
+    render () {
+        const ingredientSummary = Object.keys(this.props.ingredients)
         .map(igKey => {
             return (
                 <li key={igKey}>
                     <span
                         style={{textTransform: 'capitalize'}}
-                    >{igKey}</span>: {props.ingredients[igKey]}
+                    >{igKey}</span>: {this.props.ingredients[igKey]}
                 </li>
             );
         })
 
-    return (
-        <Auxiliary>
-            <h3>Your Order</h3>
-            <p>A delicious burger with the following ingredients:</p>
-            <ul>
-                {ingredientSummary}
-            </ul>
-            <p><strong>Total Price: ${props.price}</strong></p>
-            <p>Continue to Checkout?</p>
-            <Button
-                btnType="Danger"
-                clicked={props.purchaseCanceled}
-            >CANCEL</Button>
-            <Button
-                btnType="Success"
-                clicked={props.purchaseContinued}
-            >CONTINUE</Button>
-        </Auxiliary>
-    );
+        return (
+            <Auxiliary>
+                <h3>Your Order</h3>
+                <p>A delicious burger with the following ingredients:</p>
+                <ul>
+                    {ingredientSummary}
+                </ul>
+                <p><strong>Total Price: ${this.props.price}</strong></p>
+                <p>Continue to Checkout?</p>
+                <Button
+                    btnType="Danger"
+                    clicked={this.props.purchaseCanceled}
+                >CANCEL</Button>
+                <Button
+                    btnType="Success"
+                    clicked={this.props.purchaseContinued}
+                >CONTINUE</Button>
+            </Auxiliary>
+        );
+    }
 };
 
-export default orderSummary;
+export default OrderSummary;

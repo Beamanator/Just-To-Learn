@@ -65,4 +65,5 @@
 1) Make `BurgerIngredient`s dynamic
 1) Calculate ingredient sum dynamically, show warning when there are no ingredients!
 1) Add in burger builder controls (don't let count go < 0, disable 'less' when 0)
-1) Add price
+1) Add price, then "order now" button & connect modal / backdrop
+1) work on Toolbar / side drawer / navigation

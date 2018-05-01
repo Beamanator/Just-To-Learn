@@ -5,6 +5,11 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import axios from 'axios';
 
+// set default conviguration to be used application-wide
+axios.defaults.baseURL = 'http://jsonplaceholder.typicode.com';
+axios.defaults.headers.common['Authorization'] = 'AUTH TOKEN';
+axios.defaults.headers.post['Content-Type'] = 'application/json'; // default anyway
+
 // request param is request configuration
 axios.interceptors.request.use(request => {
     console.log(request);

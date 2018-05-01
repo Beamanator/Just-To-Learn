@@ -16,10 +16,7 @@ class NewPost extends Component {
             body: this.state.content,
             author: this.state.author
         }
-        axios.post(
-            'http://jsonplaceholder.typicode.com/posts',
-            data //, config
-        )
+        axios.post('/posts', data ) //, config
         .then(response => {
             console.log(response);
             // TODO: store the data in your real server

@@ -10,7 +10,10 @@
 ### Axios Interceptors
 Useful for calling some code before any http request from anywhere in your app
 Can set globally in highest js file (`index.js`) because all axios imports use same configuration, so they'll all use this global function
-- `axios.interceptors.request.use(...)`
-    - register a new interceptor
-    - input = function that accepts a config / request
-    - ...`use(request => { ... })
+- `axios.interceptors.request...` or `axios.interceptors.response...`
+    - to register a new interceptor, call `use(...)` next
+        - params:
+        - function (success): `(request / response => { ... })`
+            - **Note**: Must `return request / response` in order for the request / response to push through. You MAY edit this in the function (like adding an authorization header)
+        - function (error): `(error => { ... })`
+            - **Note**: Must `return Promise.reject(error)` in order for the error to push through to the local `.catch` methods - in case we want to change the UI in different components for some specific errors.

@@ -22,6 +22,7 @@ class NewPost extends Component {
         )
         .then(response => {
             console.log(response);
+            // TODO: store the data in your real server
         })
     }
 

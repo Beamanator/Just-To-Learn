@@ -6,3 +6,11 @@
 
 ### Gotchas
 1. If you're sending http requests in `componentDidUpdate()`, make sure you don't cause infinite loops! If you call `this.setState(...)` it's possible to cause infinite network requests in the background, so set some state checks!
+
+### Axios Interceptors
+Useful for calling some code before any http request from anywhere in your app
+Can set globally in highest js file (`index.js`) because all axios imports use same configuration, so they'll all use this global function
+- `axios.interceptors.request.use(...)`
+    - register a new interceptor
+    - input = function that accepts a config / request
+    - ...`use(request => { ... })

@@ -14,7 +14,7 @@ class Blog extends Component {
     }
 
     componentDidMount = () => {
-        axios.get('http://jsonplaceholder.typicode.com/postssss')
+        axios.get('http://jsonplaceholder.typicode.com/posts')
         .then(response => {
             // only store 4 posts for now
             const posts = response.data.slice(0, 4);

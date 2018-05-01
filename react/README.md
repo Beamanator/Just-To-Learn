@@ -223,3 +223,4 @@
 1) When loading images into a component (like a Logo), don't hard-code a directory link like `'../../assets/images/logo.png'` since WebPack will group files & folders together in the production code, and the link will be broken.
     - Instead, import image into the Component (like another Component), then using that image with `src` like this:
     - `import logo from '../../assets/images/img.png'`, then later `<img src={logo} />`
+1) `Firebase` is has nice, simple to set up, free (for starters) database service

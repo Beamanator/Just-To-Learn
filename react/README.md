@@ -224,3 +224,4 @@
     - Instead, import image into the Component (like another Component), then using that image with `src` like this:
     - `import logo from '../../assets/images/img.png'`, then later `<img src={logo} />`
 1) `Firebase` is has nice, simple to set up, free (for starters) database service
+1) Cool css spinner / loaders can be found on this page: [css-loaders](https://projects.lukehaas.me/css-loaders/)

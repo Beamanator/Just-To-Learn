@@ -20,3 +20,7 @@ Can set globally in highest js file (`index.js`) because all axios imports use s
 
 ### Axios Instances
 - Used to set configs for pieces of your app - not global, but stored in a new file that can be imported elsewhere in your app
+
+### Integrating with Firebase
+- When using `POST` http method, send to the endpoint, followed by `.json`.
+    - Example: if sending to your `orders` location, send to `/orders.json`

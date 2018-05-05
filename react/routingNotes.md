@@ -15,6 +15,7 @@ Packages needed for react routing (not created by Facebook):
 2. `import { Route } from 'react-router-dom';`
     - Import from package
 3. `<Route />` props
-    - `path` = route after localhost:3000 -> what route starts with, NOT the exact route (unless `exact` is set)
+    - `path="/"` = route after localhost:3000 -> what route starts with, NOT the exact route (unless `exact` is set)
     - `exact` = if used, now the `path` prop is an exact path, not beginning path
-    - `render` = function to render some JSX and replace this component
+    - `render={() => <h1>Test</h1>}` = function to render some JSX and replace this component
+    - `component={Posts}` = expects reference to class or function that stores a component

@@ -13,19 +13,33 @@ const withErrorHandler = ( WrappedComponent, axios ) => {
         // setting up interceptors
         componentWillMount() {
             // clear all errors on request
-            axios.interceptors.request.use(req => {
+            this.reqInterceptor = axios.interceptors.request.use(req => {
                 this.setState({
                     error: null
                 });
                 return req;
             });
             // only use error handler from axios
-            axios.interceptors.response.use(res => res, error => {
+            this.resInterceptor = axios.interceptors.response.use(res => res, error => {
                 this.setState({
                     error: error
                 });
-
             });
+        }
+
+        // executed at the point in time when a component isn't
+        // required anymore. EX: when a page (BurgerBuilder.js) is changed,
+        // this component is not needed anymore so the interceptors can be
+        // removed / ejected
+        componentWillUnmount() {
+            console.log('Will Unmount', this.reqInterceptor, this.resInterceptor);
+            // prevent memory leaks
+            axios.interceptors.request.eject(
+                this.reqInterceptor
+            );
+            axios.interceptors.request.eject(
+                this.resInterceptor
+            );
         }
 
         errorConfirmedHandler = () => {

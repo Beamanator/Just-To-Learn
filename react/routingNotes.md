@@ -19,3 +19,9 @@ Packages needed for react routing (not created by Facebook):
     - `exact` = if used, now the `path` prop is an exact path, not beginning path
     - `render={() => <h1>Test</h1>}` = function to render some JSX and replace this component
     - `component={Posts}` = expects reference to class or function that stores a component
+4. Navigate to routes using `<Link>`
+    - `import {Link} from 'react-router-dom'`
+    - `<Link>...</Link>` props:
+        - `pathname: '/new-post'` = exact url to navigate to
+        - `hash: '#submit'` (optional) = add hashtag at end of url, to get the page to navigate there automatically
+        - `search: 'quick-submit=true` (optional) = add query params to url

@@ -11,6 +11,8 @@ class Posts extends Component {
     }
 
     componentDidMount = () => {
+        // console.log(this.props);
+
         axiosInstance.get('/posts')
         .then(response => {
             // only store 4 posts for now

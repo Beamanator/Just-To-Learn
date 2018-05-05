@@ -21,7 +21,22 @@ Packages needed for react routing (not created by Facebook):
     - `component={Posts}` = expects reference to class or function that stores a component
 4. Navigate to routes using `<Link>`
     - `import {Link} from 'react-router-dom'`
-    - `<Link>...</Link>` props:
-        - `pathname: '/new-post'` = exact url to navigate to
-        - `hash: '#submit'` (optional) = add hashtag at end of url, to get the page to navigate there automatically
-        - `search: 'quick-submit=true` (optional) = add query params to url
+    - `<Link>...</Link>` prop `to`:
+        - Can be direct string like `"/"`
+        - Can be javascript prop with these config options:
+            - `pathname: '/new-post'` = exact url to navigate to (absolute path)
+                - To make a relative path, you can use `this.props.match.url` or other means of building a dynamic path.
+            - `hash: '#submit'` (optional) = add hashtag at end of url, to get the page to navigate there automatically
+            - `search: 'quick-submit=true` (optional) = add query params to url
+
+## Props passed to components via Routing
+1. `history`
+2. `location`
+    - has notes on pathname, hash, search (from `<Link>`'s `to` prop)
+3. `match`
+    - has notes on path, url, and if url is exact match of path
+Note: If you want props to be passed into child components of the main components, there are two methods to do this:
+1. Use standard `match={...this.props.match}`, or more / less specific prop to pass
+2. Use higher order component from `'react-router-dom'` called `withRouter`
+    - `import { withRouter } from 'react-router-dom';`
+    - access the passed props from `props` or `this.props`

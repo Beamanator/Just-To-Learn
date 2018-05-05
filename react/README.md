@@ -95,6 +95,9 @@
 - During *Update* (triggered internally - by changing state):
     - **Difference:** no `componentWillReceiveProps(...)` method here!
     - All other methods / events are the same!
+- During *Removal* of component
+    - `componentWillUnmount()`
+        - Executed at the point in time when a component isn't required anymore.
 
 ### Some new React 16 Features
 1) Before, couldn't have adjacent elements in `render()` function without wrapping them in an element (like a `<div>`)

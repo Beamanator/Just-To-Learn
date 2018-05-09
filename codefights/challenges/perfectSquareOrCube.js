@@ -1,6 +1,5 @@
 /**
  * Name: Perfect Square or Cube
- * Core Arcade #: 30
  * 
  * It's your lucky day: you just landed a role on the hit TV show "The
  * Walking Dead"!

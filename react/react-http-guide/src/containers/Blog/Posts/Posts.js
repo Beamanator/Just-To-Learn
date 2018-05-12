@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axiosInstance from '../../../axios';
 
 import Post from '../../../components/Post/Post';
+import { Route } from 'react-router-dom';
+import FullPost from '../FullPost/FullPost';
 // import { Link } from 'react-router-dom';
 
 import './Posts.css';
@@ -41,8 +43,8 @@ class Posts extends Component {
         // same options as on `Link` component inside `to` prop
         // often useful for using after a given operation finished (like
         //  an http request)
-        // this.props.history.push({ pathname: '/' + id });
-        this.props.history.push( '/' + id );
+        // this.props.history.push({ pathname: '/posts/' + id });
+        this.props.history.push( '/posts/' + id );
     }
 
     render() {
@@ -51,7 +53,7 @@ class Posts extends Component {
         if (!this.state.error) {
             posts = this.state.posts.map(post => {
                 return (
-                    // <Link to={'/' + post.id} key={post.id}>
+                    // <Link to={'/posts/' + post.id} key={post.id}>
                         <Post
                             key={post.id}
                             title={post.title}
@@ -63,9 +65,12 @@ class Posts extends Component {
             });
         }
         return (
-            <section className="Posts">
-                {posts}
-            </section>
+            <div>
+                <section className="Posts">
+                    {posts}
+                </section>
+                <Route path={this.props.match.url + "/:postId"} exact component={FullPost} />
+            </div>
         );
     }
 }

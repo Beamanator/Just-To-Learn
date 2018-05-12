@@ -68,6 +68,14 @@ Packages needed for react routing (not created by Facebook):
     - don't automatically import everything, as files (`Components`) are thrown into `Bundle.js` (via webpack) and loaded immediately in your app when they're listed in a regular `import` statement
     - For example, see lecture 202, file Blog.js
 
+## Notes for dealing with routing on the server after deployment
+- By default, a server handles every request, and serves `index.html` at the root route, but if you navigate to an unknown route, it will return a 404 error without ever getting to React.
+    - Solution: Forward everything to index.html (even the unknokwn, a.k.a. 404 error routes), and have React handle them, as we learned above.
+    Development server is already always configured to do this.
+    - **Note**: You must be aware of this when hosting on your own server
+- If serving your app from `example.com/myapp` (a.k.a. not from `/` path), you have to tell React by setting the base path.
+    - Find where you use `BrowserRouter`
+        - set prop `basename="/my-app"`
 
 ## Props passed to components via Routing
 1. `history`

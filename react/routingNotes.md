@@ -5,6 +5,8 @@ Packages needed for react routing (not created by Facebook):
 1. `react-router` - for logic
 2. `react-router-dom` - for rendering to dom
 
+React routing guide: https://reacttraining.com/react-router/web/guides/philosophy
+
 **Notes from Udemy class Section 11, Lecture 178**: We will install both packages listed above, but **note** that technically only `react-router-dom` is required for web development. It wraps `react-router` and therefore uses it as a dependency. We don't need to install `react-router` on our own for it to work. You can omit this installation step, the instructur left it in there for historic reasons and because he likes to emphasize that the main package is named react-router. If you ever search for assistance, you probably want to search for "react router" - that's the name of the package.
 
 **Notes from Udemy class Section 11, Lecture 194**: Sometimes it's difficult or impossible to deal with custom, dynamic styling on the root path `'/'`. For example, if you are trying to use route parameters on the route path like `'/:postId'`, it's not easy (maybe impossible) to style a link to that url, since it also matches the home link `'/'`. It may be better to move to a route like `'/posts/:postId'`.

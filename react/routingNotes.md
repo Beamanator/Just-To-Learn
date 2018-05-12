@@ -19,7 +19,7 @@ Packages needed for react routing (not created by Facebook):
     - `exact` = if used, now the `path` prop is an exact path, not beginning path
     - `render={() => <h1>Test</h1>}` = function to render some JSX and replace this component
     - `component={Posts}` = expects reference to class or function that stores a component
-4. Navigate to routes using `<Link>`
+4. Navigate to routes using `<Link>` or `<NavLink>`
     - `import {Link} from 'react-router-dom'`
     - `<Link>...</Link>` prop `to`:
         - Can be direct string like `"/"`
@@ -28,6 +28,11 @@ Packages needed for react routing (not created by Facebook):
                 - To make a relative path, you can use `this.props.match.url` or other means of building a dynamic path.
             - `hash: '#submit'` (optional) = add hashtag at end of url, to get the page to navigate there automatically
             - `search: 'quick-submit=true` (optional) = add query params to url
+    - `import {NavLink}...`
+        - Similar to `Link` but has extra props to define styling for active link.
+        - By default, adds `class="active"` and `aria-current="true"` to html `a` tag
+        - Can customize "active class to add with `activeClassName="my-active"`
+        - Can add dynamic in-line styling with `activeStyle={{...styles}}`
 
 ## Props passed to components via Routing
 1. `history`

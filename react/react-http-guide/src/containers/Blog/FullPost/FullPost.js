@@ -11,13 +11,20 @@ class FullPost extends Component {
     componentDidMount() {
         console.log(this.props);
         // only do stuff if id is truthy
-        if (this.props.match.params.postId) {
+        this.loadData();
+    }
 
+    componentDidUpdate() {
+        this.loadData();
+    }
+
+    loadData () {
+        if (this.props.match.params.postId) {
             // only send get request if loadedPost exists & its id
             // is different from passed-in post id
             if (!this.state.loadedPost || (
                     this.state.loadedPost &&
-                    this.state.loadedPost.id !== this.props.match.params.postId
+                    this.state.loadedPost.id !== +this.props.match.params.postId
                 )) {
                 axios.get('/posts/' + this.props.match.params.postId)
                 .then(response => {

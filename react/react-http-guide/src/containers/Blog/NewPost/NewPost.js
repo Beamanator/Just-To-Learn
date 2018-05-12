@@ -26,7 +26,8 @@ class NewPost extends Component {
         .then(response => {
             console.log(response);
             // TODO: store the data in your real server
-            this.setState({ submitted: true });
+            // this.setState({ submitted: true });
+            this.props.history.replace('/posts');
         })
     }
 

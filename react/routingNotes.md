@@ -46,6 +46,28 @@ Packages needed for react routing (not created by Facebook):
     - Wrap this component around your `Route` elements, of which you only want to load one - the first component that matches the url param in its `path` prop.
     - With this, you may have to make sure your Routes are still ordered correctly - when using route parameters
 7. When working with nested routes and route parameters, you may find that a component is not getting replaced. This may be because React is not replacing a component when a url is changed, but it is changing props (like `props.match.url`) - This can be detected and handled in `componentDidUpdate` of the component linked to a changing route.
+8. Redirecting a user
+    - Can duplicate routes with different `path` props
+    - Use `Redirect` component (also from `react-router-dom`).
+        - Specify `from="..."` and `to="..."` props when inside `Switch`
+        - If you're outside a `Switch` component, can't include `from` prop. This way, can use it conditionally (as any other conditional component rendering)
+    - Use `props.history.redirect()` function (similar to using `Redirect` conditionally)
+    - **Note**: Using method 2 or 3, you will replace the top page on the history stack, so if you go back, you will not go back to the last page, but the page that navigated you there.
+9. Consider setting up Guards to control whether a user is allowed to access a page or not
+    - Conditionally render a route, or conditionally redirect a user depending on auth state, or whatever you want to do.
+10. Setting up 404 page
+    - Can use a `Route` with absolutely no `path` prop - a catch-all `Route`.
+        - This can not be used with a `Redirect` from `'/'` since they will both catch all
+11. Loading Routes Lazily
+    - **Note**: Definitely depends on webpack configuration, so this method should work when using `create-react-app` to build your app
+    - create a higher order component - function (stateless)
+        - Returns a Component (class factory)
+            - This component renders component that gets created with passed-in parameter
+    - call higher order component with anonymous function
+        - in this function, call `import(path-to-component)`
+    - don't automatically import everything, as files (`Components`) are thrown into `Bundle.js` (via webpack) and loaded immediately in your app when they're listed in a regular `import` statement
+    - For example, see lecture 202, file Blog.js
+
 
 ## Props passed to components via Routing
 1. `history`

@@ -7,6 +7,8 @@ import Posts from './Posts/Posts';
 // import NewPost from './NewPost/NewPost';
 import asyncComponent from '../../hoc/asyncComponent';
 
+import './Blog.css';
+
 const AsyncNewPost = asyncComponent(() => {
     // dynamic import syntax
     // -> parameter is only imported when the function is executed
@@ -14,8 +16,6 @@ const AsyncNewPost = asyncComponent(() => {
     //  the screen
     return import('./NewPost/NewPost');
 });
-
-import './Blog.css';
 
 class Blog extends Component {
     state = {

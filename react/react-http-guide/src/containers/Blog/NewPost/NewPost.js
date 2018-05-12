@@ -12,9 +12,10 @@ class NewPost extends Component {
         submitted: false
     }
 
-    // componentDidMount() {
-    //     console.log(this.props);
-    // }
+    componentDidMount() {
+        // if unauth => this.props.history.redirect
+        console.log(this.props);
+    }
 
     postDataHandler = () => {
         const data = {
@@ -26,6 +27,8 @@ class NewPost extends Component {
         .then(response => {
             console.log(response);
             // TODO: store the data in your real server
+
+            // options for redirecting
             // this.setState({ submitted: true });
             this.props.history.replace('/posts');
         })

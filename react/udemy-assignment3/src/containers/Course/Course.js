@@ -4,7 +4,6 @@ class Course extends Component {
 
     render () {
         const searchParams = new URLSearchParams(this.props.location.search)
-
         const title = searchParams.get('title');
 
         return (

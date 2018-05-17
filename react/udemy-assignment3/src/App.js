@@ -1,14 +1,40 @@
 import React, { Component } from 'react';
-import { Route, BrowserRouter } from 'react-router-dom';
+import { NavLink, Route, BrowserRouter } from 'react-router-dom';
 
 import Courses from './containers/Courses/Courses';
 import Users from './containers/Users/Users';
+
+import './App.css';
 
 class App extends Component {
   render () {
     return (
       <BrowserRouter>
         <div className="App">
+          <header className="Header">
+            <nav> 
+              <ul>
+                <li><NavLink to="/" exact
+                  activeClassName="my-active"
+                  activeStyle={{
+                    color: '#fa923f',
+                    textDecoration: 'underline',
+                    fontWeight: 'bold'
+                  }}>Home</NavLink></li>
+                <li><NavLink to="/courses/" exact
+                  activeClassName="my-active"
+                  activeStyle={{
+                    color: '#fa923f',
+                    textDecoration: 'underline'
+                  }}>Courses</NavLink></li>
+                <li><NavLink to={{
+                  pathname: '/users',
+                  hash: '#submit',
+                  search: '?quick-test=true'
+                }}>Users</NavLink></li>
+              </ul>
+            </nav>
+          </header>
           <ol style={{textAlign: 'left'}}>
             <li>Add Routes to load "Users" and "Courses" on different pages (by entering a URL, without Links)</li>
             <li>Add a simple navigation with two links => One leading to "Users", one leading to "Courses"</li>

@@ -14,8 +14,8 @@ class Courses extends Component {
         ]
     }
 
-    courseSelectedHandler = (id) => {
-        this.props.history.push('/courses/' + id);
+    courseSelectedHandler = (id, title) => {
+        this.props.history.push(`/courses/${id}?title=${title}`);
     }
 
     render () {
@@ -25,7 +25,8 @@ class Courses extends Component {
                     <article 
                         className="Course"
                         key={course.id}
-                        onClick={() => this.courseSelectedHandler(course.id)}
+                        onClick={() =>
+                            this.courseSelectedHandler(course.id, course.title)}
                     >
                         {course.title}
                     </article>

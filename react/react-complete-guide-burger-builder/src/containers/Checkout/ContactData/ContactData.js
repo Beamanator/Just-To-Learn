@@ -71,11 +71,18 @@ class ContactData extends Component {
             loading: true
         });
 
+        const formData = {};
+        for (let formElementIdentifier in this.state.orderForm) {
+            formData[formElementIdentifier] =
+                this.state.orderForm[formElementIdentifier].value
+        }
+
         const order = {
             ingredients: this.props.ingredients,
             // Note: in production, calculate total price on
             // server so data can't be manipulated by user
-            price: this.props.price
+            price: this.props.price,
+            orderData: formData
         };
 
         // send order to FB
@@ -126,7 +133,7 @@ class ContactData extends Component {
         }
 
         let form = (
-            <form>
+            <form onSubmit={this.orderHandler}>
                 {formElementsArray.map(formElement => (
                     <Input
                         key={formElement.id}
@@ -138,7 +145,7 @@ class ContactData extends Component {
                 ))}
                 <Button
                     btnType="Success"
-                    clicked={this.orderHandler}
+                    // clicked={this.orderHandler}
                 >ORDER</Button>
             </form>
         );

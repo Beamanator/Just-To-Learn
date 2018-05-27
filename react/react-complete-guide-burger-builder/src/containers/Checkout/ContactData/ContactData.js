@@ -86,8 +86,14 @@ class ContactData extends Component {
                         {value: 'cheapest', displayValue: 'Cheapest'}
                     ]
                 },
+                // NOTE: providing an empty value here introduces a bug
+                // where, if the user never changes the dropdown, the
+                // 'value' never actually gets set. This will get fixed
+                // in future videos, ISA.
                 value: '',
-                // no real validation needed here
+                // no real validation needed here, but include empty
+                // rules anyway
+                validation: {},
                 valid: true
             }
         },
@@ -133,7 +139,7 @@ class ContactData extends Component {
     }
 
     // returns true or false whether the value is valid or not
-    checkValidity(value, rules) {
+    checkValidity(value, rules={}) {
         let isValid = true;
 
         if (rules.required) {

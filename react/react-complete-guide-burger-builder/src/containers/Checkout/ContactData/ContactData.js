@@ -95,6 +95,27 @@ class ContactData extends Component {
         });
     }
 
+    inputChangedHandler = (event, inputIdentifier) => {
+        // NOTE: cloning the outer form object DOES NOT do a deep clone
+        // since there are multiple levels of objects! So don't JUST
+        // do this:
+        // const updatedOrderForm = {...this.state.orderForm}
+
+        const updatedOrderForm = {...this.state.orderForm};
+        const updatedFormElement = updatedOrderForm[inputIdentifier] = {
+            ...updatedOrderForm[inputIdentifier]
+        };
+        // NOTE: there's still another layer that won't be cloned deeply
+        // (the elementConfig) -> but we're not updating it so that's ok
+        // here. If you want to change it, CLONE IT TOO!
+        updatedFormElement.value = event.target.value;
+        updatedOrderForm[inputIdentifier] = updatedFormElement;
+
+        this.setState({
+            orderForm: updatedOrderForm
+        });
+    }
+
     render () {
         const formElementsArray = [];
         for (let key in this.state.orderForm) {
@@ -112,6 +133,7 @@ class ContactData extends Component {
                         elementType={formElement.config.elementType}
                         elementConfig={formElement.config.elementConfig}
                         value={formElement.config.value}
+                        changed={(event) => this.inputChangedHandler(event, formElement.id)}
                     />
                 ))}
                 <Button

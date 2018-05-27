@@ -197,6 +197,10 @@
     - Very useful to use when working with other people / when others may use your component
     - npm documentation shows available types
     - See also React docs on [Typechecking With PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html)
+1) [react-validation](https://www.npmjs.com/package/react-validation)
+    - Not tested in this course, but noted as could be useful
+1) [formsy-react package](https://github.com/christianalfoni/formsy-react)
+    - Not tested in this course, but noted as could be useful
 
 ### Planning a React App
 1) Component Tree / Component Structure
@@ -228,3 +232,8 @@
     - `import logo from '../../assets/images/img.png'`, then later `<img src={logo} />`
 1) `Firebase` is has nice, simple to set up, free (for starters) database service
 1) Cool css spinner / loaders can be found on this page: [css-loaders](https://projects.lukehaas.me/css-loaders/)
+1) Forms & Form Validation
+    - Check out [Validate.js](https://validatejs.org/)
+    - More potential validation approaches here: https://react.rocks/tag/Validation
+    - react validation package [react-validation](https://www.npmjs.com/package/react-validation)
+    - [formsy-react package](https://github.com/christianalfoni/formsy-react)

@@ -199,7 +199,7 @@
     - See also React docs on [Typechecking With PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html)
 1) [react-validation](https://www.npmjs.com/package/react-validation)
     - Not tested in this course, but noted as could be useful
-1) [formsy-react package](https://github.com/christianalfoni/formsy-react)
+1) [formsy-react package](https://github.com/formsy/formsy-react/)
     - Not tested in this course, but noted as could be useful
 
 ### Planning a React App

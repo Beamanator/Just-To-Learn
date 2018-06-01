@@ -188,21 +188,24 @@
         - Better syntax is to use `this.state( (prevState, props) => { return { someProp: prevState.someProp + 1}; })`
 
 ### Useful npm libraries for React projects:
-1) [radium](https://www.npmjs.com/package/radium)
+1. [radium](https://www.npmjs.com/package/radium)
     - Scopes styles to 1 specific Component
-1) [prop-types](https://www.npmjs.com/package/prop-types)
+2. [prop-types](https://www.npmjs.com/package/prop-types)
     - Allowes dev to check types of props
     - `import PropTypes from 'prop-types';`
     - Obviously, doesn't work in functional components
     - Very useful to use when working with other people / when others may use your component
     - npm documentation shows available types
     - See also React docs on [Typechecking With PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html)
-1) [react-validation](https://www.npmjs.com/package/react-validation)
+3. [react-validation](https://www.npmjs.com/package/react-validation)
     - Not tested in this course, but noted as could be useful
-1) [formsy-react package](https://github.com/formsy/formsy-react/)
+4. [formsy-react package](https://github.com/formsy/formsy-react/)
     - Not tested in this course, but noted as could be useful
-1) [redux](https://www.npmjs.com/package/redux)
+5. [redux](https://www.npmjs.com/package/redux)
     - See ReduxNotes.md for more!
+    - Store to manage state centrally in your app
+6. [react-redux](https://www.npmjs.com/package/react-redux)
+    - Allows you to hook up redux store to react app
 
 ### Planning a React App
 1) Component Tree / Component Structure

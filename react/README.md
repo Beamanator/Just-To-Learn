@@ -201,6 +201,8 @@
     - Not tested in this course, but noted as could be useful
 1) [formsy-react package](https://github.com/formsy/formsy-react/)
     - Not tested in this course, but noted as could be useful
+1) [redux](https://www.npmjs.com/package/redux)
+    - See ReduxNotes.md for more!
 
 ### Planning a React App
 1) Component Tree / Component Structure

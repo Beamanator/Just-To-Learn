@@ -44,3 +44,8 @@ Setup
             - maps state to props (no longer using `state` in container components)
         - which actions do i want to dispatch
             - create object that holds props which are references to dispatch functions
+
+## Comments about updating state in an Immutable way
+There is a great explanation on patterns for Objects and Arrays in Section 14, Lecture 251. He shows what *not* to do and what **TO** do for objects, arrays, nested objects, removing elements from arrays, etc. He also links to some librarys that can be used with Redux for immutable updating, like:
+- [dot-prop-immutable](https://github.com/debitoor/dot-prop-immutable)
+- [immutability-helper](https://github.com/kolodny/immutability-helper)

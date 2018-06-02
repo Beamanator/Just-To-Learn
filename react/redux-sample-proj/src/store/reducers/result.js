@@ -1,39 +1,13 @@
 // import action constants as properties
-import * as actionTypes from './actions';
+import * as actionTypes from '../actions';
 
 const initialState = {
-    counter: 0,
     results: []
 };
 
-const reducer = (state = initialState, action) => {
+const resultReducer = (state = initialState, action) => {
     // REMEMBER TO RETURN IMMUTABLY UPDATED OBJECT
     switch (action.type) {
-        case actionTypes.INCREMENT:
-            // method 1
-            const newState = Object.assign({}, state);
-            newState.counter = state.counter + 1;
-            return newState;
-        
-        case actionTypes.DECREMENT:
-            // method 2
-            return {
-                ...state,
-                counter: state.counter - 1
-            };
-
-        case actionTypes.ADD:
-            return {
-                ...state,
-                counter: state.counter + action.value
-            };
-
-        case actionTypes.SUBTRACT:
-            return {
-                ...state,
-                counter: state.counter - action.value
-            };
-        
         case actionTypes.STORE_RESULT:
             return {
                 ...state,
@@ -41,7 +15,13 @@ const reducer = (state = initialState, action) => {
                 // .concat returns NEW array
                 results: state.results.concat({
                     id: new Date(),
-                    value: state.counter
+                    value: action.result
+
+                    // can't use state.counter after splitting reducers
+                    // into their own files - not available on global
+                    // state (state.ctr.counter) AND not accessible in this
+                    // reducer. Instead, do above method
+                    // value: state.counter 
                 })
             };
 
@@ -66,4 +46,4 @@ const reducer = (state = initialState, action) => {
     return state;
 };
 
-export default reducer;
+export default resultReducer;

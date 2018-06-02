@@ -49,3 +49,10 @@ Setup
 There is a great explanation on patterns for Objects and Arrays in Section 14, Lecture 251. He shows what *not* to do and what **TO** do for objects, arrays, nested objects, removing elements from arrays, etc. He also links to some librarys that can be used with Redux for immutable updating, like:
 - [dot-prop-immutable](https://github.com/debitoor/dot-prop-immutable)
 - [immutability-helper](https://github.com/kolodny/immutability-helper)
+
+## Which types of state should be used with Redux
+| Type | Example | Use Redux? |
+|:----:|:-------:|:----------:|
+|Local UI State|Show / Hide Backdrop|*Usually* no - handled within components|
+|Persistent State|All Users, all posts, etc (usually from server side db)|*Usually* yes - but only relevant slice of data. All data is stored on server|
+|Client State|Is Authenticated? Filters set by User...|**Yes**, definitely managed by Redux (may affect multiple components / areas of application)|

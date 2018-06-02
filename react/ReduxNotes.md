@@ -56,3 +56,10 @@ There is a great explanation on patterns for Objects and Arrays in Section 14, L
 |Local UI State|Show / Hide Backdrop|*Usually* no - handled within components|
 |Persistent State|All Users, all posts, etc (usually from server side db)|*Usually* yes - but only relevant slice of data. All data is stored on server|
 |Client State|Is Authenticated? Filters set by User...|**Yes**, definitely managed by Redux (may affect multiple components / areas of application)|
+
+## Additional links (from Section 14, Lecture 257)
+- [Redux Docs](http://redux.js.org/)
+- [Core Concepts](http://redux.js.org/docs/introduction/CoreConcepts.html)
+- [Actions](http://redux.js.org/docs/basics/Actions.html)
+- [Reducers](http://redux.js.org/docs/basics/Reducers.html)
+- [Redux FAQs](http://redux.js.org/docs/FAQ.html)

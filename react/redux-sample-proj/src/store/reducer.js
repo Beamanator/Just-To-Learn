@@ -1,3 +1,6 @@
+// import action constants as properties
+import * as actionTypes from './actions';
+
 const initialState = {
     counter: 0,
     results: []
@@ -6,32 +9,32 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     // REMEMBER TO RETURN IMMUTABLY UPDATED OBJECT
     switch (action.type) {
-        case 'INCREMENT':
+        case actionTypes.INCREMENT:
             // method 1
             const newState = Object.assign({}, state);
             newState.counter = state.counter + 1;
             return newState;
         
-        case 'DECREMENT':
+        case actionTypes.DECREMENT:
             // method 2
             return {
                 ...state,
                 counter: state.counter - 1
             };
 
-        case 'ADD':
+        case actionTypes.ADD:
             return {
                 ...state,
                 counter: state.counter + action.value
             };
 
-        case 'SUBTRACT':
+        case actionTypes.SUBTRACT:
             return {
                 ...state,
                 counter: state.counter - action.value
             };
         
-        case 'STORE_RESULT':
+        case actionTypes.STORE_RESULT:
             return {
                 ...state,
                 // .push modifieds old array
@@ -42,7 +45,7 @@ const reducer = (state = initialState, action) => {
                 })
             };
 
-        case 'DELETE_RESULT':
+        case actionTypes.DELETE_RESULT:
             const id = 2;
             // method 1:
             // const newArray = [...state.results];

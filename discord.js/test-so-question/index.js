@@ -55,7 +55,8 @@ client.on('message', message => {
                 // sendSmallImg(message.channel);
                 // checkMessageType(message);
                 // getNumUserReactions(message);
-                editRichEmbedOnReaction(message);
+                // editRichEmbedOnReaction(message);
+                sendEmbedWithImageUrl(message.channel);
                 break;
             
             case '?PING':
@@ -89,6 +90,19 @@ client.on('message', message => {
         }
     }
 });
+
+// https://stackoverflow.com/questions/50675694/image-not-appearing-from-embedded-url-from-discord-js-bot
+function sendEmbedWithImageUrl(channel) {
+    const embed = new Discord.RichEmbed({
+        description: 'url?',
+        image: {
+            url: 'https://i.redd.it/33snauf3rt111.jpg'
+        }
+    });
+
+    channel.send(embed)
+    .catch(console.log);
+}
 
 // https://stackoverflow.com/questions/50668366/discord-api-embed-message-doesnt-update
 function editRichEmbedOnReaction(message) {

@@ -1,0 +1,14 @@
+{
+    "string": "this is a test string",
+    "number": 1,
+    "array": [
+        1, 2, 3
+    ],
+    
+    "object": {
+        "string": "level two string with \"quote\"",
+        "number": 2
+    },
+
+    "test1": "don't remove these: http://google.com cuz i want them!"
+}

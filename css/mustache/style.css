@@ -1,0 +1,114 @@
+/* --- Variables --- */
+:root {
+    --mustache-color: rgb(226, 164, 198);
+    --mustache-size: 180px;
+    --mustache-left: 100px;
+    --mustache-top: 0px;
+
+    /* --- position of anchor div (edit these to move!) --- */
+    --mustache-anchor-left: var(--mustache-left);
+    --mustache-anchor-top: var(--mustache-top);
+
+    /* --- position of mustache circles --- */
+    /* position of anchor for circles */
+    --mustache-cir-anchor-left: calc(var(--mustache-left) - 50px);
+    --mustache-cir-anchor-top: calc(var(--mustache-top) + 240px);
+
+    /* offset left circle from anchor */
+    --mustache-cir-L-left: calc(var(--mustache-cir-anchor-left) + 100px);
+    --mustache-cir-L-top: calc(var(--mustache-cir-anchor-top) + 0px);
+    
+    /* add spacing between circles */
+    --mustache-cir-R-left: calc(var(--mustache-cir-L-left) + 150px);
+    --mustache-cir-R-top: calc(var(--mustache-cir-L-top) + 0px);
+
+    /* --- position of mustache hairs --- */
+    /* position of anchor for hairs */
+    --mustache-hair-anchor-left: calc(var(--mustache-left) - 70px);
+    --mustache-hair-anchor-top: calc(var(--mustache-top) + 120px);
+
+    /* offset left hairs from anchor */
+    --mustache-hair-L-left: calc(var(--mustache-hair-anchor-left) + 0px);
+    --mustache-hair-L-top: calc(var(--mustache-hair-anchor-top) + 0px);
+    
+    /* add spacing between hairs */
+    --mustache-hair-R-left: calc(var(--mustache-hair-L-left) + 360px);
+    --mustache-hair-R-top: calc(var(--mustache-hair-L-top) + 0px);
+}
+
+body {
+    background-color: black;
+}
+
+/* --- Main mustache circles --- */
+.mustache {
+    width: var(--mustache-size);
+    height: var(--mustache-size);
+    left: var(--mustache-anchor-left);
+    top: var(--mustache-anchor-top);
+    
+    border-radius: 50%;
+    position: absolute;
+    color: var(--mustache-color);
+    /* remove prop or color white to hide original div circle */
+    /* background-color: rgb(90, 90, 90); */
+
+    /* box-shadow: xOff, yOff, spread, blur, color */
+    box-shadow:
+        /* left side */
+        var(--mustache-cir-L-left) var(--mustache-cir-L-top)
+        0 0 var(--mustache-color),
+        /* right side */
+        var(--mustache-cir-R-left) var(--mustache-cir-R-top)
+        0 0 var(--mustache-color);
+}
+
+/* --- Main mustache hairs --- */
+.mustache::before {
+    /* need to set content to empty string for pseudo-element to show up */
+    content: ""; 
+    position: absolute;
+
+    left: var(--mustache-hair-L-left);
+    top: var(--mustache-hair-L-top);
+
+    width: 210px;
+    height: 120px;
+    border-bottom: solid 180px var(--mustache-color);
+    /* border-radius: top-left, top-right, bottom-right, bottom-left */
+    border-radius: 0 0 0 100%;
+    transform: rotate(-40deg);
+    transform-origin: right 210px;
+}
+.mustache::after {
+    /* need to set content to empty string for pseudo-element to show up */
+    content: ""; 
+    position: absolute;
+
+    left: var(--mustache-hair-R-left);
+    top: var(--mustache-hair-R-top);
+    
+    width: 210px;
+    height: 120px;
+    border-bottom: solid 180px var(--mustache-color);
+    /* border-radius: top-left, top-right, bottom-right, bottom-left */
+    border-radius: 0 0 100% 0;
+    transform: rotate(40deg);
+    transform-origin: left 210px;
+}
+.mustache:before {
+    animation: shakeLeft 1s ease-in-out infinite;
+}
+.mustache:after {
+    animation: shakeRight 1s ease-in-out infinite;
+}
+@keyframes shakeLeft {
+    0% { transform: rotate(-50deg); }
+    50% { transform: rotate(-30deg); }
+    100% { transform: rotate(-50deg); }
+}
+@keyframes shakeRight {
+    0% { transform: rotate(50deg); }
+    50% { transform: rotate(30deg); }
+    100% { transform: rotate(50deg); }
+}

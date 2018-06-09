@@ -85,6 +85,9 @@ There is a great explanation on patterns for Objects and Arrays in Section 14, L
 |Persistent State|All Users, all posts, etc (usually from server side db)|*Usually* yes - but only relevant slice of data. All data is stored on server|
 |Client State|Is Authenticated? Filters set by User...|**Yes**, definitely managed by Redux (may affect multiple components / areas of application)|
 
+## Other comments
+Some people use an alternate folder structure for the store (actions & reducers) for bigger projects. Often you have one action & one reducer for a specific container, so you can create a subfolder (`store`) inside each container. Up to you, anything should work. There are lots of opinions out there.
+
 ## Additional links (from Section 14, Lecture 257)
 - [Redux Docs](http://redux.js.org/)
 - [Core Concepts](http://redux.js.org/docs/introduction/CoreConcepts.html)

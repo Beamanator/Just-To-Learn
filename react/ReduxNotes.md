@@ -17,6 +17,9 @@ useful for having a clearly defined process of how your state changes
         - payload = data to be passed to action
         - Note: can be any property name on the object, as you like
     - Ex: add ingredient, or remove ingredient
+2. Action Creators
+    - Help with async code, but *can* be used for async OR sync code.
+    - Helps clean up file calling dispatches a bit - not much
 2. Reducer(s)
     - Can have multiple, but end up with one main reducer which is connected to the store in the end.
     - checks `type` of action, and runs some code for that type

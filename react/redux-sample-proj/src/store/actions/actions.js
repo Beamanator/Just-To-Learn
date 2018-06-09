@@ -19,30 +19,30 @@ export const decrement = (config) => {
     };
 };
 
-export const add = (config) => {
+export const add = (value) => {
     return {
         type: ADD,
-        ...config
+        value: value
     };
 };
 
-export const subtract = (config) => {
+export const subtract = (value) => {
     return {
         type: SUBTRACT,
-        ...config
+        value: value
     };
 };
 
-export const storeResult = (config) => {
+export const storeResult = (res) => {
     return {
         type: STORE_RESULT,
-        ...config
+        result: res
     };
 };
 
-export const deleteResult = (config) => {
+export const deleteResult = (resElId) => {
     return {
         type: DELETE_RESULT,
-        ...config
+        resultElId: resElId
     };
 };

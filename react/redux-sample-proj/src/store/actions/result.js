@@ -10,10 +10,12 @@ export const saveResult = (res) => {
 export const storeResult = (res) => {
     // simulate async - reach out to server, for example
     // thunk makes dispatch available
-    return (dispatch) => {
+    return (dispatch, getState) => {
         setTimeout(() => {
             // dispatching storeResult again would cause infinite loop,
             //  so need a new action (saveResult)
+            const oldCounter = getState().ctr.counter;
+            console.log(oldCounter);
             dispatch(saveResult(res));
         }, 2000);
     };

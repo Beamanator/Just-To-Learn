@@ -51,6 +51,8 @@ useful for having a clearly defined process of how your state changes
 1. Action Creators
     - Can run async code
     - Shouldn't prepare the state update too much
+    - **Note**: can access old code w/ 2nd param. Params are `dispatch` then `getState` which can be called to get the old / current state.
+        - the old state data can also be sent to the action creator via the Component dispatching the action which leads to the creator.
 2. Reducer
     - Pure, sync code only
     - Core redux concept: reducers update the state

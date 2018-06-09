@@ -206,6 +206,8 @@
     - Store to manage state centrally in your app
 6. [react-redux](https://www.npmjs.com/package/react-redux)
     - Allows you to hook up redux store to react app
+7. [redux-thunk](https://www.npmjs.com/package/redux-thunk)
+    - Allows you to do async middlware code
 
 ### Planning a React App
 1) Component Tree / Component Structure

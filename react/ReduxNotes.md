@@ -43,6 +43,9 @@ useful for having a clearly defined process of how your state changes
     - set up in `index.js`
         - Function (param `store`) returns function (param `next` - like in `express.js`) which returns a function (param `action`).
         - Inner function expects a call to `next(action)`, and the result of this to be returned.
+    - special middleware for adding async code in redux
+        - [redux-thunk](https://github.com/reduxjs/redux-thunk)
+        - this middleware blocks initial sync action, then dispatches a new action in the future, which runs sync
 
 ## React-Redux package
 Helps us inject the redux store into the react apps

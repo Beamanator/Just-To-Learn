@@ -216,29 +216,34 @@
 - See example app notes in `BurgerBuilderNotes.md`
 
 ### Other
-1) Dynamic content (functions, variables, etc) in JSX goes between {}
-1) `props.children` - refers to anything between open & closing tag of custom element / component (ex: <Person>children!</Person>)
-1) state (reserved word)
+1. Dynamic content (functions, variables, etc) in JSX goes between {}
+1. `props.children` - refers to anything between open & closing tag of custom element / component (ex: <Person>children!</Person>)
+1. state (reserved word)
     - Only available in components extending Component class
     - Try to only manipulate state in 'container' Components, which are high-level components. The smaller amount of files that change the state, the better
-1) to pass data to event handler, use either of these methods:
+1. to pass data to event handler, use either of these methods:
     - `this.<function-name>.bind(this, data)`
       - recommended version
     - `() => this.<function-name>(data)`
       - THIS MAY NOT WORK ALWAYS (maybe only when scaled to large apps)
-1) `PureComponent` - imported via `import {PureComponent} from 'react';`
+1. `PureComponent` - imported via `import {PureComponent} from 'react';`
     - Same as normal, except has `shouldComponentUpdate` lifecycle method build-in.
         - This build-in method goes through all properties of `props` and `state`, and compare them to their old version and only continue updating if it detects a difference
     - Only should be used if we know updates might not be required
     - Not EVERYTHING should be a `PureComponent`
-1) Never name a file `Aux.js` in Windows! Won't work well with explorer or git!
-1) When loading images into a component (like a Logo), don't hard-code a directory link like `'../../assets/images/logo.png'` since WebPack will group files & folders together in the production code, and the link will be broken.
+1. Never name a file `Aux.js` in Windows! Won't work well with explorer or git!
+1. When loading images into a component (like a Logo), don't hard-code a directory link like `'../../assets/images/logo.png'` since WebPack will group files & folders together in the production code, and the link will be broken.
     - Instead, import image into the Component (like another Component), then using that image with `src` like this:
     - `import logo from '../../assets/images/img.png'`, then later `<img src={logo} />`
-1) `Firebase` is has nice, simple to set up, free (for starters) database service
-1) Cool css spinner / loaders can be found on this page: [css-loaders](https://projects.lukehaas.me/css-loaders/)
-1) Forms & Form Validation
+1. `Firebase` is has nice, simple to set up, free (for starters) database service
+1. Cool css spinner / loaders can be found on this page: [css-loaders](https://projects.lukehaas.me/css-loaders/)
+1. Forms & Form Validation
     - Check out [Validate.js](https://validatejs.org/)
     - More potential validation approaches here: https://react.rocks/tag/Validation
     - react validation package [react-validation](https://www.npmjs.com/package/react-validation)
     - [formsy-react package](https://github.com/christianalfoni/formsy-react)
+1. Useful Chrome Extensions for React apps:
+    - React Developer Tools
+        - View components and props in chrome dev tools
+    - Recux DevTools
+        - View store, actions, state, etc. and go to previous states.

@@ -8,6 +8,7 @@ useful for having a clearly defined process of how your state changes
 ## Main building blocks of redux
 1. Actions
     - Dispatched from js code, from within React Component
+        - handled within reducer
     - pre-defined information package 
     - MUST have `type` property
         - convention is to put the type in all uppercase
@@ -24,11 +25,21 @@ useful for having a clearly defined process of how your state changes
     - SYNCRONOUS FNs ONLY (no async)
     - Updated state gets stored in central store
         - **MAKE SURE YOU UPDATE STATE IN AN IMMUTABLE WAY**
+    - return updated state
 3. Central store
     - stores entire application state
 4. Subscription
     - Triggers call subscriptions when state changes in the store
     - Component can subscribe to subscriptions
+5. Middleware
+    - `import { applyMiddleware } from 'redux'`
+    - sits between actions and reducers
+    - run some code without actually stopping the reducer from running. Examples:
+        - Logging something to console
+        - async code
+    - set up in `index.js`
+        - Function (param `store`) returns function (param `next` - like in `express.js`) which returns a function (param `action`).
+        - Inner function expects a call to `next(action)`, and the result of this to be returned.
 
 ## React-Redux package
 Helps us inject the redux store into the react apps

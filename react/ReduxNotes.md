@@ -47,6 +47,15 @@ useful for having a clearly defined process of how your state changes
         - [redux-thunk](https://github.com/reduxjs/redux-thunk)
         - this middleware blocks initial sync action, then dispatches a new action in the future, which runs sync
 
+## Where to put data-transforming logic?
+1. Action Creators
+    - Can run async code
+    - Shouldn't prepare the state update too much
+2. Reducer
+    - Pure, sync code only
+    - Core redux concept: reducers update the state
+In the end, this is up to you as a developer. but always stay consistent. Max prefers reducers since they are used to update the state. Again, getting data from a server may require a bit of tweaking, but he prefers putting the main data transormation in the reducer(s).
+
 ## React-Redux package
 Helps us inject the redux store into the react apps
 Setup

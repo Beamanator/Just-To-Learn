@@ -22,7 +22,7 @@ useful for having a clearly defined process of how your state changes
     - checks `type` of action, and runs some code for that type
     - pure function
         - receives action and old state, spits out updated state
-    - SYNCRONOUS FNs ONLY (no async)
+    - **SYNCRONOUS FNs ONLY (no async calls)**
     - Updated state gets stored in central store
         - **MAKE SURE YOU UPDATE STATE IN AN IMMUTABLE WAY**
     - return updated state

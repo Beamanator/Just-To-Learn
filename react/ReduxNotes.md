@@ -88,9 +88,12 @@ There is a great explanation on patterns for Objects and Arrays in Section 14, L
 ## Other comments
 Some people use an alternate folder structure for the store (actions & reducers) for bigger projects. Often you have one action & one reducer for a specific container, so you can create a subfolder (`store`) inside each container. Up to you, anything should work. There are lots of opinions out there.
 
-## Additional links (from Section 14, Lecture 257)
+## Additional links (from Section 14, Lecture 257 & Section 16, Lecture 283)
 - [Redux Docs](http://redux.js.org/)
 - [Core Concepts](http://redux.js.org/docs/introduction/CoreConcepts.html)
 - [Actions](http://redux.js.org/docs/basics/Actions.html)
 - [Reducers](http://redux.js.org/docs/basics/Reducers.html)
 - [Redux FAQs](http://redux.js.org/docs/FAQ.html)
+- [Middleware](https://redux.js.org/advanced/middleware)
+- [Async Actions](https://redux.js.org/advanced/async-actions)
+- Redux Thunk (link above & in `README.md`)

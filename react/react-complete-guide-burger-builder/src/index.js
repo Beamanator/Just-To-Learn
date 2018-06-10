@@ -10,7 +10,11 @@ import reducer from './store/reducer';
 
 import './index.css';
 
-const store = createStore(reducer);
+// need extra window param for the redux extension
+const store = createStore(
+    reducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 const app = (
     <Provider store={store}>

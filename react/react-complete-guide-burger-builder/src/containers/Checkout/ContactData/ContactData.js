@@ -123,20 +123,7 @@ class ContactData extends Component {
         };
 
         // send order to FB
-        axios.post('/orders.json', order)
-        .then(response => {
-            // console.log(response);
-            this.setState({
-                loading: false // hide spinner
-            });
-            this.props.history.push('/');
-        })
-        .catch(error => {
-            // console.log(error);
-            this.setState({
-                loading: false // hide spinner
-            });
-        });
+        
     }
 
     // returns true or false whether the value is valid or not

@@ -12,3 +12,7 @@
         - stored in some kind of Local Storage
     4. SPA sends Token to server when requesting protected resource
         - like editing profile page
+
+## Using Firebase Auth
+- URLs for posting data (sign in with email / password, sign in... etc), visit the [Firebase Auth REST API](https://firebase.google.com/docs/reference/rest/auth/#section-sign-in-email-password) page.
+- For common error codes, visit the same page above (Firebase Auth REST API).

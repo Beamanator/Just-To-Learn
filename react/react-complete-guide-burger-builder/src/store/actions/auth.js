@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import * as actionTypes from './actionTypes';
 
 // used to set loading state, maybe add a spinner
@@ -25,5 +27,21 @@ export const auth = (email, password) => {
     return dispatch => {
         // ... authenticate user
         dispatch(authStart());
+
+        const authData = {
+            email: email,
+            password: password,
+            returnSecureToken: true
+        };
+        axios.post('https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyDiiAjpdPkryEXyFao1rNoFysM-f_Ondvg',
+            authData
+        ).then(res => {
+            console.log(res);
+            dispatch(authSuccess(res.data));
+        })
+        .catch(err => {
+            console.log(err);
+            dispatch(authFail(err));
+        });
     };
 };

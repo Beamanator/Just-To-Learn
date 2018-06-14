@@ -16,3 +16,31 @@
 ## Using Firebase Auth
 - URLs for posting data (sign in with email / password, sign in... etc), visit the [Firebase Auth REST API](https://firebase.google.com/docs/reference/rest/auth/#section-sign-in-email-password) page.
 - For common error codes, visit the same page above (Firebase Auth REST API).
+
+## Firebase Database Rules
+To give everyone access to everything, just do:
+```
+{
+    "rules": {
+        ".read": "true",
+        ".write": "true"
+    }
+}
+```
+To limit access to authenicated users, use `"auth != null"`
+To apply auth rules to `orders` node, do this:
+```
+{
+    "rules": {
+        "ingredients": {
+            ".read": "true",
+            ".write": "true"
+        },
+        
+        "orders": {
+            ".read": "auth != null",
+            ".write": "auth != null"
+        }
+    }
+}
+```

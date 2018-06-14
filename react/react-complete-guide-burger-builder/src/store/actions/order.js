@@ -22,12 +22,12 @@ export const purchaseBurgerStart = () => {
     };
 };
 
-export const purchaseBurger = (orderData) => {
+export const purchaseBurger = (orderData, token) => {
     return dispatch => {
         // run at very beginning
         dispatch(purchaseBurgerStart());
 
-        axios.post('/orders.json', orderData)
+        axios.post('/orders.json?auth=' + token, orderData)
         .then(response => {
             console.log(response.data)
             dispatch(purchaseBurgerSuccess(response.data.name, orderData));
@@ -64,12 +64,14 @@ export const fetchOrdersStart = () => {
     };
 };
 
-export const fetchOrders = () => {
+// Note: can get token via 2nd inner param (dispatch, getState) instead
+// of passing on
+export const fetchOrders = (token) => {
     return dispatch => {
         // load spinner as preparation
         dispatch(fetchOrdersStart());
 
-        axios.get('/orders.json')
+        axios.get('/orders.json?auth=' + token)
         .then(res => {
             const fetchedOrders = [];
             for (let key in res.data) {

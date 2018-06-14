@@ -44,3 +44,9 @@ To apply auth rules to `orders` node, do this:
     }
 }
 ```
+
+## Persisting state across sessions (in Local Storage)
+- Save data in local storage by using `localStorage.setItem('<key>', <value>)`.
+    - For example, in our app we used `localStorage.setItem('token', response.data.idToken)`
+- Get data from local storage with `localStorage.getItem('<key>')`
+- Remove data from local storage with `localStorage.removeItem('<key>')`

@@ -1,4 +1,7 @@
 ## How Authentication works in SPAs (Single Page Applications)
+- Some useful links:
+    - [SPA Authentication in general](https://stormpath.com/blog/token-auth-spa)
+    - [Firebase auth REST API](https://firebase.google.com/docs/reference/rest/auth/)
 - Components
     - Application (SPA)
     - Server (Stateless, RESTful API)

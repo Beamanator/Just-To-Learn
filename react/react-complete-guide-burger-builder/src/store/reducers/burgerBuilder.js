@@ -5,7 +5,8 @@ const initialState = {
     // TODO: get initial state from firebase
     ingredients: null,
     totalPrice: 4,
-    error: false
+    error: false,
+    building: false // true if we are currently building
 };
 
 const INGREDIENT_PRICES = {
@@ -23,7 +24,8 @@ const addIngredient = (state, action) => {
     const updatedState = {
         ingredients: updatedIngredients,
         totalPrice: state.totalPrice +
-            INGREDIENT_PRICES[action.ingredientName]
+            INGREDIENT_PRICES[action.ingredientName],
+        building: true 
     };
     return updateObject(state, updatedState);
 };
@@ -36,7 +38,8 @@ const removeIngredient = (state, action) => {
     const updatedStateR = {
         ingredients: updatedIngredients,
         totalPrice: state.totalPrice -
-            INGREDIENT_PRICES[action.ingredientName]
+            INGREDIENT_PRICES[action.ingredientName],
+        building: true
     };
     return updateObject(state, updatedStateR);
 }
@@ -52,7 +55,8 @@ const setIngredients = (state, action) => {
             meat: action.ingredients.meat
         },
         totalPrice: initialState.totalPrice,
-        error: false
+        error: false,
+        building: false
     });
 };
 

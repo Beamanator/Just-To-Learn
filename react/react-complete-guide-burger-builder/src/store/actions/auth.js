@@ -66,7 +66,7 @@ export const auth = (email, password, isSignup) => {
             );
             localStorage.setItem('token', res.data.idToken);
             localStorage.setItem('expirationDate', expirationDate);
-            localStorage.setItem('userId', response.data.localId);
+            localStorage.setItem('userId', res.data.localId);
             
             dispatch(authSuccess(
                 res.data.idToken,
@@ -105,10 +105,10 @@ export const authCheckState = () => {
                 
                 // expires in the future, so log in!
                 dispatch(authSuccess(token, userId));
-                dispatch(checkAuthTimeout(
-                    expirationDate.getSeconds() -
-                    new Date().getSeconds()
-                ));
+                dispatch(checkAuthTimeout((
+                    expirationDate.getTime() -
+                    new Date().getTime()
+                ) / 1000));
             } else {
                 // expired, so logout
                 dispatch(logout());

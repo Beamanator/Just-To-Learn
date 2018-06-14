@@ -50,3 +50,6 @@ To apply auth rules to `orders` node, do this:
     - For example, in our app we used `localStorage.setItem('token', response.data.idToken)`
 - Get data from local storage with `localStorage.getItem('<key>')`
 - Remove data from local storage with `localStorage.removeItem('<key>')`
+
+## Firebase Refresh Token
+This token can be used to re-authenticate users, even after a token has expired. It's relatively safe to store this in local storage, as local storage can only be accessed by others using cross-site scripting attacks, which is very difficult in React (according to the lectures). However, the refresh token never expires, so it is slightly less secure than just letting the user login every so often.

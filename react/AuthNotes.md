@@ -44,6 +44,21 @@ To apply auth rules to `orders` node, do this:
     }
 }
 ```
+To be able to filter data (based off of `userId`, for example), need to adjust rules to make certain fields indexable so Firebase can search through it. To make the `orders` node searchable / filterable by the `userId` property, add `".indexOn": ["userId"]`, like this:
+```
+{
+    "rules": {
+        ...
+        
+        "orders": {
+            ".read": "auth != null",
+            ".write": "auth != null",
+            ".indexOn": ["userId"]
+        }
+    }
+}
+```
+As you can probably see, it's possible to add multiple properties to be index, just add them to the array!
 
 ## Persisting state across sessions (in Local Storage)
 - Save data in local storage by using `localStorage.setItem('<key>', <value>)`.

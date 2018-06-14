@@ -66,12 +66,13 @@ export const fetchOrdersStart = () => {
 
 // Note: can get token via 2nd inner param (dispatch, getState) instead
 // of passing on
-export const fetchOrders = (token) => {
+export const fetchOrders = (token, userId) => {
     return dispatch => {
         // load spinner as preparation
         dispatch(fetchOrdersStart());
 
-        axios.get('/orders.json?auth=' + token)
+        const queryParams = `?auth=${token}&orderBy="userId"&equalTo="${userId}"`;
+        axios.get('/orders.json' + queryParams)
         .then(res => {
             const fetchedOrders = [];
             for (let key in res.data) {

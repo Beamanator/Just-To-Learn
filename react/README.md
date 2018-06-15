@@ -249,3 +249,4 @@
         - View components and props in chrome dev tools
     - Redux DevTools
         - View store, actions, state, etc. and go to previous states.
+        - see more in ReduxNotes.md

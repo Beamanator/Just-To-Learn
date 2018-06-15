@@ -5,11 +5,7 @@ import Auxiliary from '../../../hoc/Auxiliary/Auxiliary';
 
 class OrderSummary extends Component {
     // Note: OrderSummary doesn't need to be a stateful component
-    // -> can remove lifecycle methods
-    componentWillUpdate() {
-        console.log('[OrderSummary] WillUpdate');
-    }
-
+    // -> removed lifecycle methods
     render () {
         const ingredientSummary = Object.keys(this.props.ingredients)
         .map(igKey => {

@@ -247,5 +247,5 @@
 1. Useful Chrome Extensions for React apps:
     - React Developer Tools
         - View components and props in chrome dev tools
-    - Recux DevTools
+    - Redux DevTools
         - View store, actions, state, etc. and go to previous states.

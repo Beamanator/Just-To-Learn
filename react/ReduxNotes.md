@@ -79,6 +79,10 @@ There is a great explanation on patterns for Objects and Arrays in Section 14, L
 - [dot-prop-immutable](https://github.com/debitoor/dot-prop-immutable)
 - [immutability-helper](https://github.com/kolodny/immutability-helper)
 
+## Viewing redux store in chrome dev tools
+Using extension Redux DevTools, you can view your redux store in Chrome's developer tools WHILE developing! Here you can see actions, state, you can fast forward or go to a previous state / action.
+**Note**: It's probably best to hide this while in production, so make sure you look at the burger builder's index.js file's use of environment variables (while using create-react-app) to hide the redux store in production.
+
 ## Which types of state should be used with Redux
 | Type | Example | Use Redux? |
 |:----:|:-------:|:----------:|

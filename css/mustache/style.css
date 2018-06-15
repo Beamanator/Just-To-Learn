@@ -74,7 +74,7 @@ body {
 
     width: 210px;
     height: 120px;
-    border-bottom: solid 180px var(--mustache-color);
+    border-bottom: solid var(--mustache-size) var(--mustache-color);
     /* border-radius: top-left, top-right, bottom-right, bottom-left */
     border-radius: 0 0 0 100%;
     transform: rotate(-40deg);
@@ -90,7 +90,7 @@ body {
     
     width: 210px;
     height: 120px;
-    border-bottom: solid 180px var(--mustache-color);
+    border-bottom: solid var(--mustache-size) var(--mustache-color);
     /* border-radius: top-left, top-right, bottom-right, bottom-left */
     border-radius: 0 0 100% 0;
     transform: rotate(40deg);

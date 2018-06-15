@@ -1,5 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
-import { updatedObject, updateObject } from '../utils';
+import { updateObject } from '../../shared/utils';
 
 const initialState = {
     // TODO: get initial state from firebase

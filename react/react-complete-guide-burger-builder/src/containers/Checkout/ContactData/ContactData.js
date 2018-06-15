@@ -7,6 +7,7 @@ import Input from '../../../components/UI/Input/Input';
 import axios from '../../../axios-orders';
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
 import * as actions from '../../../store/actions/index';
+import { updateObject } from '../../../shared/utils';
 
 import classes from './ContactData.css';
 
@@ -50,7 +51,8 @@ class ContactData extends Component {
                 validation: {
                     required: true,
                     minLength: 5,
-                    maxLength: 5
+                    maxLength: 5,
+                    isNumeric: true
                 },
                 valid: false,
                 touched: false
@@ -76,7 +78,8 @@ class ContactData extends Component {
                 },
                 value: '',
                 validation: {
-                    required: true
+                    required: true,
+                    isEmail: true
                 },
                 valid: false,
                 touched: false
@@ -157,22 +160,19 @@ class ContactData extends Component {
         // NOTE: cloning the outer form object DOES NOT do a deep clone
         // since there are multiple levels of objects! So don't JUST
         // do this:
-        // const updatedOrderForm = {...this.state.orderForm}
+        
+        const updatedFormElement = updateObject(this.state.orderForm[inputIdentifier], {
+            value: event.target.value,
+            valid: this.checkValidity(
+                event.target.value,
+                this.state.orderForm[inputIdentifier].validation
+            ),
+            touched: true
+        });
 
-        const updatedOrderForm = {...this.state.orderForm};
-        const updatedFormElement = updatedOrderForm[inputIdentifier] = {
-            ...updatedOrderForm[inputIdentifier]
-        };
-        // NOTE: there's still another layer that won't be cloned deeply
-        // (the elementConfig) -> but we're not updating it so that's ok
-        // here. If you want to change it, CLONE IT TOO!
-        updatedFormElement.value = event.target.value;
-        updatedFormElement.valid = this.checkValidity(
-            updatedFormElement.value,
-            updatedFormElement.validation
-        );
-        updatedFormElement.touched = true;
-        updatedOrderForm[inputIdentifier] = updatedFormElement;
+        const updatedOrderForm = updateObject(this.state.orderForm, {
+            [inputIdentifier]: updatedFormElement
+        })
 
         let formIsValid = true;
         for(let inputIdentifier in updatedOrderForm) {

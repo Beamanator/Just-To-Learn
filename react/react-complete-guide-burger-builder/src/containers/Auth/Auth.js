@@ -8,7 +8,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 
 import classes from './Auth.css';
 import * as actions from '../../store/actions/index';
-import { updateObject } from '../../shared/utils';
+import { updateObject, checkValidity } from '../../shared/utils';
 
 class Auth extends Component {
     // state will be local, so don't handle in Redux
@@ -46,35 +46,6 @@ class Auth extends Component {
         isSignup: true
     }
 
-    // returns true or false whether the value is valid or not
-    checkValidity (value, rules={}) {
-        let isValid = true;
-
-        if (rules.required) {
-            isValid = value.trim() !== '' && isValid;
-        }
-
-        if (rules.minLength) {
-            isValid = value.length >= rules.minLength && isValid;
-        }
-
-        if (rules.maxLength) {
-            isValid = value.length <= rules.maxLength && isValid;
-        }
-
-        if (rules.isEmail) {
-            const pattern = /[a-z0-9]+(\.[a-z0-9])*@[a-z0-9]+(\.[a-z])+/i;
-            isValid = pattern.test(value) && isValid;
-        }
-
-        if (rules.isNumeric) {
-            const pattern = /^\d+$/;
-            isValid = pattern.test(value) && isValid;
-        }
-
-        return isValid;
-    }
-
     componentDidMount() {
         if (!this.props.buildingBurger && this.props.authRedirectPath !== '/') {
             this.props.onSetAuthRedirectPath('/');
@@ -85,7 +56,7 @@ class Auth extends Component {
         const updatedControls = updateObject( this.state.controls, {
             [controlName]: updateObject( this.state.controls[controlName], {
                 value: event.target.value,
-                valid: this.checkValidity(event.target.value,
+                valid: checkValidity(event.target.value,
                     this.state.controls[controlName].validation),
                 touched: true
             })

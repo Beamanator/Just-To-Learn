@@ -33,6 +33,7 @@ const store = createStore(rootReducer, composeEnhancers(
     applyMiddleware(thunk)
 ));
 
+// set basename property in BrowserRouter if desired
 const app = (
     <Provider store={store}>
         <BrowserRouter>

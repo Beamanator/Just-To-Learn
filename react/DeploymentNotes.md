@@ -10,6 +10,8 @@
 3. Server must **ALWAYS** serve `index.html` (even in 404 cases)
     - all routes are handled in react app :)
 4. Upload Build Artifacts (from 2nd step) to *static* Server
-    - Awss3, Github Pages, Firebase = all static servers
+    - AWS s3, Github Pages, Firebase = all static servers
+        - Github Pages: https://www.youtube.com/watch?v=7yA7BGos2KQ
     - build artifacts folder, not entire project
-    - stored in `/build` folter when using create-react-app
+    - stored in `/build` folder when using create-react-app
+        - **Note** `/build` folder appears in same directory as your project

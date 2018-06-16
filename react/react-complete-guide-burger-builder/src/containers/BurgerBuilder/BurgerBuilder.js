@@ -12,6 +12,7 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import axios from '../../axios-orders';
 import * as actions from '../../store/actions/index';
 
+// export ONLY so tests can test the component and strip out redux
 export class BurgerBuilder extends Component {
     // remember, can also initialize inside constructor()
     state = {

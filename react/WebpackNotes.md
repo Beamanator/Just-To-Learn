@@ -1,5 +1,5 @@
 ## Notes about WebPack lectures
-Important: When installing Webpack (we'll do that in one of the next lectures), run npm install --save-dev webpack@3  because the latest version (version 4) has a slightly different syntax. 
+Important: When installing Webpack (we'll do that in one of the next lectures), run `npm install --save-dev webpack@3` because the latest version (version 4) has a slightly different syntax. 
 
 So for the same config & code as shown in the videos to work for you, you need version 3.
 
@@ -21,3 +21,22 @@ Webpack is more than just a bundler, but its main function is bundling multiple 
 4. plugins
     - do things to the output bundled files (global transformations)
     - Ex: uglify
+
+## Create your own Webpack workflow
+- Basic Workflow Requirements
+    - Compile next-gen javascript features to current-gen
+    - Handle JSX
+    - CSS Autoprefixing (simple css rules, get automatic prefixing)
+    - Support image imports
+        - as we did in create-react-app
+    - Optimize code
+        - shrink code to as small as possible
+- in practice
+    - `npm init` into folder
+    - `npm install --save-dev <packages>`
+        - `--save-dev` saves modules as development dependencies, which is typically for build workflow stuff, not for running application code.
+        - install `webpack@3`
+            - v3 because that's the version taught in the lectures. v4 is a bit different.
+            - the build tool itself
+        - install `webpack-dev-server`
+            - install server locally on our machine

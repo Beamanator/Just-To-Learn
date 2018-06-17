@@ -1,0 +1,8 @@
+# node package content
+node_modules
+
+# mac-specific folder
+.DS_Store
+
+# build project gets stored here
+/dist

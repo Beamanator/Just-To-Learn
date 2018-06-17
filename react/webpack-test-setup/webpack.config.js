@@ -18,6 +18,9 @@ module.exports = {
         // convention is bundle.js (only affects javascript)
         filename: 'bundle.js',
 
+        // support lazy loading:
+        chunkFilename: '[id].js',
+
         // root folder - for webpack to know where files should be put
         publicPath: ''
     },

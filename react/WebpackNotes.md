@@ -8,6 +8,10 @@ If you want to update to Webpack 4.x, the following migration guide should help:
 ## What is WebPack?
 Webpack is more than just a bundler, but its main function is bundling multiple js, css, images into joint files & optimized images. for more details, see next section.
 
+## Resources
+- [Webpack docs](https://webpack.js.org/concepts/)
+- [Babel](https://babeljs.io/)
+
 ## How it works (behind the scenes)
 1. entry point
     - root js app which mounts the app to the DOM. Dependency tree / graph starts from this root file.

@@ -47,3 +47,8 @@ Webpack is more than just a bundler, but its main function is bundling multiple 
             - in `"scripts"`...
                 - add `"start": "webpack-dev-server"` - the name of the package that will spin up the development server. This won't work out of the box, it needs to be configured.
                 - config via a `webpack.config.js` file using node's `module.exports = {}` syntax
+        - setting up `webpack.config.js`
+            - see notes in `webpack-test-setup/webpack.config.js` for details
+            - `babel` can be configured with a file `.babelrc`, in the root directory
+                - in the config file, add `"presets": ["env","react"]` which were added to the webpack config (see notes in the webpack config js file)
+                    - the config next to `env` is where you specify which browsers your app will target - `"> 1%"` is greater than 1% of market share, then the next values are added with "or" statements

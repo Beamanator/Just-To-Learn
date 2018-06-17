@@ -52,3 +52,4 @@ Webpack is more than just a bundler, but its main function is bundling multiple 
             - `babel` can be configured with a file `.babelrc`, in the root directory
                 - in the config file, add `"presets": ["env","react"]` which were added to the webpack config (see notes in the webpack config js file)
                     - the config next to `env` is where you specify which browsers your app will target - `"> 1%"` is greater than 1% of market share, then the next values are added with "or" statements
+            - css config is also in the file

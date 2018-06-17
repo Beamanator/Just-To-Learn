@@ -1,5 +1,6 @@
 // default node module
 const path = require('path');
+const autoprefixer = require('autoprefixer');
 
 module.exports = {
     // define sourcemaps webpack should generate (if any).
@@ -45,6 +46,46 @@ module.exports = {
 
                 // exclude certain patterns (like node_modules)
                 exclude: /node_modules/
+            },
+            {
+                test: /\.css$/,
+                exclude: /node_modules/,
+
+                // to set up loader with config, use 'use'
+                // 'css-loader' pkg tell webpack what to do with .css imports
+                // 'style-loader' pkg extracts css code from files & injects at top of html file
+                use: [
+                    // note: must go in this order - goes from bottom to top!
+                    // -> we need css loader before style loader
+                    { loader: 'style-loader' },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            // tell css-loader we run 1 loader before this
+                            importLoaders: 1,
+                            // enable css modules
+                            modules: true,
+                            // local identifier of css class names
+                            // local = module / component name
+                            localIdentName: '[name]__[local]__[hash:base64:5]'
+                        }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            ident: 'postcss',
+                            plugins: () => [
+                                autoprefixer({
+                                    browsers: [
+                                        // also seen in .babelrc
+                                        "> 1%",
+                                        "last 2 versions"
+                                    ]
+                                })
+                            ]
+                        }
+                    }
+                ]
             }
         ]
     }

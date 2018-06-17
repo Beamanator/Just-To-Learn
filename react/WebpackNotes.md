@@ -40,3 +40,10 @@ Webpack is more than just a bundler, but its main function is bundling multiple 
             - the build tool itself
         - install `webpack-dev-server`
             - install server locally on our machine
+    - create basic React app, plus install basic react dependencies
+        - `react`, `react-dom`, `react-router-dom`
+    - set up basic webpack config
+        - in `package.json`...
+            - in `"scripts"`...
+                - add `"start": "webpack-dev-server"` - the name of the package that will spin up the development server. This won't work out of the box, it needs to be configured.
+                - config via a `webpack.config.js` file using node's `module.exports = {}` syntax

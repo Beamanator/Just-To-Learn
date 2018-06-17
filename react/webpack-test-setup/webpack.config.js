@@ -86,7 +86,20 @@ module.exports = {
                         }
                     }
                 ]
+            },
+            {
+                // pngs, jpg, jpeg, gif
+                test: /\.(png|jpe?g|gif)$/,
+
+                // 'url-loader' pkg can convert images into base64 to inline css
+                // -> if above specified file type, just copies file and adds link in css
+                // 'file-loader' pkg copies file and gives link to it
+                // add config to query params
+                // limit = under this size (in bytes), files are converted and in-lined
+                // name = otherwise, where files are put (name = filename, ext = extension)
+                loader: 'url-loader?limit=8000000&name=images/[name].[ext]'
             }
+            // can add more rules for fonts, as an example
         ]
     }
 };

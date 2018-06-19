@@ -10,12 +10,20 @@
     top: 30%;
     left: 25%;
     width: 50%;
+    /* animate all css properties over time */
+    transition: all 0.3s ease-out;
 }
 
 .ModalOpen {
-    display: block;
+    /* Note: display prop can't be animated */
+    /* display: block; */
+    opacity: 1;
+    /* 0 = default position */
+    transform: translateY(0);
 }
 
 .ModalClosed {
-    display: none;
+    opacity: 0;
+    /* move up 100% */
+    transform: translateY(-100%);
 }

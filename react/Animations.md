@@ -1,0 +1,1 @@
+Look at `animations-sample` project for examples :)

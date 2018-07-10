@@ -61,9 +61,9 @@ In the end, this is up to you as a developer. but always stay consistent. Max pr
 ## React-Redux package
 Helps us inject the redux store into the react apps
 Setup
-1. `import { Provider } from 'react-redux'`
+1. `import { Provider } from 'react-redux'` - in `index.js`
 2. Wrap `<App />` component with `Provider` component
-3. `import { connect } ...`
+3. `import { connect } ...` anywhere you need access to redux store
     - hoc (ish) used on the Component export
     - `connect(config)(ComponentToWrap);`
     - config:

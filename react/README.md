@@ -155,10 +155,11 @@
         - Change export - `export default Radium(Component);`
         - If using `@media` queries or key-frames (?), need to wrap highest level component in `<StyleRoot>` component (import from radium)
     - Can be fixed by enabling css Modules
-        - First unlock extra settings using `npm run eject` -> Make sure to commit all work before doing this!
+        - First unlock extra settings using `npm run eject` -> Make sure to commit all work in github before doing this!
             - **NOTE:** This can not be undone! Make sure you know what you're doing!
-        - Next edit `config/webpack.config.dev.js / .prod.js` files, changing the `/\.css$/` module
-        - Add: `modules: true` and `localIdentName: '[name]__[local]__[hash:base64:5]`, or something like that
+        - Next edit `config/webpack.config.dev.js / .prod.js` files, changing the `/\.css$/` module, under the loader called `css-loader`.
+        - Add: `modules: true` and `localIdentName: '[name]__[local]__[hash:base64:5]`, or something similar
+        - At this point, restart your development server for changes to take effect
         - Now, import classes with `import classes from './ComponentStyles.css`
         - Add css classes in .js with `className={classes.ClassName}` instead of `className='ClassName'` like before
         - Useful Links:

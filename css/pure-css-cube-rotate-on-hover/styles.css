@@ -1,0 +1,125 @@
+:root {
+    --color-background: #ddd;
+    --color-shadow: rgba(0,0,0,0.3);
+
+    /* ========= color schemes ========== */
+    /* original, facebook color */
+    /* --color-dark: #3B5998;     --color-light: #fff; */
+    
+    /* FDI colors */
+    --color-dark: rgb(0, 0, 0); --color-light: rgb(219, 217, 54);
+}
+html,body {
+    background-color: var(--color-background);
+}
+#dice_wrapper {
+    -webkit-perspective:0px;
+            perspective:0px;
+    width:200px;
+    height:200px;
+    position:absolute;
+    /* center the square on the page */
+    -webkit-transform:translate(-50%,-50%);
+        -ms-transform:translate(-50%,-50%);
+            transform:translate(-50%,-50%);
+    top:50%;
+    left:50%;
+    cursor:pointer;
+    box-shadow:0 10px 30px 2px var(--color-shadow);
+}
+#dice {
+    -webkit-transform-origin:50% 50%;
+        -ms-transform-origin:50% 50%;
+            transform-origin:50% 50%;
+}
+#dice,#dice div {
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+    -webkit-transition: -webkit-transform .2s ease-in-out;
+            transition: transform .2s ease-in-out;
+}
+#dice div span{
+    /* center the span inside containing divs */
+    -webkit-transform:translate(-50%,-50%);
+        -ms-transform:translate(-50%,-50%);
+            transform:translate(-50%,-50%);
+    position:absolute;
+    top:50%;
+    left:50%;
+    /* set size of area to draw the letter */
+    height:70%;
+    width:50%;
+    border: 0;
+    /* important for making the letter!*/
+    overflow: hidden;
+}
+/* ============ Making the lower-case 'f' ============ */
+/* #dice div span:before{
+    content: " ";
+    position: absolute;
+    margin-left: 2rem;
+    border: 2.2em solid #ffffff;
+    height: 100%;
+    width: 100%;
+    border-radius: 2.2rem;
+}
+#dice div span:after{
+    content: " ";
+    position: absolute;
+    height: 2.2em;
+    width: 100%;
+    top:43%;
+    background-color:#ffffff;
+} */
+/* ============ end -> lower-case 'f' ============ */
+/* ============ Making the upper-case 'F' ============ */
+/* added by me :) */
+#dice div span:before { /* - main left side and top side of 'F' */
+    content: " ";
+    position: absolute;
+    /* margin-left: 2rem; */
+    border: 2.2em solid var(--color-light);
+    height: 100%;
+    width: 100%;
+    border-radius: 1.2rem;
+}
+#dice div span:after { /* - horizontal piece of 'F' */
+    content: " ";
+    position: absolute;
+    height: 2em;
+    width: 67%;
+    top:45%;
+    background-color: var(--color-light);
+}
+/* ============ end -> upper-case 'F' ============ */
+#front {
+    background-color: var(--color-dark);
+}
+/* initialize rotation of #TOP element */
+#top {
+    background-color: var(--color-light);
+    -webkit-transform:translate(0,-100%) rotateX(90deg);
+            transform:translate(0,-100%) rotateX(90deg);
+    -webkit-transform-origin:bottom center;
+        -ms-transform-origin:bottom center;
+            transform-origin:bottom center;
+}
+/* set colors of letter in #TOP element */
+#dice #top span:before{
+    border: 2.2em solid var(--color-dark);
+}
+#dice #top span:after{
+    background-color: var(--color-dark);
+}
+/* do the actual rotation */
+#dice_wrapper:hover #dice {
+    -webkit-transform: translate(0,50%) rotateX(-90deg);
+            transform: translate(0,50%) rotateX(-90deg);
+}

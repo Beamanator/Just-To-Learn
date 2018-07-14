@@ -5,7 +5,7 @@
     /* ========= color schemes ========== */
     /* original, facebook color */
     /* --color-dark: #3B5998;     --color-light: #fff; */
-    
+
     /* FDI colors */
     --color-dark: rgb(0, 0, 0); --color-light: rgb(219, 217, 54);
 }
@@ -65,7 +65,7 @@ html,body {
     content: " ";
     position: absolute;
     margin-left: 2rem;
-    border: 2.2em solid #ffffff;
+    border: 2.2em solid var(--color-light);
     height: 100%;
     width: 100%;
     border-radius: 2.2rem;
@@ -76,29 +76,56 @@ html,body {
     height: 2.2em;
     width: 100%;
     top:43%;
-    background-color:#ffffff;
+    background-color: var(--color-light);
 } */
 /* ============ end -> lower-case 'f' ============ */
+
 /* ============ Making the upper-case 'F' ============ */
 /* added by me :) */
-#dice div span:before { /* - main left side and top side of 'F' */
+/* #dice div span:before {
     content: " ";
     position: absolute;
-    /* margin-left: 2rem; */
     border: 2.2em solid var(--color-light);
     height: 100%;
     width: 100%;
     border-radius: 1.2rem;
 }
-#dice div span:after { /* - horizontal piece of 'F' */
+#dice div span:after {
     content: " ";
     position: absolute;
     height: 2em;
     width: 67%;
     top:45%;
     background-color: var(--color-light);
-}
+} */
 /* ============ end -> upper-case 'F' ============ */
+
+/* ============ Making the upper-case 'H' ============ */
+/* added by me :) */
+#dice div span:before {
+    content: " ";
+    position: absolute;
+    border-left: 1.8em solid var(--color-light);
+    border-right: 1.6em solid var(--color-light);
+    height: 100%;
+    width: 46%;
+}
+#dice div span:after {
+    content: " ";
+    position: absolute;
+    height: 1.8em;
+    width: 62%;
+    top:38%;
+    background-color: var(--color-light);
+}
+/* ============ end -> upper-case 'H' ============ */
+#dice #top span:before{
+    border-color: var(--color-dark);
+}
+#dice #top span:after{
+    background-color: var(--color-dark);
+    border-color: var(--color-light);
+}
 #front {
     background-color: var(--color-dark);
 }
@@ -110,13 +137,6 @@ html,body {
     -webkit-transform-origin:bottom center;
         -ms-transform-origin:bottom center;
             transform-origin:bottom center;
-}
-/* set colors of letter in #TOP element */
-#dice #top span:before{
-    border: 2.2em solid var(--color-dark);
-}
-#dice #top span:after{
-    background-color: var(--color-dark);
 }
 /* do the actual rotation */
 #dice_wrapper:hover #dice {

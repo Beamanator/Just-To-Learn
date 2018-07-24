@@ -56,8 +56,19 @@ Github repo: https://github.com/StephenGrider/ReactNativeReduxCasts
         - DONE! Now to start your app, cd into your react-native app and type `react-native run-android`
         - **Note**: If you're still running into errors such as `Could not determine java version from '10.0.2'`, try upgrading Gradle when you open your project - when prompted with `Android Gradle plugin update recommended`, click `Update`. I also had to install Build Tools 27.
         - **Note 2**: To get to the development menu in the app, press `Ctrl + M`. Also to refresh the app, double-tap `R`
+        - **Note 3**: Potentially useful troubleshooting article: https://rallycoding.com/blog/troubleshooting-react-native-startup/
 
 1. Install ESLint depending on code editor (optional, but recommended)
+    - Includes instructions for atom & Sublime, but i'm using vscode
+    - VsCode
+        - Install eslint package globally - `npm install -g eslint`
+        - Install `eslint` extension
+        - Install ruleset eslint will actually use
+            - `npm install --save-dev eslint-config-rallycoding`
+            - Sometimes you may get an error here - try running `npm install` once, then going back to installing this package
+        - Make new file in project directory called `.eslintrc`
+            - tell `eslint` we want to use the `rallycoding` ruleset with `{"extends": "rallycoding"}`
+
 1. Generate a React Native project
 1. Get coding
 

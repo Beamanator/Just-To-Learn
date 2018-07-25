@@ -71,6 +71,10 @@ Github repo: https://github.com/StephenGrider/ReactNativeReduxCasts
 
 1. Generate a React Native project
 1. Get coding
+    - difference between `react` and `react-native` libraries
+        - `React`: Knows how a component should behave, knows how to take a bunch of components and make them work together
+        - `React Native`: Knows how to take the output from a component and place it on the screen, provides default, primitive core components (image, `<Text>`)
+
 
 ## Notes from Youtube Video:
 Animation systems (modules) inside React Native (ep 5)

@@ -74,6 +74,12 @@ Github repo: https://github.com/StephenGrider/ReactNativeReduxCasts
     - difference between `react` and `react-native` libraries
         - `React`: Knows how a component should behave, knows how to take a bunch of components and make them work together
         - `React Native`: Knows how to take the output from a component and place it on the screen, provides default, primitive core components (image, `<Text>`)
+    - before actually 'getting coding', plan out the components you will use, and try to make lots of reusable ones.
+    - `Text` component is used to basic text
+        - useful props: `style` for styling (like css styles)
+    - `View` component is a component for styling `Text` or other components inside
+        - makes positioning easier
+        - useful props:
 
 
 ## Notes from Youtube Video:

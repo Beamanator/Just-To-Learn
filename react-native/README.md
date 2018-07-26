@@ -79,7 +79,15 @@ Github repo: https://github.com/StephenGrider/ReactNativeReduxCasts
         - useful props: `style` for styling (like css styles)
     - `View` component is a component for styling `Text` or other components inside
         - makes positioning easier
-        - useful props:
+        - useful props: `style` for styling
+    - `Flex Box` is used for positioning to container elements in react-native!
+        - `justifyContent` - aligns content in vertical direction (except in 1 case)
+            - `'flex-end'` - pushes text to bottom, `'center'` - center (vertically), `'flex-start'` - top of the container (basic default behavior).
+        - `alignItems` - position in horizontal direction
+            - `'flex-end'` - far right hand side, `'center'` - center, `'flex-start'` - left side of container (default)
+        - adding shadows to components
+            - ios: `shadowColor`, `shadowOpacity`, `shadowOffset`
+            - android: `elevation`, plus always include `backgroundColor`
 
 
 ## Notes from Youtube Video:

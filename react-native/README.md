@@ -19,7 +19,12 @@ Github repo: https://github.com/StephenGrider/ReactNativeReduxCasts
                 - for use with android studio emulator, different than use with `expo`.
             - create new project with `react-native init <project-name>`
             - Note: react-native > v0.55.4 is buggy, and having lots of problems when running `react-native init`. To fix, run with old version - `react-native init <project-name> --version react-native@0.55.4`
-                - see SO question: https://stackoverflow.com/questions/51178688/error-creating-new-react-native-project
+                - see SO question which pointed out the issue: https://stackoverflow.com/questions/51178688/error-creating-new-react-native-project
+                - probably happened b/c react-native just upgraded to v0.56
+        - **Starting your app**
+        - open Android Studio
+            - Open existing project
+                - open `/android` folder in Android Studio. This folder was created when running `react-native init`. 
 1. Install ESLint depending on code editor (optional, but recommended)
 1. Generate a React Native project
 1. Get coding

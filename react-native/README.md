@@ -80,6 +80,7 @@ Github repo: https://github.com/StephenGrider/ReactNativeReduxCasts
     - `View` component is a component for styling `Text` or other components inside
         - makes positioning easier
         - useful props: `style` for styling
+        - also can be used to group sibling components - like Fragment
     - `Flex Box` is used for positioning to container elements in react-native!
         - `justifyContent` - aligns content in vertical direction (except in 1 case)
             - `'flex-end'` - pushes text to bottom, `'center'` - center (vertically), `'flex-start'` - top of the container (basic default behavior).
@@ -88,6 +89,13 @@ Github repo: https://github.com/StephenGrider/ReactNativeReduxCasts
         - adding shadows to components
             - ios: `shadowColor`, `shadowOpacity`, `shadowOffset`
             - android: `elevation`, plus always include `backgroundColor`
+    - making http requests
+    - Lifecycle methods
+        - `componentWIllMount()` - executed as soon as the component gets rendered to the screen. according to this class, this is a great place to run any http requests
+    - remote js debugging
+        - Get to debug menu (android = Ctrl + 'M')
+        - If you see an error on the emulator "Unable to connect with remote debugger" try some solutions from stack overflow: https://stackoverflow.com/questions/40898934/unable-to-connect-with-remote-debugger
+        - Open developer tools (chrome?)
 
 
 ## Notes from Youtube Video:

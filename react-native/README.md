@@ -75,20 +75,22 @@ Github repo: https://github.com/StephenGrider/ReactNativeReduxCasts
         - `React`: Knows how a component should behave, knows how to take a bunch of components and make them work together
         - `React Native`: Knows how to take the output from a component and place it on the screen, provides default, primitive core components (image, `<Text>`)
     - before actually 'getting coding', plan out the components you will use, and try to make lots of reusable ones.
-    - `Text` component is used to basic text
-        - useful props: `style` for styling (like css styles)
-    - `View` component is a component for styling `Text` or other components inside
-        - makes positioning easier
-        - useful props: `style` for styling
-        - also can be used to group sibling components - like Fragment
+    - Primitive components that come directly from `react-native`:
+        - `Text` component is used to basic text
+            - useful props: `style` for styling (like css styles)
+        - `View` component is a component for styling `Text` or other components inside
+            - makes positioning easier
+            - useful props: `style` for styling
+            - also can be used to group sibling components - like Fragment
+        - `Image` component is used for images
+            - needs `source` prop (like HTML `src`), with object with `uri` property. Example: `{uri: https://i.imgur.com/...}`
+            - works similar to HTML tag, but don't forget to tell image tag exactly how big it should be! Doesn't automatically fill available space
     - `Flex Box` is used for positioning to container elements in react-native!
-        - `justifyContent` - aligns content in vertical direction (except in 1 case)
-            - `'flex-end'` - pushes text to bottom, `'center'` - center (vertically), `'flex-start'` - top of the container (basic default behavior).
-        - `alignItems` - position in horizontal direction
+        - `justifyContent` - aligns content in **vertical direction** (except in 1 case - if you use `flexDirection`)
+            - `'flex-end'` - pushes text to bottom, `'center'` - center (vertically), `'flex-start'` - top of the container (basic default behavior), `'space-between'` - maximize space between elements, `'space-around'` - similar to 'space-between' but also adds spacing above first and below last element.
+        - `alignItems` - position in **horizontal direction**
             - `'flex-end'` - far right hand side, `'center'` - center, `'flex-start'` - left side of container (default)
-        - adding shadows to components
-            - ios: `shadowColor`, `shadowOpacity`, `shadowOffset`
-            - android: `elevation`, plus always include `backgroundColor`
+        - `flexDirection` - row (horizontal) or column (vertical) (determines where `justifyContent` applies)
     - making http requests
     - Lifecycle methods
         - `componentWIllMount()` - executed as soon as the component gets rendered to the screen. according to this class, this is a great place to run any http requests

@@ -96,6 +96,8 @@ Github repo: https://github.com/StephenGrider/ReactNativeReduxCasts
         - Get to debug menu (android = Ctrl + 'M')
         - If you see an error on the emulator "Unable to connect with remote debugger" try some solutions from stack overflow: https://stackoverflow.com/questions/40898934/unable-to-connect-with-remote-debugger
         - Open developer tools (chrome?)
+    - http requests
+        - if having trouble with axios, consult this: https://www.udemy.com/the-complete-react-native-and-redux-course/learn/v4/questions/1924782
 
 
 ## Notes from Youtube Video:

@@ -2,7 +2,8 @@
 
 ## Notes from Udemy Course (The Complete React Native and Redux Course)
 Github repo: https://github.com/StephenGrider/ReactNativeReduxCasts
-### Getting Started
+
+### Getting Started - Section 1 - 9. Setup + Albums App
 1. Install dependencies per operating system (lots of setup here)
     - Different on each operating system
     - Windows (Android)
@@ -70,7 +71,7 @@ Github repo: https://github.com/StephenGrider/ReactNativeReduxCasts
             - tell `eslint` we want to use the `rallycoding` ruleset with `{"extends": "rallycoding"}`
 
 1. Generate a React Native project
-1. Get coding
+1. Get coding (App - album list)
     - difference between `react` and `react-native` libraries
         - `React`: Knows how a component should behave, knows how to take a bunch of components and make them work together
         - `React Native`: Knows how to take the output from a component and place it on the screen, provides default, primitive core components (image, `<Text>`)
@@ -107,6 +108,18 @@ Github repo: https://github.com/StephenGrider/ReactNativeReduxCasts
         - always add this style to your *root* element:
             - `Flex: 1` - says "please expand component to fill entire content area of the device
             - **Note**: may not be necessary in android dev
+    - `Buttons` in the [documentation](https://facebook.github.io/react-native/) are under `Touchable<Something...>` like [TouchableOpacity](https://facebook.github.io/react-native/docs/touchableopacity)
+        - to handle a user press / click, add prop `onPress: {<function>}`
+    - [Linking](https://facebook.github.io/react-native/docs/linking) to other mobile apps
+        - `import { Linking } from 'react-native'`
+        - `Linking.openURL(<url>)`
+        - This can be passed into a `Touchable<something>` like this: `onPress={() => Linking.openURL(<url>)}`
+    - App Wrapup
+        - This app should work in IOS and Android
+        - Components used: View, Text, Image, TouchableOpacity, Linking
+        - Learned about flexbox sizing / positioning
+
+### App 2 - Auth app
 
 
 ## Notes from Youtube Video:

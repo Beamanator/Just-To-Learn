@@ -85,6 +85,7 @@ Github repo: https://github.com/StephenGrider/ReactNativeReduxCasts
         - `Image` component is used for images
             - needs `source` prop (like HTML `src`), with object with `uri` property. Example: `{uri: https://i.imgur.com/...}`
             - works similar to HTML tag, but don't forget to tell image tag exactly how big it should be! Doesn't automatically fill available space
+            - **Note**: If, for example, you want an Image to span the entire width of its container, use styles `flex: 1, width: null`. Also set a `height` to whatever you want the height to be.
     - `Flex Box` is used for positioning to container elements in react-native!
         - `justifyContent` - aligns content in **vertical direction** (except in 1 case - if you use `flexDirection`)
             - `'flex-end'` - pushes text to bottom, `'center'` - center (vertically), `'flex-start'` - top of the container (basic default behavior), `'space-between'` - maximize space between elements, `'space-around'` - similar to 'space-between' but also adds spacing above first and below last element.
@@ -100,6 +101,12 @@ Github repo: https://github.com/StephenGrider/ReactNativeReduxCasts
         - Open developer tools (chrome?)
     - http requests
         - if having trouble with axios, consult this: https://www.udemy.com/the-complete-react-native-and-redux-course/learn/v4/questions/1924782
+    - Scrolling - straightforward, but different than React (not on by default)
+        - First, find the jsx components you expect to be scrollable
+        - Second, import component `ScrollView` (from `react-native`), and wrap content with that component.
+        - always add this style to your *root* element:
+            - `Flex: 1` - says "please expand component to fill entire content area of the device
+            - **Note**: may not be necessary in android dev
 
 
 ## Notes from Youtube Video:

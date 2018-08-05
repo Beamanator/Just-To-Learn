@@ -20,8 +20,9 @@ Github repo: https://github.com/StephenGrider/ReactNativeReduxCasts
             - `npm install -g react-native-cli`
                 - for use with android studio emulator, different than use with `expo`.
             - create new project with `react-native init <project-name>`
-            - Note: react-native > v0.55.4 is buggy, and having lots of problems when running `react-native init`. To fix, run with old version - `react-native init <project-name> --version react-native@0.55.4`
+            - **Note**: react-native > v0.55.4 is buggy, and having lots of problems when running `react-native init`. To fix, run with old version - `react-native init <project-name> --version react-native@0.55.4`
                 - see SO question: https://stackoverflow.com/questions/51178688/error-creating-new-react-native-project
+                - another question: https://stackoverflow.com/questions/48756550/unable-to-resolve-module-accessibilityinfo-when-trying-to-create-release-bund
         - When I installed everything, I hit this error:
             - https://software.intel.com/android/articles/installation-instructions-for-intel-hardware-accelerated-execution-manager-windows
         - To open the project in Android Studio, find where your project was installed, open up the main project folder, then open the `android` directory - in Android Studio
@@ -32,6 +33,7 @@ Github repo: https://github.com/StephenGrider/ReactNativeReduxCasts
                 - Make sure you click `Install Build Tools 23.0.1 and sync project`
                 - This will download and install Android SDK Build-Tools 23.0.1
             - If you also see a `Android Gradle plugin update recommended` reminder, just click `Don't remind me again for this project`. **NOTE**: I needed to upgrade gradle (see last step), so maybe this step is not recommended.
+                - The message also might read `To take advantage of all the latest features (such as Instant Run), improvements and security fixes, we strongly recommend that you update the Android Gradle plugin to version 3.1.3 and Gradle to version 4.4.`
         - Create an Android Emulator
             - First, go to `Tools` -> `AVD Manager` (may be under `Android` menu)
             - Click `Create Virtual Device`
@@ -120,6 +122,33 @@ Github repo: https://github.com/StephenGrider/ReactNativeReduxCasts
         - Learned about flexbox sizing / positioning
 
 ### App 2 - Auth app
+- As always, begin with `react-native init auth`
+- Goal = super simple app, with just 2 pages (sign in, log out). Will use Firebase to handle authentication.
+- Before beginning, figure out what kind of components we will need and maybe guess biggest challenges
+    - Components
+        - Header
+        - Card / Card Section
+            - LoginForm (new)
+            - Button
+            - Spinner of some sort
+    - Biggest Challenges
+        - Using Firebase to authenticate users of the app
+        - Integrating Firebase into React
+        - Handling user input & validating user input
+        - Give users feedback (spinner) when log in is being verified
+- Notes about working with android Studio
+    - Updated Build SDK to 26, and Gradle to 4.4 once I found the error mentioned above - `Could not determine java version from '10.0.2'.`.
+    - Also had to "Upgrade build tools version and sync project", mentioning something like Gradle 3.1.3 only needs v26, but I have v27 installed or something?
+    - **Note**: MAYBE it's best to upgrade Gradle first (to v4.4) before downloading anything else
+    - Still running into error `Unable to resolve module ... this might be related to 'https://github.com/facebook/react-native/issues/4968'`
+        - I went to the issue, and they recommended clearning `node_modules` then running `npm install` again, so I tried that.
+    - AGAIN found this issue I mentioned before:
+        - **Note**: react-native > v0.55.4 is buggy, and having lots of problems when running `react-native init`. To fix, run with old version - `react-native init <project-name> --version react-native@0.55.4`
+            - see SO question: https://stackoverflow.com/questions/51178688/error-creating-new-react-native-project
+            - another question: https://stackoverflow.com/questions/48756550/unable-to-resolve-module-accessibilityinfo-when-trying-to-create-release-bund
+        - Still had to upgrade Gradle to 4.4
+            - Then found `The specified Android SDK Build Tools version (23.0.1) is ignored, as it is below the minimum supported version (27.0.3) for Android Gradle Plugin 3.1.3. Android SDK Build Tools 27.0.3 will be used. To suppress this warning, remove "buildToolsVersion '23.0.1'" from your build.gradle file, as each version of the Android Gradle Plugin now has a default version of the build tools. Update Build Tools version and sync project` - clicked "Update"
+            - That solved everything - for now :D
 
 
 ## Notes from Youtube Video:

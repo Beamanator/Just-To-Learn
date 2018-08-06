@@ -2,7 +2,8 @@
 
 ## Notes from Udemy Course (The Complete React Native and Redux Course)
 Github repo: https://github.com/StephenGrider/ReactNativeReduxCasts
-### Getting Started
+
+### Getting Started - Section 1 - 9. Setup + Albums App
 1. Install dependencies per operating system (lots of setup here)
     - Different on each operating system
     - Windows (Android)
@@ -19,8 +20,9 @@ Github repo: https://github.com/StephenGrider/ReactNativeReduxCasts
             - `npm install -g react-native-cli`
                 - for use with android studio emulator, different than use with `expo`.
             - create new project with `react-native init <project-name>`
-            - Note: react-native > v0.55.4 is buggy, and having lots of problems when running `react-native init`. To fix, run with old version - `react-native init <project-name> --version react-native@0.55.4`
+            - **Note**: react-native > v0.55.4 is buggy, and having lots of problems when running `react-native init`. To fix, run with old version - `react-native init <project-name> --version react-native@0.55.4`
                 - see SO question: https://stackoverflow.com/questions/51178688/error-creating-new-react-native-project
+                - another question: https://stackoverflow.com/questions/48756550/unable-to-resolve-module-accessibilityinfo-when-trying-to-create-release-bund
         - When I installed everything, I hit this error:
             - https://software.intel.com/android/articles/installation-instructions-for-intel-hardware-accelerated-execution-manager-windows
         - To open the project in Android Studio, find where your project was installed, open up the main project folder, then open the `android` directory - in Android Studio
@@ -31,6 +33,7 @@ Github repo: https://github.com/StephenGrider/ReactNativeReduxCasts
                 - Make sure you click `Install Build Tools 23.0.1 and sync project`
                 - This will download and install Android SDK Build-Tools 23.0.1
             - If you also see a `Android Gradle plugin update recommended` reminder, just click `Don't remind me again for this project`. **NOTE**: I needed to upgrade gradle (see last step), so maybe this step is not recommended.
+                - The message also might read `To take advantage of all the latest features (such as Instant Run), improvements and security fixes, we strongly recommend that you update the Android Gradle plugin to version 3.1.3 and Gradle to version 4.4.`
         - Create an Android Emulator
             - First, go to `Tools` -> `AVD Manager` (may be under `Android` menu)
             - Click `Create Virtual Device`
@@ -70,25 +73,28 @@ Github repo: https://github.com/StephenGrider/ReactNativeReduxCasts
             - tell `eslint` we want to use the `rallycoding` ruleset with `{"extends": "rallycoding"}`
 
 1. Generate a React Native project
-1. Get coding
+1. Get coding (App - album list)
     - difference between `react` and `react-native` libraries
         - `React`: Knows how a component should behave, knows how to take a bunch of components and make them work together
         - `React Native`: Knows how to take the output from a component and place it on the screen, provides default, primitive core components (image, `<Text>`)
     - before actually 'getting coding', plan out the components you will use, and try to make lots of reusable ones.
-    - `Text` component is used to basic text
-        - useful props: `style` for styling (like css styles)
-    - `View` component is a component for styling `Text` or other components inside
-        - makes positioning easier
-        - useful props: `style` for styling
-        - also can be used to group sibling components - like Fragment
+    - Primitive components that come directly from `react-native`:
+        - `Text` component is used to basic text
+            - useful props: `style` for styling (like css styles)
+        - `View` component is a component for styling `Text` or other components inside
+            - makes positioning easier
+            - useful props: `style` for styling
+            - also can be used to group sibling components - like Fragment
+        - `Image` component is used for images
+            - needs `source` prop (like HTML `src`), with object with `uri` property. Example: `{uri: https://i.imgur.com/...}`
+            - works similar to HTML tag, but don't forget to tell image tag exactly how big it should be! Doesn't automatically fill available space
+            - **Note**: If, for example, you want an Image to span the entire width of its container, use styles `flex: 1, width: null`. Also set a `height` to whatever you want the height to be.
     - `Flex Box` is used for positioning to container elements in react-native!
-        - `justifyContent` - aligns content in vertical direction (except in 1 case)
-            - `'flex-end'` - pushes text to bottom, `'center'` - center (vertically), `'flex-start'` - top of the container (basic default behavior).
-        - `alignItems` - position in horizontal direction
+        - `justifyContent` - aligns content in **vertical direction** (except in 1 case - if you use `flexDirection`)
+            - `'flex-end'` - pushes text to bottom, `'center'` - center (vertically), `'flex-start'` - top of the container (basic default behavior), `'space-between'` - maximize space between elements, `'space-around'` - similar to 'space-between' but also adds spacing above first and below last element.
+        - `alignItems` - position in **horizontal direction**
             - `'flex-end'` - far right hand side, `'center'` - center, `'flex-start'` - left side of container (default)
-        - adding shadows to components
-            - ios: `shadowColor`, `shadowOpacity`, `shadowOffset`
-            - android: `elevation`, plus always include `backgroundColor`
+        - `flexDirection` - row (horizontal) or column (vertical) (determines where `justifyContent` applies)
     - making http requests
     - Lifecycle methods
         - `componentWIllMount()` - executed as soon as the component gets rendered to the screen. according to this class, this is a great place to run any http requests
@@ -96,6 +102,53 @@ Github repo: https://github.com/StephenGrider/ReactNativeReduxCasts
         - Get to debug menu (android = Ctrl + 'M')
         - If you see an error on the emulator "Unable to connect with remote debugger" try some solutions from stack overflow: https://stackoverflow.com/questions/40898934/unable-to-connect-with-remote-debugger
         - Open developer tools (chrome?)
+    - http requests
+        - if having trouble with axios, consult this: https://www.udemy.com/the-complete-react-native-and-redux-course/learn/v4/questions/1924782
+    - Scrolling - straightforward, but different than React (not on by default)
+        - First, find the jsx components you expect to be scrollable
+        - Second, import component `ScrollView` (from `react-native`), and wrap content with that component.
+        - always add this style to your *root* element:
+            - `Flex: 1` - says "please expand component to fill entire content area of the device
+            - **Note**: may not be necessary in android dev
+    - `Buttons` in the [documentation](https://facebook.github.io/react-native/) are under `Touchable<Something...>` like [TouchableOpacity](https://facebook.github.io/react-native/docs/touchableopacity)
+        - to handle a user press / click, add prop `onPress: {<function>}`
+    - [Linking](https://facebook.github.io/react-native/docs/linking) to other mobile apps
+        - `import { Linking } from 'react-native'`
+        - `Linking.openURL(<url>)`
+        - This can be passed into a `Touchable<something>` like this: `onPress={() => Linking.openURL(<url>)}`
+    - App Wrapup
+        - This app should work in IOS and Android
+        - Components used: View, Text, Image, TouchableOpacity, Linking
+        - Learned about flexbox sizing / positioning
+
+### App 2 - Auth app
+- As always, begin with `react-native init auth`
+- Goal = super simple app, with just 2 pages (sign in, log out). Will use Firebase to handle authentication.
+- Before beginning, figure out what kind of components we will need and maybe guess biggest challenges
+    - Components
+        - Header
+        - Card / Card Section
+            - LoginForm (new)
+            - Button
+            - Spinner of some sort
+    - Biggest Challenges
+        - Using Firebase to authenticate users of the app
+        - Integrating Firebase into React
+        - Handling user input & validating user input
+        - Give users feedback (spinner) when log in is being verified
+- Notes about working with android Studio
+    - Updated Build SDK to 26, and Gradle to 4.4 once I found the error mentioned above - `Could not determine java version from '10.0.2'.`.
+    - Also had to "Upgrade build tools version and sync project", mentioning something like Gradle 3.1.3 only needs v26, but I have v27 installed or something?
+    - **Note**: MAYBE it's best to upgrade Gradle first (to v4.4) before downloading anything else
+    - Still running into error `Unable to resolve module ... this might be related to 'https://github.com/facebook/react-native/issues/4968'`
+        - I went to the issue, and they recommended clearning `node_modules` then running `npm install` again, so I tried that.
+    - AGAIN found this issue I mentioned before:
+        - **Note**: react-native > v0.55.4 is buggy, and having lots of problems when running `react-native init`. To fix, run with old version - `react-native init <project-name> --version react-native@0.55.4`
+            - see SO question: https://stackoverflow.com/questions/51178688/error-creating-new-react-native-project
+            - another question: https://stackoverflow.com/questions/48756550/unable-to-resolve-module-accessibilityinfo-when-trying-to-create-release-bund
+        - Still had to upgrade Gradle to 4.4
+            - Then found `The specified Android SDK Build Tools version (23.0.1) is ignored, as it is below the minimum supported version (27.0.3) for Android Gradle Plugin 3.1.3. Android SDK Build Tools 27.0.3 will be used. To suppress this warning, remove "buildToolsVersion '23.0.1'" from your build.gradle file, as each version of the Android Gradle Plugin now has a default version of the build tools. Update Build Tools version and sync project` - clicked "Update"
+            - That solved everything - for now :D
 
 
 ## Notes from Youtube Video:

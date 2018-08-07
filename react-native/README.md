@@ -149,6 +149,19 @@ Github repo: https://github.com/StephenGrider/ReactNativeReduxCasts
         - Still had to upgrade Gradle to 4.4
             - Then found `The specified Android SDK Build Tools version (23.0.1) is ignored, as it is below the minimum supported version (27.0.3) for Android Gradle Plugin 3.1.3. Android SDK Build Tools 27.0.3 will be used. To suppress this warning, remove "buildToolsVersion '23.0.1'" from your build.gradle file, as each version of the Android Gradle Plugin now has a default version of the build tools. Update Build Tools version and sync project` - clicked "Update"
             - That solved everything - for now :D
+- installed `eslint` following steps from app #1 (it didn't work well this time)
+- can `import` a component and `export` it in the same line by doing `export * from './<component dir>` :D
+    - **Note**: if you do this, your components cannot be exported with `export default <component name>`
+    - instead, you have to export like an object: `export { ComponentName: ComponentName }`, which can be reduced to `export { ComponentName }` in es6
+- Firebase auth integration
+    - `npm install --save firebase` must be run with administrator mode (I'm using Cmder - just had to do Ctrl + T (new tab), then check "Run as administrator")
+    - Setup in react native app (in lecture):
+        - `import firebase from 'firebase'` above other imported local components (not sure why)
+        - in `componentWillMount() {...}`, copy / paste the Web Setup code from Auth -> Web Setup in firebase console (basically, create `config` obj & call pass to `firebase.initializeApp()`)
+        - using `import firebase from 'firebase'` caused a bit error on my emulator: `Objects are not valid as a React child (found: object with keys {$$typeof, type, key, ref, props, _owner, _store}). If you meant to render a collection of children, use an array instead.` (then some weird `ReactNativeRenderer-dev.js` stacks)
+        - instead, I followed the answer to this SO question: https://stackoverflow.com/questions/50555275/react-native-objects-are-not-valid-as-a-react-child-found-object-with-keys
+- Using basic `react-native` element for text inputs - `TextInput`.
+    - By default, they don't have height & width! (note from video - in android, it seems like it does have default width & height)
 
 
 ## Notes from Youtube Video:

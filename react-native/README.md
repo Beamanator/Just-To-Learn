@@ -160,6 +160,7 @@ Github repo: https://github.com/StephenGrider/ReactNativeReduxCasts
         - in `componentWillMount() {...}`, copy / paste the Web Setup code from Auth -> Web Setup in firebase console (basically, create `config` obj & call pass to `firebase.initializeApp()`)
         - using `import firebase from 'firebase'` caused a bit error on my emulator: `Objects are not valid as a React child (found: object with keys {$$typeof, type, key, ref, props, _owner, _store}). If you meant to render a collection of children, use an array instead.` (then some weird `ReactNativeRenderer-dev.js` stacks)
         - instead, I followed the answer to this SO question: https://stackoverflow.com/questions/50555275/react-native-objects-are-not-valid-as-a-react-child-found-object-with-keys
+            - Multiple solutions worked for me (`require("firebase"`... and `import firebase from '@firebase/app'`...))
 - Using basic `react-native` element for text inputs - `TextInput`.
     - By default, they don't have height & width! (note from video - in android, it seems like it does have default width & height)
 

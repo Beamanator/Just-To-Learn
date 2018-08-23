@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import { Header } from './components/common';
+import {
+    Header,
+    Button,
+    Card,
+    CardSection,
+    Spinner
+} from './components/common';
 import LoginForm from './components/LoginForm';
 
 // Note: this is how udemy lecture imports firebase:
@@ -13,7 +19,7 @@ import '@firebase/auth';
 
 class App extends Component {
     state = {
-        loggedIn: false
+        loggedIn: null
     }
 
     componentWillMount() {
@@ -36,11 +42,38 @@ class App extends Component {
         });
     }
 
+    renderContent() {
+        switch(this.state.loggedIn) {
+            case true:
+                return (
+                    <Card>
+                        <CardSection>
+                            <Button onPress={() => {firebase.auth().signOut()}}>
+                                Log Out
+                            </Button>
+                        </CardSection>
+                    </Card>
+                )
+
+            case false:
+                return <LoginForm />
+
+            default: // (null - don't know yet - loading)
+                return (
+                    <Card>
+                        <CardSection>
+                            <Spinner size="large" />
+                        </CardSection>
+                    </Card>
+                )
+        }
+    }
+
     render() {
         return (
             <View>
                 <Header headerText="Authentication"/>
-                <LoginForm />
+                {this.renderContent()}
             </View>
         );
     };

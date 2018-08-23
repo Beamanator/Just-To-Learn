@@ -9,17 +9,30 @@ import LoginForm from './components/LoginForm';
 // -> see answers to this SO question:
 // https://stackoverflow.com/questions/50555275/react-native-objects-are-not-valid-as-a-react-child-found-object-with-keys
 import firebase from '@firebase/app';
-// import '@firebase/auth';
+import '@firebase/auth';
 
 class App extends Component {
+    state = {
+        loggedIn: false
+    }
+
     componentWillMount() {
         firebase.initializeApp({
             apiKey: "AIzaSyDiiAjpdPkryEXyFao1rNoFysM-f_Ondvg",
             authDomain: "rest-api-one.firebaseapp.com",
             databaseURL: "https://rest-api-one.firebaseio.com",
             projectId: "rest-api-one",
-            storageBucket: "rest-api-one.appspot.com",
-            messagingSenderId: "483867460155"
+            // storageBucket: "rest-api-one.appspot.com",
+            // messagingSenderId: "483867460155"
+        });
+
+        // Note: user is undefined if logged out!
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                this.setState({ loggedIn: true });
+            } else {
+                this.setState({ loggedIn: false });
+            }
         });
     }
 

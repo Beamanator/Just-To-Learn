@@ -19,6 +19,7 @@ class LoginForm extends Component {
         // clear error message upon login retry && show spinner
         this.setState({ error: '', loading: true });
 
+        // Note: auth state change handled in App.js
         firebase.auth()
         .signInWithEmailAndPassword(email, password)
         .then(this.onLoginSuccess)

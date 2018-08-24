@@ -121,7 +121,7 @@ Github repo: https://github.com/StephenGrider/ReactNativeReduxCasts
         - Components used: View, Text, Image, TouchableOpacity, Linking
         - Learned about flexbox sizing / positioning
 
-### App 2 - Auth app
+### App 2 - Section 10 - Auth app
 - As always, begin with `react-native init auth`
 - Goal = super simple app, with just 2 pages (sign in, log out). Will use Firebase to handle authentication.
 - Before beginning, figure out what kind of components we will need and maybe guess biggest challenges
@@ -163,7 +163,20 @@ Github repo: https://github.com/StephenGrider/ReactNativeReduxCasts
             - Multiple solutions worked for me (`require("firebase"`... and `import firebase from '@firebase/app'`...))
 - Using basic `react-native` element for text inputs - `TextInput`.
     - By default, they don't have height & width! (note from video - in android, it seems like it does have default width & height)
+- Finally, just build out the rest of the app, nothing huge to worry about / learn
 
+
+### App 3 - Section 11-16 - Tech Stack app (Redux, Animations)
+- Goals:
+    - How to use Redux with React Native
+    - How to render a list of elements in a performant conscious (efficient) manner.
+    - Animation API
+        - When a user tabs an app label, a nice smooth animation happens, showing up the notes.
+- Process
+    - Create initial app
+        - AGAIN, react-native > v0.55.4 is buggy, and having lots of problems when running `react-native init`. To fix, run with old version - `react-native init <project-name> --version react-native@0.55.4`
+    - `npm install --save redux react-redux` to get redux setup to work with React
+    - set up redux in App.js (not index? idk why)
 
 ## Notes from Youtube Video:
 Animation systems (modules) inside React Native (ep 5)

@@ -1,0 +1,23 @@
+Hi there!
+
+We appreciate you're taking the time to look at our coding challenge. Completing
+it shouldn't take you too long, yet we don't think it's trivial. It is all about
+implementing a data structure we call a "DictionaryOperation" – the details are
+explained inside the source files. We think this is a good opportunity for you
+to showcase your abilities, and it should provide us with a good starting point
+for technical discussions during the interview.
+
+We've provided stubs for a few different programming languages. Just pick the
+one you're most comfortable with and have a go. If your favorite language is not
+listed, you're welcome to submit the solution in that language instead (as long
+as it's not Forth or something :)).
+
+As you solve the problem, you'll find yourself choosing one design or one
+implementation over another. Please put in some comments and let us know why you
+chose the way you did. We'd like to hear your thoughts!
+
+Feel free to write in (jobs@culturedcode.com) if you are unsure of anything.
+
+Otherwise, have fun!
+
+— The Cultured Coders

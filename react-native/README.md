@@ -177,6 +177,12 @@ Github repo: https://github.com/StephenGrider/ReactNativeReduxCasts
         - AGAIN, react-native > v0.55.4 is buggy, and having lots of problems when running `react-native init`. To fix, run with old version - `react-native init <project-name> --version react-native@0.55.4`
     - `npm install --save redux react-redux` to get redux setup to work with React
     - set up redux in App.js (not index? idk why)
+    - Now getting error:
+        - `FAILURE: Build failed with an exception.`
+        - `What went wrong: Could not determine java version from '10.0.2'`
+        - NOTE1: I may not have opened the 'tech-stack' project in Android Studio, then completed Gradle updates :\
+        - Note2: Before doing Note1, I upgraded Android studio from 3.1 to 3.2 - hopefully this won't break / change anything
+
 
 ## Notes from Youtube Video:
 Animation systems (modules) inside React Native (ep 5)

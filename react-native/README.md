@@ -180,8 +180,28 @@ Github repo: https://github.com/StephenGrider/ReactNativeReduxCasts
     - Now getting error:
         - `FAILURE: Build failed with an exception.`
         - `What went wrong: Could not determine java version from '10.0.2'`
-        - NOTE1: I may not have opened the 'tech-stack' project in Android Studio, then completed Gradle updates :\
+        - NOTE1: I may not have opened the 'tech-stack' project in Android Studio, then completed Gradle updates :\ ALWAYS OPEN YOUR ACTIVE PROJECT FIRST DUH
         - Note2: Before doing Note1, I upgraded Android studio from 3.1 to 3.2 - hopefully this won't break / change anything
+        - After the upgrade (Note2), clicked `install build tools 28.0.2 and sync project` directly from status bar at the bottom of Android Studio
+        - Saw error "Failed to find build tools revision 28.0.2"
+        - Then, followed [This SO question](https://stackoverflow.com/questions/52518826/facing-an-error-when-running-my-android-app-on-an-emulator) and added the line `google()` in the `build.gradle` file (`Module: app`).
+        Next, clicked "Update Build Tools version and sync project"
+            - Seems this was the error after upgrading to Android Studio 3.2
+            - Now it runs fine on the emulator ;)
+        - Also tried fixing another "warning" about `complile` not being used in the future, change to `implementation`.
+            - in `build.gradle` (`Module: app`), scroll down to the `dependencies` block and change all of the lines with the first word `compile` - change `compile` to `implementation`.
+            - Succeeded first try.
+- New stuff
+    - Rendering lists of data
+        - Before, we've usually looked at an array of objects, and just using `.map()` to instantly create components for every object.
+        - This is "ok" for website that will display most data at the same time / have lots of power from nice computers.
+        - For mobile devices, this is bad because often lots of the components will not be displayed on the screen, therefore wasting memory.
+        - `list view`s from `react-native` can help with this. It figures out which items are visible, and only creates components for those items. It only creates components that will fit on the screen, and swaps out data when a component goes off the screen / a new one comes on screen.
+            - Component name: `FlatList`
+                - Props:
+                - `data` - (what array to render)
+                - `renderItem` - custom function that will render items
+                - `keyExtractor` - custome function that tells `FlatList` how to generate keys on each component
 
 
 ## Notes from Youtube Video:

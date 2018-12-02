@@ -20,3 +20,22 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
         - Create Project (`/create`)
         - Sign in (`/signin`)
         - Sign up (`/signup`)
+3. Create shell components
+    - Make folders for each 'group' / 'section' of components
+        - /auth
+            - `SignIn.js`
+            - `SignOut.js`
+        - dashboard
+            - `Dashboard.js`
+            - `Notifications.js`
+        - layout
+            - `Navbar.js`
+            - `SignedInLinks.js`
+            - `SignedOutLinks.js`
+        - projects
+            - `CreateProject.js` (`/create`)
+            - `ProjectDetail.js` (`/project/:id`)
+            - `ProjectList.js` (inside Dashboard)
+            - `ProjectSummary.js` (will bee used inside `ProjectList` most likely)
+4. Download some extra libraries
+    - React Router - `npm install react-router-dom`

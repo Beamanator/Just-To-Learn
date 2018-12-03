@@ -49,4 +49,5 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
     - ...
 6. Hook up Nav Links & add extra css
 7. Adding Redux
-    - 
+    - Dreate reducers
+    - Create dummy data

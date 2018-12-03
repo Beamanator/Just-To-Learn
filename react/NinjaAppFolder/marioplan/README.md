@@ -8,6 +8,8 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
     - Use `create-react-app` to make a blank React application
         - Example: `npx create-react-app mariplan` (this is what I used for the `mariplan` app)
         - Note: I had to do `npm cache clean --force`, which was recommended on some github issues & stack overflow q's
+    - Install `ES7 React/Redux/GraphQL/React-Native snippets` by "dsznajder"
+        - provides snippets for React, Redux, Graphql, ES7
 2. Plan out components
     - App (root)
         - Nav (show all links)

@@ -42,8 +42,11 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
             - `ProjectSummary.js` (will bee used inside `ProjectList` most likely)
 4. Download some extra libraries
     - React Router - `npm install react-router-dom`
+    - Redux / React Redux - `npm install redux react-redux`
 5. Start filling in components
     - Navbar (stateless) (including SignedInLinks / SignedOutLinks)
     - Dashboard (no dynamic data yet)
     - ...
 6. Hook up Nav Links & add extra css
+7. Adding Redux
+    - 

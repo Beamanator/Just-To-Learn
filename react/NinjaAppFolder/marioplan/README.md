@@ -45,3 +45,5 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
 5. Start filling in components
     - Navbar (stateless) (including SignedInLinks / SignedOutLinks)
     - Dashboard (no dynamic data yet)
+    - ...
+6. Hook up Nav Links & add extra css

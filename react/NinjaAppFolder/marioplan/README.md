@@ -43,6 +43,7 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
 4. Download some extra libraries
     - React Router - `npm install react-router-dom`
     - Redux / React Redux - `npm install redux react-redux`
+    - Redux thunk - `npm install redux-thunk` for asynchronous action creators
 5. Start filling in components
     - Navbar (stateless) (including SignedInLinks / SignedOutLinks)
     - Dashboard (no dynamic data yet)
@@ -50,4 +51,4 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
 6. Hook up Nav Links & add extra css
 7. Adding Redux
     - Dreate reducers
-    - Create dummy data
+    - Create dummy data to test reducers & dynamic components

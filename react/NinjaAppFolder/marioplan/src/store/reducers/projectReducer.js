@@ -1,3 +1,5 @@
+import * as actionTypes from '../actions/actionTypes';
+
 const initState = {
     projects: [
         {id: '1', title: 'help me find peach', content: 'blah blah blah'},
@@ -6,8 +8,13 @@ const initState = {
     ]
 }
 
-const projectReducer = (state = initState, action) => {
-    return state;
-}
+export default projectReducer = (state = initState, action) => {
+    switch(action.type) {
+        case actionTypes.CREATE_PROJECT:
+            console.log('created project', action.project);
+            return state;
 
-export default projectReducer;
+        default:
+            return state;
+    }
+}

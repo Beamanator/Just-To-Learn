@@ -57,7 +57,7 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
     - Dreate reducers
     - Create dummy data to test reducers & dynamic components
     - Adding Redux Thunk for asnchronous actions
-8. Create Firebase project & add to app
+8. Firestore - Create Firebase project & add to app
     - Basic `Firestore` notes
         - A `Collection` is a collection of Documents
             - Example: a collection of projects
@@ -77,3 +77,6 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
                 - info about notifications
     - Hook up 'create' form with database
     - Create firestore reducer
+    - Hook up `Dashboard` & `ProjectList` / `ProjectDetails`
+9. Firebase Auth
+    - Turn on Email & Password authentication

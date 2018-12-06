@@ -80,3 +80,4 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
     - Hook up `Dashboard` & `ProjectList` / `ProjectDetails`
 9. Firebase Auth
     - Turn on Email & Password authentication
+    - Connect signin / signout forms

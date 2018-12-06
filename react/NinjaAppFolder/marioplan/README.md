@@ -81,3 +81,4 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
 9. Firebase Auth
     - Turn on Email & Password authentication
     - Connect signin / signout forms
+    - Route Guarding

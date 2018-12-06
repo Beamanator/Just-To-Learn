@@ -76,3 +76,4 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
             - Notifications
                 - info about notifications
     - Hook up 'create' form with database
+    - Create firestore reducer

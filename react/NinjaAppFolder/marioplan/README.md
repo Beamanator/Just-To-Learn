@@ -47,6 +47,7 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
     - Firebase - `npm install firebase`
         - config file setup in `/src/config/fbConfig.js`
         - Note: `apiKey` prop is only used to identify the project, but will use database rules to limit who has access to data inside the database
+    - React / Redux / Firebase & firestore glue - `npm install react-redux-firebase redux-firestore`
 5. Start filling in components
     - Navbar (stateless) (including SignedInLinks / SignedOutLinks)
     - Dashboard (no dynamic data yet)

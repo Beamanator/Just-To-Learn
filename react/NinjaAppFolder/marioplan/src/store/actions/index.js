@@ -4,4 +4,5 @@ export {
 
 export {
     signIn,
+    signOut,
 } from './authActions';

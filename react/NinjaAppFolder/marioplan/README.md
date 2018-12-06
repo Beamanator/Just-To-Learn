@@ -57,3 +57,21 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
     - Create dummy data to test reducers & dynamic components
     - Adding Redux Thunk for asnchronous actions
 8. Create Firebase project & add to app
+    - Basic `Firestore` notes
+        - A `Collection` is a collection of Documents
+            - Example: a collection of projects
+        - A `Document` looks like a js object with key-value pairs
+    - Planning the database
+        - Collections we will have:
+            - Projects
+                - title
+                - content
+                - authorFirstName
+                - authorLastName
+                - authorId
+                - timestamp
+            - Users
+                - info about app users
+            - Notifications
+                - info about notifications
+    - Hook up 'create' form with database

@@ -2,6 +2,8 @@ const initState = {
 
 }
 
-export default authReducer = (state = initState, action) => {
+const authReducer = (state = initState, action) => {
     return state;
 }
+
+export default authReducer;

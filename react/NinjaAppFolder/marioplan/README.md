@@ -44,6 +44,9 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
     - React Router - `npm install react-router-dom`
     - Redux / React Redux - `npm install redux react-redux`
     - Redux thunk - `npm install redux-thunk` for asynchronous action creators
+    - Firebase - `npm install firebase`
+        - config file setup in `/src/config/fbConfig.js`
+        - Note: `apiKey` prop is only used to identify the project, but will use database rules to limit who has access to data inside the database
 5. Start filling in components
     - Navbar (stateless) (including SignedInLinks / SignedOutLinks)
     - Dashboard (no dynamic data yet)
@@ -52,3 +55,5 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
 7. Adding Redux
     - Dreate reducers
     - Create dummy data to test reducers & dynamic components
+    - Adding Redux Thunk for asnchronous actions
+8. Create Firebase project & add to app

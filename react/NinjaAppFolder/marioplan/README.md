@@ -83,3 +83,4 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
     - Connect signin / signout forms
     - Route Guarding
     - Connect signup form
+    - Add firestore data to firebase profile

@@ -22,7 +22,14 @@ const store = createStore(
         reactReduxFirebase(fbConfig, {
             // allow us to access a propery on store
             // -> called firebaseAuthIsReady
-            attachAuthIsReady: true
+            attachAuthIsReady: true,
+            // I want want firestore to use firebase to sync
+            // -> to the profile object on the firebase state object
+            useFirestoreForProfile: true,
+            // By default, firebase doesn't know which collection
+            // -> to look in for profile data. We have to tell the enhancer
+            // -> which collection to use ('users' for this project)
+            userProfile: 'users',
         })
     )
 );

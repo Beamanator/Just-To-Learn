@@ -48,6 +48,7 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
         - config file setup in `/src/config/fbConfig.js`
         - Note: `apiKey` prop is only used to identify the project, but will use database rules to limit who has access to data inside the database
     - React / Redux / Firebase & firestore glue - `npm install react-redux-firebase redux-firestore`
+    - [Momentjs](http://momentjs.com/) - `npm install moment` - for special date formatting functions
 5. Start filling in components
     - Navbar (stateless) (including SignedInLinks / SignedOutLinks)
     - Dashboard (no dynamic data yet)
@@ -85,3 +86,4 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
     - Connect signup form
     - Add firestore data to firebase profile
     - Update old hard-coded user data
+10. Format dates with `Moment.js` (installed earlier)

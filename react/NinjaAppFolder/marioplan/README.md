@@ -87,3 +87,20 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
     - Add firestore data to firebase profile
     - Update old hard-coded user data
 10. Format dates with `Moment.js` (installed earlier)
+11. Determine [Firestore security rules](https://firebase.google.com/docs/firestore/security/rules-structure)
+    - Purpose: so not everyone can read / write to db
+    - `service cloud.firestore {`
+        - scopes those rules only for firestore. pretty basic.
+    - `match /databases/{database}/documents {`
+        - rules should match any firestore database in our project. We only have 1, so we won't have to change this.
+    - `match /{document=**} {`
+        - says "match any document in the database"
+    - `allow read, write;`
+        - allows ANYONE to read / write to database.
+    - Some suggested updates to rules:
+        1. Add `read, write` for authenticated users (`request.auth.uid != null`) where appropriate (`/projects/{project}`)
+        2. Allow anyone to `create` new users
+        3. Only allow authenticated users to `read` other user data (like name / initials)
+        4. Only allow authenticated & same user to edit (`write`) to their own data
+            - `allow write: if request.auth.uid == userId`, where `match /users/{userId} {`
+    - Note: Database rules may take ~ 10 minutes to update!

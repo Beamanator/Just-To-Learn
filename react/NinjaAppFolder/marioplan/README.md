@@ -82,3 +82,4 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
     - Turn on Email & Password authentication
     - Connect signin / signout forms
     - Route Guarding
+    - Connect signup form

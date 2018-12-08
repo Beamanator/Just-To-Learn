@@ -84,3 +84,4 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
     - Route Guarding
     - Connect signup form
     - Add firestore data to firebase profile
+    - Update old hard-coded user data

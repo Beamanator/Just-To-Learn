@@ -132,6 +132,8 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
         - New user signs up (using auth)
 14. Hook up notifications on Dashboard
     - Also set new database rules - add `read` access, but nobody should have `write` access
+15. Ordering data received from Firestore
+    
 
 ## Some errors i hit along the way:
 1. `Error with profile listener: Missing or insufficient permissions. Error: Missing or insufficient permissions.`

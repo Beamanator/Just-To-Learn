@@ -120,9 +120,12 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
             - Language? Javascript
             - ESLint? no (not for now, at least)
             - Install dependencies? (Y)
+                - If this fails or if you say no, you'll have to `cd` into `/functions` and run `npm install`
             - What do you want as public directory? `dist` -> this is where React will build our application later
             - Single-page app? Y
-    - finally `firebase deploy`
+13. Create Cloud Functions
+    - First test out default function (hello world)
+        - `firebase deploy --only functions` -> only deploys firebase functions (from `/functions` dir) to Firebase - nothing from `/dist` yet.
 
 ## Some errors i hit along the way:
 1. `Error with profile listener: Missing or insufficient permissions. Error: Missing or insufficient permissions.`
@@ -131,4 +134,4 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
     - Basically it seems like a message logging issue, and there should be a fix available in the latest versions.
 2. `npm ERR! Unexpected end of JSON input while parsing near '...ncies":{"tslib":"^1.9'`
     - Found when telling Firebase CLI to "Y" install dependencies during `firebase init` stage.
-    - Skipping for now - may have to change NPM / Node versions (I've hit this error in the past, and I think that's how I got through it)
+    - Solved twice with [`npm cache clean --force`](https://github.com/vuejs-templates/webpack/issues/990)

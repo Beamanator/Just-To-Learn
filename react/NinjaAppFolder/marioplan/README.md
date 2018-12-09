@@ -126,6 +126,9 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
 13. Create Cloud Functions
     - First test out default function (hello world)
         - `firebase deploy --only functions` -> only deploys firebase functions (from `/functions` dir) to Firebase - nothing from `/dist` yet.
+    - Decide which triggers we will need for notifications
+        - New project (new document)
+        - New user signs up (using auth)
 
 ## Some errors i hit along the way:
 1. `Error with profile listener: Missing or insufficient permissions. Error: Missing or insufficient permissions.`

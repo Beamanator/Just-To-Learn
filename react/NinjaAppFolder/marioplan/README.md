@@ -133,7 +133,12 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
 14. Hook up notifications on Dashboard
     - Also set new database rules - add `read` access, but nobody should have `write` access
 15. Ordering data received from Firestore
-    
+16. Deploy app to firebase hosting
+    - build app first `npm run build`
+    - move built files into `/dist`
+        - Note: we're deploying from `/dist` b/c that's what the tutorial did haha. Minor mistake.
+    - next, run `firebase deploy`
+17. Done!
 
 ## Some errors i hit along the way:
 1. `Error with profile listener: Missing or insufficient permissions. Error: Missing or insufficient permissions.`

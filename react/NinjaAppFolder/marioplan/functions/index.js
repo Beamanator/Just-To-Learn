@@ -16,7 +16,7 @@ const createNotification = (notification) => {
         .collection('notifications')
         .add(notification)
         .then((document) => {
-            console.log('notification added', document);
+            // console.log('notification added', document);
         })
 }
 

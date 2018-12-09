@@ -92,7 +92,7 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
     - Purpose: so not everyone can read / write to db
     - `service cloud.firestore {`
         - scopes those rules only for firestore. pretty basic.
-    - `match /databases/{database}/documents {`
+    - `matMakech /databases/{database}/documents {`
         - rules should match any firestore database in our project. We only have 1, so we won't have to change this.
     - `match /{document=**} {`
         - says "match any document in the database"
@@ -106,7 +106,7 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
             - `allow write: if request.auth.uid == userId`, where `match /users/{userId} {`
     - Note: Database rules may take ~ 10 minutes to update!
 12. Hosting code on Firebase
-    - Make sure Firebase Tools are setup
+    -  sure Firebase Tools are setup
     - Log in to Firebase CLI
         - `firebase login`
         - Note: If using Git Bash, have to use `firebase login --interactive`
@@ -124,11 +124,14 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
             - What do you want as public directory? `dist` -> this is where React will build our application later
             - Single-page app? Y
 13. Create Cloud Functions
+    - Purpose = use cloud functions (triggers) to create notifications for user to see.
     - First test out default function (hello world)
         - `firebase deploy --only functions` -> only deploys firebase functions (from `/functions` dir) to Firebase - nothing from `/dist` yet.
     - Decide which triggers we will need for notifications
         - New project (new document)
         - New user signs up (using auth)
+14. Hook up notifications on Dashboard
+    - Also set new database rules - add `read` access, but nobody should have `write` access
 
 ## Some errors i hit along the way:
 1. `Error with profile listener: Missing or insufficient permissions. Error: Missing or insufficient permissions.`

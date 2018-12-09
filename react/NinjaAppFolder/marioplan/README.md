@@ -49,6 +49,7 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
         - Note: `apiKey` prop is only used to identify the project, but will use database rules to limit who has access to data inside the database
     - React / Redux / Firebase & firestore glue - `npm install react-redux-firebase redux-firestore`
     - [Momentjs](http://momentjs.com/) - `npm install moment` - for special date formatting functions
+    - Firebase Functions `npm install -g firebase-tools`
 5. Start filling in components
     - Navbar (stateless) (including SignedInLinks / SignedOutLinks)
     - Dashboard (no dynamic data yet)
@@ -104,3 +105,10 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
         4. Only allow authenticated & same user to edit (`write`) to their own data
             - `allow write: if request.auth.uid == userId`, where `match /users/{userId} {`
     - Note: Database rules may take ~ 10 minutes to update!
+12. Hosting code on Firebase
+    - Make sure Firebase Tools are setup
+
+## Some errors i hit along the way:
+1. `Error with profile listener: Missing or insufficient permissions. Error: Missing or insufficient permissions.`
+    - Bug found here: https://github.com/prescottprue/react-redux-firebase/issues/494
+    - Basically it seems like a message logging issue, and there should be a fix available in the latest versions.

@@ -91,7 +91,8 @@ Final version hosted here: https://marioplan-proj2.firebaseapp.com/signin
     - Update old hard-coded user data
 10. Format dates with `Moment.js` (installed earlier)
 11. Determine [Firestore security rules](https://firebase.google.com/docs/firestore/security/rules-structure)
-    - Purpose: so not everyone can read / write to db
+    - Purpose: so not everyone can read / write to our db
+        - Extra useful tips explained in this video: https://www.youtube.com/watch?v=b7PUm7LmAOw
     - `service cloud.firestore {`
         - scopes those rules only for firestore. pretty basic.
     - `matMakech /databases/{database}/documents {`

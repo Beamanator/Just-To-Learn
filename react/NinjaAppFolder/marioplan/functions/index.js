@@ -20,9 +20,8 @@ const createNotification = (notification) => {
         })
 }
 
-// set up trigger for this function to run
-// -> trigger has to do with firestore
-// -> and reference to a specific document being created
+// set up firestore trigger to react when
+// -> a project document is created
 exports.projectCreated = functions.firestore
     .document('/projects/{projectId}')
     .onCreate((doc) => {
@@ -36,6 +35,8 @@ exports.projectCreated = functions.firestore
         return createNotification(notification);
     });
 
+// set up auth trigger to react when
+// -> a new user is created
 exports.userJoined = functions.auth.user()
     .onCreate((user) => {
         return admin.firestore().collection('users')

@@ -1,7 +1,9 @@
-# mariplan app
+# marioplan app
 Note: This was created while following the "React, Redux & Firebase App" tutorial series by The Net Ninja
 
 Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
+
+Final version hosted here: https://marioplan-proj2.firebaseapp.com/signin
 
 # Steps to achieving success:
 1. Where to start

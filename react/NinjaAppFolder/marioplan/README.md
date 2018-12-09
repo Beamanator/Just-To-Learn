@@ -107,8 +107,28 @@ Link here:  https://www.youtube.com/watch?v=r5b0spRlnlU
     - Note: Database rules may take ~ 10 minutes to update!
 12. Hosting code on Firebase
     - Make sure Firebase Tools are setup
+    - Log in to Firebase CLI
+        - `firebase login`
+        - Note: If using Git Bash, have to use `firebase login --interactive`
+        - Source: https://stackoverflow.com/questions/35368254/cannot-deploy-angular-app-on-firebase
+    - next run `firebase init` to set things up
+        - This didn't work on Git Bash for me, I had to use Visual Studio Code's terminal (`Ctrl` + `\``)
+        - Other setup:
+            - Select firebase utilities to use
+                - Hosting & Functions (not Firestore since we set up rules in firebase console)
+            - Select your firebase project
+            - Language? Javascript
+            - ESLint? no (not for now, at least)
+            - Install dependencies? (Y)
+            - What do you want as public directory? `dist` -> this is where React will build our application later
+            - Single-page app? Y
+    - finally `firebase deploy`
 
 ## Some errors i hit along the way:
 1. `Error with profile listener: Missing or insufficient permissions. Error: Missing or insufficient permissions.`
+    - Found when signing out using firebase auth.
     - Bug found here: https://github.com/prescottprue/react-redux-firebase/issues/494
     - Basically it seems like a message logging issue, and there should be a fix available in the latest versions.
+2. `npm ERR! Unexpected end of JSON input while parsing near '...ncies":{"tslib":"^1.9'`
+    - Found when telling Firebase CLI to "Y" install dependencies during `firebase init` stage.
+    - Skipping for now - may have to change NPM / Node versions (I've hit this error in the past, and I think that's how I got through it)

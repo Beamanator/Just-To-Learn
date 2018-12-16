@@ -11,7 +11,7 @@ Final version hosted here: https://marioplan-proj2.firebaseapp.com/signin
         - Example: `npx create-react-app mariplan` (this is what I used for the `mariplan` app)
         - Note: I had to do `npm cache clean --force`, which was recommended on some github issues & stack overflow q's
     - Add materialize (fonts, css, javascript) from https://materializecss.com/getting-started.html
-    - Install `ES7 React/Redux/GraphQL/React-Native snippets` by "dsznajder"
+    - if using Visual Studio Code, Install `ES7 React/Redux/GraphQL/React-Native snippets` by "dsznajder"
         - provides snippets for React, Redux, Graphql, ES7
 2. Plan out components
     - App (root)

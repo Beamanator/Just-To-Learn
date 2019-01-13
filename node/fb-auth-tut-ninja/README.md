@@ -15,3 +15,4 @@ Series start: https://www.youtube.com/watch?v=aN1LnNq4z54&list=PL4cUxeGkcC9jUPIe
 ## Steps :D
 - Create project, database, & set up authentication in Firebase console
 - Create HTML template setup (materialize css / js, html templates, etc)
+- initialize firebase connection via basic snippet from firebase console

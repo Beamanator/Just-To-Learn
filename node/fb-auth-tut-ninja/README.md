@@ -18,3 +18,6 @@ Series start: https://www.youtube.com/watch?v=aN1LnNq4z54&list=PL4cUxeGkcC9jUPIe
 - initialize firebase connection via basic snippet from firebase console
 - set up new user creation (via login form)
     - run `createUserWithEmailAndPassword`, handle response
+- set up login / logout
+- track authentication status using `onAuthStateChanged`
+- get guide data from database & display in html

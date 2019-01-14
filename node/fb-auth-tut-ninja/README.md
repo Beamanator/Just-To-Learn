@@ -21,3 +21,4 @@ Series start: https://www.youtube.com/watch?v=aN1LnNq4z54&list=PL4cUxeGkcC9jUPIe
 - set up login / logout
 - track authentication status using `onAuthStateChanged`
 - get guide data from database & display in html
+- set some UI / firestore security rules to lock database to auth'd users

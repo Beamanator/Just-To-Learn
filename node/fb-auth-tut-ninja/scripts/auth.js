@@ -2,8 +2,10 @@
 auth.onAuthStateChanged(user => {
     if (user) {
         // get guide data from database
-        db.collection('guides').get()
-        .then(snapshot => {
+        db.collection('guides')
+        // onSnapshot does initial document get PLUS sets up listener
+        // -> to run any time the database is updated
+        .onSnapshot(snapshot => {
             setupGuides(snapshot.docs);
             setupUI(user);
         });

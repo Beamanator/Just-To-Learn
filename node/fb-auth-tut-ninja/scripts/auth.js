@@ -14,6 +14,27 @@ auth.onAuthStateChanged(user => {
     }
 });
 
+// create new guide
+const createForm = document.querySelector('#create-form');
+createForm.addEventListener('submit', (e) => {
+    e.preventDefault(); // prevent refresh
+
+    db.collection('guides').add({
+        // remember, can still use e.target['...id'] or e.target.<id> or createForm.<id>
+        title: createForm['title'].value,
+        content: createForm['content'].value,
+    })
+    .then(() => {
+        // clear form & close modal
+        const modal = document.querySelector('#modal-create');
+        M.Modal.getInstance(modal).close(); // close modal
+        createForm.reset();
+    })
+    .catch(err => {
+        console.error(err.message);
+    })
+});
+
 // signup
 const signupForm = document.querySelector('#signup-form');
 signupForm.addEventListener('submit', (e) => {

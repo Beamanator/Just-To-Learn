@@ -27,3 +27,18 @@ Series start: https://www.youtube.com/watch?v=aN1LnNq4z54&list=PL4cUxeGkcC9jUPIe
 - add firestore realtime listener for data
 - add `users` collection on signup & display data
 - add new firestore rules for `users` collection
+- adding custom claims
+    - Should be small amounts of little data - stored on auth profile / user, not in firestore
+    - claims should be set on the server so they cannot be manipulated (DON'T SET ON FRONT-END)
+        - think `cloud functions` :)
+            - run on the server
+            - good for code you don't want to expose on the client
+            - perform tasks not available to client users
+            - callable from front-end
+        - `npm i -g firebase-tools` (install firebase-tools globally)
+            - `firebase init functions` to set up firebase functions
+        - after running above...
+            - `firebase.json` holds some extra config
+            - `.firebaserc` holds firebase source project
+            - `/functions` holds firebase functions code
+                - `index.js` is where all functions go

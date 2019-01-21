@@ -1,8 +1,10 @@
+let guidesUnsubscribe = null;
+
 // listen for auth status changes
 auth.onAuthStateChanged(user => {
     if (user) {
         // get guide data from database
-        db.collection('guides')
+        guidesUnsubscribe = db.collection('guides')
         // onSnapshot does initial document get PLUS sets up listener
         // -> to run any time the database is updated
         .onSnapshot(snapshot => {
@@ -13,6 +15,8 @@ auth.onAuthStateChanged(user => {
         // update UI with empty array of data
         setupGuides([]);
         setupUI();
+        // unsubscribe from 'guides' collection listener
+        if (guidesUnsubscribe) guidesUnsubscribe();
     }
 });
 

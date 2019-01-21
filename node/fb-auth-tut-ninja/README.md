@@ -22,3 +22,8 @@ Series start: https://www.youtube.com/watch?v=aN1LnNq4z54&list=PL4cUxeGkcC9jUPIe
 - track authentication status using `onAuthStateChanged`
 - get guide data from database & display in html
 - set some UI / firestore security rules to lock database to auth'd users
+- conditionally show menu links (depending on log in / out status)
+- add ability to create guides in database
+- add firestore realtime listener for data
+- add `users` collection on signup & display data
+- add new firestore rules for `users` collection

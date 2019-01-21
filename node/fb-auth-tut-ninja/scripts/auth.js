@@ -54,6 +54,13 @@ signupForm.addEventListener('submit', (e) => {
     // sign up the user
     auth.createUserWithEmailAndPassword(email, password)
     .then(cred => {
+        // don't use .add cuz that automatically makes a document
+        // -> with an auto-generated id!
+        return db.collection('users').doc(cred.user.uid).set({
+            bio: signupForm['signup-bio'].value,
+        });
+    })
+    .then(() => {
         // get signup modal & close & clear form
         const modal = document.querySelector('#modal-signup');
         M.Modal.getInstance(modal).close(); // close modal

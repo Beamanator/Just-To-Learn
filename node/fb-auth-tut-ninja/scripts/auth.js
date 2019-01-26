@@ -17,13 +17,20 @@ adminForm.addEventListener('submit', (e) => {
 // listen for auth status changes
 auth.onAuthStateChanged(user => {
     if (user) {
+        // get claims of logged-in user
+        user.getIdTokenResult()
+        .then(idTokenResult => {
+            // add admin prop to user
+            user.admin = idTokenResult.claims.admin;
+            setupUI(user);
+        });
+
         // get guide data from database
         guidesUnsubscribe = db.collection('guides')
         // onSnapshot does initial document get PLUS sets up listener
         // -> to run any time the database is updated
         .onSnapshot(snapshot => {
             setupGuides(snapshot.docs);
-            setupUI(user);
         });
     } else {
         // update UI with empty array of data

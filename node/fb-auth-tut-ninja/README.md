@@ -49,3 +49,5 @@ Series start: https://www.youtube.com/watch?v=aN1LnNq4z54&list=PL4cUxeGkcC9jUPIe
     - also show / hide ui based on admin custom claim
     - lock down admin functions to admin users in firestore rules (`request.auth.token.<custom claim>`)
 - display user login / signup error (invalid password, length, etc)
+
+DONE!

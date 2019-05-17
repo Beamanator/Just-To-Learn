@@ -29,6 +29,7 @@ On page reload
 1. If file changed...
     - `install` event fired
     - Placed "in waiting"
+    - ![service worker waiting](/img/readmeImgs/serviceWorkerWaiting.jpg)
     - Doesn't become `active` until all instances of the app are closed (tabs in browser, apps on mobiles, maybe also another refresh)
         - this is b/c it takes a little bit of time for the service worker to be installed, so it waits until it's fully installed, then another refresh before becoming active
 1. Service worker becomes active

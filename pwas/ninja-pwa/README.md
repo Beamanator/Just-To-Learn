@@ -48,3 +48,12 @@ On page reload
 1. Open 192...... on mobile phone
 
 Boom! Success? Hopefully?
+
+## Other
+
+### Lighthouse Audit - Auditing validity of the PWA
+
+1. Open chrome developer tools
+1. Go to "Audits" tab
+1. Make sure "Progressive Web App" is checked
+1. Click "Run audits"

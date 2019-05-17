@@ -30,8 +30,12 @@ On page reload
     - `install` event fired
     - Placed "in waiting"
     - ![service worker waiting](/img/readmeImgs/serviceWorkerWaiting.jpg)
-    - Doesn't become `active` until all instances of the app are closed (tabs in browser, apps on mobiles, maybe also another refresh)
-        - this is b/c it takes a little bit of time for the service worker to be installed, so it waits until it's fully installed, then another refresh before becoming active
+    - Doesn't become `active` until all instances of the app are closed (tabs in browser, apps on mobiles)
+        - This is b/c it takes a little bit of time for the service worker to be installed, so it waits until it's fully installed, then another refresh before becoming active
+        - Or you can use:
+            - Hard refresh (ctrl + shift + r)
+            - Click "skipWaiting" in developer tools
+            - Click "Update on reload" in developer tools
 1. Service worker becomes active
     - `active` event
 1. Service worker 'listens' for events

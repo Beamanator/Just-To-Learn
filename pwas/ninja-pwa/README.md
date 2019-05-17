@@ -30,3 +30,12 @@ On page reload
 1. Service worker becomes active
     - `active` event
 1. Service worker 'listens' for events
+
+## Running computer localhost on mobile phone
+
+1. On computer, open `cmd`, run `ipconfig`
+1. Find `IPv4 Address` (192.....)
+1. Turn off firewall on computer
+1. Open 192...... on mobile phone
+
+Boom! Success? Hopefully?

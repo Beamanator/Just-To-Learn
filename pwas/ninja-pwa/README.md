@@ -8,6 +8,10 @@
 1. Listens to events like fetch requests, push messages, etc.
 1. Created in root directory for global scope of project
 
+Note: useful tip for checking if specific browser(s) support a specific feature: https://caniuse.com/#feat=serviceworkers
+
+Note 2: service workers only work over https connections or localhost connections because they're very powerful, so they need to be secure!
+
 ### Service Worker Lifecycles
 
 Initial service worker setup

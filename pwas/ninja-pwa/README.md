@@ -57,3 +57,10 @@ Boom! Success? Hopefully?
 1. Go to "Audits" tab
 1. Make sure "Progressive Web App" is checked
 1. Click "Run audits"
+
+### Other guides used during tutorial
+
+-   Guide for adding "install app" banner on mobile
+    -   https://developers.google.com/web/fundamentals/app-install-banners/
+-   Guide for setting up USB debugging (needed for "install app" on local device)
+    -   https://developer.android.com/studio/debug/dev-options

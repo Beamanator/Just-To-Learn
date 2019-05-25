@@ -64,3 +64,12 @@ Boom! Success? Hopefully?
     -   https://developers.google.com/web/fundamentals/app-install-banners/
 -   Guide for setting up USB debugging (needed for "install app" on local device)
     -   https://developer.android.com/studio/debug/dev-options
+
+## Cache Notes
+
+Types:
+
+-   Browser cache
+    -   Cannot be controlled by us, it handles itself
+-   Other cache
+    -   Gives us control over what is stored so we can retrieve stuff offline

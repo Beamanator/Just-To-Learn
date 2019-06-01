@@ -1,6 +1,6 @@
 // constants
 const STATIC_CACHE_NAME = "site-static";
-// keys will be request urls, values will be the assets returned
+// cache keys will be request urls, values will be the assets returned
 const ASSETS = [
     "/",
     "/index.html",
@@ -11,6 +11,7 @@ const ASSETS = [
     "/css/materialize.min.css",
     "/img/dish.png",
     "https://fonts.googleapis.com/icon?family=Material+Icons",
+    "https://fonts.gstatic.com/s/materialicons/v47/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2",
 ];
 
 // install service worker
@@ -37,4 +38,14 @@ self.addEventListener("activate", (event) => {
 // fetch event
 self.addEventListener("fetch", (event) => {
     // console.log("fetch event", event);
+    // choose how to respond to a specific fetch event
+    event.respondWith(
+        // catch the fetch request, and try to find a matching resource
+        // -> in the cached values
+        caches.match(event.request).then((cacheResponse) => {
+            // if cacheResponse is populated, return it.
+            // -> else, return original fetch request
+            return cacheResponse || fetch(event.request);
+        })
+    );
 });

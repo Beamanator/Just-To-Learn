@@ -1,5 +1,5 @@
 // constants
-const STATIC_CACHE_NAME = "site-static";
+const STATIC_CACHE_NAME = "site-static-v2";
 // cache keys will be request urls, values will be the assets returned
 const ASSETS = [
     "/",
@@ -33,6 +33,20 @@ self.addEventListener("install", (event) => {
 // activate service worker
 self.addEventListener("activate", (event) => {
     // console.log("service worker has been activated", event);
+    // delete old caches so the service worker only has 1 to choose from
+    event.waitUntil(
+        // get all cache keys (names of caches)
+        caches.keys().then((keys) => {
+            // console.log(keys);
+            // create array of promises for deleting ALL caches
+            // -> NOT equal to statich cache name above
+            return Promise.all(
+                keys
+                    .filter((key) => key !== STATIC_CACHE_NAME)
+                    .map((key) => caches.delete(key))
+            );
+        })
+    );
 });
 
 // fetch event

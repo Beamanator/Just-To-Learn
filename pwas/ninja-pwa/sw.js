@@ -1,5 +1,6 @@
 // constants
 const STATIC_CACHE_NAME = "site-static-v2";
+const DYNAMIC_CACHE_NAME = "dynamic-cache-v1";
 // cache keys will be request urls, values will be the assets returned
 const ASSETS = [
     "/",
@@ -23,7 +24,7 @@ self.addEventListener("install", (event) => {
         // opens existing or creates new cache with passed-in name
         caches.open(STATIC_CACHE_NAME).then((cache) => {
             console.log("caching shell assets");
-            // 2 ways to add to cache
+            // addAll goes out to server to get resources and put in cache
             // cache.add(); // one resource at a time
             cache.addAll(ASSETS); // array of resources
         })
@@ -54,12 +55,25 @@ self.addEventListener("fetch", (event) => {
     // console.log("fetch event", event);
     // choose how to respond to a specific fetch event
     event.respondWith(
-        // catch the fetch request, and try to find a matching resource
-        // -> in the cached values
+        // Try to find a matching resource in ALL caches
         caches.match(event.request).then((cacheResponse) => {
             // if cacheResponse is populated, return it.
             // -> else, return original fetch request
-            return cacheResponse || fetch(event.request);
+            return (
+                cacheResponse ||
+                fetch(event.request).then((fetchResponse) => {
+                    return caches.open(DYNAMIC_CACHE_NAME).then((cache) => {
+                        // put local variable in cache, not reaching to server here
+                        // Note: can't pass fetchResponse into cache directly b/c
+                        // -> we wouldn't be able to return it back to user as well.
+                        // -> Therefore, make a copy (clone)!
+                        cache.put(event.request.url, fetchResponse.clone());
+
+                        // return fetched response back to application
+                        return fetchResponse;
+                    });
+                })
+            );
         })
     );
 });

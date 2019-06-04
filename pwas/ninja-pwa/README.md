@@ -73,3 +73,8 @@ Types:
     -   Cannot be controlled by us, it handles itself
 -   Other cache
     -   Gives us control over what is stored so we can retrieve stuff offline
+
+Static vs Dynamic:
+
+-   It's a good idea to do static caching for application "shell" - the main pages / resources that the user will almost _always_ visit, but **NOT ALL PAGES**
+-   Dynamically cache side pages & resources that aren't necessarily going to be visited.

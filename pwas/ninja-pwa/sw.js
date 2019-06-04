@@ -13,6 +13,7 @@ const ASSETS = [
     "/img/dish.png",
     "https://fonts.googleapis.com/icon?family=Material+Icons",
     "https://fonts.gstatic.com/s/materialicons/v47/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2",
+    "/pages/fallback.html",
 ];
 
 // install service worker
@@ -43,7 +44,11 @@ self.addEventListener("activate", (event) => {
             // -> NOT equal to statich cache name above
             return Promise.all(
                 keys
-                    .filter((key) => key !== STATIC_CACHE_NAME)
+                    .filter(
+                        (key) =>
+                            key !== STATIC_CACHE_NAME &&
+                            key !== DYNAMIC_CACHE_NAME
+                    )
                     .map((key) => caches.delete(key))
             );
         })
@@ -56,24 +61,27 @@ self.addEventListener("fetch", (event) => {
     // choose how to respond to a specific fetch event
     event.respondWith(
         // Try to find a matching resource in ALL caches
-        caches.match(event.request).then((cacheResponse) => {
-            // if cacheResponse is populated, return it.
-            // -> else, return original fetch request
-            return (
-                cacheResponse ||
-                fetch(event.request).then((fetchResponse) => {
-                    return caches.open(DYNAMIC_CACHE_NAME).then((cache) => {
-                        // put local variable in cache, not reaching to server here
-                        // Note: can't pass fetchResponse into cache directly b/c
-                        // -> we wouldn't be able to return it back to user as well.
-                        // -> Therefore, make a copy (clone)!
-                        cache.put(event.request.url, fetchResponse.clone());
+        caches
+            .match(event.request)
+            .then((cacheResponse) => {
+                // if cacheResponse is populated, return it.
+                // -> else, return original fetch request
+                return (
+                    cacheResponse ||
+                    fetch(event.request).then((fetchResponse) => {
+                        return caches.open(DYNAMIC_CACHE_NAME).then((cache) => {
+                            // put local variable in cache, not reaching to server here
+                            // Note: can't pass fetchResponse into cache directly b/c
+                            // -> we wouldn't be able to return it back to user as well.
+                            // -> Therefore, make a copy (clone)!
+                            cache.put(event.request.url, fetchResponse.clone());
 
-                        // return fetched response back to application
-                        return fetchResponse;
-                    });
-                })
-            );
-        })
+                            // return fetched response back to application
+                            return fetchResponse;
+                        });
+                    })
+                );
+            })
+            .catch(() => caches.match("/pages/fallback.html"))
     );
 });

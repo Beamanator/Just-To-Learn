@@ -1,4 +1,4 @@
-*Psst  looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
+_Psst ï¿½looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)_
 
 ---
 
@@ -13,15 +13,14 @@ npx degit sveltejs/template svelte-app
 cd svelte-app
 ```
 
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
-
+_Note that you will need to have [Node.js](https://nodejs.org) installed._
 
 ## Get started
 
 Install the dependencies...
 
 ```bash
-cd svelte-app
+cd sample1
 npm install
 ```
 
@@ -33,12 +32,9 @@ npm run dev
 
 Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
 
-
 ## Deploying to the web
 
 ### With [now](https://zeit.co/now)
-
-Install `now` if you haven't already:
 
 ```bash
 npm install -g now
@@ -51,11 +47,7 @@ cd public
 now
 ```
 
-As an alternative, use the [Now desktop client](https://zeit.co/download) and simply drag the unzipped project folder to the taskbar icon.
-
 ### With [surge](https://surge.sh/)
-
-Install `surge` if you haven't already:
 
 ```bash
 npm install -g surge
@@ -67,3 +59,5 @@ Then, from within your project folder:
 npm run build
 surge public
 ```
+
+### With [netlify](https://www.netlify.com/)

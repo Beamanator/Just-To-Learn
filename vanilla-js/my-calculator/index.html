@@ -1,0 +1,145 @@
+<html>
+    <head>
+        <title>Calculator</title>
+        <link href="./bulma.min.css" type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="title is-1">My Calcutatur</h1>
+            <div class="columns">
+                <div class="column">
+                    <button class="button is-dark is-large is-fullwidth">
+                        7
+                    </button>
+                </div>
+                <div class="column">
+                    <button class="button is-dark is-large is-fullwidth">
+                        8
+                    </button>
+                </div>
+                <div class="column">
+                    <button class="button is-dark is-large is-fullwidth">
+                        9
+                    </button>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column">
+                    <button class="button is-dark is-large is-fullwidth">
+                        4
+                    </button>
+                </div>
+                <div class="column">
+                    <button class="button is-dark is-large is-fullwidth">
+                        5
+                    </button>
+                </div>
+                <div class="column">
+                    <button class="button is-dark is-large is-fullwidth">
+                        6
+                    </button>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column">
+                    <button class="button is-dark is-large is-fullwidth">
+                        1
+                    </button>
+                </div>
+                <div class="column">
+                    <button class="button is-dark is-large is-fullwidth">
+                        2
+                    </button>
+                </div>
+                <div class="column">
+                    <button class="button is-dark is-large is-fullwidth">
+                        3
+                    </button>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column">
+                    <button class="button is-dark is-large is-fullwidth">
+                        0
+                    </button>
+                </div>
+                <div class="column">
+                    <button class="button is-dark is-large is-fullwidth">
+                        +
+                    </button>
+                </div>
+                <div class="column">
+                    <button class="button is-dark is-large is-fullwidth">
+                        -
+                    </button>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column"></div>
+                <div class="column">
+                    <button class="button is-dark is-large is-fullwidth">
+                        CLR
+                    </button>
+                </div>
+                <div class="column">
+                    <button class="button is-dark is-large is-fullwidth">
+                        =
+                    </button>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column">
+                    <h1 class="title is-1">History:</h1>
+                </div>
+                <div class="column">
+                    <h1 class="title is-1" id="history"></h1>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column">
+                    <h1 class="title is-1">Total:</h1>
+                </div>
+                <div class="column">
+                    <h1 class="title is-1" id="total"></h1>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+<script>
+    // text elements
+    const historyElem = document.querySelector("#history");
+    const totalElem = document.querySelector("#total");
+
+    let numberButtons = document.querySelectorAll("button");
+    numberButtons.forEach((elem) => {
+        elem.addEventListener("click", (e) => {
+            let clickedBtnText = e.target.innerText;
+            let historyText = historyElem.innerText;
+
+            switch (clickedBtnText) {
+                case "=":
+                    calculate();
+                    break;
+                case "CLR":
+                    clearHistory();
+                    break;
+                default:
+                    if (historyText.indexOf("Click Some Buttons") !== -1)
+                        historyElem.innerText = "";
+                    historyElem.innerText += clickedBtnText;
+            }
+        });
+    });
+
+    const calculate = () => {
+        console.log("calculate", historyElem.innerText);
+        totalElem.innerText = eval(historyElem.innerText);
+    };
+
+    const clearHistory = () => {
+        totalElem.innerText = "0";
+        historyElem.innerText = "Click Some Buttons";
+    };
+</script>

@@ -1,0 +1,45 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+        <style>
+            img {
+                position: absolute;
+                height: 210px;
+                width: 210px;
+            }
+        </style>
+    </head>
+    <body>
+        <img src="bunny.png" />
+        <script>
+            let topEdge = 0,
+                leftEdge = 0;
+
+            const myImg = document.querySelector("img");
+
+            document
+                .querySelector("body")
+                .addEventListener("keydown", (event) => {
+                    switch (event.keyCode) {
+                        case 83:
+                            topEdge += 20;
+                            break;
+                        case 87:
+                            topEdge -= 20;
+                            break;
+                        case 68:
+                            leftEdge += 20;
+                            break;
+                        case 65:
+                            leftEdge -= 20;
+                            break;
+                    }
+                    myImg.style.top = topEdge + "px";
+                    myImg.style.left = leftEdge + "px";
+                });
+        </script>
+    </body>
+</html>

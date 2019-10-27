@@ -1,19 +1,35 @@
-<script>
-    export let name;
-</script>
+<!-- To understand more about differences between
+    <script>... and <script context="module">,
+    read docs:
+    https://svelte.dev/docs#script_context_module
+ -->
+
 <script context="module">
-    export function changeName(name) {
-        let h1 = document.querySelector('h1');
-        console.log('change to?', name, h1)
-        h1.innerText = name
-    }
+  let name = "";
+
+  export const changeName = newName => {
+    console.log(name, newName);
+    name = newName;
+
+    // can't access variables in regular scripts
+    // testChange();
+  };
+</script>
+
+<script>
+  //   let name;
+  $: console.log("name", name);
+
+  //   const testChange = () => {
+  //     console.log("here?");
+  //   };
 </script>
 
 <style>
-    h1 {
-        color: purple;
-    }
+  h1 {
+    color: purple;
+  }
 </style>
 
-<h1>The dog name is {name || 'Idk!'}!</h1>
+<h1 id="dogName">The dog name is {name || 'Idk'}!</h1>
 <button>Change name!</button>

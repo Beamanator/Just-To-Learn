@@ -9,10 +9,17 @@ username.subscribe((newValue) => {
 });
 
 // readable store
+let intervalId;
 export const count = readable(0, (set) => {
-    setInterval(() => {
+    intervalId = setInterval(() => {
         set(get(count) + 1);
     }, 1000);
+});
+count.subscribe((newCount) => {
+    if (newCount >= 20) {
+        clearInterval(intervalId);
+        console.warn("Stop counting!");
+    }
 });
 
 // derived store

@@ -1,9 +1,7 @@
 <script>
   import { getContext } from "svelte";
 
-  let myThing = getContext("context-key");
-
-  console.log("in context", myThing);
+  let { key: value } = getContext("context-child");
 
   let num = 1;
   const updateMe = () => {
@@ -15,5 +13,5 @@
   }
 </script>
 
-<h1>Context Child</h1>
+<h1>Context Child Secret Note: {value}</h1>
 <button on:click={updateMe}>Update [{num}]</button>

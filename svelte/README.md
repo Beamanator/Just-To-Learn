@@ -1,6 +1,6 @@
 # My Svelte Notes
 
-## Ended at... Page 18,19
+## Ended at... Page 22
 
 ## Cool / Useful Documentation
 
@@ -25,6 +25,7 @@
     -   If exporting variables / functions, use `export varName` **AND ALSO** make sure the surrounding `<script>` tag has attribute `context="module"` like this:
         -   `<script context="module">`
     -   _Normal `script` tags **SHOULD NOT** have `context="module"` attribute_
+    -   Note: exported functions in this type of tag may not be able to affect local state
 
 ## Reactivity
 

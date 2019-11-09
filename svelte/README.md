@@ -1,6 +1,8 @@
 # My Svelte Notes
 
-## Ended at... Page 22
+## Stopped at...
+
+-   Finished! Stopped adding notes after p20 b/c I thought the examples spoke for themselves & some things (async stuff, if / each / events) were self-explanatory, just need practice
 
 ## Cool / Useful Documentation
 

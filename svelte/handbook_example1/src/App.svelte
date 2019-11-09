@@ -4,6 +4,7 @@
   import DerivedStore from "./store/DerivedStore.svelte";
   import WritableStore from "./store/WritableStore.svelte";
   import ReadableStore from "./store/ReadableStore.svelte";
+  import Slots from "./Slots.svelte";
 
   let count = 0;
 
@@ -31,10 +32,16 @@
 <h1>Hello World!</h1>
 <button on:click={incrementCount}>Count: {count}</button>
 
+<Slots />
+<Slots>Button</Slots>
+<Slots>
+  Button
+  <span slot="before">Early span</span>
+  <span slot="after">Late span</span>
+</Slots>
+
 <ReadableStore />
-
 <WritableStore />
-
 <DerivedStore />
 
 <Dog age={dogAge} />

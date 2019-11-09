@@ -5,6 +5,7 @@
   import WritableStore from "./store/WritableStore.svelte";
   import ReadableStore from "./store/ReadableStore.svelte";
   import Slots from "./Slots.svelte";
+  import Lifecycles from "./Lifecycles.svelte";
 
   let count = 0;
 
@@ -31,6 +32,8 @@
 
 <h1>Hello World!</h1>
 <button on:click={incrementCount}>Count: {count}</button>
+
+<Lifecycles myCount={count} />
 
 <Slots />
 <Slots>Button</Slots>

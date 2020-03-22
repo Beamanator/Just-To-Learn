@@ -1,0 +1,14 @@
+{
+    "name": "drive1",
+    "version": "1.0.0",
+    "description": "test for google drive api",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "googleapis": "^48.0.0"
+    }
+}

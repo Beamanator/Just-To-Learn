@@ -26,3 +26,7 @@ Other tools:
 
 -   `nodemon`
     -   `npm install nodemon -g`, run with `nodemon app` to have node server restart whenever you make changes to the app
+-   Tasks for defining graphql schemas:
+    1. Define types
+    1. Define relationships between types
+    1. Define root queries (where users jump into the graph)

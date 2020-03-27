@@ -21,3 +21,8 @@ Other tools:
 
 -   Graphiql
     -   Tool for previewing requests from front-end
+
+## Notes:
+
+-   `nodemon`
+    -   `npm install nodemon -g`, run with `nodemon app` to have node server restart whenever you make changes to the app

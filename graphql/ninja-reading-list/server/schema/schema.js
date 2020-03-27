@@ -1,6 +1,14 @@
 const graphql = require("graphql");
+const _ = require("lodash");
 
 const { GraphQLObjectType, GraphQLString, GraphQLSchema } = graphql;
+
+// dummy data
+var books = [
+    { name: "Name of the wind", genre: "Fantasy", id: "1" },
+    { name: "Final fantasy", genre: "Fantasy", id: "2" },
+    { name: "1984", genre: "Future", id: "3" }
+];
 
 const BookType = new GraphQLObjectType({
     name: "Book",
@@ -24,6 +32,7 @@ const RootQuery = new GraphQLObjectType({
             resolve(parent, args) {
                 // code to get data from database / other source
                 // note: args.id can be used to query books with this id
+                return _.find(books, { id: args.id });
             }
         }
     }

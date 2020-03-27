@@ -1,0 +1,23 @@
+# Ninja Reading List
+
+Stack:
+
+Server:
+
+-   GraphQL, NodeJs & Express
+    -   How graphs look and relationships between items
+    -   Entry points into the graph and what info can be retrieved from graph
+
+Database:
+
+-   MongoDB database (mLab)
+
+Client (front-end):
+
+-   Reactjs
+-   Apollo - glue between graphQL and React
+
+Other tools:
+
+-   Graphiql
+    -   Tool for previewing requests from front-end

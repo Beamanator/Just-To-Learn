@@ -11,9 +11,9 @@ const {
 
 // dummy data
 const books = [
-    { name: "Name of the wind", genre: "Fantasy", id: "1" },
-    { name: "Final fantasy", genre: "Fantasy", id: "2" },
-    { name: "1984", genre: "Future", id: "3" }
+    { name: "Name of the wind", genre: "Fantasy", id: "1", authorId: "1" },
+    { name: "Final fantasy", genre: "Fantasy", id: "2", authorId: "3" },
+    { name: "1984", genre: "Future", id: "3", authorId: "2" }
 ];
 const authors = [
     { name: "someone", age: 35, id: "1" },
@@ -27,7 +27,15 @@ const BookType = new GraphQLObjectType({
     fields: () => ({
         id: { type: GraphQLID },
         name: { type: GraphQLString },
-        genre: { type: GraphQLString }
+        genre: { type: GraphQLString },
+        author: {
+            type: AuthorType,
+            resolve(parent, args) {
+                console.log(parent);
+                // book data that got resolved is stored in 'parent'!
+                return _.find(authors, { id: parent.authorId });
+            }
+        }
     })
 });
 

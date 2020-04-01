@@ -32,3 +32,6 @@ Other tools:
     1. Define root queries (where users jump into the graph)
 -   To use `graphiql` to test your queries, just add `graphiql: true` in the express middleware!
     -   Then your route will automatically show the graphiql page, where you can run test queries & even navigate your map on the right-hand side (Documentation explorer)
+-   Database in this tutorial is mLab, part of mongodb
+    -   first, make user who can access the data
+    -   then do basic connect to see if database successfully connects

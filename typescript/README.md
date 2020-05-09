@@ -26,3 +26,10 @@ Run:
 -   If both files have same name, remove the `.js` part.
     -   Ex: `tsc myFile.ts` converts data to `myFile.js`!
 -   `tsc myFile.ts -w` Have typescript _watch_ a file and continually convert to javascript:
+
+### Notes
+
+Functions
+
+-   Specify "type" a paramter must be:
+    -   `const circ = (diameter: number) => {`

@@ -12,7 +12,9 @@ function Box(props) {
     const [active, setActive] = useState(false);
 
     // Rotate mesh every frame, this is outside of React without overhead
-    useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.01));
+    useFrame(() => {
+        if (hovered) mesh.current.rotation.x = mesh.current.rotation.y += 0.01;
+    });
 
     return (
         <mesh

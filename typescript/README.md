@@ -33,3 +33,11 @@ Functions
 
 -   Specify "type" a paramter must be:
     -   `const circ = (diameter: number) => {`
+
+Objects & arrays
+
+-   Cannot change data type of properties, objects cannot add additional keys
+-   Arrays set type like:
+    -   `let myArray: string[] = [];`
+
+`any` type can be used to make variables allow any data type

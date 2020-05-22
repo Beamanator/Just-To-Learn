@@ -41,3 +41,20 @@ obj = {
     belt: "orange",
     age: 40,
 }; // only works when we keep EVERY property with same type
+
+// 'any' type
+let age: any = 25;
+age = "26";
+age = false;
+
+let mixed: any[] = [];
+mixed.push(5);
+mixed.push(false);
+
+let ninja: {
+    name: any;
+    age: any;
+};
+ninja = { name: "yoshi", age: "5" };
+ninja = { name: 25, age: true };
+// ninja = {}; // NOT ALLOWED

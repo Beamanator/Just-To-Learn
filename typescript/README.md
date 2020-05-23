@@ -33,6 +33,7 @@ Functions
 
 -   Specify "type" a paramter must be:
     -   `const circ = (diameter: number) => {`
+-   `Function` type is capital F!
 
 Objects & arrays
 
@@ -41,3 +42,20 @@ Objects & arrays
     -   `let myArray: string[] = [];`
 
 `any` type can be used to make variables allow any data type
+
+Type `aliases` can let you reuse custom type logic multiple times
+
+### Typescript compiling config (tsconfig)
+
+Create the file
+
+-   `tsc --init`
+
+Some useful config options
+
+-   `rootDir` & `outDir` can configure where the ts files & output js files go
+-   add `"include": ["src"]` at the very end to only look to compile `ts` files from the `src` directory
+
+Useful commands
+
+-   Now just run `tsc -w` to watch and compile all `ts` files in the `rootDir`

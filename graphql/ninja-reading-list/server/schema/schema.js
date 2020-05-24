@@ -9,7 +9,8 @@ const {
     GraphQLInt,
     GraphQLString,
     GraphQLSchema,
-    GraphQLList
+    GraphQLList,
+    GraphQLNonNull,
 } = graphql;
 
 const BookType = new GraphQLObjectType({
@@ -27,9 +28,9 @@ const BookType = new GraphQLObjectType({
                 // book data that got resolved is stored in 'parent'!
                 // return _.find(authors, { id: parent.authorId });
                 return Author.findById(parent.authorId);
-            }
-        }
-    })
+            },
+        },
+    }),
 });
 
 const AuthorType = new GraphQLObjectType({
@@ -46,9 +47,9 @@ const AuthorType = new GraphQLObjectType({
             resolve(parent, args) {
                 // return _.filter(books, { authorId: parent.id });
                 return Book.find({ authorId: parent.id });
-            }
-        }
-    })
+            },
+        },
+    }),
 });
 
 // define points where users can jump into the graph
@@ -65,14 +66,14 @@ const RootQuery = new GraphQLObjectType({
                 // note: args.id can be used to query books with this id
                 // return _.find(books, { id: args.id });
                 return Book.findById(args.id);
-            }
+            },
         },
         books: {
             type: GraphQLList(BookType),
             resolve(parent, args) {
                 // return books;
                 return Book.find({});
-            }
+            },
         },
         author: {
             type: AuthorType,
@@ -80,16 +81,16 @@ const RootQuery = new GraphQLObjectType({
             resolve(parent, args) {
                 // return _.find(authors, { id: args.id });
                 return Author.findById(args.id);
-            }
+            },
         },
         authors: {
             type: GraphQLList(AuthorType),
             resolve(parent, args) {
                 // return authors;
                 return Author.find({});
-            }
-        }
-    }
+            },
+        },
+    },
 });
 
 const Mutation = new GraphQLObjectType({
@@ -98,39 +99,39 @@ const Mutation = new GraphQLObjectType({
         addAuthor: {
             type: AuthorType,
             args: {
-                name: { type: GraphQLString },
-                age: { type: GraphQLInt }
+                name: { type: new GraphQLNonNull(GraphQLString) },
+                age: { type: new GraphQLNonNull(GraphQLInt) },
             },
             resolve(parent, args) {
                 // create new instance of model
                 let author = new Author({
                     name: args.name,
-                    age: args.age
+                    age: args.age,
                 });
                 // return so in graphiql we can get back what we created
                 return author.save(); // save to database
-            }
+            },
         },
         addBook: {
             type: BookType,
             args: {
-                name: { type: GraphQLString },
-                genre: { type: GraphQLString },
-                authorId: { type: GraphQLID }
+                name: { type: new GraphQLNonNull(GraphQLString) },
+                genre: { type: new GraphQLNonNull(GraphQLString) },
+                authorId: { type: new GraphQLNonNull(GraphQLID) },
             },
             resolve(parent, args) {
                 let book = new Book({
                     name: args.name,
                     genre: args.genre,
-                    authorId: args.authorId
+                    authorId: args.authorId,
                 });
                 return book.save();
-            }
-        }
-    }
+            },
+        },
+    },
 });
 
 module.exports = new GraphQLSchema({
     query: RootQuery,
-    mutation: Mutation
+    mutation: Mutation,
 });

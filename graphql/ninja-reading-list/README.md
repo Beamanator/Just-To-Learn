@@ -35,3 +35,5 @@ Other tools:
 -   Database in this tutorial is mLab, part of mongodb
     -   first, make user who can access the data
     -   then do basic connect to see if database successfully connects
+-   Use `GraphQLNonNull` to make a field in a mutation required
+    -   Ex: `name: { type: new GraphQLNonNull(GraphQLString) },`

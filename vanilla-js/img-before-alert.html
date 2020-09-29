@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JS BMI Calculator</title>
+    </head>
+    <body>
+        <script>
+            function loaded() {
+                console.log("yay");
+                alert("Welcome to JS BMI calculator");
+                let name = prompt("What is your name?", "Insert name here");
+                alert(
+                    "Hello " + name + " , Let's work out your Body Mass Index!"
+                );
+                let height = prompt("Enter Height in Metres:", "e.g 1.8");
+                let weight = prompt("Enter Weight in Kilograms:", "e.g 70");
+                if (typeof weight === "string") {
+                    var valWeight = parseFloat(weight);
+                }
+                if (typeof height === "string") {
+                    var valHeight = parseFloat(height);
+                }
+                let bmi = valWeight / valHeight ** 2;
+                alert("Your Body Mass Index is: " + bmi.toFixed(2));
+                if (bmi >= 30) {
+                    alert(name + " ,your BMI indicates you are Obese");
+                } else if (bmi >= 25 && bmi < 30) {
+                    alert(name + " ,your BMI indicates you are Overweight");
+                } else if (bmi < 25 && bmi >= 18.5) {
+                    alert(name + " ,your BMI indicates you are Normal");
+                } else if (bmi < 18.5) {
+                    alert(name + " ,your BMI indicates you are Underweight");
+                }
+            }
+        </script>
+        <figure>
+            <img
+                onload="loaded()"
+                src="https://pbs.twimg.com/media/EXWRg9LU0AAt_QF?format=jpg&name=small"
+                alt="BMI chart for adults"
+            />
+            <figcaption>
+                A chart showing the correlation between height and weight, and
+                the ranges of body mass index
+            </figcaption>
+        </figure>
+    </body>
+</html>

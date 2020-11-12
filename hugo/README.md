@@ -23,6 +23,10 @@ First tutorial: https://www.youtube.com/watch?v=qtIqKaDlqXo&list=PLLAZ4kZ9dFpOny
 ## Useful commands
 
 -   `hugo new site <your-site-name>` - create new hugo site template
+-   `hugo new <pah-to-new-file.md>` - create new file at exact path
+    -   Note: themes MAY have specific folders where content needs to go! Depends on theme setup
+-   `hugo server` - spin up the hugo server
+    -   add `-D` to display content in `draft` format
 
 ## Initial hugo folders / files
 
@@ -39,4 +43,20 @@ First tutorial: https://www.youtube.com/watch?v=qtIqKaDlqXo&list=PLLAZ4kZ9dFpOny
 -   `/themes` - pre-built theming / layouts / templates
     -   ex: download pre-built theme and put it here
 -   `config.toml` - main settings page for site
-    -
+    -   connect theme: `theme = "folder-name-in-theme-dir"`
+
+## Other thoughts / notes
+
+Pre-built themes:
+
+-   https://themes.gohugo.io/
+
+Content types:
+
+-   Single Pages
+    -   Page that displayes one single page content
+-   List Pages
+    -   Pages that list out links to other content
+    -   These are created for the first level of folders in `/content` by default
+        -   To make these pages for deeper dirs, add `_index.md` to that dir. You can even add content to this `_index.md` list page if you want
+        -   You can overwrite the default with `_index.md` at that level, with your own custom content

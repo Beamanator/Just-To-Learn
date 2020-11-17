@@ -45,6 +45,14 @@ First tutorial: https://www.youtube.com/watch?v=qtIqKaDlqXo&list=PLLAZ4kZ9dFpOny
 -   `config.toml` - main settings page for site
     -   connect theme: `theme = "folder-name-in-theme-dir"`
 
+## Front Matter
+
+-   Metadata at the top of Markdown files - not the content itself.
+-   Stored in key-value pairs (usually or always)
+-   Can be written in YAML, TOML, or JSON
+-   Can be used by Hugo templates & themes to help display your information / content
+-   Can add custom key / value pairs on top of the default ones created on new pages
+
 ## Other thoughts / notes
 
 Pre-built themes:

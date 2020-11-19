@@ -52,6 +52,49 @@ First tutorial: https://www.youtube.com/watch?v=qtIqKaDlqXo&list=PLLAZ4kZ9dFpOny
 -   Can be written in YAML, TOML, or JSON
 -   Can be used by Hugo templates & themes to help display your information / content
 -   Can add custom key / value pairs on top of the default ones created on new pages
+-   Default front matter key / value pairs are setup in `archetypes/default.md`
+
+## Archetypes
+
+-   `default.md` sets base front matter for all content - unless overridden per directory
+-   `<dirName>.md` sets base front matter for all content \*\*inside `/<dirName>`
+-   Question: What if you make a folder with a `.md` file in this `archetypes` folder? Ex: `dir1/dir2.md`
+
+## Short-codes
+
+Code that grabs some pre-defined html and throws it in your content page
+
+-   Format: `{{< shortcode-name param1 >}}`
+
+Examples from hugo (yes you can make custom shortcodes somehow)
+
+-   `{{< youtube 2xkNJL4gJ9E >}}`
+-   More here: https://gohugo.io/content-management/shortcodes/
+
+## Taxonomies
+
+_Hugo includes support for user-defined groupings of content called taxonomies. Taxonomies are classifications of logical relationships between content_ [source](https://gohugo.io/content-management/taxonomies/)
+
+Always added to content in front matter
+
+Default taxonomies:
+
+-   Tags
+-   Categories
+
+Create custom taxonomies:
+
+1. Add front matter like `tags` and `categories`
+1. In `config.toml`, add your new taxonomy under `[taxonomies]`. Like this:
+    ```toml
+    [taxonomies]
+        tag = "tags"
+        category = "categories"
+        mood = "moods"
+    ```
+    - Note: If you define `[taxonomies]` in `config.toml`, you **must** include `tag` and `category` for them to work!
+
+Note: any time you modify `config.toml`, restart your server!
 
 ## Other thoughts / notes
 

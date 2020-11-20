@@ -96,6 +96,36 @@ Create custom taxonomies:
 
 Note: any time you modify `config.toml`, restart your server!
 
+## Templates
+
+-   Templates go in `/layouts`
+-   Multiple types: `list.html`, `single.html`, custom (home, section, base)
+    -   list and single and base go in `/layouts/_default` - overwrite theme templates!
+-   Home page template is at `/layouts/index.html`
+-   Section templates are at `/layouts/<folder>/<template-name>`
+    -   Can do `/layouts/dir1/list.html` to overwrite the list templates in `dir1` directory, as an example
+-   Base templates
+    -   `layouts/_default/baseof.html`
+        -   Used in list AND single templates!
+
+## Blocks (in base templates)
+
+Define a block in `baseof.html` (for example)
+
+```md
+{{ block "main" . }}
+    Default content
+{{ end }}
+```
+
+Use the block in a different file (ex: `single.html`)
+
+```md
+{{ define "main " }}
+    Some content here gets shoved in block "main"
+{{ end }}
+```
+
 ## Other thoughts / notes
 
 Pre-built themes:

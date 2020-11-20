@@ -112,7 +112,7 @@ Note: any time you modify `config.toml`, restart your server!
 
 Define a block in `baseof.html` (for example)
 
-```md
+```
 {{ block "main" . }}
     Default content
 {{ end }}
@@ -120,11 +120,28 @@ Define a block in `baseof.html` (for example)
 
 Use the block in a different file (ex: `single.html`)
 
-```md
+```
 {{ define "main " }}
     Some content here gets shoved in block "main"
+    <p>Even P's here!</p>
 {{ end }}
 ```
+
+## Hugo Variables
+
+[Docs](https://gohugo.io/variables/)
+
+... Should go through the docs to dive deep into what variables are available
+
+-   Can only be used / accessed within `layouts` folder, can't use it within `content` folder!
+-   Syntax: `{{ .VariableName }}`
+    -   Ex: `{{ .Title }}`, `.Date`, `.URL` (from front-matter)
+-   Custom variable from frontmatter
+    -   in frontmatter: `myVar: "myValue"`
+    -   in template: `{{ .Params.myVar }}`
+-   Custom variables
+    -   create variable `{{ $myVarName := 3 }}` (or string or boolean)
+    -   use variable `{{ $myVarName }}`
 
 ## Other thoughts / notes
 

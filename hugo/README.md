@@ -143,6 +143,21 @@ Use the block in a different file (ex: `single.html`)
     -   create variable `{{ $myVarName := 3 }}` (or string or boolean)
     -   use variable `{{ $myVarName }}`
 
+## Hugo Functions
+
+-   Only work in `/layouts` folder
+-   General format for functions: `{{ funcName param1 param 2}}`
+-   Examples:
+    -   `{{ truncate numChars longString }}`
+    -   `{{ sum 1 4}}`
+    -   `{{ singularize "dogs" }}`
+    -   ```
+        {{ range .Pages }}
+            {{ .Title }}</br>
+
+        {{ end }}
+        ```
+
 ## Other thoughts / notes
 
 Pre-built themes:

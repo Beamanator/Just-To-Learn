@@ -108,6 +108,24 @@ Note: any time you modify `config.toml`, restart your server!
     -   `layouts/_default/baseof.html`
         -   Used in list AND single templates!
 
+### Partial Templates
+
+-   Kinda like components in React - can be injected into other templates
+-   Folder within `layouts` called `partials`
+    -   Ex: `/layouts/partials/header.html`
+    -   Ex: Something as basic as...
+        ```html
+        <h1>{{.Title}}</h1>
+        <p>{{.Date}}</p>
+        <hr />
+        ```
+-   Importing from other files
+    -   `{{ partial "header" . }}`
+        -   `.` = passed scope into header (`.` represents entire scope of variables (global?))
+    -   Passing a dictionary w/ your custom variables
+        -   `{{ partial "header" (dict "myTitle" "myCustomTitle" "myDate" "myCustomDate") }}`
+        -   Should be key-value pairs
+
 ## Blocks (in base templates)
 
 Define a block in `baseof.html` (for example)

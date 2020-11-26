@@ -148,6 +148,7 @@ Use the block in a different file (ex: `single.html`)
 -   Only work in `/layouts` folder
 -   General format for functions: `{{ funcName param1 param 2}}`
 -   Examples:
+
     -   `{{ truncate numChars longString }}`
     -   `{{ sum 1 4}}`
     -   `{{ singularize "dogs" }}`
@@ -157,6 +158,44 @@ Use the block in a different file (ex: `single.html`)
 
         {{ end }}
         ```
+
+## Hugo Conditionals
+
+[source](https://gohugo.io/templates/introduction/#conditionals)
+
+-   Falsy vaules (in Go, therefore also in Hugo):
+    -   false (boolean)
+    -   0 (integer)
+    -   any zero-length array, slice, map, or string
+-   Structure: `{{ if <operator> <condition> }} ... {{ else }} ... {{ end }}`
+-   Examples:
+    -   `{{ if eq $val1 $var2 }}`
+    -   `{{ if not (eq $val1 $var2) }}`
+    -   `{{ if and (lt $val1 $var2) (lt $var1 $var3) }}`
+    -   `{{ if eq $val1 $val2 }} ... {{ else if ... }} ... {{ end }}`
+    -   Use conditionals w/ `range` function
+        ```
+        {{ $title := .Title }}
+        {{ range .Site.Pages }}
+        <li>
+            <a
+                href="{{ .URL }}"
+                style="{{ if eq .Title $title }}background-color:yellow;{{ end }}"
+            >
+                {{ .Title }}
+            </a>
+        </li>
+        {{ end }}
+        ```
+-   Operators:
+    -   `eq` (equal to)
+    -   `lt` (less than)
+    -   `le` (less than or equal)
+    -   `gt` (greater than)
+    -   `ge` (greater than or equal)
+    -   `not` (negate the condition)
+    -   `and` (join two conditions - both must be true)
+    -   `or` (duh)
 
 ## Other thoughts / notes
 

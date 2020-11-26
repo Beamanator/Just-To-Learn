@@ -187,6 +187,7 @@ Use the block in a different file (ex: `single.html`)
         </li>
         {{ end }}
         ```
+    -   `with`, `isset` are in docs but not in video! :O
 -   Operators:
     -   `eq` (equal to)
     -   `lt` (less than)
@@ -196,6 +197,7 @@ Use the block in a different file (ex: `single.html`)
     -   `not` (negate the condition)
     -   `and` (join two conditions - both must be true)
     -   `or` (duh)
+    -   more!? Check docs!
 
 ## Other thoughts / notes
 

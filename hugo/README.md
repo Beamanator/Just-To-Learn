@@ -126,6 +126,33 @@ Note: any time you modify `config.toml`, restart your server!
         -   `{{ partial "header" (dict "myTitle" "myCustomTitle" "myDate" "myCustomDate") }}`
         -   Should be key-value pairs
 
+## Shortcode Templates
+
+-   Little pieces of code you can put in markdown files
+    -   Similar to partials, but they go in `content` folder, not in `layouts` folder
+-   Create shortcode in `layouts` called `shortcodes`
+    -   Ex: `/layouts/shortcodes/myshortcode.html`
+    -   Ex: `<p>This is some text</p>`
+-   Inserting into markdown
+    -   `{{< myshortcode >}}`
+-   Pass variable to shortcode with:
+    -   Option 1 (named param): `{{< myshortcode color="blue" >}}`
+        -   Access variables with: `{{ .Get "variableName" }}`
+    -   Option 2 (positional parameter): `{{< myshortcode blue >}}`
+        -   Access variables with `{{ .Get 0 }}`
+-   Double-tagged shortcode
+    -   Ex:
+        ```
+        {{< myshortcode >}}
+            This text goes into myshortcode
+        {{< /myshortcode >}}
+        ```
+    -   Access text w/in tags like this:
+        -   `{{.Inner}}`
+    -   Example usage: highlight specific text within shortcode tags
+    -   **Note**: Using `{{< shortcode >}}` will not render markdown syntax!
+        -   To render markdown syntax, use `{{% shortcode %}} ... {{% /myshortcode %}}`
+
 ## Blocks (in base templates)
 
 Define a block in `baseof.html` (for example)

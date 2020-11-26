@@ -275,3 +275,7 @@ Content types:
     -   These are created for the first level of folders in `/content` by default
         -   To make these pages for deeper dirs, add `_index.md` to that dir. You can even add content to this `_index.md` list page if you want
         -   You can overwrite the default with `_index.md` at that level, with your own custom content
+-   Building your site
+    -   Locally: `hugo server` (add `-D` to see draft posts)
+    -   Build to folder: `hugo`
+        -   Creates `public` folder, puts all built files there

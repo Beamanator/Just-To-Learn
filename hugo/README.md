@@ -199,6 +199,22 @@ Use the block in a different file (ex: `single.html`)
     -   `or` (duh)
     -   more!? Check docs!
 
+## Data files / directory [vid 20]
+
+[source](https://gohugo.io/templates/data-templates/#the-data-folder)
+
+Any "data" for website (kinda like mini db)
+
+-   JSON, YAML, TOML files (similar type of content as in frontmatter)
+    -   Ex: us state capitals JSON file (cuz why not?)
+-   Loop through data
+    -   Ex: supposed you have a `data/states.json` file with props `name`, `lat`, `long`, etc.
+        ```
+        {{ range .Site.Data.states }}
+            {{.name}} <br> {{.lat}}
+        {{end}}
+        ```
+
 ## Other thoughts / notes
 
 Pre-built themes:

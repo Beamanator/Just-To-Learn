@@ -14,3 +14,9 @@ General notes / tips:
 1. If you don't always want to copy and use full paths in the terminal, you can use these shortcuts:
     - macOS / Linux: `-v $(pwd):/app`
     - Windows: `-v "%cd%":/app`
+
+## Notes of modules (so far):
+
+1. [Docker Images & Containers: The Core Building Blocks](./docs/docker-images-containers.md)
+1. [Managing Data & Working with Volumes](./docs/data-and-volumes.md)
+1. [Networking: Cross-Container Communication](./docs/networking-cross-container-comm.md)

@@ -181,7 +181,7 @@ ARGuments - build-time
 ENVironment variables - runtime
 
 -   Available in `Dockerfile` and ALSO in entire running application code
--   Syntax: `ENV PORT 80`
+-   Syntax: `ENV PORT=80`
     -   Now this can be used elsewhere in `Dockerfile` via `$PORT`
 -   in `run` command, can override the `ENV` with:
     -   `--env PORT=8000` (or `-e ...`) - if you want multiple, do `-e ... -e ...`

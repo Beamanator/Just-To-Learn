@@ -20,3 +20,4 @@ General notes / tips:
 1. [Docker Images & Containers: The Core Building Blocks](./docs/docker-images-containers.md)
 1. [Managing Data & Working with Volumes](./docs/data-and-volumes.md)
 1. [Networking: Cross-Container Communication](./docs/networking-cross-container-comm.md)
+1. [Building Multi-Container Applications](./docs/multi-container-apps.md)

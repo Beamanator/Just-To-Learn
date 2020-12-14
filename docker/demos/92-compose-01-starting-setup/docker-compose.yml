@@ -1,0 +1,59 @@
+# version of docker-compose specifications
+version: "3.8"
+
+services:
+    # names of your containers
+    mongodb:
+        image: "mongo"
+        volumes:
+            - data:/data/db
+        # environment:
+        #     MONGO_INITDB_ROOT_USERNAME: addy
+        #     MONGO_INITDB_ROOT_PASSWORD: secret
+        # - MONGO_INITDB_ROOT_USERNAME=addy
+        env_file:
+            - ./envs/mongo.env
+        # not necessary b/c docker-compose creates new env
+        # -> for all containers in this file, and all will
+        # -> get added automatically (by default)
+        # networks:
+        #     ...
+        # optionally set this container's name
+        # container_name: mongodb
+    backend:
+        # Build image based on Dockerfile at path
+        build: ./backend
+        # build:
+        #     # path to Dockerfile AND path of code to build the image
+        #     context: ./backend
+        #     # name of Dockerfile to use
+        #     dockerfile: Dockerfile-dev
+        #     args: (example)
+        #         some-arg: 1
+        ports:
+            - "80:80"
+        volumes:
+            - logs:/app/logs # named vol
+            - ./backend:/app # bind mount
+            - /app/node_modules # anonymous vol
+        env_file:
+            - ./envs/backend.env
+        # new to docker-compose
+        # -> this service depends on another being up 'n running
+        depends_on:
+            - mongodb
+    frontend:
+        build: ./frontend
+        ports:
+            - "3000:3000"
+        volumes:
+            - ./frontend/src:/app/src
+        # interactive mode (-it is combo of these two)
+        stdin_open: true
+        tty: true
+        depends_on:
+            - backend
+
+volumes:
+    data:
+    logs:

@@ -1,0 +1,73 @@
+version: "3.8"
+
+services:
+    # === app containers ===
+    server:
+        # option 1
+        # image: "nginx:stable-alpine"
+        # option 2 (useful for production-deploy)
+        # build:
+        #     context: ./dockerfiles
+        #     dockerfile: nginx.dockerfile
+        # Note: option 2 won't work b/c the ./dockerfiles context doesn't "see"
+        # some dirs needed in the Dockerfile (/nginx & /src)
+        # option 3
+        # solution: set context to '.', so dockerfile has access to parent dir
+        build:
+            context: .
+            dockerfile: dockerfiles/nginx.dockerfile
+        ports:
+            - "8000:80"
+        # -> remove bind mounts when deploying for production
+        volumes:
+            - ./src:/var/www/html
+            # :ro b/c container shouldn't ever edit the file
+            - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+        depends_on:
+            - php
+            - mysql
+    # - there is an official php image on docker hub, but
+    # - we want to make a custom one to extend its functionality
+    php:
+        # similar to above - dockerfile needs to copy src into container, so context needs to
+        # allow dockerfile access to src dir
+        # build:
+        #     context: ./dockerfiles
+        #     dockerfile: php.dockerfile
+        build:
+            context: .
+            dockerfile: dockerfiles/php.dockerfile
+        # note: ':delegated' should improve performance a bit
+        # -> remove bind mounts when deploying for production
+        volumes:
+            - ./src:/var/www/html:delegated
+        # - 'ports' not needed since php and nginx
+        # - will talk on the network, we don't need access
+        # ports:
+        #     - "3000:9000"
+    mysql:
+        image: mysql:5.7
+        env_file:
+            - ./env/mysql.env
+
+    # === utility containers ===
+    composer:
+        build:
+            context: ./dockerfiles
+            dockerfile: composer.dockerfile
+        volumes:
+            - ./src:/var/www/html
+    artisan:
+        build:
+            context: .
+            dockerfile: dockerfiles/php.dockerfile
+        volumes:
+            - ./src:/var/www/html
+        # overwrite entrypoint from dockerfile
+        entrypoint: ["php", "/var/www/html/artisan"]
+    npm:
+        image: node:14
+        working_dir: /var/www/html
+        entrypoint: ["npm"]
+        volumes:
+            - ./src:/var/www/html

@@ -23,3 +23,4 @@ General notes / tips:
 1. [Building Multi-Container Applications](./docs/multi-container-apps.md)
 1. [Docker Compose: Elegant Multi-Container Orchestration](./docs/docker-compose.md)
 1. [Working with "Utility Containers" & Executing Commands In Containers](./docs/utility-containers-and-more.md)
+1. [A More Complex Setup: A Laravel & PHP Docker Setup](./docs/laravel-php-setup.md)

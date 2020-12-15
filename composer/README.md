@@ -89,3 +89,53 @@ To update `composer` to latest version, run `composer self-update`
 `composer update --lock` (updates `composer.lock` with dependencies from `composer.json`)
 
 `composer update <package>` - updates specified package & that package in `composer.lock`
+
+## Creating and publishing Library
+
+When preparing `composer.json` for https://packagist.org/...
+
+-   `name` should be lowercase, words separated by `-`.
+-   `description` is your basic package description
+-   `keywords` can help devs find your package
+    -   Ex: `["Json", "Response", "API Response Class"]`
+-   `license` is library license
+    -   Ex: `"MIT"`
+-   `type` is project type
+-   `authors` is array of author objects, each containing `name`, `email`, `homepage`
+-   `require` is for packages & specifying php version
+    -   Ex: `">=5.3.0` to use `json_encode` function
+
+Git setup recommended (maybe needed)
+
+-   Add tag to commit with version number so Packagist knows where versions come from
+    -   `git tag #.#.#`
+
+Next, submit github repo on Packagist
+
+-   You'll be able to see some info from `composer.json` and README.md, and existing versions (tags from Github)
+
+Github -> Settings -> Integrations & services -> Packagist
+
+-   enter User & Token (Packagist profile -> show API token) & Domain (packagist.org by default, so don't need to fill it out)
+-   Click Manage Packagist, "Test service", then go to Packagist and make sure the auto-update warning is gone - meaning we're now setup!
+
+After updates, push to Github (+ update tag)
+
+-   Now you should see the new updates in Packagist
+
+## Advanced concepts in Composer
+
+21 - scripts & listening to composer events
+
+callbacks for before / after installing scripts
+
+-   https://getcomposer.org/doc/articles/scripts.md
+-   multiple types of events (command events, installer events, package events, plugin events...)
+
+Setup in `"scripts"` key of `composer.json`
+
+Note: can also put php scripts directly in a string in one of the `"scripts"`
+
+-   And can create custom scripts and run them with `composer <script-name>`
+-   can even link scripts to separate files!! :O
+-   Can even have a script set to an array of scripts, any combination of the above

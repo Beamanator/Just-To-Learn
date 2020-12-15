@@ -2,12 +2,14 @@
     "name": "test/test",
     "require": {
         "nesbot/carbon": "^2.42",
-        "swiftmailer/swiftmailer": "^6.2"
+        "swiftmailer/swiftmailer": "^6.2",
+        "vlucas/phpdotenv": "^5.2"
     },
     "autoload": {
         "classmap": [
             "classes/",
-            "library/"
+            "library/",
+            "scripts/"
         ],
         "files": [
             "config/database.php"
@@ -22,5 +24,20 @@
     },
     "config": {
         "optimize-autoloader": true
+    },
+    "scripts": {
+        "pre-package-install": [
+            "ComposerEventListener::prePackageInstall"
+        ],
+        "post-package-install": [
+            "ComposerEventListener::postPackageInstall",
+            "@composer status"
+        ],
+        "copy": "@php -r \"file_exists('file.txt') || copy('file.txt', 'new-file.txt');\"",
+        "index": "@php test.php",
+        "test": [
+            "@php -r \"echo 'hello\n';\"",
+            "@php -r \"echo 'hello 2\n';\""
+        ]
     }
 }

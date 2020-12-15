@@ -1,0 +1,6 @@
+# php-dependencies
+src/vendor/
+# src/config/mail.php
+
+# PhpStorm creates these unnecessary files
+.idea

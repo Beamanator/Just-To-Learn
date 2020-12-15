@@ -1,0 +1,26 @@
+{
+    "name": "test/json-response",
+    "description": "some description for this lib",
+    "keywords": [
+        "Json",
+        "Response",
+        "API Response Class"
+    ],
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "John Doe",
+            "email": "spamalotmucho@gmail.com",
+            "homepage": "http://somewhere.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Superuniquename\\ResponseClass\\": "src/"
+        }
+    }
+}

@@ -1,0 +1,3 @@
+# php-dependencies
+src/vendor/
+src/config/mail.php

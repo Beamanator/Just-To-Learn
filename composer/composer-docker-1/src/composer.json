@@ -1,0 +1,26 @@
+{
+    "name": "test/test",
+    "require": {
+        "nesbot/carbon": "^2.42",
+        "swiftmailer/swiftmailer": "^6.2"
+    },
+    "autoload": {
+        "classmap": [
+            "classes/",
+            "library/"
+        ],
+        "files": [
+            "config/database.php"
+        ],
+        "psr-4": {
+            "App\\": "src/",
+            "App\\Models\\": "src/model"
+        }
+    },
+    "require-dev": {
+        "filp/whoops": "^2.9"
+    },
+    "config": {
+        "optimize-autoloader": true
+    }
+}

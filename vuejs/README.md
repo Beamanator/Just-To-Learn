@@ -1,12 +1,18 @@
 # Vue 3
 
-## event listeners
+## Directives
+
+event listeners
 
 `v-on:` can be replaced with `@`
 
-## attribute binding
+attribute binding
 
 `v-bind:` can be replaced with just `:`
+
+two-way data binding (forms)
+
+`v-model:`
 
 ## Vue Lifecycle hooks
 

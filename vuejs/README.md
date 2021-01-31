@@ -53,3 +53,25 @@ https://v3.vuejs.org/guide/instance.html#lifecycle-diagram
 `unmounted`
 
 -   self explanatory
+
+## Vue Router
+
+`vue create project-name`
+
+-   Make sure "Router" is selected (after "Manually select features")
+-   "Modes" for router
+    -   History vs Hash
+-   Check out "jobs" project for more
+-   new styles on active link!
+
+`$route` = info about current route
+
+`$router` = to move around in the route
+
+-   `go` (+/- 1), `push`
+
+lazy loading: https://next.router.vuejs.org/guide/advanced/lazy-loading.html#grouping-components-in-the-same-chunk
+
+## cool resources / tools
+
+`npx json-server --watch data/db.json`

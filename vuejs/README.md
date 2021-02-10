@@ -75,3 +75,42 @@ lazy loading: https://next.router.vuejs.org/guide/advanced/lazy-loading.html#gro
 ## cool resources / tools
 
 `npx json-server --watch data/db.json`
+
+## options API vs Composition API
+
+options api
+
+-   data(), methods, computed, lifecycle hooks
+-   drawbacks
+    -   hard to group feature-logic together
+        -   data, computed, and lifecycle hook (example)
+        -   much harder to read / update with larger projects
+-   limitations
+
+composition API
+
+-   setup()
+    -   data(), methods, computed, lifecycle hooks
+-   benefits
+    -   group feature-logic together
+    -   create reusable logic / code in composition functions (composables)
+        -   similar to React hooks
+
+Note: can use options api for some and composition api for other logic, in the same project :D
+
+## composition api basics
+
+`ref` vs `reactive` when creating reactive variables
+
+-   `ref` we have to use `.value` to update the value
+    -   CAN use primitive values
+    -   better when we work with other vue components
+-   `reactive` you don't need `.value`! just update!
+    -   cannot use primitive values inside `reactive` (since objects are references, primitives aren't)
+    -   not as easy when working with other vue components
+
+lifecycle hooks
+
+-   all same name as before, but with `on` in front
+    -   ex: `onMounted`
+    -   have to be imported from vue to be used inside `setup` method

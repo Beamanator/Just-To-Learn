@@ -26,3 +26,4 @@ General notes / tips:
 1. [A More Complex Setup: A Laravel & PHP Docker Setup](./docs/laravel-php-setup.md)
 1. [Deploying Docker Containers](./docs/9-deploying-docker-containers.md)
 1. [Docker & Containers - A Summary](./docs/10-summary-docker-n-containers.md)
+1. [Getting started with Kubernetes](./docs/11-get-started-kubernetes.md)

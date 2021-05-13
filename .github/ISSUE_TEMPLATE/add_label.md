@@ -1,6 +1,6 @@
 ---
-name: ''
-about: ''
+name: Add Label Automagically
+about: can't be blank...
 labels: bug
 ---
 

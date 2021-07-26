@@ -1,7 +1,7 @@
 ---
 name: Add Label Automagically
 about: can't be blank...
-labels: bug, Daily something
+labels: bug, Daily, something
 ---
 
 <!-- Add your idea here... -->
